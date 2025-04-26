@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="90205dbb-bbbd-47f0-85dd-ca7b464350bf" name="Changes" comment="Create workspace.xml" />
+=======
+    <list default="true" id="90205dbb-bbbd-47f0-85dd-ca7b464350bf" name="Changes" comment="" />
+>>>>>>> ddb0da1fedb77ad093a9fd7863486db493ef22ca
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,6 +14,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
@@ -22,6 +27,8 @@
     &quot;accountId&quot;: &quot;c3b57125-f1fc-4732-b1d4-d39c8f82f9e7&quot;
   }
 }</component>
+=======
+>>>>>>> ddb0da1fedb77ad093a9fd7863486db493ef22ca
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -34,6 +41,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+<<<<<<< HEAD
     "git-widget-placeholder": "#2 on reclamationsetreponse",
     "kotlin-language-version-configured": "true",
     "nodejs_package_manager_path": "npm",
@@ -54,6 +62,14 @@
       <method v="2" />
     </configuration>
   </component>
+=======
+    "git-widget-placeholder": "nouha",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+>>>>>>> ddb0da1fedb77ad093a9fd7863486db493ef22ca
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -72,6 +88,7 @@
       <updated>1745681008933</updated>
       <workItem from="1745681011178" duration="5000" />
       <workItem from="1745682198974" duration="8000" />
+<<<<<<< HEAD
       <workItem from="1745682239791" duration="18000" />
       <workItem from="1745682260502" duration="36000" />
       <workItem from="1745682656157" duration="78000" />
@@ -87,13 +104,19 @@
       <updated>1745682700114</updated>
     </task>
     <option name="localTasksCounter" value="2" />
+=======
+    </task>
+>>>>>>> ddb0da1fedb77ad093a9fd7863486db493ef22ca
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+<<<<<<< HEAD
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Create workspace.xml" />
     <option name="LAST_COMMIT_MESSAGE" value="Create workspace.xml" />
   </component>
+=======
+>>>>>>> ddb0da1fedb77ad093a9fd7863486db493ef22ca
 </project>
