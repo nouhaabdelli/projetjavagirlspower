@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-//Singleton Design Pattern
 public class MyConnection {
 
-    private final String URL = "jdbc:mysql://localhost:3306/3A22";
+    // Informations de connexion à la base de données
+    private final String URL = "jdbc:mysql://localhost:3306/workbridge";
     private final String USER = "root";
     private final String PASS = "";
     private Connection connection;
