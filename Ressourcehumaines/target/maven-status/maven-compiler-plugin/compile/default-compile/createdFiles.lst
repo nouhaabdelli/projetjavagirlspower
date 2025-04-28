@@ -1,2 +1,7 @@
+gui\Afficherreclamations.class
+services\ReclamationService.class
+main\mainfx.class
 entities\Reclamations.class
 entities\reponse.class
+utils\MyConnection.class
+main\main.class
