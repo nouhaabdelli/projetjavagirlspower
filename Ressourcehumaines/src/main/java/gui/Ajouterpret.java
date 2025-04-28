@@ -45,10 +45,11 @@ public class Ajouterpret {
     @FXML
     private RadioButton élevé;
 
+    private int idPret;
+    private     String motif;
+
+
     @FXML
-
-
-
     void ajouter(ActionEvent event) {
         try {
             // Récupération et conversion des valeurs des champs de texte
@@ -85,7 +86,7 @@ public class Ajouterpret {
             }
 
             // Création de l'objet Pret avec les valeurs saisies
-            Pret pret = new Pret(montantValue, dureeValue, datePretValue, niveauUrgence, motifs);
+            Pret pret = new Pret(idPret, montantValue, dureeValue, datePretValue, niveauUrgence, motif);
 
             // Affichage pour vérification
             System.out.println("Prêt ajouté : " + pret);

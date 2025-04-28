@@ -1,5 +1,6 @@
 package entities;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 public class
@@ -11,7 +12,7 @@ Pret {
     private int duree; // en mois
     private String datePret;
     private String niveauUrgence;
-    private String motif;
+    private     String motif;
 
     public Pret() {}
 

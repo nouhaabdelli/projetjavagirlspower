@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="df75e5f2-d9f3-4735-b0f9-0e3675ae8e32" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/afficherpret.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/modifierpret.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/supprimerpret.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/afficherpret.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/avance.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/css/ajoutpret.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/modifierpret.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/modifierpret.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/supprimerpret.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/Person.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/Pret.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/Pret.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/Ajouterpret.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/Ajouterpret.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/pret.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/ajouterpret.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/modifierpret.css" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/css/modifierpret.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,8 +51,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Maven.Project3A2 [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "pretetavance",
     "kotlin-language-version-configured": "true",
     "list.type.of.created.stylesheet": "CSS",
@@ -72,6 +67,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\abdel\OneDrive\Documents\GitHub\projetjavagirlspower\Ressourcehumaines\src\main\resources\css" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
