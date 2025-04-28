@@ -1,4 +1,5 @@
 package entities;
+import java.io.File;
 import java.time.LocalDate;
 
 public class Reclamations {
@@ -7,14 +8,16 @@ public class Reclamations {
         private String description; // Description détaillée
         private LocalDate dateDemande; // Date d'envoi de la réclamation
         private String statut; // Statut de la réclamation (en attente, traité, etc.)
+        private  String cheminPieceJointe ;
 
-        // Constructeur
-        public Reclamations(int id, String titre, String description, LocalDate dateDemande, String statut) {
+    // Constructeur
+        public Reclamations(int id, String titre, String description, LocalDate dateDemande, String statut , String cheminPieceJointe) {
             this.id = id;
             this.titre = titre;
             this.description = description;
             this.dateDemande = dateDemande;
             this.statut = statut;
+            this.cheminPieceJointe = cheminPieceJointe;
         }
 
         // Getters et setters
@@ -32,6 +35,11 @@ public class Reclamations {
 
         public String getStatut() { return statut; }
         public void setStatut(String statut) { this.statut = statut; }
+        public String getCheminPieceJointe() { return cheminPieceJointe; }
+    public void setCheminPieceJointe(String cheminPieceJointe) {
+            this.cheminPieceJointe = cheminPieceJointe;
+    }
+
     }
 
 
