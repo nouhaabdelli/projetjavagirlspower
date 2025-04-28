@@ -2,7 +2,9 @@ package entities;
 
 import java.util.Scanner;
 
-public class Pret {
+public class
+
+Pret {
 
     private int idPret;
     private double montant;

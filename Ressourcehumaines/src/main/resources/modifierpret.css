@@ -1,0 +1,44 @@
+.root {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #1E90FF; /* Texte bleu */
+}
+
+.label {
+    -fx-text-fill: #1E90FF; /* Bleu Dodger */
+    -fx-font-weight: bold;
+}
+
+.text-field {
+    -fx-background-color: #f0f8ff; /* Bleu clair */
+    -fx-border-color: #1E90FF;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 6px;
+    -fx-text-fill: #000000;
+}
+
+.button {
+    -fx-background-color: #1E90FF;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 4px;
+    -fx-padding: 8px 16px;
+}
+
+.button:hover {
+    -fx-background-color: #4682B4; /* Bleu acier */
+}
+
+.button:pressed {
+    -fx-background-color: #5F9EA0; /* Bleu cadet */
+}
+
+.alert {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #1E90FF;
+    -fx-border-width: 2px;
+    -fx-border-radius: 4px;
+    -fx-padding: 10px;
+}

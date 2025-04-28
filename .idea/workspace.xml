@@ -1,15 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="df75e5f2-d9f3-4735-b0f9-0e3675ae8e32" name="Changes" comment="" />
+    <list default="true" id="df75e5f2-d9f3-4735-b0f9-0e3675ae8e32" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/afficherpret.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/modifierpret.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/supprimerpret.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/afficherpret.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/avance.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/css/ajoutpret.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/modifierpret.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/modifierpret.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/supprimerpret.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/Pret.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/Pret.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/Ajouterpret.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/Ajouterpret.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/pret.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/ajouterpret.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="FxmlFile" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;nadinechiha1&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/nouhaabdelli/projetjavagirlspower.git&quot;,
+    &quot;accountId&quot;: &quot;b8896695-b298-44c6-8065-c42118eb2430&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -18,29 +56,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;&lt;unknown&gt;&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "pretetavance",
+    "kotlin-language-version-configured": "true",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "advanced.settings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="projetjavagirlspower" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="projetjavagirlspower" />
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
-  </component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -60,10 +91,24 @@
       <workItem from="1745666855356" duration="46000" />
       <workItem from="1745705125435" duration="58000" />
       <workItem from="1745705192349" duration="34000" />
+      <workItem from="1745859517917" duration="871000" />
+      <workItem from="1745860470802" duration="97000" />
+      <workItem from="1745860578020" duration="10508000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/Ajouterpret.java</url>
+          <line>3</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
