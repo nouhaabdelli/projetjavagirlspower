@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Modifierpret">
+   <children>
+      <AnchorPane layoutX="-1.0" layoutY="-12.0" prefHeight="428.0" prefWidth="615.0" stylesheets="@css/modifierpret.css">
+         <children>
+            <Text fill="#f71f1f" layoutX="43.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MONTANT" underline="true">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="montant" layoutX="126.0" layoutY="93.0" />
+            <Text fill="#ff1d1d" layoutX="322.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="datepret" underline="true">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="duree" layoutX="143.0" layoutY="139.0" />
+            <TextField fx:id="datepret" layoutX="415.0" layoutY="93.0" />
+            <Text fill="#ff2f2f" layoutX="43.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="duree" underline="true">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Text>
+            <Button layoutX="485.0" layoutY="326.0" mnemonicParsing="false" onAction="#modifier" prefHeight="26.0" prefWidth="91.0" text="modifier" textFill="#df2121">
+               <font>
+                  <Font name="Arabic Typesetting" size="24.0" />
+               </font>
+            </Button>
+            <Text fill="#ff2626" layoutX="28.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="niveau d'urgence" underline="true">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Text>
+            <Text fill="#ff1b1b" fontSmoothingType="LCD" layoutX="44.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="motif" underline="true">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Text>
+            <RadioButton fx:id="faible" layoutX="173.0" layoutY="218.0" mnemonicParsing="false" text="faible" />
+            <RadioButton fx:id="moyen" layoutX="313.0" layoutY="218.0" mnemonicParsing="false" text="moyen" />
+            <RadioButton fx:id="élevé" layoutX="473.0" layoutY="218.0" mnemonicParsing="false" text="élevé" />
+            <CheckBox fx:id="mariage" layoutX="137.0" layoutY="276.0" mnemonicParsing="false" text="mariage" />
+            <CheckBox fx:id="urgencefamiliale" layoutX="277.0" layoutY="276.0" mnemonicParsing="false" text="Urgence familiale " />
+            <CheckBox fx:id="problémesfinanciers" layoutX="425.0" layoutY="275.0" mnemonicParsing="false" text="Problèmes financiers" />
+            <CheckBox fx:id="fraismédicaux" layoutX="35.0" layoutY="317.0" mnemonicParsing="false" text="Frais médicaux " />
+            <CheckBox fx:id="autres" layoutX="203.0" layoutY="317.0" mnemonicParsing="false" text="autres" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
