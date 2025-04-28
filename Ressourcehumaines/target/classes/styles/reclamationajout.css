@@ -1,0 +1,55 @@
+/* Général */
+#titreLabel {
+    -fx-font-family: "Agency FB" ;
+    -fx-font-size: 59px; /* Plus grand */
+    -fx-font-weight: bold; /* Gras */
+    -fx-text-fill: #2c3e50; /* Bleu foncé élégant */
+    -fx-padding: 10px;
+}
+
+#idesmi {
+    -fx-font-family: Serif;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e; /* Couleur élégante */
+}
+
+
+
+root {
+    -fx-background-color: #f9f9f9; /* Fond très clair */
+}
+
+.text-field, .text-area {
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-padding: 8px;
+    -fx-border-color: #bdc3c7;
+    -fx-border-width: 1px;
+}
+
+.button {
+    -fx-background-color: rgb(131, 121, 62);            /* Couleur 3 à 30% */
+
+    -fx-padding: 10px 20px;         /* Espacement autour du texte */
+    -fx-font-size: 16px;            /* Taille de police */
+    -fx-border-radius: 5px;        /* Coins arrondis */
+}
+
+.button:hover {
+    background: linear-gradient(#434190, #5a67d8); /* Changement de couleur au survol */
+}
+
+
+.image-view {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
+}
+
+#formulaire {
+    -fx-border-color: #2c3e50;
+    -fx-border-width: 3px;
+    -fx-border-radius: 10px;
+    -fx-padding: 20px;
+    -fx-background-color: transparent ;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+}
