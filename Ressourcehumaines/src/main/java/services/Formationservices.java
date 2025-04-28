@@ -11,7 +11,7 @@ public class Formationservices {
 
     public void ajouterFormation(Formation formation) {
         String sql = "INSERT INTO formation (titre, description, domaine, lieu, date_debut, date_fin) VALUES (?, ?, ?, ?, ?, ?)";
-        try (Connection conn = MyConnection.getInstance().getCnx();
+        try (Connection conn = MyConnection.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, formation.getTitre());
@@ -22,7 +22,7 @@ public class Formationservices {
             pstmt.setDate(6, formation.getDateFin());
 
             pstmt.executeUpdate();
-            System.out.println("✅ Formation ajoutée !");
+            System.out.println(" Formation ajoutée !");
         } catch (SQLException e) {
             System.err.println("Erreur lors de l'ajout : " + e.getMessage());
         }
@@ -31,7 +31,7 @@ public class Formationservices {
     public List<Formation> afficherFormations() {
         List<Formation> formations = new ArrayList<>();
         String sql = "SELECT * FROM formation";
-        try (Connection conn = MyConnection.getInstance().getCnx();
+        try (Connection conn = MyConnection.getInstance().getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
@@ -54,7 +54,7 @@ public class Formationservices {
 
     public void modifierFormation(Formation formation) {
         String sql = "UPDATE formation SET titre = ?, description = ?, domaine = ?, lieu = ?, date_debut = ?, date_fin = ? WHERE id_formation = ?";
-        try (Connection conn = MyConnection.getInstance().getCnx();
+        try (Connection conn = MyConnection.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, formation.getTitre());
@@ -66,7 +66,7 @@ public class Formationservices {
             pstmt.setInt(7, formation.getIdFormation());
 
             pstmt.executeUpdate();
-            System.out.println("✅ Formation modifiée !");
+            System.out.println(" Formation modifiée !");
         } catch (SQLException e) {
             System.err.println("Erreur lors de la modification : " + e.getMessage());
         }
@@ -74,12 +74,12 @@ public class Formationservices {
 
     public void supprimerFormation(int idFormation) {
         String sql = "DELETE FROM formation WHERE id_formation = ?";
-        try (Connection conn = MyConnection.getInstance().getCnx();
+        try (Connection conn = MyConnection.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setInt(1, idFormation);
             pstmt.executeUpdate();
-            System.out.println("✅ Formation supprimée !");
+            System.out.println(" Formation supprimée !");
         } catch (SQLException e) {
             System.err.println("Erreur lors de la suppression : " + e.getMessage());
         }
