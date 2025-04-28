@@ -1,2 +1,6 @@
 main\TestFX.class
+services\Formationservices.class
 gui\AfficherPersonne.class
+utils\MyConnection.class
+services\Certificatservices.class
+main\TestJDBC.class
