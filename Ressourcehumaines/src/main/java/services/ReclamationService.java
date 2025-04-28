@@ -3,6 +3,7 @@ package services;
 import entities.Reclamations;
 import utils.MyConnection;
 
+import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,25 +19,27 @@ public   class ReclamationService implements IService<Reclamations> {
 
     @Override
     public void create(Reclamations reclamation) throws SQLException {
-        String query = "INSERT INTO reclamations(titre, description, date_creation, status) " +
-                "VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO reclamations(titre, description, date_creation, status , cheminPieceJointe) " +
+                "VALUES (?, ?, ?, ?,?)";
         PreparedStatement ps = cnx.prepareStatement(query);
         ps.setString(1, reclamation.getTitre());
         ps.setString(2, reclamation.getDescription());
         ps.setDate(3, Date.valueOf(reclamation.getDateDemande())); // Attention conversion LocalDate -> SQL Date
         ps.setString(4, reclamation.getStatut());
+        ps.setString(5, reclamation.getCheminPieceJointe());
         ps.executeUpdate();
     }
 
     @Override
     public void update(Reclamations reclamation) throws SQLException {
-        String query = "UPDATE reclamations SET titre = ?, description = ?, date_creation = ?, status = ? WHERE id = ?";
+        String query = "UPDATE reclamations SET titre = ?, description = ?, date_creation = ?, status = ? , cheminPieceJointe = ?   WHERE id = ?";
         PreparedStatement ps = cnx.prepareStatement(query);
         ps.setString(1, reclamation.getTitre());
         ps.setString(2, reclamation.getDescription());
         ps.setDate(3, Date.valueOf(reclamation.getDateDemande()));
         ps.setString(4, reclamation.getStatut());
-        ps.setInt(5, reclamation.getId());
+        ps.setString(5, reclamation.getCheminPieceJointe());
+        ps.setInt(6, reclamation.getId());
         ps.executeUpdate();
     }
 
@@ -61,8 +64,9 @@ public   class ReclamationService implements IService<Reclamations> {
             String description = rs.getString("description");
             Date dateCreation = rs.getDate("date_creation");
             String status = rs.getString("status");
+            String cheminPieceJointe = null ;
 
-            Reclamations reclamation = new Reclamations(id, titre, description, dateCreation.toLocalDate(), status);
+            Reclamations reclamation = new Reclamations(id, titre, description, dateCreation.toLocalDate(), status , cheminPieceJointe);
             reclamations.add(reclamation);
         }
 
