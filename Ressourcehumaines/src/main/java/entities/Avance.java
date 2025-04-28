@@ -2,8 +2,6 @@ package entities;
 
 import java.util.Scanner;
 
-
-
 public class Avance {
     private int idAvance;
     private double montant;
@@ -12,6 +10,56 @@ public class Avance {
     private String motif;
 
     public Avance() {}
+
+    public Avance(int idAvance, double montant, String dateAvance, String niveauUrgence, String motif) {
+        this.idAvance = idAvance;
+        this.montant = montant;
+        this.dateAvance = dateAvance;
+        this.niveauUrgence = niveauUrgence;
+        this.motif = motif;
+    }
+
+    // ===== Ajout des getters =====
+    public int getIdAvance() {
+        return idAvance;
+    }
+
+    public double getMontant() {
+        return montant;
+    }
+
+    public String getDateAvance() {
+        return dateAvance;
+    }
+
+    public String getNiveauUrgence() {
+        return niveauUrgence;
+    }
+
+    public String getMotif() {
+        return motif;
+    }
+
+    // ===== Ajout des setters =====
+    public void setIdAvance(int idAvance) {
+        this.idAvance = idAvance;
+    }
+
+    public void setMontant(double montant) {
+        this.montant = montant;
+    }
+
+    public void setDateAvance(String dateAvance) {
+        this.dateAvance = dateAvance;
+    }
+
+    public void setNiveauUrgence(String niveauUrgence) {
+        this.niveauUrgence = niveauUrgence;
+    }
+
+    public void setMotif(String motif) {
+        this.motif = motif;
+    }
 
     public void ajouter() {
         Scanner scanner = new Scanner(System.in);

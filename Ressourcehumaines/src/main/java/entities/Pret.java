@@ -1,6 +1,4 @@
 package entities;
-import java.util.Scanner;
-
 
 import java.util.Scanner;
 
@@ -14,6 +12,66 @@ public class Pret {
 
     public Pret() {}
 
+    public Pret(int idPret, double montant, int duree, String datePret, String niveauUrgence, String motif) {
+        this.idPret = idPret;
+        this.montant = montant;
+        this.duree = duree;
+        this.datePret = datePret;
+        this.niveauUrgence = niveauUrgence;
+        this.motif = motif;
+    }
+
+    // ======= Getters =======
+    public int getIdPret() {
+        return idPret;
+    }
+
+    public double getMontant() {
+        return montant;
+    }
+
+    public int getDuree() {
+        return duree;
+    }
+
+    public String getDatePret() {
+        return datePret;
+    }
+
+    public String getNiveauUrgence() {
+        return niveauUrgence;
+    }
+
+    public String getMotif() {
+        return motif;
+    }
+
+    // ======= Setters =======
+    public void setIdPret(int idPret) {
+        this.idPret = idPret;
+    }
+
+    public void setMontant(double montant) {
+        this.montant = montant;
+    }
+
+    public void setDuree(int duree) {
+        this.duree = duree;
+    }
+
+    public void setDatePret(String datePret) {
+        this.datePret = datePret;
+    }
+
+    public void setNiveauUrgence(String niveauUrgence) {
+        this.niveauUrgence = niveauUrgence;
+    }
+
+    public void setMotif(String motif) {
+        this.motif = motif;
+    }
+
+    // ======= Méthodes principales =======
     public void ajouter() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("=== Ajouter un prêt ===");
@@ -79,3 +137,4 @@ public class Pret {
         pret.afficher();
     }
 }
+
