@@ -1,3 +1,5 @@
+package main;
+
 import entities.Certificat;
 import entities.Formation;
 import services.Certificatservices;
@@ -35,23 +37,21 @@ public class TestJDBC {
         formation.setDateDebut(java.sql.Date.valueOf("2025-06-01"));
         formation.setDateFin(java.sql.Date.valueOf("2025-06-15"));
 
-        try {
-            // Ajouter un certificat
-            certificatService.ajouterCertificat(cert);
+        // Ajouter un certificat
+        certificatService.ajouterCertificat(cert);
 
-            // Lire tous les certificats
-            System.out.println("Liste des certificats :");
-            System.out.println(certificatService.afficherCertificats());
+        // Lire tous les certificats
+        System.out.println("Liste des certificats :");
+        certificatService.afficherCertificats()
+                .forEach(c -> System.out.println("ID: " + c.getIdCertificat() + ", Titre: " + c.getTitre()));
 
-            // Ajouter une formation
-            formationService.ajouterFormation(formation);
+        // Ajouter une formation
+        formationService.ajouterFormation(formation);
 
-            // Lire toutes les formations
-            System.out.println("Liste des formations :");
-            System.out.println(formationService.afficherFormations());
+        // Lire toutes les formations
+        System.out.println("Liste des formations :");
+        formationService.afficherFormations()
+                .forEach(f -> System.out.println("ID: " + f.getIdFormation() + ", Titre: " + f.getTitre()));
 
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
-        }
     }
 }
