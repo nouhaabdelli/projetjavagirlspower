@@ -11,7 +11,7 @@ public class main {
         ReclamationService rs = new ReclamationService();
 
         // Créer une réclamation
-        Reclamations r = new Reclamations(0,"Problème de paie", "Je n'ai pas reçu mon salaire", LocalDate.now(), "En attente");
+        Reclamations r = new Reclamations(0,"Problème de paie", "Je n'ai pas reçu mon salaire", LocalDate.now(), "En attente",null);
 
         try {
             rs.create(r); // Ajouter une réclamation
