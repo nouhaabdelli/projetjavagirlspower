@@ -1,18 +1,20 @@
 package gui;
+import entities.Reclamations;
+import java.sql.SQLException;
+import javafx.fxml.FXML;
 
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import java.io.File;
 
 import javafx.scene.control.TextArea;
-
-import java.sql.SQLException;
-
-import entities.Reclamations;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
 import services.ReclamationService;
+import javafx.scene.control.Hyperlink;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -24,13 +26,28 @@ public class AjouterReclamations   {
     private TextArea boxtext;
 
     @FXML
+    private Hyperlink hyperlinkPieceJointe;
+
+    private String cheminPieceJointe ;
+    @FXML
     void ajouterreclamations(ActionEvent event) {
         String titre = tftitre.getText();
         String description = boxtext.getText();
         LocalDate date = LocalDate.now();
         String statut = "En attente";
 
-        Reclamations reclamation = new Reclamations(0,titre, description, date, statut);
+
+        if (titre.isEmpty() || description.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Champ(s) vide(s)");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez remplir tous les champs avant de soumettre la réclamation !");
+            alert.showAndWait();
+            return; // Arrêter l'exécution ici
+        }
+
+        // Crée une réclamation avec le chemin de la pièce jointe
+        Reclamations reclamation = new Reclamations(0, titre, description, date, statut, cheminPieceJointe);
 
         try {
             reclamationService.create(reclamation);
@@ -48,7 +65,25 @@ public class AjouterReclamations   {
             alert.showAndWait();
         }
     }
-
+    @FXML
+    void ajoutpiece(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("All Files", "*.*"));
+        Stage stage = (Stage) tftitre.getScene().getWindow();
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            cheminPieceJointe = file.getAbsolutePath();
+            hyperlinkPieceJointe.setText(file.getName()); // Affiche juste le nom du fichier
+            hyperlinkPieceJointe.setOnAction(e -> {
+                try {
+                    java.awt.Desktop.getDesktop().open(file); // Ouvre le fichier avec le programme associé
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
+            System.out.println("Fichier sélectionné : " + cheminPieceJointe);
+        }
+    }
     @FXML
     void afficher(ActionEvent event) {
         try {
