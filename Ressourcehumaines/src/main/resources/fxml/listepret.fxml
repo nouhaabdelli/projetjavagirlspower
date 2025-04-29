@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<SplitPane dividerPositions="0.25" xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="gui.listepretcontroller">
+    <items>
+        <!-- Menu latéral -->
+        <VBox spacing="10" alignment="TOP_CENTER" style="-fx-background-color: #2c3e50;">
+            <children>
+                <Label text="Menu Prêts" style="-fx-text-fill: white; -fx-font-size: 18px;"/>
+                <Button text="Ajouter Prêt" onAction="#ajouter" prefWidth="150"/>
+                <Button text="Liste Prêts" disable="true" prefWidth="150"/>
+<!--                <Button text="Retour" onAction="#retour" prefWidth="150"/>-->
+            </children>
+            <padding>
+                <Insets top="20" right="10" bottom="10" left="10"/>
+            </padding>
+        </VBox>
+
+        <!-- Zone centrale -->
+        <VBox spacing="15" style="-fx-background-color: #ecf0f1;" alignment="TOP_CENTER">
+            <children>
+                <Label text="Liste des Prêts" style="-fx-font-size: 20px; -fx-text-fill: #2980b9;" />
+                <TableView fx:id="tableViewPret" prefHeight="400" prefWidth="600">
+                    <columns>
+                        <TableColumn fx:id="colMontant" text="Montant" prefWidth="100"/>
+                        <TableColumn fx:id="colDuree" text="Durée" prefWidth="100"/>
+                        <TableColumn fx:id="colDatePret" text="Date Prêt" prefWidth="120"/>
+                        <TableColumn fx:id="colNiveauUrgence" text="Urgence" prefWidth="120"/>
+                        <TableColumn fx:id="colEtat" text="État" prefWidth="100"/>
+                    </columns>
+                </TableView>
+
+                <HBox spacing="20" alignment="CENTER">
+                    <children>
+                        <Button text="Afficher" onAction="#afficher" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+                        <Button text="Modifier" onAction="#modifier" style="-fx-background-color: #f39c12; -fx-text-fill: white;"/>
+                        <Button text="Supprimer" onAction="#supprimer" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+                    </children>
+                </HBox>
+            </children>
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+        </VBox>
+    </items>
+</SplitPane>
