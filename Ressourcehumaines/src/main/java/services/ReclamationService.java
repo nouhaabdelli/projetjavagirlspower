@@ -20,13 +20,15 @@ public   class ReclamationService implements IService<Reclamations> {
 
     @Override
     public void create(Reclamations reclamation) throws SQLException {
-        String query = "INSERT INTO reclamations(titre, description, date_creation, status , cheminPieceJointe) " +
-                "VALUES (?, ?, ?, ?,?)";
+        String query = "INSERT INTO reclamations(titre, description, date_creation, status , cheminPieceJointe , priorite ,RecevoirNotifications ) " +
+                "VALUES (?, ?, ?, ?,?,?,?)";
         PreparedStatement ps = cnx.prepareStatement(query);
         ps.setString(1, reclamation.getTitre());
         ps.setString(2, reclamation.getDescription());
         ps.setDate(3, Date.valueOf(reclamation.getDateDemande())); // Attention conversion LocalDate -> SQL Date
         ps.setString(4, reclamation.getStatut());
+        ps.setString(7, reclamation.RecevoirNotifications());
+        ps.setString(6, reclamation.getPriorite());
         ps.setString(5, reclamation.getCheminPieceJointe());
         ps.executeUpdate();
     }
@@ -66,8 +68,10 @@ public   class ReclamationService implements IService<Reclamations> {
             Date dateCreation = rs.getDate("date_creation");
             String status = rs.getString("status");
             String cheminPieceJointe = null ;
+            String priorite = rs.getString("priorite");
+            String recevoirNotifications = rs.getString("RecevoirNotifications");
 
-            Reclamations reclamation = new Reclamations(id, titre, description, dateCreation.toLocalDate(), status , cheminPieceJointe);
+            Reclamations reclamation = new Reclamations(id, titre, description, dateCreation.toLocalDate(), status , cheminPieceJointe,priorite,recevoirNotifications);
             reclamations.add(reclamation);
         }
 
