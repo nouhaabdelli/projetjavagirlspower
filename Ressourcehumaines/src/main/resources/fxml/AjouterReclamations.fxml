@@ -14,6 +14,7 @@
 
 <AnchorPane prefHeight="665.0" prefWidth="852.0" stylesheets="@../styles/reclamationajout.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterReclamations">
    <children>
+      <HBox id="formulaire" layoutX="20.0" layoutY="10.0" prefHeight="645.0" prefWidth="824.0" />
       <TextArea fx:id="boxtext" layoutX="118.0" layoutY="190.0" prefHeight="208.0" prefWidth="462.0" />
       <Text id="idesmi" layoutX="20.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
       <Button layoutX="394.0" layoutY="590.0" mnemonicParsing="false" onAction="#ajouterreclamations" prefHeight="38.0" prefWidth="134.0" text="Ajouter" />
@@ -28,7 +29,6 @@
       </ImageView>
 <!--      <Button layoutX="583.0" layoutY="503.0" mnemonicParsing="false" onAction="#Afficherreclamations" prefHeight="42.0" prefWidth="134.0" text="Afficher" />-->
       <Hyperlink fx:id="hyperlinkPieceJointe" layoutX="432.0" layoutY="490.0" text="Hyperlink" />
-      <HBox id="formulaire" layoutX="20.0" layoutY="10.0" prefHeight="645.0" prefWidth="824.0" />
       <Text id="idesmi" fontSmoothingType="LCD" layoutX="26.0" layoutY="508.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Documents lies" wrappingWidth="111.38436889648438" />
       <ImageView fitHeight="88.0" fitWidth="98.0" layoutX="23.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
          <image>
