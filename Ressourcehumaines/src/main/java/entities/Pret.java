@@ -94,22 +94,22 @@ Pret {
         motif = scanner.nextLine();
     }
 
-//    public void modifier() {
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("=== Modifier le prêt ===");
-//        System.out.print("Nouveau montant : ");
-//        montant = scanner.nextDouble();
-//        System.out.print("Nouvelle durée (en mois) : ");
-//        duree = scanner.nextInt();
-//        scanner.nextLine();
-//        System.out.print("Nouvelle date du prêt (YYYY-MM-DD) : ");
-//        datePret = scanner.nextLine();
-//        System.out.print("Nouveau niveau d'urgence : ");
-//        niveauUrgence = scanner.nextLine();
-//        System.out.print("Nouveau motif du prêt : ");
-//        motif = scanner.nextLine();
-//    }
-//
+    public void modifier() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("=== Modifier le prêt ===");
+        System.out.print("Nouveau montant : ");
+        montant = scanner.nextDouble();
+        System.out.print("Nouvelle durée (en mois) : ");
+        duree = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Nouvelle date du prêt (YYYY-MM-DD) : ");
+        datePret = scanner.nextLine();
+        System.out.print("Nouveau niveau d'urgence : ");
+        niveauUrgence = scanner.nextLine();
+        System.out.print("Nouveau motif du prêt : ");
+        motif = scanner.nextLine();
+    }
+
 //    public void afficher() {
 //        System.out.println("\n=== Détails du prêt ===");
 //        System.out.println("ID Prêt : " + idPret);
