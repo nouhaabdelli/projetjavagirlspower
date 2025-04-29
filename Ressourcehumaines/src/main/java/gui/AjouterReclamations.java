@@ -1,5 +1,5 @@
 package gui;
-import entities.Reclamations;
+import entities.Reclamations ;
 import java.sql.SQLException;
 import javafx.fxml.FXML;
 
@@ -85,13 +85,14 @@ public class AjouterReclamations   {
         }
     }
     @FXML
-    void afficher(ActionEvent event) {
+    void afficherreclamations(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/AfficherReclamation.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/AfficherReclamation.fxml"));
             boxtext.getScene().setRoot(root);
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
+
 }
