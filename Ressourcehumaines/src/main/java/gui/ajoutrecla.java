@@ -1,31 +1,24 @@
 package gui;
-import entities.Reclamations ;
-import java.sql.SQLException;
-import javafx.fxml.FXML;
 
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import java.io.File;
-
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.RadioButton;
-
-import javafx.scene.control.TextArea;
+import entities.Reclamations;
 import javafx.event.ActionEvent;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import services.ReclamationService;
-import javafx.scene.control.Hyperlink;
 
+import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class AjouterReclamations   {
+public class ajoutrecla {
+
     private final ReclamationService reclamationService = new ReclamationService();
     @FXML
     private TextField tftitre;
@@ -52,8 +45,7 @@ public class AjouterReclamations   {
     @FXML
     private RadioButton rbUrgent;
 
-    String priorite = getPriorite();
-    String RecevoirNotifications = String.join(",", getNotifications());
+
 
 
     // Méthode pour récupérer les notifications sélectionnées
@@ -81,7 +73,8 @@ public class AjouterReclamations   {
         }
         return "Aucune";  // Si aucune priorité n'est sélectionnée
     }
-
+    String priorite = getPriorite();
+    String RecevoirNotifications = String.join(",", getNotifications());
     @FXML
     void ajouterreclamations(ActionEvent event) {
         String titre = tftitre.getText();
@@ -89,7 +82,7 @@ public class AjouterReclamations   {
         LocalDate date = LocalDate.now();
         String statut = "En attente";
         String priorite = "";
-            String RecevoirNotifications = "";
+        String RecevoirNotifications = "";
 
 
         if (titre.isEmpty() || description.isEmpty()) {
@@ -142,7 +135,7 @@ public class AjouterReclamations   {
     @FXML
     void afficherreclamations(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/AfficherReclamation.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/AjouterReclamation.fxml"));
             boxtext.getScene().setRoot(root);
 
         } catch (IOException e) {
