@@ -1,2 +1,6 @@
-gui\AfficherPersonne.class
-main\TestFX.class
+gui\AjouterUser.class
+main\UserFX.class
+entities\User.class
+gui\CrudUser.class
+main\UserJDBC.class
+services\UserCrud.class
