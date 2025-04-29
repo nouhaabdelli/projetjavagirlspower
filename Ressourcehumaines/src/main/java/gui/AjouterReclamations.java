@@ -7,6 +7,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import java.io.File;
 
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.RadioButton;
+
 import javafx.scene.control.TextArea;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
@@ -18,6 +21,10 @@ import javafx.scene.control.Hyperlink;
 
 import java.io.IOException;
 import java.time.LocalDate;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class AjouterReclamations   {
     private final ReclamationService reclamationService = new ReclamationService();
     @FXML
@@ -28,13 +35,61 @@ public class AjouterReclamations   {
     @FXML
     private Hyperlink hyperlinkPieceJointe;
 
+
     private String cheminPieceJointe ;
+    @FXML
+    private CheckBox cbEmail;
+
+    @FXML
+    private CheckBox cbSMS;
+
+    @FXML
+    private RadioButton rbImportant;
+
+    @FXML
+    private RadioButton rbNormal;
+
+    @FXML
+    private RadioButton rbUrgent;
+
+    String priorite = getPriorite();
+    String RecevoirNotifications = String.join(",", getNotifications());
+
+
+    // Méthode pour récupérer les notifications sélectionnées
+    private List<String> getNotifications() {
+        List<String> notifications = new ArrayList<>();
+
+        if (cbEmail.isSelected()) {
+            notifications.add("Email");
+        }
+        if (cbSMS.isSelected()) {
+            notifications.add("SMS");
+        }
+
+        return notifications;
+    }
+
+    // Méthode pour récupérer la priorité sélectionnée
+    private String getPriorite() {
+        if (rbUrgent.isSelected()) {
+            return "Urgent";
+        } else if (rbImportant.isSelected()) {
+            return "Important";
+        } else if (rbNormal.isSelected()) {
+            return "Normal";
+        }
+        return "Aucune";  // Si aucune priorité n'est sélectionnée
+    }
+
     @FXML
     void ajouterreclamations(ActionEvent event) {
         String titre = tftitre.getText();
         String description = boxtext.getText();
         LocalDate date = LocalDate.now();
         String statut = "En attente";
+        String priorite = "";
+            String RecevoirNotifications = "";
 
 
         if (titre.isEmpty() || description.isEmpty()) {
@@ -47,7 +102,7 @@ public class AjouterReclamations   {
         }
 
         // Crée une réclamation avec le chemin de la pièce jointe
-        Reclamations reclamation = new Reclamations(0, titre, description, date, statut, cheminPieceJointe);
+        Reclamations reclamation = new Reclamations(0, titre, description, date, statut, cheminPieceJointe , priorite, RecevoirNotifications);
 
         try {
             reclamationService.create(reclamation);
