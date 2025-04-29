@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.modifierpret">
+   <children>
+      <AnchorPane prefHeight="428.0" prefWidth="615.0" stylesheets="@../css/modifierpret.css">
+         <children>
+            <Text fill="#4171c4" layoutX="35.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MONTANT" underline="true">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="montant" layoutX="128.0" layoutY="118.0" />
+            <Text fill="#3f80c7" layoutX="325.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="datepret" underline="true">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="duree" layoutX="128.0" layoutY="162.0" />
+            <TextField fx:id="datepret" layoutX="410.0" layoutY="133.0" />
+            <Text fill="#3f71cf" layoutX="44.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="duree" underline="true">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Text>
+            <Button layoutX="485.0" layoutY="326.0" mnemonicParsing="false" onAction="#modifier" prefHeight="26.0" prefWidth="91.0" text="modifier" textFill="#df2121">
+               <font>
+                  <Font name="Arabic Typesetting" size="24.0" />
+               </font>
+            </Button>
+            <Text fill="#4074d4" layoutX="28.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="niveau d'urgence" underline="true">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Text>
+            <Text fill="#577dd7" fontSmoothingType="LCD" layoutX="44.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="motif" underline="true">
+               <font>
+                  <Font name="Arial Black" size="14.0" />
+               </font>
+            </Text>
+            <RadioButton fx:id="faible" layoutX="173.0" layoutY="218.0" mnemonicParsing="false" text="faible" />
+            <RadioButton fx:id="moyen" layoutX="313.0" layoutY="218.0" mnemonicParsing="false" text="moyen" />
+            <RadioButton fx:id="élevé" layoutX="473.0" layoutY="218.0" mnemonicParsing="false" text="élevé" />
+            <CheckBox fx:id="mariage" layoutX="137.0" layoutY="276.0" mnemonicParsing="false" text="mariage" />
+            <CheckBox fx:id="urgencefamiliale" layoutX="277.0" layoutY="276.0" mnemonicParsing="false" text="Urgence familiale " />
+            <CheckBox fx:id="problémesfinanciers" layoutX="425.0" layoutY="275.0" mnemonicParsing="false" text="Problèmes financiers" />
+            <CheckBox fx:id="fraismédicaux" layoutX="35.0" layoutY="317.0" mnemonicParsing="false" text="Frais médicaux " />
+            <CheckBox fx:id="autres" layoutX="203.0" layoutY="317.0" mnemonicParsing="false" text="autres" />
+            <ImageView fitHeight="99.0" fitWidth="107.0" layoutX="20.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Pictures/projet/workbridge.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="99.0" fitWidth="150.0" layoutX="485.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Pictures/projet/pret.png" />
+               </image>
+            </ImageView>
+            <Text fill="#181694" layoutX="231.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="modifier pret">
+               <font>
+                  <Font name="Algerian" size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
