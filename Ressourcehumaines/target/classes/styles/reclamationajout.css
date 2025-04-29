@@ -9,15 +9,21 @@
 
 #idesmi {
     -fx-font-family: Serif;
-    -fx-font-size: 16px;
+    -fx-font-size: 17px;
     -fx-font-weight: bold;
     -fx-text-fill: #34495e; /* Couleur élégante */
+}
+#bb {
+    -fx-font-family: Arial;
+    -fx-font-size: 14px;
+    -fx-text-fill: #34495e;
+
 }
 
 
 
 root {
-    -fx-background-color: #f9f9f9; /* Fond très clair */
+    -fx-background-color: #add8e6; /* Fond très clair */
 }
 
 .text-field, .text-area {
