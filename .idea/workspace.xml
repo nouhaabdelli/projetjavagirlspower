@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6bfc9399-2d02-4d05-b5d6-3ee5bd5d13f8" name="Changes" comment="Recamations">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/Reclamations.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/Reclamations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReclamations.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReclamations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/ReclamationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/ReclamationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/AjouterReclamations.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/AjouterReclamations.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/entities/Reclamations.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/entities/Reclamations.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/AjouterReclamations.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/AjouterReclamations.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AjouterReclamations.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AjouterReclamations.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/main/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/main/main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/ReclamationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/ReclamationService.class" afterDir="false" />
-    </list>
+    <list default="true" id="6bfc9399-2d02-4d05-b5d6-3ee5bd5d13f8" name="Changes" comment="Recamations" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,6 +40,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.mainfx.executor": "Run",
     "Maven.Project3A2 [org.openjfx:javafx-maven-plugin:0.0.8:jlink].executor": "Run",
     "Maven.Project3A2 [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -105,6 +94,7 @@
       <workItem from="1745958155419" duration="1000" />
       <workItem from="1745958178982" duration="397000" />
       <workItem from="1745958814083" duration="4220000" />
+      <workItem from="1745963086175" duration="313000" />
     </task>
     <task id="LOCAL-00001" summary="Recamations">
       <option name="closed" value="true" />
