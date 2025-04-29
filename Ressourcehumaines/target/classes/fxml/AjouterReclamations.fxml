@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -10,28 +12,35 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="587.0" prefWidth="794.0" stylesheets="@../styles/reclamationajout.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterReclamations">
+<AnchorPane prefHeight="665.0" prefWidth="852.0" stylesheets="@../styles/reclamationajout.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterReclamations">
    <children>
-      <TextArea fx:id="boxtext" layoutX="118.0" layoutY="190.0" prefHeight="208.0" prefWidth="425.0" />
-      <Text id="idesmi" layoutX="30.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
-      <Button layoutX="385.0" layoutY="503.0" mnemonicParsing="false" onAction="#ajouterreclamations" prefHeight="42.0" prefWidth="134.0" text="Ajouter" />
+      <TextArea fx:id="boxtext" layoutX="118.0" layoutY="190.0" prefHeight="208.0" prefWidth="462.0" />
+      <Text id="idesmi" layoutX="20.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
+      <Button layoutX="394.0" layoutY="590.0" mnemonicParsing="false" onAction="#ajouterreclamations" prefHeight="38.0" prefWidth="134.0" text="Ajouter" />
       <TextField fx:id="tftitre" layoutX="118.0" layoutY="137.0" prefHeight="37.0" prefWidth="226.0" />
       <Text id="idesmi" layoutX="30.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Objet" wrappingWidth="60.251953125" />
-      <Button layoutX="129.0" layoutY="412.0" mnemonicParsing="false" onAction="#ajoutpiece" prefHeight="42.0" prefWidth="198.0" text="Ajouter pièce jointe" />
+      <Button layoutX="165.0" layoutY="478.0" mnemonicParsing="false" onAction="#ajoutpiece" prefHeight="30.0" prefWidth="190.0" text="Ajouter pièce jointe" />
       <Text id="titreLabel" layoutX="241.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="300.0" style="fx:id=&quot;titreLabel&quot;: fon;" text="Reclamation" textAlignment="CENTER" wrappingWidth="317.60001220703134" />
-      <ImageView fitHeight="233.0" fitWidth="213.0" layoutX="560.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="233.0" fitWidth="213.0" layoutX="604.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/1.jpg" />
          </image>
       </ImageView>
 <!--      <Button layoutX="583.0" layoutY="503.0" mnemonicParsing="false" onAction="#Afficherreclamations" prefHeight="42.0" prefWidth="134.0" text="Afficher" />-->
-      <Hyperlink fx:id="hyperlinkPieceJointe" layoutX="355.0" layoutY="422.0" text="Hyperlink" />
-      <HBox id="formulaire" layoutX="14.0" layoutY="13.0" prefHeight="562.0" prefWidth="772.0" />
-      <Text id="idesmi" fontSmoothingType="LCD" layoutX="30.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pièce jointe" wrappingWidth="84.984375" />
+      <Hyperlink fx:id="hyperlinkPieceJointe" layoutX="432.0" layoutY="490.0" text="Hyperlink" />
+      <HBox id="formulaire" layoutX="20.0" layoutY="10.0" prefHeight="645.0" prefWidth="824.0" />
+      <Text id="idesmi" fontSmoothingType="LCD" layoutX="26.0" layoutY="508.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Documents lies" wrappingWidth="111.38436889648438" />
       <ImageView fitHeight="88.0" fitWidth="98.0" layoutX="23.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/NN.jpg" />
          </image>
       </ImageView>
+      <Button layoutX="587.0" layoutY="590.0" mnemonicParsing="false" onAction="#afficherreclamations" prefHeight="46.0" prefWidth="220.0" text="Afficher la Reclamation" />
+      <RadioButton id="bb" layoutX="135.0" layoutY="415.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="111.0" text="urgent" />
+      <RadioButton id="bb" layoutX="260.0" layoutY="408.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="97.0" text="Important" />
+      <RadioButton id="bb" layoutX="421.0" layoutY="408.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="79.0" text="Normal" />
+      <Text id="idesmi" layoutX="31.0" layoutY="432.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priorité " />
+      <Text id="idesmi" layoutX="26.0" layoutY="566.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recevoir Notifications" />
+      <CheckBox id="bb" layoutX="237.0" layoutY="537.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="134.0" text="CheckBox" />
    </children>
 </AnchorPane>
