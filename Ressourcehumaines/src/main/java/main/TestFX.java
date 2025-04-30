@@ -15,19 +15,22 @@ public class TestFX extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            // Charger le fichier FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterAnnonce.fxml"));
+            // Charger l'interface principale "annonces.fxml"
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/annonces.fxml"));
             Parent root = loader.load();
 
-            // Créer la scène et l'afficher
+            // Créer et configurer la scène
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
-            primaryStage.setTitle("Ajouter Annonce");
+            scene.getStylesheets().add(getClass().getResource("/css/gestionannonce.css").toExternalForm());
+
+            // Afficher la fenêtre principale
+            primaryStage.setTitle("Gestion des Annonces");
             primaryStage.setScene(scene);
-            primaryStage.show();  // Afficher la fenêtre
+            primaryStage.show();
 
         } catch (Exception e) {
-            e.printStackTrace();  // Afficher l'erreur si le chargement échoue
+            e.printStackTrace();  // Afficher les erreurs de chargement
         }
     }
 }
+

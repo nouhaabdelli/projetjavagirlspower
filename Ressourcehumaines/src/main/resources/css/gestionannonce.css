@@ -1,0 +1,71 @@
+/* Arrière-plan général (bleu pastel clair) */
+.root {
+    -fx-background-color: #d6ecf3; /* bleu pastel */
+    -fx-padding: 20;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Grand titre souligné */
+#GrandTitre {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 0 0 20 0;
+    -fx-border-color: #2c3e50;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-style: solid;
+}
+
+/* Barre latérale (même bleu mais plus clair) */
+#sideMenu {
+    -fx-background-color: #e9f5f9;  /* un ton plus clair que le root */
+    -fx-padding: 20;
+    -fx-spacing: 15;
+    -fx-background-radius: 10;
+}
+
+/* Boutons dans la barre latérale */
+#sideMenu .button {
+    -fx-background-color: transparent;
+    -fx-border-color: #2c3e50;
+    -fx-border-width: 1.2;
+    -fx-border-radius: 0;
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+}
+
+#sideMenu .button:hover {
+    -fx-background-color: #cfe7f1;
+}
+
+/* TableView */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #b0c4d4;
+    -fx-border-radius: 10;
+    -fx-padding: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10, 0.1, 0, 4);
+}
+
+/* En-têtes des colonnes */
+.table-view .column-header {
+    -fx-background-color: #e1eef5;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* Cellules */
+.table-cell {
+    -fx-font-size: 13px;
+    -fx-text-fill: #2c3e50;
+}
+
+/* Tous les labels */
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #34495e;
+}
