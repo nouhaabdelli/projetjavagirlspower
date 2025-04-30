@@ -1,5 +1,4 @@
-gui\Afficherreclamations.class
-gui\ajoutrecla.class
+gui\AfficherReclamations.class
 services\ReclamationService.class
 main\mainfx.class
 entities\Reclamations.class

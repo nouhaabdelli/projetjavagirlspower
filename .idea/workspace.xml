@@ -5,14 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bfc9399-2d02-4d05-b5d6-3ee5bd5d13f8" name="Changes" comment="Recamations">
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/ajoutrecla.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/AjouterReclamation.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/AfficherReclamation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReclamations.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/Afficherreclamations.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AfficherReclamations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/ajoutrecla.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReclamations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/mainfx.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/mainfx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/AfficherReclamation.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/AjouterReclamations.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/AjouterReclamations.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/AjouterReclamations.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/AjouterReclamation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/AjouterReclamation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/AfficherReclamation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/AfficherReclamation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/Afficherreclamations.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/Afficherreclamations.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AjouterReclamations.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AjouterReclamations.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/main/mainfx.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/main/mainfx.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
@@ -26,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -120,6 +121,7 @@
       <workItem from="1745966397493" duration="70000" />
       <workItem from="1745966487955" duration="197000" />
       <workItem from="1745966696091" duration="1573000" />
+      <workItem from="1745970024457" duration="1211000" />
     </task>
     <task id="LOCAL-00001" summary="Recamations">
       <option name="closed" value="true" />

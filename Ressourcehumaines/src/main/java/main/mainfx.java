@@ -24,7 +24,7 @@ public class mainfx extends Application {
         try {
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            primaryStage.setTitle("Gestion personnes");
+            primaryStage.setTitle("Gestion Reclamation");
             primaryStage.setScene(scene);
             primaryStage.show();
 

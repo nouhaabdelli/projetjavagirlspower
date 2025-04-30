@@ -17,7 +17,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ajoutrecla {
+public class AjouterReclamations {
 
     private final ReclamationService reclamationService = new ReclamationService();
     @FXML
@@ -73,17 +73,15 @@ public class ajoutrecla {
         }
         return "Aucune";  // Si aucune priorité n'est sélectionnée
     }
-    String priorite = getPriorite();
-    String RecevoirNotifications = String.join(",", getNotifications());
+
     @FXML
     void ajouterreclamations(ActionEvent event) {
         String titre = tftitre.getText();
         String description = boxtext.getText();
         LocalDate date = LocalDate.now();
         String statut = "En attente";
-        String priorite = "";
-        String RecevoirNotifications = "";
-
+        String priorite = getPriorite();
+        String RecevoirNotifications = String.join(",", getNotifications());
 
         if (titre.isEmpty() || description.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -135,7 +133,7 @@ public class ajoutrecla {
     @FXML
     void afficherreclamations(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/AjouterReclamation.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/AfficherReclamation.fxml"));
             boxtext.getScene().setRoot(root);
 
         } catch (IOException e) {
