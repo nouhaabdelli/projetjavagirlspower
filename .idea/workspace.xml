@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="df75e5f2-d9f3-4735-b0f9-0e3675ae8e32" name="Changes" comment="hhhhh">
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/FXML/afficheretsupprimepret.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/FXML/afficherpret.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/FXML/afficheretsupprimerpret.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/afficheretsupprimerpret.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/afficheretsupprimerpret.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/TestFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/TestFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/FXML/Modifierpret.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/FXML/Modifierpret.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/FXML/afficheretsupprimerpret.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/FXML/modifierpret.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/FXML/modifierpret.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/afficheretsupprimerpret.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/afficheretsupprimerpret.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/main/TestFX.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/main/TestFX.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,12 +24,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -120,7 +128,7 @@
       <workItem from="1745860470802" duration="97000" />
       <workItem from="1745860578020" duration="10508000" />
       <workItem from="1745921797264" duration="19358000" />
-      <workItem from="1746013323681" duration="14120000" />
+      <workItem from="1746013323681" duration="19191000" />
     </task>
     <task id="LOCAL-00001" summary="hhhhh">
       <option name="closed" value="true" />
@@ -234,7 +242,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746026885631</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="hhhhh">
+      <option name="closed" value="true" />
+      <created>1746047642438</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1746047642438</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
