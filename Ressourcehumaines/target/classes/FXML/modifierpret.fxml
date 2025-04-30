@@ -10,24 +10,24 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.modifierpret">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ModifierPret">
    <children>
-      <AnchorPane prefHeight="428.0" prefWidth="615.0" stylesheets="@../css/modifierpret.css">
+      <AnchorPane layoutX="-1.0" layoutY="-6.0" prefHeight="428.0" prefWidth="615.0" stylesheets="@../css/modifierpret.css">
          <children>
-            <Text fill="#4171c4" layoutX="35.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MONTANT" underline="true">
+            <Text fill="#f71f1f" layoutX="35.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MONTANT" underline="true">
                <font>
                   <Font name="Arial Black" size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="montant" layoutX="128.0" layoutY="118.0" />
-            <Text fill="#3f80c7" layoutX="325.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="datepret" underline="true">
+            <TextField fx:id="montant" layoutX="137.0" layoutY="131.0" />
+            <Text fill="#ff1d1d" layoutX="348.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="datepret" underline="true">
                <font>
                   <Font name="Arial Black" size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="duree" layoutX="128.0" layoutY="162.0" />
-            <TextField fx:id="datepret" layoutX="410.0" layoutY="133.0" />
-            <Text fill="#3f71cf" layoutX="44.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="duree" underline="true">
+            <TextField fx:id="duree" layoutX="137.0" layoutY="178.0" />
+            <TextField fx:id="datepret" layoutX="423.0" layoutY="147.0" />
+            <Text fill="#ff2f2f" layoutX="49.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="duree" underline="true">
                <font>
                   <Font name="Arial Black" size="14.0" />
                </font>
@@ -37,12 +37,12 @@
                   <Font name="Arabic Typesetting" size="24.0" />
                </font>
             </Button>
-            <Text fill="#4074d4" layoutX="28.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="niveau d'urgence" underline="true">
+            <Text fill="#ff2626" layoutX="28.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="niveau d'urgence" underline="true">
                <font>
                   <Font name="Arial Black" size="14.0" />
                </font>
             </Text>
-            <Text fill="#577dd7" fontSmoothingType="LCD" layoutX="44.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="motif" underline="true">
+            <Text fill="#ff1b1b" fontSmoothingType="LCD" layoutX="44.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="motif" underline="true">
                <font>
                   <Font name="Arial Black" size="14.0" />
                </font>
@@ -55,19 +55,19 @@
             <CheckBox fx:id="problémesfinanciers" layoutX="425.0" layoutY="275.0" mnemonicParsing="false" text="Problèmes financiers" />
             <CheckBox fx:id="fraismédicaux" layoutX="35.0" layoutY="317.0" mnemonicParsing="false" text="Frais médicaux " />
             <CheckBox fx:id="autres" layoutX="203.0" layoutY="317.0" mnemonicParsing="false" text="autres" />
-            <ImageView fitHeight="99.0" fitWidth="107.0" layoutX="20.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="97.0" fitWidth="166.0" layoutX="28.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Pictures/projet/workbridge.png" />
+                  <Image url="@../../../../../../../Pictures/projet/workbridge.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="99.0" fitWidth="150.0" layoutX="485.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="115.0" fitWidth="184.0" layoutX="455.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Pictures/projet/pret.png" />
+                  <Image url="@../../../../../../../Pictures/projet/pret.png" />
                </image>
             </ImageView>
-            <Text fill="#181694" layoutX="231.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="modifier pret">
+            <Text fill="#0d1951" layoutX="212.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="modifier pret">
                <font>
-                  <Font name="Algerian" size="18.0" />
+                  <Font name="Algerian" size="24.0" />
                </font>
             </Text>
          </children>

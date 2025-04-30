@@ -1,5 +1,4 @@
-main\TestFX.class
-gui\afficherpret.class
-gui\modifierpret.class
 gui\Ajouterpret.class
-gui\supprimerpret.class
+gui\ModifierPret.class
+main\TestFX.class
+gui\afficheretsupprimerpret.class

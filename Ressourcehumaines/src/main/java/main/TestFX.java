@@ -19,7 +19,7 @@ public class TestFX extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Ajouterpret.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/modifierpret.fxml"));
         try {
             Parent root = loader.load();
             Scene scene = new Scene(root);

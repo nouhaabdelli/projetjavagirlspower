@@ -12,18 +12,18 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/ajoutpret.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Ajouterpret">
    <children>
-      <Text fill="#6678ec" layoutX="24.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MONTANT" underline="true">
+      <Text fill="#7ca3ff" layoutX="31.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MONTANT" underline="true">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font></Text>
-      <TextField fx:id="montant" layoutX="125.0" layoutY="119.0" />
-      <Text fill="#6678ec" layoutX="326.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="datepret" underline="true">
+      <TextField fx:id="montant" layoutX="127.0" layoutY="126.0" />
+      <Text fill="#7ca1ff" layoutX="314.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="datepret" underline="true">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font></Text>
-      <TextField fx:id="duree" layoutX="125.0" layoutY="163.0" />
-      <TextField fx:id="datepret" layoutX="399.0" layoutY="135.0" />
-      <Text fill="#6772eb" layoutX="42.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="duree" underline="true">
+      <TextField fx:id="duree" layoutX="125.0" layoutY="167.0" />
+      <TextField fx:id="datepret" layoutX="399.0" layoutY="127.0" />
+      <Text fill="#6fa9ff" layoutX="49.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="duree" underline="true">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font></Text>
@@ -31,12 +31,12 @@
          <font>
             <Font name="Arabic Typesetting" size="24.0" />
          </font></Button>
-      <Text fill="#597ad4" layoutX="28.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="niveau d'urgence" underline="true">
+      <Text fill="#7ea7ff" layoutX="28.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="niveau d'urgence" underline="true">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>
       </Text>
-      <Text fill="#4c84c9" fontSmoothingType="LCD" layoutX="44.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="motif" underline="true">
+      <Text fill="#56adef" fontSmoothingType="LCD" layoutX="44.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="motif" underline="true">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font>
@@ -49,17 +49,17 @@
       <CheckBox fx:id="fraismédicaux" layoutX="151.0" layoutY="317.0" mnemonicParsing="false" text="Frais médicaux " />
       <CheckBox fx:id="autres" layoutX="313.0" layoutY="317.0" mnemonicParsing="false" text="autres" />
       <CheckBox fx:id="urgencefamiliale" layoutX="264.0" layoutY="276.0" mnemonicParsing="false" text="urgence familiale" />
-      <ImageView fitHeight="104.0" fitWidth="122.0" layoutX="24.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="103.0" fitWidth="184.0" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../Pictures/projet/workbridge.png" />
+            <Image url="@../../../../../../../Pictures/projet/workbridge.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="104.0" fitWidth="188.0" layoutX="464.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="103.0" fitWidth="194.0" layoutX="465.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../Pictures/projet/pret.png" />
+            <Image url="@../../../../../../../Pictures/projet/pret.png" />
          </image>
       </ImageView>
-      <Text fill="#404ab9" layoutX="155.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ajouter demande pret" textAlignment="JUSTIFY" wrappingWidth="292.4046630859375">
+      <Text fill="#2e2e99" layoutX="151.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ajouter demande pret" wrappingWidth="290.13671875">
          <font>
             <Font name="Algerian" size="24.0" />
          </font>

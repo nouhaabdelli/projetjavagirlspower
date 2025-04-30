@@ -1,5 +1,9 @@
 package gui;
+import services.PretService;
 
+import java.sql.Connection;
+
+import utils.MyConnection;
 
 import entities.Pret;
 import javafx.event.ActionEvent;
@@ -8,10 +12,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+
+
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class modifierpret {
+public class ModifierPret {
 
 
         @FXML
@@ -46,13 +53,17 @@ public class modifierpret {
 
         @FXML
         private RadioButton élevé;
+        private Connection connection ;
 
-        @FXML
+
+
+    @FXML
         void modifier(ActionEvent event) {
             try {
                 double montantValue = Double.parseDouble(montant.getText());
                 int dureeValue = Integer.parseInt(duree.getText());
                 String datePretValue = datepret.getText();
+                int idPret = 1;
 
                 String niveauUrgence = "";
                 if (faible.isSelected()) {
@@ -72,9 +83,6 @@ public class modifierpret {
 
                 String motifConcat = String.join(", ", motifs);
 
-                // Tu dois récupérer l'ID du prêt à modifier (ex. depuis un champ caché)
-                int idPret = 1; // ⚠️ À adapter à ton code
-
                 Pret pret = new Pret();
                 pret.setIdPret(idPret);
                 pret.setMontant(montantValue);
@@ -82,11 +90,9 @@ public class modifierpret {
                 pret.setDatePret(datePretValue);
                 pret.setNiveauUrgence(niveauUrgence);
                 pret.setMotif(motifConcat);
-
-//                // Modifier dans la base
-//                Connection conn = MyDB.getInstance().getConnection();
-//                PretService ps = new PretService(conn);
-//                ps.modifierPret(pret);
+                connection = MyConnection.getInstance().getConnection();
+                PretService ps = new PretService(connection);
+                ps.update(pret);
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Succès");
