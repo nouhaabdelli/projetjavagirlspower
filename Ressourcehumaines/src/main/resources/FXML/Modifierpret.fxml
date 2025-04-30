@@ -10,9 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ModifierPret">
-   <children>
-      <AnchorPane layoutX="-1.0" layoutY="-6.0" prefHeight="428.0" prefWidth="615.0" stylesheets="@../css/modifierpret.css">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/modifierpret.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Modifierpret">
          <children>
             <Text fill="#4773e1" layoutX="35.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MONTANT" underline="true">
                <font>
@@ -49,11 +47,11 @@
             </Text>
             <RadioButton fx:id="faible" layoutX="173.0" layoutY="218.0" mnemonicParsing="false" text="faible" />
             <RadioButton fx:id="moyen" layoutX="313.0" layoutY="218.0" mnemonicParsing="false" text="moyen" />
-            <RadioButton fx:id="élevé" layoutX="473.0" layoutY="218.0" mnemonicParsing="false" text="élevé" />
+            <RadioButton fx:id="eleve" layoutX="473.0" layoutY="218.0" mnemonicParsing="false" text="élevé" />
             <CheckBox fx:id="mariage" layoutX="137.0" layoutY="276.0" mnemonicParsing="false" text="mariage" />
             <CheckBox fx:id="urgencefamiliale" layoutX="277.0" layoutY="276.0" mnemonicParsing="false" text="Urgence familiale " />
-            <CheckBox fx:id="problémesfinanciers" layoutX="425.0" layoutY="275.0" mnemonicParsing="false" text="Problèmes financiers" />
-            <CheckBox fx:id="fraismédicaux" layoutX="35.0" layoutY="317.0" mnemonicParsing="false" text="Frais médicaux " />
+            <CheckBox fx:id="problemesfinanciers" layoutX="425.0" layoutY="275.0" mnemonicParsing="false" text="Problèmes financiers" />
+            <CheckBox fx:id="fraismedicaux" layoutX="35.0" layoutY="317.0" mnemonicParsing="false" text="Frais médicaux " />
             <CheckBox fx:id="autres" layoutX="203.0" layoutY="317.0" mnemonicParsing="false" text="autres" />
             <ImageView fitHeight="97.0" fitWidth="166.0" layoutX="28.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -72,5 +70,3 @@
             </Text>
          </children>
       </AnchorPane>
-   </children>
-</AnchorPane>
