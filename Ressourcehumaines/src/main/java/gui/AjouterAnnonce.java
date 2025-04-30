@@ -47,6 +47,28 @@ public class AjouterAnnonce {
     private final AnnonceService annonceService = new AnnonceService();
 
     @FXML
+    void annuler(ActionEvent event) {
+        // Si tu veux demander à l'utilisateur s'il est sûr de vouloir annuler
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Annuler la saisie ?");
+        alert.setContentText("Voulez-vous vraiment annuler l'ajout de l'annonce ?");
+
+        // Si l'utilisateur confirme l'annulation
+        if (alert.showAndWait().get() == ButtonType.OK) {
+            // Réinitialiser les champs
+            titre.clear();
+            contenu.clear();
+            picejoin.clear();
+            cal.setValue(null); // Réinitialiser la date
+
+            // Ou fermer la fenêtre si nécessaire
+            // Stage stage = (Stage) titre.getScene().getWindow();
+            // stage.close();
+        }
+    }
+
+    @FXML
     void parcourir(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir une pièce jointe");
