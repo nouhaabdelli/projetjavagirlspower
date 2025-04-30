@@ -18,6 +18,26 @@ public class AnnonceService implements IService<Annonce> {
 
     @Override
     public void create(Annonce annonce) throws SQLException {
+        if (annonce.getTitre() == null || annonce.getTitre().trim().isEmpty()) {
+            throw new IllegalArgumentException("Le titre ne peut pas être vide.");
+        }
+
+        // Validation du contenu
+        if (annonce.getContenu() == null || annonce.getContenu().trim().isEmpty()) {
+            throw new IllegalArgumentException("Le contenu ne peut pas être vide.");
+        }
+
+        // Validation de la date de publication
+        if (annonce.getDatePublication().isBefore(LocalDateTime.now())) {
+            throw new IllegalArgumentException("La date de publication doit être la date actuelle ou une date future.");
+        }
+
+        // Validation de la pièce jointe (si elle n'est pas null, vérifier qu'elle a un nom valide)
+        if (annonce.getPieceJointe() != null && annonce.getPieceJointe().trim().isEmpty()) {
+            throw new IllegalArgumentException("Le nom du fichier de la pièce jointe ne peut pas être vide.");
+        }
+
+
         String query = "INSERT INTO annonce(titre, contenu, date_publication, piece_jointe) VALUES(?, ?, ?, ?)";
         PreparedStatement ps = cnx.prepareStatement(query);
         ps.setString(1, annonce.getTitre());

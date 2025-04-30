@@ -4,35 +4,30 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class TestFX extends Application {
 
     public static void main(String[] args) {
-        launch(args);
+        launch(args);  // Lancer l'application JavaFX
     }
-
-
 
     @Override
     public void start(Stage primaryStage) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterPersonne.fxml"));
         try {
+            // Charger le fichier FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterAnnonce.fxml"));
             Parent root = loader.load();
+
+            // Créer la scène et l'afficher
             Scene scene = new Scene(root);
-            primaryStage.setTitle("Gestion personnes");
+            scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+            primaryStage.setTitle("Ajouter Annonce");
             primaryStage.setScene(scene);
-            primaryStage.show();
+            primaryStage.show();  // Afficher la fenêtre
 
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();  // Afficher l'erreur si le chargement échoue
         }
-
-
     }
-
 }

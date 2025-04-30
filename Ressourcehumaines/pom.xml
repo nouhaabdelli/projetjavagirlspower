@@ -42,6 +42,13 @@
                 <configuration>
                     <mainClass>main.TestFX</mainClass>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>run</goal> <!-- Ce but permet d'exécuter l'application JavaFX -->
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

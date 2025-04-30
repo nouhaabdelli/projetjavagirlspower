@@ -1,77 +1,90 @@
 package gui;
 
-import services.AnnonceService;
-
-
 import entities.Annonce;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextField;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import services.AnnonceService;
 
-import java.io.IOException;
+import java.io.File;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-    public class AjouterAnnonce {
+public class AjouterAnnonce {
 
-        private final AnnonceService annonceService = new AnnonceService();
+    @FXML
+    private Label ajann;
 
-        @FXML
-        private TextField TFTitre;
+    @FXML
+    private DatePicker cal;
 
-        @FXML
-        private TextField TFContenu;
+    @FXML
+    private TextArea contenu;
 
-        @FXML
-        private DatePicker DPDatePublication;
+    @FXML
+    private Label contenuann;
 
-        @FXML
-        private TextField TFPieceJointe;
+    @FXML
+    private Label ddp;
 
-        @FXML
-        void ajouter(ActionEvent event) {
-            String titre = TFTitre.getText();
-            String contenu = TFContenu.getText();
-            LocalDate datePublication = DPDatePublication.getValue();
-            String pieceJointe = TFPieceJointe.getText();
+    @FXML
+    private Label msg;
 
-            // Conversion de LocalDate en LocalDateTime (heure par défaut à 00:00)
-            LocalDateTime localDateTime = datePublication.atStartOfDay();
+    @FXML
+    private TextField picejoin;
 
-            Annonce annonce = new Annonce(titre, contenu, localDateTime, pieceJointe);
+    @FXML
+    private Label pj;
 
-            try {
-                annonceService.create(annonce);
+    @FXML
+    private TextField titre;
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Succès");
-                alert.setContentText("Annonce ajoutée avec succès !");
-                alert.showAndWait();
+    @FXML
+    private Label titreann;
 
-            } catch (SQLException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erreur");
-                alert.setContentText(e.getMessage());
-                alert.showAndWait();
-            }
-        }
+    private final AnnonceService annonceService = new AnnonceService();
 
-        @FXML
-        void afficher(ActionEvent event) {
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("/AfficherAnnonce.fxml"));
-                DPDatePublication.getScene().setRoot(root);
-
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
+    @FXML
+    void parcourir(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une pièce jointe");
+        File fichier = fileChooser.showOpenDialog(null);
+        if (fichier != null) {
+            picejoin.setText(fichier.getAbsolutePath());
         }
     }
 
+    @FXML
+    void soumettre(ActionEvent event) {
+        String titreAnnonce = titre.getText();
+        String contenuAnnonce = contenu.getText();
+        LocalDate datePublication = cal.getValue();
+        String pieceJointe = picejoin.getText();
+
+        if (titreAnnonce.isEmpty() || contenuAnnonce.isEmpty() || datePublication == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Champs manquants");
+            alert.setContentText("Veuillez remplir tous les champs obligatoires.");
+            alert.showAndWait();
+            return;
+        }
+
+        LocalDateTime dateTime = datePublication.atStartOfDay();
+        Annonce annonce = new Annonce(titreAnnonce, contenuAnnonce, dateTime, pieceJointe);
+
+        try {
+            annonceService.create(annonce);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Succès");
+            alert.setContentText("Annonce ajoutée avec succès !");
+            alert.showAndWait();
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setContentText("Échec lors de l'ajout de l'annonce : " + e.getMessage());
+            alert.showAndWait();
+        }
+    }
+}
