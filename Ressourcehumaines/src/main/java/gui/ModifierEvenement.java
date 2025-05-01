@@ -90,7 +90,8 @@ public class ModifierEvenement {
         selectedEvenement.setDateFin(Timestamp.valueOf(newDateFin + " 00:00:00").toLocalDateTime());
 
         try {
-            evenementService.update(selectedEvenement);  // Mise à jour de l'événement
+            evenementService.update(selectedEvenement);
+            // Mise à jour de l'événement
             // Message de succès
             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
             successAlert.setTitle("Modification réussie");

@@ -129,6 +129,7 @@ public class Annonces {
                 stage.setTitle("Modifier l'Annonce");
                 stage.setScene(scene);
                 stage.show();
+                stage.setOnHidden(e -> chargerAnnonces());
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -157,6 +158,8 @@ public class Annonces {
             stage.setTitle("Ajouter une Annonce");
             stage.setScene(scene);
             stage.show();
+
+            stage.setOnHidden(e -> chargerAnnonces());
         } catch (IOException e) {
             e.printStackTrace();
         }

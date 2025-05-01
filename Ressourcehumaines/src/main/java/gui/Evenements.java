@@ -137,6 +137,7 @@ public class Evenements {
                 stage.setTitle("Modifier l'Événement");
                 stage.setScene(scene);
                 stage.show();
+                stage.setOnHidden(e -> chargerEvenements());
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -165,6 +166,7 @@ public class Evenements {
             stage.setTitle("Ajouter un Événement");
             stage.setScene(scene);
             stage.show();
+            stage.setOnHidden(e -> chargerEvenements());
         } catch (IOException e) {
             e.printStackTrace();
         }

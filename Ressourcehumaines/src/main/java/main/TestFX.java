@@ -33,8 +33,9 @@ public class TestFX extends Application {
         }
     }
 }
-*/
 
+
+*/
 package main;
 
 import javafx.application.Application;
@@ -70,5 +71,4 @@ public class TestFX extends Application {
         }
     }
 }
-
 
