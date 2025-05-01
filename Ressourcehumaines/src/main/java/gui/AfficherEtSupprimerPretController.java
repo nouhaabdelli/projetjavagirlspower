@@ -1,7 +1,3 @@
-//package gui;
-//
-//public class AfficherEtSupprimerPret {
-//}
 package gui;
 
 import entities.Pret;
@@ -16,7 +12,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
-public class AfficherEtSupprimerPretControler {
+public class AfficherEtSupprimerPretController {
 
     @FXML private TableView<Pret> tablepret;
     @FXML private TableColumn<Pret, Integer> colId;

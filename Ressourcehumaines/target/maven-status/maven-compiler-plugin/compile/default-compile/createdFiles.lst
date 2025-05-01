@@ -1,4 +1,4 @@
-gui\Ajouterpret.class
 main\TestFX.class
-gui\afficheretsupprimerpret.class
+gui\Ajouterpret.class
+gui\AfficherEtSupprimerPretController.class
 gui\Modifierpret.class
