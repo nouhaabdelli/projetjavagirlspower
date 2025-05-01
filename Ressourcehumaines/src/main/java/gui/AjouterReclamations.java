@@ -1,6 +1,6 @@
 package gui;
 
-import entities.Reclamations;
+import entities.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import services.ReclamationService;
+import services.UserService;
 
 import java.io.File;
 import java.io.IOException;
@@ -45,6 +46,7 @@ public class AjouterReclamations {
     @FXML
     private RadioButton rbUrgent;
 
+    private UserService userService = new UserService();
 
 
 
@@ -83,6 +85,7 @@ public class AjouterReclamations {
         String priorite = getPriorite();
         String RecevoirNotifications = String.join(",", getNotifications());
 
+
         if (titre.isEmpty() || description.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Champ(s) vide(s)");
@@ -92,8 +95,9 @@ public class AjouterReclamations {
             return; // Arrêter l'exécution ici
         }
 
+
         // Crée une réclamation avec le chemin de la pièce jointe
-        Reclamations reclamation = new Reclamations(0, titre, description, date, statut, cheminPieceJointe , priorite, RecevoirNotifications);
+        Reclamations reclamation = new Reclamations(0, titre, description, date, statut, cheminPieceJointe , priorite, RecevoirNotifications  );
 
         try {
             reclamationService.create(reclamation);
@@ -133,12 +137,31 @@ public class AjouterReclamations {
     @FXML
     void afficherreclamations(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/AfficherReclamation.fxml"));
-            boxtext.getScene().setRoot(root);
+        // Récupérer l'utilisateur avec l'ID 4 (ici pour les tests, à remplacer par l'utilisateur authentifié)
+        User user = userService.getUserById(4);
 
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        // Créer la réclamation avec les informations déjà présentes
+        Reclamations reclamation = new Reclamations(0, tftitre.getText(), boxtext.getText(), LocalDate.now(), "En attente", cheminPieceJointe, getPriorite(), String.join(",", getNotifications())); // ID de l'utilisateur (4)
+
+        // Charger le fichier FXML de la page de détails
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/detailreclamation.fxml"));
+        Parent root = loader.load();  // Charger le FXML et obtenir le root de la scène
+
+        // Passer la réclamation et l'utilisateur au contrôleur de la page de détails
+        Afficherdetail afficherdetailController = loader.getController();
+        afficherdetailController.setReclamation(reclamation, user);  // Passer la réclamation et l'utilisateur
+
+        // Changer la scène pour afficher les détails de la réclamation
+        boxtext.getScene().setRoot(root);
+    } catch (IOException e) {
+        e.printStackTrace();
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText("Erreur lors de l'affichage de la réclamation : " + e.getMessage());
+        alert.showAndWait();
     }
 
-}
+    } }
+
+

@@ -13,8 +13,9 @@ public class Reclamations {
         private String priorite ;
         private String RecevoirNotifications ;
 
+
     // Constructeur
-        public Reclamations(int id, String titre, String description, LocalDate dateDemande, String statut , String cheminPieceJointe , String priorite, String RecevoirNotifications) {
+        public Reclamations(int id, String titre, String description, LocalDate dateDemande, String statut , String cheminPieceJointe , String priorite, String RecevoirNotifications, int userId) {
             this.id = id;
             this.titre = titre;
             this.description = description;
@@ -52,9 +53,12 @@ public class Reclamations {
 
          public String RecevoirNotifications() { return RecevoirNotifications; }
 
+
          public void setRecevoirNotifications(String recevoirNotifications) {
         RecevoirNotifications = recevoirNotifications;
+
     }
+
 }
 
 

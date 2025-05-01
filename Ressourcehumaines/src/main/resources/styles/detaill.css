@@ -1,0 +1,74 @@
+/* Couleur de fond générale */
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #d6eaf8, #6c91d1);
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+/* Titre principal */
+.title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-fill: #2e86c1;
+    -fx-effect: dropshadow(gaussian, rgba(46, 134, 193, 0.3), 4, 0.5, 1, 1);
+}
+
+/* Labels */
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #154360;
+}
+
+/* Texts */
+.text {
+    -fx-font-size: 14px;
+    -fx-fill: #1b4f72;
+}
+
+/* TextArea (description) */
+.text-area {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #5dade2;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.3, 2, 2);
+}
+
+/* Hyperlink */
+.hyperlink {
+    -fx-text-fill: #1f618d;
+    -fx-font-weight: bold;
+    -fx-underline: true;
+}
+.hyperlink:hover {
+    -fx-text-fill: #2874a6;
+}
+
+/* Separator */
+.separator *.line {
+    -fx-background-color: #5dade2;
+}
+
+/* Texte de section */
+.text-section {
+    -fx-font-family: "Agency FB";
+    -fx-font-size: 17px;
+    -fx-font-weight: bold;
+    -fx-fill: rgb(40, 116, 166);
+}
+/* Style pour le bouton Quitter */
+.button-quit {
+    -fx-background-color: #3498db; /* Bleu clair */
+    -fx-text-fill: white; /* Texte en blanc */
+    -fx-font-size: 14px; /* Taille du texte */
+    -fx-padding: 10px 20px; /* Espacement autour du texte */
+    -fx-border-radius: 5px; /* Coins arrondis */
+    -fx-background-radius: 5px; /* Coins arrondis */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0.0, 0, 2); /* Ombre portée */
+}
+
+.button-quit:hover {
+    -fx-background-color: #2980b9; /* Bleu plus foncé au survol */
+    -fx-cursor: hand; /* Changer le curseur en main */
+}

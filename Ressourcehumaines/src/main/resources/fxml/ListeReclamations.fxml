@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="650.0" prefWidth="883.0" stylesheets="@../styles/listereclamation.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListeReclamations">
+
+    <!-- TableView des réclamations -->
+    <TableView id="table-view" fx:id="tableViewReclamations" layoutX="8.0" layoutY="7.0" prefHeight="522.0" prefWidth="868.0">
+        <columns>
+            <TableColumn fx:id="colTitre" prefWidth="141.5999698638916" text="Titre" />
+            <TableColumn fx:id="colDescription" prefWidth="283.2000427246094" text="Description" />
+            <TableColumn fx:id="colPriorite" prefWidth="99.19998168945312" text="Priorité" />
+            <TableColumn fx:id="colNotifications" prefWidth="100.0" text="Notifications" />
+            <TableColumn fx:id="colPieceJointe" prefWidth="239.199951171875" text="Pièce Jointe" />
+        </columns>
+    </TableView>
+
+    <!-- Boutons d'action -->
+    <HBox layoutX="200" layoutY="500" spacing="20" />
+     <Button layoutX="406.0" layoutY="581.0" onAction="#modifier" styleClass="btn-action" text="Modifier Reclamation " />
+     <Button layoutX="633.0" layoutY="580.0" onAction="#supprimer" styleClass="btn-action" text="Supprimer Reclamation " />
+     <Button layoutX="200.0" layoutY="581.0" onAction="#afficher" styleClass="btn-action" text="Afficher Reclamation " />
+
+</AnchorPane>
