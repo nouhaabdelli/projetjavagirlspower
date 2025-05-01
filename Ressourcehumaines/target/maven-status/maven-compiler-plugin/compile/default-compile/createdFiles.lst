@@ -1,5 +1,7 @@
 main\TestFX.class
+gui\DetailsEvenement.class
 gui\DetailsAnnonce.class
 gui\Evenements.class
 gui\ModifierAnnonce.class
 gui\Annonces.class
+gui\ModifierEvenement.class

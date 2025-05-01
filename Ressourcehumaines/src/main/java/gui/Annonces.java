@@ -83,7 +83,7 @@ public class Annonces {
 
                 // Créer une nouvelle scène pour afficher les détails de l'annonce
                 Scene scene = new Scene(root);
-                scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+                scene.getStylesheets().add(getClass().getResource("/css/ajouter.css").toExternalForm());
 
                 Stage stage = new Stage();
                 stage.setTitle("Détails de l'annonce");
@@ -123,7 +123,7 @@ public class Annonces {
                 modifierAnnonceController.initialize(selected);
 
                 Scene scene = new Scene(root);
-                scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+                scene.getStylesheets().add(getClass().getResource("/css/ajouter.css").toExternalForm());
 
                 Stage stage = new Stage();
                 stage.setTitle("Modifier l'Annonce");
@@ -151,7 +151,7 @@ public class Annonces {
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm()); // ✅ Chemin du CSS ici
+            scene.getStylesheets().add(getClass().getResource("/css/ajouter.css").toExternalForm()); // ✅ Chemin du CSS ici
 
             Stage stage = new Stage();
             stage.setTitle("Ajouter une Annonce");

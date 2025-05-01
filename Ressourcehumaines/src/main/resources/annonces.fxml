@@ -10,35 +10,48 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.33121657754010686" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Annonces">
-  <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="230.0">
-         <children>
-            <VBox fx:id="sideMenu" layoutX="-3.0" layoutY="87.0" prefHeight="315.0" prefWidth="229.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#btnajout" prefHeight="58.0" prefWidth="197.0" text="Ajouter Une Annonce" />
-                  <Button mnemonicParsing="false" onAction="#btnmodif" prefHeight="58.0" prefWidth="198.0" text="Modifier Une Annonce" />
-                  <Button mnemonicParsing="false" onAction="#btnsupp" prefHeight="58.0" prefWidth="198.0" text="Supprimer Une Annonce" />
-                  <Button mnemonicParsing="false" onAction="#btnaffich" prefHeight="59.0" prefWidth="198.0" text="Afficher Une Annonce" />
-               </children>
-            </VBox>
-            <ImageView fitHeight="87.0" fitWidth="137.0" layoutX="15.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@css/logo.png" />
-               </image></ImageView>
+<SplitPane dividerPositions="0.33" prefHeight="400.0" prefWidth="600.0"
+           xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="gui.Annonces" styleClass="root">
 
-         </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="394.0" prefWidth="398.0">
-         <children>
-            <TableView fx:id="tableview" layoutX="-2.0" layoutY="98.0" prefHeight="299.0" prefWidth="406.0">
-              <columns>
-                <TableColumn fx:id="titre" prefWidth="86.39996492862701" text="Titre" />
-                <TableColumn fx:id="contenu" prefWidth="88.79998016357422" text="Contenu" />
-                  <TableColumn fx:id="datepub" prefWidth="116.79998779296875" text="Date Publication" />
-                  <TableColumn fx:id="pj" prefWidth="105.60009765625" text="Piéce Jointe" />
-              </columns>
-            </TableView>
-            <Label fx:id="GrandTitre" alignment="CENTER" layoutX="29.0" layoutY="21.0" prefHeight="66.0" prefWidth="338.0" text="Gestion Des Annonces" />
-         </children></AnchorPane>
-  </items>
+    <items>
+        <!-- LEFT SIDEBAR -->
+        <AnchorPane>
+            <children>
+                <VBox fx:id="sideMenu" layoutX="0" layoutY="87.0" prefHeight="315.0" prefWidth="229.0" styleClass="left-panel">
+                    <children>
+                        <Button text="Ajouter Une Annonce" onAction="#btnajout" styleClass="sidebar-button"/>
+                        <Button text="Modifier Une Annonce" onAction="#btnmodif" styleClass="sidebar-button"/>
+                        <Button text="Supprimer Une Annonce" onAction="#btnsupp" styleClass="sidebar-button"/>
+                        <Button text="Afficher Une Annonce" onAction="#btnaffich" styleClass="sidebar-button"/>
+                    </children>
+                </VBox>
+
+                <ImageView fitHeight="87.0" fitWidth="137.0" layoutX="15.0" preserveRatio="true" styleClass="logo">
+                    <image>
+                        <Image url="@css/logo.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+
+        <!-- MAIN CONTENT -->
+        <AnchorPane>
+            <children>
+                <Label fx:id="GrandTitre" layoutX="29.0" layoutY="21.0" prefHeight="66.0" prefWidth="338.0"
+                       text="Gestion Des Annonces" styleClass="title" />
+
+                <TableView fx:id="tableview" layoutX="0.0" layoutY="98.0" prefHeight="299.0" prefWidth="406.0"
+                           styleClass="table-view">
+                    <columns>
+                        <TableColumn fx:id="titre" text="Titre" styleClass="table-column"/>
+                        <TableColumn fx:id="contenu" text="Contenu" styleClass="table-column"/>
+                        <TableColumn fx:id="datepub" text="Date Publication" styleClass="table-column"/>
+                        <TableColumn fx:id="pj" text="Piéce Jointe" styleClass="table-column"/>
+                    </columns>
+                </TableView>
+            </children>
+        </AnchorPane>
+    </items>
 </SplitPane>
+

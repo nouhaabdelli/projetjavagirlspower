@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -74,13 +73,84 @@ public class Evenements {
 
    @FXML
     void btnAfficherEvenement(ActionEvent event) {
+        // Récupérer l'événement sélectionné dans la TableView
+       Evenement selectedEvenement = tableview.getSelectionModel().getSelectedItem();
+
+       if (selectedEvenement != null) {
+           try {
+               // Charger le fichier FXML pour afficher les détails de l'événement
+               FXMLLoader loader = new FXMLLoader(getClass().getResource("/DetailsEvent.fxml")); // Chemin à adapter si nécessaire
+               Parent root = loader.load();
+
+               // Obtenir le contrôleur de la vue de détails
+               DetailsEvenement detailsEvenementController = loader.getController();
+
+               // Passer les détails de l'événement au contrôleur
+               detailsEvenementController.setDetails(selectedEvenement);
+
+               // Créer une nouvelle scène pour afficher les détails de l'événement
+               Scene scene = new Scene(root);
+               scene.getStylesheets().add(getClass().getResource("/css/ajouter.css").toExternalForm());
+
+               Stage stage = new Stage();
+               stage.setTitle("Détails de l'événement");
+               stage.setScene(scene);
+               stage.show();
+
+           } catch (IOException e) {
+               e.printStackTrace();
+               // Afficher une alerte si le chargement échoue
+               Alert alert = new Alert(Alert.AlertType.ERROR);
+               alert.setTitle("Erreur");
+               alert.setHeaderText("Erreur lors du chargement des détails");
+               alert.setContentText("Une erreur est survenue lors de l'affichage des détails de l'événement.");
+               alert.showAndWait();
+           }
+       } else {
+           // Si aucun événement n'est sélectionné, afficher une alerte
+           Alert alert = new Alert(Alert.AlertType.WARNING);
+           alert.setTitle("Aucune sélection");
+           alert.setHeaderText("Aucun événement sélectionné");
+           alert.setContentText("Veuillez sélectionner un événement pour afficher ses détails.");
+           alert.showAndWait();
+       }
 
     }
 
     @FXML
     void btnModifierEvenement(ActionEvent event) {
+        Evenement selected = tableview.getSelectionModel().getSelectedItem();
+        if (selected != null) {
+            try {
+                // Charger l'interface de modification de l'événement
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierEvenement.fxml"));
+                Parent root = loader.load();
 
+                // Passer l'événement sélectionné au contrôleur
+                ModifierEvenement modifierEvenementController = loader.getController();
+                modifierEvenementController.initialize(selected);
+
+                Scene scene = new Scene(root);
+                scene.getStylesheets().add(getClass().getResource("/css/ajouter.css").toExternalForm());
+
+                Stage stage = new Stage();
+                stage.setTitle("Modifier l'Événement");
+                stage.setScene(scene);
+                stage.show();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // Si aucun événement n'est sélectionné, afficher un message d'erreur
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Aucune sélection");
+            alert.setHeaderText("Aucun événement sélectionné");
+            alert.setContentText("Veuillez sélectionner un événement à modifier.");
+            alert.showAndWait();
+        }
     }
+
 
     @FXML
     void btnAjouterEvenement(ActionEvent event) {
@@ -89,7 +159,7 @@ public class Evenements {
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/css/ajouter.css").toExternalForm());
 
             Stage stage = new Stage();
             stage.setTitle("Ajouter un Événement");

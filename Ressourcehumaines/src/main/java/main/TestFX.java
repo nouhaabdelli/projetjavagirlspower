@@ -32,7 +32,8 @@ public class TestFX extends Application {
             e.printStackTrace();  // Afficher les erreurs de chargement
         }
     }
-}*/
+}
+*/
 
 package main;
 

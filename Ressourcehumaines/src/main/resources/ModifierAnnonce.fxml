@@ -9,23 +9,30 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ModifierAnnonce">
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gui.ModifierAnnonce"
+            stylesheets="@css/ajouter.css">
     <children>
-        <Label fx:id="ajann" alignment="CENTER" layoutX="61.0" prefHeight="60.0" prefWidth="500.0" text="Modifier Une Annonce" textAlignment="CENTER" />
+        <Label fx:id="ajann" alignment="CENTER" layoutX="61.0" prefHeight="60.0" prefWidth="500.0"
+               text="Modifier Une Annonce" textAlignment="CENTER" />
+
         <Label fx:id="titreann" layoutX="79.0" layoutY="75.0" text="Titre" />
-        <Label fx:id="contenuann" layoutX="68.0" layoutY="142.0" text="Contenu" />
-        <Label fx:id="ddp" layoutX="38.0" layoutY="209.0" text="Date De Publication" />
-        <Label fx:id="pj" layoutX="70.0" layoutY="281.0" text="Pièce Jointe" />
-
         <TextField fx:id="titre" layoutX="210.0" layoutY="71.0" />
-        <TextField fx:id="picejoin" layoutX="199.0" layoutY="277.0" />
 
+        <Label fx:id="contenuann" layoutX="68.0" layoutY="142.0" text="Contenu" />
+        <TextArea fx:id="contenu" layoutX="180.0" layoutY="121.0" prefHeight="60.0" prefWidth="210.0" />
+
+        <Label fx:id="ddp" layoutX="38.0" layoutY="209.0" text="Date De Publication" />
+        <DatePicker fx:id="cal" layoutX="212.0" layoutY="205.0" />
+
+        <Label fx:id="pj" layoutX="70.0" layoutY="281.0" text="Pièce Jointe" />
+        <TextField fx:id="picejoin" layoutX="199.0" layoutY="277.0" />
         <Button layoutX="418.0" layoutY="277.0" mnemonicParsing="false" onAction="#parcourir" text="Parcourir" />
+
         <Button layoutX="180.0" layoutY="344.0" mnemonicParsing="false" onAction="#soumettre" text="Enregistrer" />
         <Button layoutX="320.0" layoutY="344.0" mnemonicParsing="false" onAction="#annuler" text="Annuler" />
-
-        <DatePicker fx:id="cal" layoutX="212.0" layoutY="205.0" />
-        <TextArea fx:id="contenu" layoutX="180.0" layoutY="121.0" prefHeight="60.0" prefWidth="210.0" />
 
         <ImageView fitHeight="100.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -34,3 +41,4 @@
         </ImageView>
     </children>
 </AnchorPane>
+
