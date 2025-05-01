@@ -1,4 +1,5 @@
 main\TestFX.class
 gui\Ajouterpret.class
 gui\AfficherEtSupprimerPretController.class
+gui\AvanceController.class
 gui\Modifierpret.class

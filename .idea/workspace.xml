@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="df75e5f2-d9f3-4735-b0f9-0e3675ae8e32" name="Changes" comment="hhhhh">
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AfficherEtSupprimerPretController.java" afterDir="false" />
+    <list default="true" id="df75e5f2-d9f3-4735-b0f9-0e3675ae8e32" name="Changes" comment="Merge remote-tracking branch 'origin/pretetavance' into pretetavance">
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AvanceController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AfficherEtSupprimerPretControler.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/TestFX.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/TestFX.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/FXML/AfficherEtSupprimerPretControler.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/FXML/AfficherEtSupprimerPretControler.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/FXML/afficherpret.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/afficheretsupprimerpret.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/FXML/afficheretsupprimepret.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/FXML/avance.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/FXML/avance.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/FXML/avance.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/FXML/avance.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/main/TestFX.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/main/TestFX.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
@@ -25,8 +24,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -54,29 +53,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.TestJDBC.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.Project3A2 [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;pretetavance&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/LENOVO/IdeaProjects/projetjavagirlspower/Ressourcehumaines/src/main/resources/FXML/modifierpret.fxml&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.TestJDBC.executor": "Run",
+    "Maven.Project3A2 [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "pretetavance",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/LENOVO/IdeaProjects/projetjavagirlspower/Ressourcehumaines/src/main/resources/FXML/modifierpret.fxml",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "terminal",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\LENOVO\IdeaProjects\projetjavagirlspower\Ressourcehumaines\src\main\resources\css" />
@@ -131,7 +130,7 @@
       <workItem from="1745921797264" duration="19358000" />
       <workItem from="1746013323681" duration="19268000" />
       <workItem from="1746118228997" duration="3066000" />
-      <workItem from="1746134608890" duration="4138000" />
+      <workItem from="1746134608890" duration="9719000" />
     </task>
     <task id="LOCAL-00001" summary="hhhhh">
       <option name="closed" value="true" />
@@ -285,7 +284,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746136058301</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Merge remote-tracking branch 'origin/pretetavance' into pretetavance">
+      <option name="closed" value="true" />
+      <created>1746138794570</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1746138794570</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,7 +311,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="hhhhh" />
-    <option name="LAST_COMMIT_MESSAGE" value="hhhhh" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/pretetavance' into pretetavance" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/pretetavance' into pretetavance" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
