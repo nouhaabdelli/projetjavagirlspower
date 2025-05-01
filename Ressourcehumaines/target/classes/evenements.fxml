@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<SplitPane dividerPositions="0.33" prefHeight="400.0" prefWidth="600.0" styleClass="root" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Evenements">
+
+    <items>
+        <!-- LEFT SIDEBAR -->
+        <AnchorPane>
+            <children>
+                <VBox fx:id="sideMenu" layoutX="0" layoutY="87.0" prefHeight="315.0" prefWidth="229.0" styleClass="left-panel">
+                    <children>
+                        <Button onAction="#btnAjouterEvenement" styleClass="sidebar-button" text="Ajouter Un Événement" />
+                        <Button onAction="#btnModifierEvenement" styleClass="sidebar-button" text="Modifier Un Événement" />
+                        <Button onAction="#btnSupprimerEvenement" styleClass="sidebar-button" text="Supprimer Un Événement" />
+                        <Button onAction="#btnAfficherEvenement" styleClass="sidebar-button" text="Afficher Un Événement" />
+                    </children>
+                </VBox>
+
+                <ImageView fitHeight="87.0" fitWidth="137.0" layoutX="50.0" preserveRatio="true" styleClass="logo">
+                    <image>
+                        <Image url="@css/logo.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+
+        <!-- MAIN CONTENT -->
+        <AnchorPane>
+            <children>
+                <Label fx:id="GrandTitre" alignment="CENTER" layoutX="29.0" layoutY="21.0" prefHeight="66.0" prefWidth="338.0" styleClass="title" text="Gestion Des Événements" textAlignment="CENTER" />
+
+                <TableView fx:id="tableview" layoutX="0.0" layoutY="98.0" prefHeight="299.0" prefWidth="406.0" styleClass="table-view">
+                    <columns>
+                        <TableColumn fx:id="nomEvenement" styleClass="table-column" text="Nom" />
+                        <TableColumn fx:id="description" styleClass="table-column" text="Description" />
+                        <TableColumn fx:id="dateDebut" styleClass="table-column" text="Date Début" />
+                        <TableColumn fx:id="dateFin" styleClass="table-column" text="Date Fin" />
+                        <TableColumn fx:id="lieu" styleClass="table-column" text="Lieu" />
+                        <TableColumn fx:id="organisateur" styleClass="table-column" text="Organisateur" />
+                        <TableColumn fx:id="participantsMax" styleClass="table-column" text="Max Participants" />
+                        <TableColumn fx:id="statut" styleClass="table-column" text="Statut" />
+                        <TableColumn fx:id="photo" styleClass="table-column" text="Photo" />
+                    </columns>
+                </TableView>
+            </children>
+        </AnchorPane>
+    </items>
+</SplitPane>
