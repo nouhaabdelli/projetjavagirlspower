@@ -10,7 +10,7 @@ import java.util.List;
 
 public class EvenementService {
 
-    private Connection cnx;
+    private static Connection cnx;
 
     public EvenementService() {
         cnx = MyConnection.getInstance().getConnection();
@@ -53,7 +53,7 @@ public class EvenementService {
         ps.executeUpdate();
     }
 
-    public void delete(Evenement evenement) throws SQLException {
+    public static void delete(Evenement evenement) throws SQLException {
         String query = "DELETE FROM evenement WHERE id_evenement = ?";
         PreparedStatement ps = cnx.prepareStatement(query);
         ps.setInt(1, evenement.getIdEvenement());
