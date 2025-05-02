@@ -17,7 +17,7 @@
         <HBox id="formulaire" layoutX="11.0" layoutY="14.0" prefHeight="658.0" prefWidth="900.0" />
         <TextArea fx:id="boxtext" layoutX="118.0" layoutY="190.0" prefHeight="208.0" prefWidth="496.0" />
         <Text id="idesmi" layoutX="20.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
-        <Button layoutX="394.0" layoutY="578.0" mnemonicParsing="false" onAction="#ajouterreclamations" prefHeight="71.0" prefWidth="146.0" text="Ajouter" />
+        <Button fx:id="btnAjouter"  layoutX="394.0" layoutY="578.0" mnemonicParsing="false" onAction="#ajouterreclamations" prefHeight="71.0" prefWidth="146.0" text="Ajouter" />
         <TextField fx:id="tftitre" layoutX="118.0" layoutY="137.0" prefHeight="37.0" prefWidth="226.0" />
         <Text id="idesmi" layoutX="30.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Objet" wrappingWidth="60.251953125" />
         <Button layoutX="165.0" layoutY="478.0" mnemonicParsing="false" onAction="#ajoutpiece" prefHeight="30.0" prefWidth="190.0" text="Ajouter pièce jointe" />
@@ -29,7 +29,7 @@
             </image>
         </ImageView>
         <Button layoutX="587.0" layoutY="579.0" mnemonicParsing="false" onAction="#afficherreclamations" prefHeight="71.0" prefWidth="178.0" text="Afficher la Reclamation" />
-        <RadioButton id="bb" fx:id="rbUrgent" layoutX="135.0" layoutY="415.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="111.0" text="urgent" />
+        <RadioButton id="bb" fx:id="rbUrgent" layoutX="135.0" layoutY="415.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="111.0" text="urgent"  />
         <RadioButton id="bb" fx:id="rbImportant" layoutX="260.0" layoutY="408.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="97.0" text="Important" />
         <RadioButton id="bb" fx:id="rbNormal" layoutX="421.0" layoutY="408.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="79.0" text="Normal" />
         <Text id="idesmi" layoutX="31.0" layoutY="432.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priorité " />

@@ -76,7 +76,7 @@ public class Afficherdetail {
           descriptionTextArea.setText(reclamation.getDescription());
 
           // Affichage des notifications et priorités
-          notificationsText.setText(reclamation.RecevoirNotifications());
+          notificationsText.setText(reclamation.getRecevoirNotifications());
           prioriteText.setText(reclamation.getPriorite());
 
           if (reclamation.getCheminPieceJointe() != null && !reclamation.getCheminPieceJointe().isEmpty()) {
@@ -98,6 +98,7 @@ public class Afficherdetail {
               Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
               stage.close();
           }
+
 
 
       }

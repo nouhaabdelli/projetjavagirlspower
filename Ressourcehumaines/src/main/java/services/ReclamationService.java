@@ -20,29 +20,35 @@ public   class ReclamationService implements IService<Reclamations> {
 
     @Override
     public void create(Reclamations reclamation) throws SQLException {
-        String query = "INSERT INTO reclamations(titre, description, date_creation, status , cheminPieceJointe , priorite ,RecevoirNotifications  ) " +
-                "VALUES (?, ?, ?, ?,?,?,?  )";
+        String query = "INSERT INTO reclamations(titre, description, date_creation, status , cheminPieceJointe , priorite ,RecevoirNotifications ,userId ) " +
+                "VALUES (?, ?, ?, ?,?,?,? ,?  )";
         PreparedStatement ps = cnx.prepareStatement(query);
         ps.setString(1, reclamation.getTitre());
         ps.setString(2, reclamation.getDescription());
         ps.setDate(3, Date.valueOf(reclamation.getDateDemande())); // Attention conversion LocalDate -> SQL Date
         ps.setString(4, reclamation.getStatut());
-        ps.setString(7, reclamation.RecevoirNotifications());
-        ps.setString(6, reclamation.getPriorite());
         ps.setString(5, reclamation.getCheminPieceJointe());
+        ps.setString(6, reclamation.getPriorite());
+        ps.setString(7, reclamation.getRecevoirNotifications());
+        ps.setInt(8, reclamation.getUserId());
         ps.executeUpdate();
     }
 
     @Override
     public void update(Reclamations reclamation) throws SQLException {
-        String query = "UPDATE reclamations SET titre = ?, description = ?, date_creation = ?, status = ? , cheminPieceJointe = ?   WHERE id = ?";
+        String query = "UPDATE reclamations SET titre = ?, description = ?, date_creation = ?, status = ? , cheminPieceJointe = ? , priorite = ? ,RecevoirNotifications=?  WHERE id = ?";
         PreparedStatement ps = cnx.prepareStatement(query);
         ps.setString(1, reclamation.getTitre());
         ps.setString(2, reclamation.getDescription());
         ps.setDate(3, Date.valueOf(reclamation.getDateDemande()));
         ps.setString(4, reclamation.getStatut());
         ps.setString(5, reclamation.getCheminPieceJointe());
-        ps.setInt(6, reclamation.getId());
+        ps.setString(6, reclamation.getPriorite());
+        ps.setString(7, reclamation.getRecevoirNotifications());
+        ps.setInt(8, reclamation.getId());
+
+
+
         ps.executeUpdate();
     }
 
@@ -57,7 +63,7 @@ public   class ReclamationService implements IService<Reclamations> {
     @Override
     public List<Reclamations> readAll() throws SQLException {
         List<Reclamations> reclamations = new ArrayList<>();
-        String query = "SELECT * FROM reclamations";
+        String query = "SELECT id, titre, description, date_creation, status, cheminPieceJointe, priorite, RecevoirNotifications FROM reclamations";
         Statement st = cnx.createStatement();
         ResultSet rs = st.executeQuery(query);
 
@@ -65,16 +71,28 @@ public   class ReclamationService implements IService<Reclamations> {
             int id = rs.getInt("id");
             String titre = rs.getString("titre");
             String description = rs.getString("description");
-            Date dateCreation = rs.getDate("date_creation");
+            Date dateDemande = rs.getDate("date_creation");
             String status = rs.getString("status");
-            String cheminPieceJointe = null ;
+            String cheminPieceJointe = rs.getString("cheminPieceJointe"); // tu avais mis null, ici on lit depuis la BDD
             String priorite = rs.getString("priorite");
             String recevoirNotifications = rs.getString("RecevoirNotifications");
 
-            Reclamations reclamation = new Reclamations(id, titre, description, dateCreation.toLocalDate(), status , cheminPieceJointe,priorite,recevoirNotifications );
+
+            Reclamations reclamation = new Reclamations(
+                    id,
+                    titre,
+                    description,
+                    dateDemande.toLocalDate()  ,
+                    status,
+                    cheminPieceJointe,
+                    priorite,
+                    recevoirNotifications,
+                   4
+            );
+
             reclamations.add(reclamation);
         }
 
         return reclamations;
-    }
-}
+    }  }
+

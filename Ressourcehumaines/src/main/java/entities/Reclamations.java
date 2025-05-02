@@ -1,7 +1,6 @@
 package entities;
 
 import java.time.LocalDate;
-import java.io.File;
 
 public class Reclamations {
         private int id; // Identifiant de la réclamation
@@ -12,6 +11,7 @@ public class Reclamations {
         private  String cheminPieceJointe ;
         private String priorite ;
         private String RecevoirNotifications ;
+    private int  userId ;
 
 
     // Constructeur
@@ -24,6 +24,8 @@ public class Reclamations {
             this.cheminPieceJointe = cheminPieceJointe;
             this.priorite = priorite;
             this.RecevoirNotifications = RecevoirNotifications;
+            this.userId = userId;
+
         }
 
         // Getters et setters
@@ -51,13 +53,18 @@ public class Reclamations {
 
          public void setPriorite(String priorite) { this.priorite = priorite; }
 
-         public String RecevoirNotifications() { return RecevoirNotifications; }
-
-
-         public void setRecevoirNotifications(String recevoirNotifications) {
-        RecevoirNotifications = recevoirNotifications;
-
+            public String getRecevoirNotifications() {
+                 return RecevoirNotifications;
     }
+
+
+         public void setRecevoirNotifications(String RecevoirNotifications) {
+                      this.RecevoirNotifications = RecevoirNotifications;
+         }
+         public int getUserId() { return userId; }
+    public void setUserId(int userId) { this.userId = userId; }
+
+
 
 }
 

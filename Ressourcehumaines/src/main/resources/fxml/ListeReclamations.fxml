@@ -6,16 +6,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="650.0" prefWidth="883.0" stylesheets="@../styles/listereclamation.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListeReclamations">
+<AnchorPane prefHeight="650.0" prefWidth="844.0" stylesheets="@../styles/listereclamation.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListeReclamations">
 
     <!-- TableView des réclamations -->
-    <TableView id="table-view" fx:id="tableViewReclamations" layoutX="8.0" layoutY="7.0" prefHeight="522.0" prefWidth="868.0">
+    <TableView id="table-view" fx:id="tableViewReclamations" layoutX="-3.0" layoutY="55.0" prefHeight="478.0" prefWidth="842.0">
         <columns>
-            <TableColumn fx:id="colTitre" prefWidth="141.5999698638916" text="Titre" />
-            <TableColumn fx:id="colDescription" prefWidth="283.2000427246094" text="Description" />
-            <TableColumn fx:id="colPriorite" prefWidth="99.19998168945312" text="Priorité" />
-            <TableColumn fx:id="colNotifications" prefWidth="100.0" text="Notifications" />
-            <TableColumn fx:id="colPieceJointe" prefWidth="239.199951171875" text="Pièce Jointe" />
+            <TableColumn fx:id="colTitre" prefWidth="100.9999656677246" text="Titre" />
+            <TableColumn fx:id="colDescription" prefWidth="250.39999389648438" text="Description" />
+            <TableColumn fx:id="colPriorite" prefWidth="126.39999389648438" text="Priorité" />
+            <TableColumn fx:id="colNotifications" prefWidth="104.0" text="Notifications" />
+            <TableColumn fx:id="colPieceJointe" minWidth="0.0" prefWidth="128.79998779296875" text="Pièce Jointe" />
+            <TableColumn fx:id="date_creation" maxWidth="3900.0" minWidth="-Infinity" prefWidth="127.20013427734375" text="date creation " />
+
         </columns>
     </TableView>
 
