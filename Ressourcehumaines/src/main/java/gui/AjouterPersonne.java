@@ -47,7 +47,7 @@ public class AjouterPersonne {
     @FXML
     void afficher(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/AfficherPersonne.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/Affichercertificat.fxml"));
             TFAge.getScene().setRoot(root);
 
         } catch (IOException e) {
