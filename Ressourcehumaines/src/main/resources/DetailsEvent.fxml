@@ -8,7 +8,7 @@
             xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="gui.DetailsEvenement"
-            stylesheets="@css/ajout.css">
+            stylesheets="@css/ajouter.css">
     <children>
         <Label fx:id="titreLabel" layoutX="220.0" layoutY="20.0" text="Détails de l'Événement" styleClass="titre-label" />
 

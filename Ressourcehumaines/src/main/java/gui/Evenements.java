@@ -122,11 +122,11 @@ public class Evenements {
         Evenement selected = tableview.getSelectionModel().getSelectedItem();
         if (selected != null) {
             try {
-                // Charger l'interface de modification de l'événement
+
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierEvenement.fxml"));
                 Parent root = loader.load();
 
-                // Passer l'événement sélectionné au contrôleur
+
                 ModifierEvenement modifierEvenementController = loader.getController();
                 modifierEvenementController.initialize(selected);
 
@@ -143,7 +143,7 @@ public class Evenements {
                 e.printStackTrace();
             }
         } else {
-            // Si aucun événement n'est sélectionné, afficher un message d'erreur
+
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Aucune sélection");
             alert.setHeaderText("Aucun événement sélectionné");

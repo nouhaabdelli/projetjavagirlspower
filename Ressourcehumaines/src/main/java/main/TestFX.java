@@ -47,27 +47,27 @@ import javafx.stage.Stage;
 public class TestFX extends Application {
 
     public static void main(String[] args) {
-        launch(args);  // Lancer l'application JavaFX
+        launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) {
         try {
-            // Charger l'interface "evenements.fxml" (au lieu de "annonces.fxml")
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/evenements.fxml"));  // Modifiez le chemin vers votre fichier FXML
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/evenements.fxml"));
             Parent root = loader.load();
 
-            // Créer et configurer la scène
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/css/gestionannonce.css").toExternalForm());  // Modifiez le chemin CSS si nécessaire
 
-            // Afficher la fenêtre principale
-            primaryStage.setTitle("Gestion des Événements");  // Modifiez le titre de la fenêtre
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/css/gestionannonce.css").toExternalForm());
+
+
+            primaryStage.setTitle("Gestion des Événements");
             primaryStage.setScene(scene);
             primaryStage.show();
 
         } catch (Exception e) {
-            e.printStackTrace();  // Afficher les erreurs de chargement
+            e.printStackTrace();
         }
     }
 }

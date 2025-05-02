@@ -66,22 +66,22 @@ public class Annonces {
 
     @FXML
     void btnaffich(ActionEvent event) {
-        // Récupérer l'annonce sélectionnée dans la TableView
+
         Annonce selectedAnnonce = tableview.getSelectionModel().getSelectedItem();
 
         if (selectedAnnonce != null) {
             try {
-                // Charger le fichier FXML pour afficher les détails de l'annonce
+
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/DetailsAnnonce.fxml")); // Assure-toi que le chemin est correct
                 Parent root = loader.load();
 
-                // Obtenir le contrôleur de la vue de détails
+
                 DetailsAnnonce detailsAnnonceController = loader.getController();
 
-                // Passer les détails de l'annonce au contrôleur de la vue
+
                 detailsAnnonceController.setDetails(selectedAnnonce);
 
-                // Créer une nouvelle scène pour afficher les détails de l'annonce
+
                 Scene scene = new Scene(root);
                 scene.getStylesheets().add(getClass().getResource("/css/ajouter.css").toExternalForm());
 
@@ -92,7 +92,7 @@ public class Annonces {
 
             } catch (IOException e) {
                 e.printStackTrace();
-                // Afficher un message d'erreur si le chargement échoue
+
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur");
                 alert.setHeaderText("Erreur lors du chargement des détails");
@@ -114,11 +114,10 @@ public class Annonces {
         Annonce selected = tableview.getSelectionModel().getSelectedItem();
         if (selected != null) {
             try {
-                // Charger l'interface de modification
+
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierAnnonce.fxml"));
                 Parent root = loader.load();
 
-                // Passer l'annonce sélectionnée au contrôleur
                 ModifierAnnonce modifierAnnonceController = loader.getController();
                 modifierAnnonceController.initialize(selected);
 
@@ -135,7 +134,7 @@ public class Annonces {
                 e.printStackTrace();
             }
         } else {
-            // Si aucune annonce n'est sélectionnée, afficher un message d'erreur
+
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Aucune sélection");
             alert.setHeaderText("Aucune annonce sélectionnée");
@@ -148,11 +147,11 @@ public class Annonces {
     @FXML
     void btnajout(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterAnnonce.fxml")); // ou ajuste le chemin
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterAnnonce.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/css/ajouter.css").toExternalForm()); // ✅ Chemin du CSS ici
+            scene.getStylesheets().add(getClass().getResource("/css/ajouter.css").toExternalForm());
 
             Stage stage = new Stage();
             stage.setTitle("Ajouter une Annonce");
@@ -181,7 +180,7 @@ public class Annonces {
             return;
         }
 
-        // Crée une boîte de dialogue de confirmation
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmer la suppression");
         alert.setHeaderText("Êtes-vous sûr de vouloir supprimer cette annonce ?");

@@ -17,7 +17,7 @@ public class EvenementService {
     }
 
     public void create(Evenement evenement) throws SQLException {
-        // Validation des contrôles de saisie
+
         validerEvenement(evenement);
 
         String query = "INSERT INTO evenement(nom_evenement, description, date_debut, date_fin, lieu, organisateur, participants_max, statut, photo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -35,7 +35,7 @@ public class EvenementService {
     }
 
     public void update(Evenement evenement) throws SQLException {
-        // Validation des contrôles de saisie
+
         validerEvenement(evenement);
 
         String query = "UPDATE evenement SET nom_evenement = ?, description = ?, date_debut = ?, date_fin = ?, lieu = ?, organisateur = ?, participants_max = ?, statut = ?, photo = ? WHERE id_evenement = ?";
@@ -88,19 +88,19 @@ public class EvenementService {
         return evenements;
     }
 
-    // Méthode de validation des contrôles de saisie
+
     private void validerEvenement(Evenement evenement) {
-        // 1. Date de début doit être avant la date de fin
+
         if (evenement.getDateDebut().isAfter(evenement.getDateFin())) {
             throw new IllegalArgumentException("La date de début doit être avant la date de fin.");
         }
 
-        // 2. La date de début ne doit pas être avant la date d'aujourd'hui
+
         if (evenement.getDateDebut().isBefore(LocalDateTime.now())) {
             throw new IllegalArgumentException("La date de début ne doit pas être avant la date d'aujourd'hui.");
         }
 
-        // 3. Nombre maximal de participants doit être positif
+
         if (evenement.getParticipantsMax() <= 0) {
             throw new IllegalArgumentException("Le nombre maximal de participants doit être un nombre positif.");
         }

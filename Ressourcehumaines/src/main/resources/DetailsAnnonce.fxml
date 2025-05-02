@@ -8,7 +8,7 @@
             xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="gui.DetailsAnnonce"
-            stylesheets="@css/ajout.css">
+            stylesheets="@css/ajouter.css">
    <children>
       <Label fx:id="detail" layoutX="246.0" layoutY="29.0" text="Détails de l'annonce" />
 

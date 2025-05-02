@@ -10,11 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="650.0"
-            xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="gui.AjouterEvenement"
-            stylesheets="@css/ajouter.css">
+<AnchorPane prefHeight="500.0" prefWidth="650.0" stylesheets="@css/ajouter.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterEvenement">
     <children>
         <Label alignment="CENTER" layoutX="75.0" layoutY="10.0" prefWidth="500.0" text="Ajouter un Événement" />
 

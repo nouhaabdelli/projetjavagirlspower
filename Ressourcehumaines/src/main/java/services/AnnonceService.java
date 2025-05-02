@@ -22,17 +22,17 @@ public class AnnonceService implements IService<Annonce> {
             throw new IllegalArgumentException("Le titre ne peut pas être vide.");
         }
 
-        // Validation du contenu
+
         if (annonce.getContenu() == null || annonce.getContenu().trim().isEmpty()) {
             throw new IllegalArgumentException("Le contenu ne peut pas être vide.");
         }
 
-        // Validation de la date de publication
+
         if (annonce.getDatePublication().isBefore(LocalDateTime.now())) {
             throw new IllegalArgumentException("La date de publication doit être la date actuelle ou une date future.");
         }
 
-        // Validation de la pièce jointe (si elle n'est pas null, vérifier qu'elle a un nom valide)
+
         if (annonce.getPieceJointe() != null && annonce.getPieceJointe().trim().isEmpty()) {
             throw new IllegalArgumentException("Le nom du fichier de la pièce jointe ne peut pas être vide.");
         }
@@ -42,7 +42,7 @@ public class AnnonceService implements IService<Annonce> {
         PreparedStatement ps = cnx.prepareStatement(query);
         ps.setString(1, annonce.getTitre());
         ps.setString(2, annonce.getContenu());
-        ps.setTimestamp(3, Timestamp.valueOf(annonce.getDatePublication()));  // Convert LocalDateTime to Timestamp
+        ps.setTimestamp(3, Timestamp.valueOf(annonce.getDatePublication()));
         ps.setString(4, annonce.getPieceJointe());
         ps.executeUpdate();
     }
@@ -53,7 +53,7 @@ public class AnnonceService implements IService<Annonce> {
         PreparedStatement ps = cnx.prepareStatement(query);
         ps.setString(1, annonce.getTitre());
         ps.setString(2, annonce.getContenu());
-        ps.setTimestamp(3, Timestamp.valueOf(annonce.getDatePublication()));  // Convert LocalDateTime to Timestamp
+        ps.setTimestamp(3, Timestamp.valueOf(annonce.getDatePublication()));
         ps.setString(4, annonce.getPieceJointe());
         ps.setInt(5, annonce.getIdAnnonce());
         ps.executeUpdate();
@@ -81,7 +81,7 @@ public class AnnonceService implements IService<Annonce> {
             Timestamp datePublicationTimestamp = rs.getTimestamp("date_publication");
             String pieceJointe = rs.getString("piece_jointe");
 
-            // Convert Timestamp to LocalDateTime
+
             LocalDateTime datePublication = datePublicationTimestamp.toLocalDateTime();
 
             Annonce annonce = new Annonce(idAnnonce, titre, contenu, datePublication, pieceJointe);

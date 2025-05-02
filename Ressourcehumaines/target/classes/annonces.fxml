@@ -9,10 +9,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.33" prefHeight="400.0" prefWidth="600.0"
-           xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="gui.Annonces" styleClass="root">
+<SplitPane dividerPositions="0.33" prefHeight="400.0" prefWidth="600.0" styleClass="root" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Annonces">
 
     <items>
         <!-- LEFT SIDEBAR -->
@@ -20,14 +19,14 @@
             <children>
                 <VBox fx:id="sideMenu" layoutX="0" layoutY="87.0" prefHeight="315.0" prefWidth="229.0" styleClass="left-panel">
                     <children>
-                        <Button text="Ajouter Une Annonce" onAction="#btnajout" styleClass="sidebar-button"/>
-                        <Button text="Modifier Une Annonce" onAction="#btnmodif" styleClass="sidebar-button"/>
-                        <Button text="Supprimer Une Annonce" onAction="#btnsupp" styleClass="sidebar-button"/>
-                        <Button text="Afficher Une Annonce" onAction="#btnaffich" styleClass="sidebar-button"/>
+                        <Button onAction="#btnajout" styleClass="sidebar-button" text="Ajouter Une Annonce" />
+                        <Button onAction="#btnmodif" styleClass="sidebar-button" text="Modifier Une Annonce" />
+                        <Button onAction="#btnsupp" styleClass="sidebar-button" text="Supprimer Une Annonce" />
+                        <Button onAction="#btnaffich" styleClass="sidebar-button" text="Afficher Une Annonce" />
                     </children>
                 </VBox>
 
-                <ImageView fitHeight="87.0" fitWidth="137.0" layoutX="15.0" preserveRatio="true" styleClass="logo">
+                <ImageView fitHeight="87.0" fitWidth="137.0" layoutX="61.0" preserveRatio="true" styleClass="logo">
                     <image>
                         <Image url="@css/logo.png" />
                     </image>
@@ -38,20 +37,20 @@
         <!-- MAIN CONTENT -->
         <AnchorPane>
             <children>
-                <Label fx:id="GrandTitre" layoutX="29.0" layoutY="21.0" prefHeight="66.0" prefWidth="338.0"
-                       text="Gestion Des Annonces" styleClass="title" />
+                <Label fx:id="GrandTitre" alignment="CENTER" layoutX="29.0" layoutY="21.0" prefHeight="66.0" prefWidth="338.0" styleClass="title" text="Gestion Des Annonces" underline="true">
+               <font>
+                  <Font name="Arial Bold Italic" size="12.0" />
+               </font></Label>
 
-                <TableView fx:id="tableview" layoutX="0.0" layoutY="98.0" prefHeight="299.0" prefWidth="406.0"
-                           styleClass="table-view">
+                <TableView fx:id="tableview" layoutX="0.0" layoutY="98.0" prefHeight="299.0" prefWidth="406.0" styleClass="table-view">
                     <columns>
-                        <TableColumn fx:id="titre" text="Titre" styleClass="table-column"/>
-                        <TableColumn fx:id="contenu" text="Contenu" styleClass="table-column"/>
-                        <TableColumn fx:id="datepub" text="Date Publication" styleClass="table-column"/>
-                        <TableColumn fx:id="pj" text="Piéce Jointe" styleClass="table-column"/>
+                        <TableColumn fx:id="titre" styleClass="table-column" text="Titre" />
+                        <TableColumn fx:id="contenu" styleClass="table-column" text="Contenu" />
+                        <TableColumn fx:id="datepub" styleClass="table-column" text="Date Publication" />
+                        <TableColumn fx:id="pj" styleClass="table-column" text="Piéce Jointe" />
                     </columns>
                 </TableView>
             </children>
         </AnchorPane>
     </items>
 </SplitPane>
-

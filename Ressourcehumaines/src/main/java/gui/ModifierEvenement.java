@@ -49,11 +49,11 @@ public class ModifierEvenement {
     private Evenement selectedEvenement;
     private final EvenementService evenementService = new EvenementService();
 
-    // Méthode pour initialiser l'interface avec les informations de l'événement
+
     public void initialize(Evenement selectedEvenement) {
         this.selectedEvenement = selectedEvenement;
 
-        // Remplir les champs avec les données de l'événement sélectionné
+
         nomEvenement.setText(selectedEvenement.getNomEvenement());
         description.setText(selectedEvenement.getDescription());
         dateDebut.setValue(selectedEvenement.getDateDebut().toLocalDate());
@@ -67,7 +67,7 @@ public class ModifierEvenement {
 
     @FXML
     void soumettre(ActionEvent event) {
-        // Récupérer les données modifiées
+
         String newNomEvenement = nomEvenement.getText();
         String newDescription = description.getText();
         String newLieu = lieu.getText();
@@ -78,7 +78,7 @@ public class ModifierEvenement {
         String newDateDebut = dateDebut.getValue().toString();
         String newDateFin = dateFin.getValue().toString();
 
-        // Mettre à jour l'événement dans la base de données
+
         selectedEvenement.setNomEvenement(newNomEvenement);
         selectedEvenement.setDescription(newDescription);
         selectedEvenement.setLieu(newLieu);
@@ -91,21 +91,21 @@ public class ModifierEvenement {
 
         try {
             evenementService.update(selectedEvenement);
-            // Mise à jour de l'événement
-            // Message de succès
+
+
             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
             successAlert.setTitle("Modification réussie");
             successAlert.setHeaderText(null);
             successAlert.setContentText("L'événement a été modifié avec succès.");
             successAlert.showAndWait();
 
-            // Fermer la fenêtre de modification
+
             Stage stage = (Stage) nomEvenement.getScene().getWindow();
             stage.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
-            // Message d'erreur
+
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setTitle("Erreur");
             errorAlert.setHeaderText("Erreur lors de la mise à jour");
@@ -116,7 +116,7 @@ public class ModifierEvenement {
 
     @FXML
     void annuler(ActionEvent event) {
-        // Fermer la fenêtre de modification sans enregistrer
+
         Stage stage = (Stage) nomEvenement.getScene().getWindow();
         stage.close();
     }

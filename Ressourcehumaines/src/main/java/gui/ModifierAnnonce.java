@@ -35,47 +35,47 @@ public class ModifierAnnonce {
     private Annonce selectedAnnonce;
     private final AnnonceService annonceService = new AnnonceService();
 
-    // Méthode pour initialiser l'interface avec les informations de l'annonce
+
     public void initialize(Annonce selectedAnnonce) {
         this.selectedAnnonce = selectedAnnonce;
 
-        // Remplir les champs avec les données de l'annonce sélectionnée
+
         titre.setText(selectedAnnonce.getTitre());
         contenu.setText(selectedAnnonce.getContenu());
-        cal.setValue(selectedAnnonce.getDatePublication().toLocalDate());  // Assure-toi que la conversion est correcte
+        cal.setValue(selectedAnnonce.getDatePublication().toLocalDate());
         picejoin.setText(selectedAnnonce.getPieceJointe());
     }
 
     @FXML
     void soumettre(ActionEvent event) {
-        // Récupérer les données modifiées
+
         String newTitre = titre.getText();
         String newContenu = contenu.getText();
         String newPieceJointe = picejoin.getText();
         String newDate = cal.getValue().toString();
 
-        // Mettre à jour l'annonce dans la base de données
+
         selectedAnnonce.setTitre(newTitre);
         selectedAnnonce.setContenu(newContenu);
         selectedAnnonce.setPieceJointe(newPieceJointe);
         selectedAnnonce.setDatePublication(Timestamp.valueOf(newDate + " 00:00:00").toLocalDateTime());
 
         try {
-            annonceService.update(selectedAnnonce);  // Mise à jour de l'annonce
-            // Message de succès
+            annonceService.update(selectedAnnonce);
+
             Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
             successAlert.setTitle("Modification réussie");
             successAlert.setHeaderText(null);
             successAlert.setContentText("L'annonce a été modifiée avec succès.");
             successAlert.showAndWait();
 
-            // Fermer la fenêtre de modification
+
             Stage stage = (Stage) titre.getScene().getWindow();
             stage.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
-            // Message d'erreur
+
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setTitle("Erreur");
             errorAlert.setHeaderText("Erreur lors de la mise à jour");
@@ -86,13 +86,13 @@ public class ModifierAnnonce {
 
     @FXML
     void annuler(ActionEvent event) {
-        // Fermer la fenêtre de modification sans enregistrer
+
         Stage stage = (Stage) titre.getScene().getWindow();
         stage.close();
     }
 
     @FXML
     void parcourir(ActionEvent event) {
-        // Logique pour gérer le bouton "Parcourir" si nécessaire (choisir une pièce jointe)
+
     }
 }

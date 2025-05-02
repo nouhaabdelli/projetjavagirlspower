@@ -74,13 +74,13 @@ public class AjouterEvenement {
             String statutEvt = statut.getValue();
             String photo = photoPath.getText().trim();
 
-            // Vérification des champs obligatoires
+
             if (nom.isEmpty() || dateDebut == null || dateFin == null || lieuEvt.isEmpty() || orga.isEmpty()) {
                 showAlert(Alert.AlertType.WARNING, "Champs manquants", "Veuillez remplir tous les champs obligatoires.");
                 return;
             }
 
-            // Vérification du nombre de participants
+
             int maxParticipants;
             try {
                 maxParticipants = Integer.parseInt(participantsMax.getText().trim());
@@ -96,13 +96,13 @@ public class AjouterEvenement {
             LocalDate aujourdHui = LocalDate.now();
 
             if (statutEvt.equals("terminé")) {
-                // 1. date début doit être <= aujourd’hui
+
                 if (dateDebut.isAfter(aujourdHui)) {
                     showAlert(Alert.AlertType.WARNING, "Date début invalide", "Pour un événement terminé, la date de début ne peut pas être dans le futur.");
                     return;
                 }
 
-                // 2. date fin doit être >= date début ET <= aujourd’hui
+
                 if (dateFin.isBefore(dateDebut)) {
                     showAlert(Alert.AlertType.WARNING, "Date fin invalide", "La date de fin doit être après la date de début.");
                     return;
@@ -112,14 +112,14 @@ public class AjouterEvenement {
                     return;
                 }
             } else {
-                // Pour les autres statuts : date fin doit être après la date début
+
                 if (!dateFin.isAfter(dateDebut)) {
                     showAlert(Alert.AlertType.WARNING, "Dates invalides", "La date de fin doit être postérieure à la date de début.");
                     return;
                 }
             }
 
-            // Création de l’événement
+
             LocalDateTime dateDebutTime = LocalDateTime.of(dateDebut, LocalTime.of(8, 0));
             LocalDateTime dateFinTime = LocalDateTime.of(dateFin, LocalTime.of(8, 0));
             Evenement e = new Evenement(nom, desc, dateDebutTime, dateFinTime, lieuEvt, orga, maxParticipants, statutEvt, photo);

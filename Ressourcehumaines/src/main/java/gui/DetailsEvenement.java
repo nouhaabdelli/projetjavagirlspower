@@ -38,7 +38,7 @@ public class DetailsEvenement {
     @FXML
     private Label photoLabel;
 
-    // Méthode pour afficher les détails de l'événement
+
     public void setDetails(Evenement evenement) {
         nomEvenementLabel.setText(evenement.getNomEvenement());
         descriptionLabel.setText(evenement.getDescription());
@@ -51,7 +51,7 @@ public class DetailsEvenement {
         photoLabel.setText(evenement.getPhoto() != null ? evenement.getPhoto() : "Aucune");
     }
 
-    // Méthode pour fermer la fenêtre
+
     @FXML
     void fermerDetails(ActionEvent event) {
         Stage stage = (Stage) titreLabel.getScene().getWindow();
