@@ -14,13 +14,14 @@ public class UserFX extends Application {
         launch(args);
     }
 
+
     @Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ajouterUser.fxml")); // Vérifie que le chemin est correct
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/CrudUser.fxml")); // Vérifie que le chemin est correct
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            primaryStage.setTitle("Gestion Utilisateurs");
+            primaryStage.setTitle("bienvenue");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
@@ -28,4 +29,19 @@ public class UserFX extends Application {
         }
     }
 }
+/*@Override
+public void start(Stage primaryStage) {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/loginUser.fxml")); // Vérifie que le chemin est correct
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("bienvenue");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    } catch (IOException e) {
+        System.out.println("Erreur de chargement FXML : " + e.getMessage());
+    }
+}
+}*/
+
 

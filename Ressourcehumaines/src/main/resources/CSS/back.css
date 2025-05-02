@@ -1,0 +1,8 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom, #e0f2ff, #b3d9ff);
+    -fx-padding: 30;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-opacity: 0.2;
+    -fx-background-size: 200px 200px;
+}

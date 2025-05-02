@@ -86,7 +86,7 @@ public class UserCrud {
     }
 
     // Afficher tous les utilisateurs
-    public List<User> afficherUsers() {
+    public List<User> afficherUser() {
         List<User> users = new ArrayList<>();
         String sql = "SELECT * FROM user";
         try (Statement stmt = connection.createStatement();

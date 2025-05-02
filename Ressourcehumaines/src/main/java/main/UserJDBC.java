@@ -42,7 +42,7 @@ public class UserJDBC {
         userCrud.modifierUser(user);
 
         // ➡️ Afficher tous les utilisateurs
-        List<User> users = userCrud.afficherUsers();
+        List<User> users = userCrud.afficherUser();
         System.out.println("📋 Liste des utilisateurs :");
         for (User u : users) {
             System.out.println(u);

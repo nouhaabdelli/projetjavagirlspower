@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="401.0" prefWidth="605.0" stylesheets="@back.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterUser">
+<AnchorPane prefHeight="401.0" prefWidth="605.0" stylesheets="@../CSS/back.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterUser">
    <children>
       <TextField fx:id="usnom" layoutX="123.0" layoutY="54.0" />
       <TextField fx:id="usprenom" layoutX="123.0" layoutY="87.0" />
@@ -65,11 +65,26 @@
          <font>
             <Font name="Algerian" size="12.0" />
          </font></Text>
-      <RadioButton fx:id="usmale" layoutX="289.0" layoutY="212.0" mnemonicParsing="false" text="male" />
-      <RadioButton fx:id="usfemale" layoutX="437.0" layoutY="205.0" mnemonicParsing="false" text="female" />
-      <RadioButton fx:id="usmarie" layoutX="288.0" layoutY="278.0" mnemonicParsing="false" text="marie(e)" />
-      <RadioButton fx:id="usdivorce" layoutX="399.0" layoutY="279.0" mnemonicParsing="false" text="divorce(e)" />
-      <RadioButton fx:id="uscelibataire" layoutX="515.0" layoutY="278.0" mnemonicParsing="false" text="celibataire" />
+      <RadioButton fx:id="usmale" layoutX="289.0" layoutY="212.0" mnemonicParsing="false" text="male">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="usfemale" layoutX="437.0" layoutY="205.0" mnemonicParsing="false" text="female">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="usmarie" layoutX="288.0" layoutY="278.0" mnemonicParsing="false" text="marie(e)">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="usdivorce" layoutX="399.0" layoutY="279.0" mnemonicParsing="false" text="divorce(e)">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="uscelibataire" layoutX="515.0" layoutY="278.0" mnemonicParsing="false" text="celibataire">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></RadioButton>
       <Text fill="#1d2584" layoutX="299.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="genre :" textAlignment="CENTER">
          <font>
             <Font name="Algerian" size="12.0" />
@@ -78,6 +93,20 @@
          <font>
             <Font name="Algerian" size="12.0" />
          </font></Text>
-      <Button layoutX="482.0" layoutY="336.0" mnemonicParsing="false" text="submit" />
+      <Button fx:id="adduser" layoutX="171.0" layoutY="421.0" mnemonicParsing="false" onAction="#add" text="valider">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Button>
+      <Text fill="#1d2584" layoutX="37.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="role :">
+         <font>
+            <Font name="Algerian" size="12.0" />
+         </font>
+      </Text>
+      <TextField fx:id="usrole" layoutX="123.0" layoutY="349.0" />
+      <Button fx:id="back" layoutX="489.0" layoutY="421.0" mnemonicParsing="false" onAction="#back" text="retour">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
