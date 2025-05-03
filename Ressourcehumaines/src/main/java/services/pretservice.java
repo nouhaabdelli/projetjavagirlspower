@@ -17,20 +17,20 @@ public class pretservice implements IService<pret>{
 
     @Override
     public void create(pret p) throws SQLException {
-        String query = "INSERT INTO pret (montant, duree, date_pret, niveau_urgence, etat, userId) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO pret (montant, duree, datePret, niveauUrgence, etat, userId) VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = cnx.prepareStatement(query);
         ps.setBigDecimal(1, p.getMontant());
         ps.setInt(2, p.getDuree());
         ps.setDate(3, Date.valueOf(p.getDatePret()));
         ps.setString(4, p.getNiveauUrgence());
         ps.setString(5, p.getEtat());
-        ps.setInt(6, p.userId); // Accès direct puisque getUserId() n'existe pas
+//        ps.setInt(6, p.userId); // Accès direct puisque getUserId() n'existe pas
         ps.executeUpdate();
     }
 
     @Override
     public void update(pret p) throws SQLException {
-        String query = "UPDATE pret SET montant = ?, duree = ?, date_pret = ?, niveau_urgence = ?, etat = ? WHERE idPret = ?";
+        String query = "UPDATE pret SET montant = ?, duree = ?, datePret = ?, niveauUrgence = ?, etat = ? WHERE idPret = ?";
         PreparedStatement ps = cnx.prepareStatement(query);
         ps.setBigDecimal(1, p.getMontant());
         ps.setInt(2, p.getDuree());
@@ -52,7 +52,7 @@ public class pretservice implements IService<pret>{
     @Override
     public List<pret> readAll() throws SQLException {
         List<pret> prets = new ArrayList<>();
-        String query = "SELECT idPret, montant, duree, date_pret, niveau_urgence, etat, userId FROM pret";
+        String query = "SELECT idPret, montant, duree, datePret, niveauUrgence, etat, userId FROM pret";
         Statement st = cnx.createStatement();
         ResultSet rs = st.executeQuery(query);
 
@@ -61,11 +61,11 @@ public class pretservice implements IService<pret>{
                     rs.getInt("idPret"),
                     rs.getBigDecimal("montant"),
                     rs.getInt("duree"),
-                    rs.getDate("date_pret").toLocalDate(),
-                    rs.getString("niveau_urgence"),
+                    rs.getDate("datePret").toLocalDate(),
+                    rs.getString("niveauUrgence"),
                     rs.getString("etat")
             );
-            p.setUserId(rs.getInt("userId")); // ajout séparé
+//            p.setUserId(rs.getInt("userId")); // ajout séparé
             prets.add(p);
         }
 

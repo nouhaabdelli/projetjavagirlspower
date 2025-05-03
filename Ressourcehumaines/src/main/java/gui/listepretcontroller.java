@@ -23,7 +23,7 @@ import java.util.List;
 public class listepretcontroller {
 
     @FXML
-    private TableView<pret> tableViewPrets;
+    private TableView<pret> tableViewPret;
 
     @FXML
     private TableColumn<pret, BigDecimal> colMontant;
@@ -66,13 +66,13 @@ public class listepretcontroller {
     public void rafraichirTable() throws SQLException {
         List<pret> liste = pretService.readAll();
         ObservableList<pret> data = FXCollections.observableArrayList(liste);
-        tableViewPrets.setItems(data);
-        tableViewPrets.refresh();
+        tableViewPret.setItems(data);
+        tableViewPret.refresh();
     }
 
     @FXML
     void afficher(ActionEvent event) {
-        pret selected = tableViewPrets.getSelectionModel().getSelectedItem();
+        pret selected = tableViewPret.getSelectionModel().getSelectedItem();
         if (selected == null) {
             showWarning("Veuillez sélectionner un prêt à afficher.");
             return;
@@ -97,7 +97,7 @@ public class listepretcontroller {
 
     @FXML
     void modifier(ActionEvent event) {
-        pret selected = tableViewPrets.getSelectionModel().getSelectedItem();
+        pret selected = tableViewPret.getSelectionModel().getSelectedItem();
         if (selected == null) {
             showWarning("Veuillez sélectionner un prêt à modifier.");
             return;
@@ -123,7 +123,7 @@ public class listepretcontroller {
 
     @FXML
     void supprimer(ActionEvent event) {
-        pret selected = tableViewPrets.getSelectionModel().getSelectedItem();
+        pret selected = tableViewPret.getSelectionModel().getSelectedItem();
         if (selected == null) {
             showWarning("Veuillez sélectionner un prêt à supprimer.");
             return;
@@ -138,7 +138,7 @@ public class listepretcontroller {
             if (response == ButtonType.OK) {
                 try {
                     pretService.delete(selected);
-                    tableViewPrets.getItems().remove(selected);
+                    tableViewPret.getItems().remove(selected);
                 } catch (SQLException e) {
                     showError("Erreur lors de la suppression : " + e.getMessage());
                 }

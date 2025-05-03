@@ -10,7 +10,7 @@ public class pret {
     private LocalDate datePret;
     private String niveauUrgence;
     private String etat;
-    public int userId;
+//    public int userId;
 
     // Constructeur vide
     public void Pret() {}
@@ -75,8 +75,8 @@ public class pret {
         this.etat = etat;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+//    public void setUserId(int userId) {
+//        this.userId = userId;
 
     }
-}
+
