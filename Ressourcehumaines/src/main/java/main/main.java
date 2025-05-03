@@ -1,21 +1,33 @@
 package main;
-import java.sql.SQLException;
 
 import entities.pret;
 import services.pretservice;
+
+import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.time.LocalDate;
+
 public class main {
+
     public static void main(String[] args) {
         pretservice ps = new pretservice();
 
-        // Créer une réclamation
-        pret p = new pret(0,"700", "12", LocalDate.now(), "moyenne",null,"normal","mail" ,4);
+        // Créer un prêt
+        pret p = new pret(
+                0, // id (généré en base normalement)
+                new BigDecimal("5000.00"), // montant
+                12,                         // durée en mois
+                LocalDate.now(),           // date du prêt
+                "élevé",                   // niveau d'urgence
+                "en cours"                 // état
+        );
 
         try {
-            ps.create(p); // Ajouter une réclamation
-            System.out.println(ps.readAll()); // Lire toutes les réclamations et les afficher
+            ps.create(p); // Ajouter un prêt
+            System.out.println("Liste des prêts :");
+            System.out.println(ps.readAll()); // Lire et afficher tous les prêts
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            System.err.println("Erreur SQL : " + e.getMessage());
         }
     }
 }
