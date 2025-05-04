@@ -1,50 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.25" xmlns="http://javafx.com/javafx"
-           xmlns:fx="http://javafx.com/fxml"
-           fx:controller="gui.listepretcontroller">
+<SplitPane prefHeight="618.0" prefWidth="959.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.listepretcontroller">
     <items>
-        <!-- Menu latéral -->
-        <VBox spacing="10" alignment="TOP_CENTER" style="-fx-background-color: #2c3e50;">
-            <children>
-                <Label text="Menu Prêts" style="-fx-text-fill: white; -fx-font-size: 18px;"/>
-                <Button text="Ajouter Prêt" onAction="#ajouter" prefWidth="150"/>
-                <Button text="Liste Prêts" disable="true" prefWidth="150"/>
-<!--                <Button text="Retour" onAction="#retour" prefWidth="150"/>-->
-            </children>
-            <padding>
-                <Insets top="20" right="10" bottom="10" left="10"/>
-            </padding>
-        </VBox>
 
         <!-- Zone centrale -->
-        <VBox spacing="15" style="-fx-background-color: #ecf0f1;" alignment="TOP_CENTER">
+        <VBox alignment="TOP_CENTER" prefHeight="617.0" prefWidth="1014.0" spacing="15" style="-fx-background-color: #ecf0f1;">
             <children>
-                <Label text="Liste des Prêts" style="-fx-font-size: 20px; -fx-text-fill: #2980b9;" />
+                <Label style="-fx-font-size: 20px; -fx-text-fill: #2980b9;" text="Liste des Prêts" />
                 <TableView fx:id="tableViewPret" prefHeight="400" prefWidth="600">
                     <columns>
-                        <TableColumn fx:id="colMontant" text="Montant" prefWidth="100"/>
-                        <TableColumn fx:id="colDuree" text="Durée" prefWidth="100"/>
-                        <TableColumn fx:id="colDatePret" text="Date Prêt" prefWidth="120"/>
-                        <TableColumn fx:id="colNiveauUrgence" text="Urgence" prefWidth="120"/>
-                        <TableColumn fx:id="colEtat" text="État" prefWidth="100"/>
+                        <TableColumn fx:id="colMontant" prefWidth="155.99999237060547" text="Montant" />
+                        <TableColumn fx:id="colDuree" prefWidth="212.800048828125" text="Durée" />
+                        <TableColumn fx:id="colDatePret" prefWidth="224.0" text="Date Prêt" />
+                        <TableColumn fx:id="colNiveauUrgence" prefWidth="143.2000732421875" text="Urgence" />
+                        <TableColumn fx:id="colEtat" prefWidth="182.39990234375" text="État" />
                     </columns>
                 </TableView>
 
-                <HBox spacing="20" alignment="CENTER">
+                <HBox alignment="CENTER" spacing="20">
                     <children>
-                        <Button text="Afficher" onAction="#afficher" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
-                        <Button text="Modifier" onAction="#modifier" style="-fx-background-color: #f39c12; -fx-text-fill: white;"/>
-                        <Button text="Supprimer" onAction="#supprimer" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+                        <Button onAction="#afficher" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Afficher" />
+                        <Button onAction="#modifier" style="-fx-background-color: #f39c12; -fx-text-fill: white;" text="Modifier" />
+                        <Button onAction="#supprimer" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Supprimer" />
                     </children>
                 </HBox>
             </children>
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
         </VBox>
     </items>

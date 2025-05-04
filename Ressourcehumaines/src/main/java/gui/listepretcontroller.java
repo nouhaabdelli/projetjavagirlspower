@@ -21,6 +21,25 @@ import java.util.List;
 
 
 public class listepretcontroller {
+    @FXML
+    private TextField montantField;
+
+
+    @FXML
+    private TextField dureeField;
+
+    @FXML
+    private DatePicker datePretPicker;
+
+    @FXML
+    private TextField niveauUrgenceField;
+
+    @FXML
+    private TextField etatField;
+
+    private pret pretEnCours; // utilisé si modification
+    private listepretcontroller controllerPrincipal; // référence au contrôleur principal
+
 
     @FXML
     private TableView<pret> tableViewPret;
@@ -40,7 +59,7 @@ public class listepretcontroller {
     @FXML
     private TableColumn<pret, String> colEtat;
 
-    private final pretservice pretService = new pretservice();
+    private  pretservice pretService = new pretservice();
 
     @FXML
     public void initialize() {
@@ -97,24 +116,23 @@ public class listepretcontroller {
 
     @FXML
     void modifier(ActionEvent event) {
-        pret selected = tableViewPret.getSelectionModel().getSelectedItem();
-        if (selected == null) {
+        pret pretEnCours = tableViewPret.getSelectionModel().getSelectedItem();
+        if (pretEnCours == null) {
             showWarning("Veuillez sélectionner un prêt à modifier.");
             return;
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ajouterpret.fxml"));
-            Parent root = loader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/modifier.fxml"));
+            Parent root = loader.load(); // ✅ charge le FXML (instancie le contrôleur)
 
-            ajouterpretcontroller controller = loader.getController();
-            controller.chargerPourModification(selected);
+            modifierpret controller = loader.getController(); // ✅ ici on récupère le bon type
+            controller.chargerPourModification(pretEnCours);
             controller.setControllerPrincipal(this);
 
             Stage stage = new Stage();
             stage.setTitle("Modifier un prêt");
             stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (IOException e) {
             showError("Erreur lors du chargement de l'interface : " + e.getMessage());
@@ -146,24 +164,7 @@ public class listepretcontroller {
         });
     }
 
-    @FXML
-    void ajouter(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ajouterpret.fxml"));
-            Parent root = loader.load();
 
-            ajouterpretcontroller controller = loader.getController();
-            controller.setControllerPrincipal(this);
-
-            Stage stage = new Stage();
-            stage.setTitle("Ajouter un prêt");
-            stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
-        } catch (IOException e) {
-            showError("Erreur lors de l'ajout : " + e.getMessage());
-        }
-    }
 
     private void showWarning(String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -171,4 +172,8 @@ public class listepretcontroller {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+
 }
+
+

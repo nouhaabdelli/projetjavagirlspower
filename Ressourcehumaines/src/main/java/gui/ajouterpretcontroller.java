@@ -4,15 +4,17 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
+import services.pretservice;
 import entities.pret;
 
 
 public class ajouterpretcontroller {
     @FXML
     private TextField montantField;
+
 
     @FXML
     private TextField dureeField;
@@ -31,33 +33,24 @@ public class ajouterpretcontroller {
 
     @FXML
     private void ajouterPret() {
-        try {
-            double montant = Double.parseDouble(montantField.getText());
+
+
+        BigDecimal montant = new BigDecimal(montantField.getText());
             int duree = Integer.parseInt(dureeField.getText());
             LocalDate datePret = datePretPicker.getValue();
             String urgence = niveauUrgenceField.getText();
             String etat = etatField.getText();
+            pret pret = new pret(0,montant, duree, datePret, urgence , etat) ;
 
-            // ⚠️ Traitement fictif : remplacer par une vraie insertion ou mise à jour BDD
-            if (pretEnCours == null) {
-                System.out.println("Ajout d'un nouveau prêt :");
-            } else {
-                System.out.println("Modification d'un prêt existant : ID = " + pretEnCours.getIdPret());
-            }
-
-            System.out.println("Montant : " + montant);
-            System.out.println("Durée : " + duree + " mois");
-            System.out.println("Date : " + datePret);
-            System.out.println("Urgence : " + urgence);
-            System.out.println("État : " + etat);
-
+        try {
+            pretservice pretservice = new pretservice();
+            pretservice.create(pret);
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Succès");
             alert.setHeaderText(null);
             alert.setContentText("Le prêt a été enregistré avec succès !");
             alert.showAndWait();
 
-            // Rafraîchir la table principale après ajout/modif
             if (controllerPrincipal != null) {
                 controllerPrincipal.rafraichirTable();
             }
@@ -85,14 +78,14 @@ public class ajouterpretcontroller {
     }
 
 
-    public void chargerPourModification(pret p) {
-        this.pretEnCours = p;
-        montantField.setText(String.valueOf(p.getMontant()));
-        dureeField.setText(String.valueOf(p.getDuree()));
-        datePretPicker.setValue(p.getDatePret());
-        niveauUrgenceField.setText(p.getNiveauUrgence());
-        etatField.setText(p.getEtat());
-    }
+//    public void chargerPourModification(pret p) {
+//        this.pretEnCours = p;
+//        montantField.setText(String.valueOf(p.getMontant()));
+//        dureeField.setText(String.valueOf(p.getDuree()));
+//        datePretPicker.setValue(p.getDatePret());
+//        niveauUrgenceField.setText(p.getNiveauUrgence());
+//        etatField.setText(p.getEtat());
+//    }
 
 
     public void setControllerPrincipal(listepretcontroller controller) {
