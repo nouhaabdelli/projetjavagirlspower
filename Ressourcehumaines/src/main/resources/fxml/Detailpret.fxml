@@ -5,35 +5,35 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.geometry.Insets?>
 
-<VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Detailpret" spacing="10" alignment="CENTER" style="-fx-background-color: #f0f4f8;">
+<VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Detailpret" spacing="20" alignment="CENTER" style="-fx-background-color: linear-gradient(to bottom right, #1e3a8a, #60a5fa);">
     <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
+        <Insets top="40" right="40" bottom="40" left="40"/>
     </padding>
 
-    <Label text="Détails du Prêt" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #1e3a8a;"/>
+    <Label text="Détails du Prêt" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #ffffff;"/>
 
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Montant :" style="-fx-font-weight: bold; -fx-text-fill: #333;"/>
-        <Label fx:id="labelMontant" style="-fx-text-fill: #333;"/>
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <Label text="Montant :" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #ffffff;"/>
+        <Label fx:id="labelMontant" style="-fx-font-size: 16px; -fx-text-fill: #ffffff;"/>
     </HBox>
 
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Durée :" style="-fx-font-weight: bold; -fx-text-fill: #333;"/>
-        <Label fx:id="labelDuree" style="-fx-text-fill: #333;"/>
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <Label text="Durée :" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #ffffff;"/>
+        <Label fx:id="labelDuree" style="-fx-font-size: 16px; -fx-text-fill: #ffffff;"/>
     </HBox>
 
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Date Prêt :" style="-fx-font-weight: bold; -fx-text-fill: #333;"/>
-        <Label fx:id="labelDatePret" style="-fx-text-fill: #333;"/>
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <Label text="Date Prêt :" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #ffffff;"/>
+        <Label fx:id="labelDatePret" style="-fx-font-size: 16px; -fx-text-fill: #ffffff;"/>
     </HBox>
 
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="Niveau Urgence :" style="-fx-font-weight: bold; -fx-text-fill: #333;"/>
-        <Label fx:id="labelNiveauUrgence" style="-fx-text-fill: #333;"/>
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <Label text="Niveau Urgence :" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #ffffff;"/>
+        <Label fx:id="labelNiveauUrgence" style="-fx-font-size: 16px; -fx-text-fill: #ffffff;"/>
     </HBox>
 
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Label text="État :" style="-fx-font-weight: bold; -fx-text-fill: #333;"/>
-        <Label fx:id="labelEtat" style="-fx-text-fill: #333;"/>
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <Label text="État :" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #ffffff;"/>
+        <Label fx:id="labelEtat" style="-fx-font-size: 16px; -fx-text-fill: #ffffff;"/>
     </HBox>
 </VBox>
