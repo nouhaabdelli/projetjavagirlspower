@@ -1,69 +1,74 @@
 package services;
 
 import entities.avance;
-import java.math.BigDecimal;
+import utils.MyConnection;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class avanceservice {
+public class avanceservice implements IService<avance> {
 
-    // Replace with your actual database connection logic
-    private Connection getConnection() throws SQLException {
-        String url = "jdbc:mysql://localhost:3306/your_database";
-        String user = "your_username";
-        String password = "your_password";
-        return DriverManager.getConnection(url, user, password);
+    private Connection cnx;
+
+    public avanceservice() {
+        cnx = MyConnection.getInstance().getConnection();
     }
 
+    @Override
+    public void create(avance a) throws SQLException {
+        String query = "INSERT INTO avance (montant, dateAvance, niveauUrgence, etat) VALUES (?, ?, ?, ?)";
+        PreparedStatement ps = cnx.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+        ps.setBigDecimal(1, a.getMontant());
+        ps.setDate(2, Date.valueOf(a.getDateAvance()));
+        ps.setString(3, a.getNiveauUrgence());
+        ps.setString(4, a.getEtat());
+        ps.executeUpdate();
+
+        ResultSet rs = ps.getGeneratedKeys();
+        if (rs.next()) {
+            a.setIdAvance(rs.getInt(1));
+        }
+    }
+
+    @Override
+    public void update(avance a) throws SQLException {
+        String query = "UPDATE avance SET montant = ?, dateAvance = ?, niveauUrgence = ?, etat = ? WHERE idAvance = ?";
+        PreparedStatement ps = cnx.prepareStatement(query);
+        ps.setBigDecimal(1, a.getMontant());
+        ps.setDate(2, Date.valueOf(a.getDateAvance()));
+        ps.setString(3, a.getNiveauUrgence());
+        ps.setString(4, a.getEtat());
+        ps.setInt(5, a.getIdAvance());
+        ps.executeUpdate();
+        System.out.println("Tentative de mise à jour de l'avance avec ID = " + a.getIdAvance());
+    }
+
+    @Override
+    public void delete(avance a) throws SQLException {
+        String query = "DELETE FROM avance WHERE idAvance = ?";
+        PreparedStatement ps = cnx.prepareStatement(query);
+        ps.setInt(1, a.getIdAvance());
+        ps.executeUpdate();
+    }
+
+    @Override
     public List<avance> readAll() throws SQLException {
         List<avance> avances = new ArrayList<>();
-        String query = "SELECT * FROM avance";
+        String query = "SELECT idAvance, montant, dateAvance, niveauUrgence, etat FROM avance";
+        Statement st = cnx.createStatement();
+        ResultSet rs = st.executeQuery(query);
 
-        try (Connection conn = getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
-
-            while (rs.next()) {
-                avance avance = new avance();
-                avance.setIdAvance(rs.getInt("id_avance"));
-                avance.setMontant(rs.getBigDecimal("montant"));
-                avance.setDuree(rs.getInt("duree"));
-                avance.setDateAvance(rs.getDate("date_avance").toLocalDate());
-                avance.setNiveauUrgence(rs.getString("niveau_urgence"));
-                avance.setEtat(rs.getString("etat"));
-                avances.add(avance);
-            }
+        while (rs.next()) {
+            avance a = new avance(
+                    rs.getInt("idAvance"),
+                    rs.getBigDecimal("montant"),
+                    rs.getInt("duree"),
+                    rs.getDate("dateAvance").toLocalDate(),
+                    rs.getString("niveauUrgence"),
+                    rs.getString("etat")
+            );
+            avances.add(a);
         }
         return avances;
-    }
-
-    public void update(avance avance) throws SQLException {
-        String query = "UPDATE avance SET montant = ?, duree = ?, date_avance = ?, niveau_urgence = ?, etat = ? WHERE id_avance = ?";
-
-        try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
-
-            pstmt.setBigDecimal(1, avance.getMontant());
-            pstmt.setInt(2, avance.getDuree());
-            pstmt.setDate(3, Date.valueOf(avance.getDateAvance()));
-            pstmt.setString(4, avance.getNiveauUrgence());
-            pstmt.setString(5, avance.getEtat());
-            pstmt.setInt(6, avance.getIdAvance());
-
-            pstmt.executeUpdate();
-        }
-    }
-
-    public void delete(avance avance) throws SQLException {
-        String query = "DELETE FROM avance WHERE id_avance = ?";
-
-        try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
-
-            pstmt.setInt(1, avance.getIdAvance());
-            pstmt.executeUpdate();
-        }
     }
 }

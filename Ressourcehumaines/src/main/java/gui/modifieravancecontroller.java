@@ -30,7 +30,7 @@ public class modifieravancecontroller {
         this.avanceEnCours = avance;
         if (avance != null) {
             montantField.setText(String.valueOf(avance.getMontant()));
-            dureeField.setText(String.valueOf(avance.getDuree()));
+//            dureeField.setText(String.valueOf(avance.getDuree()));
             dateAvancePicker.setValue(avance.getDateAvance());
             niveauUrgenceField.setText(avance.getNiveauUrgence());
             etatField.setText(avance.getEtat());
@@ -47,7 +47,7 @@ public class modifieravancecontroller {
             if (avanceEnCours != null) {
                 try {
                     avanceEnCours.setMontant(new BigDecimal(montantField.getText()));
-                    avanceEnCours.setDuree(Integer.parseInt(dureeField.getText()));
+//                    avanceEnCours.setDuree(Integer.parseInt(dureeField.getText()));
                     avanceEnCours.setDateAvance(dateAvancePicker.getValue());
                     avanceEnCours.setNiveauUrgence(niveauUrgenceField.getText());
                     avanceEnCours.setEtat(etatField.getText());

@@ -15,7 +15,7 @@ public class avance {
     public avance() {}
 
     // Constructeur avec paramètres
-    public avance(int idAvance, BigDecimal montant, int duree, LocalDate dateAvance, String niveauUrgence, String etat) {
+    public avance(int idAvance, BigDecimal montant, int duree,LocalDate dateAvance, String niveauUrgence, String etat) {
         this.idAvance = idAvance;
         this.montant = montant;
         this.duree = duree;
@@ -25,52 +25,22 @@ public class avance {
     }
 
     // Getters
-    public int getIdAvance() {
-        return idAvance;
-    }
-
-    public BigDecimal getMontant() {
-        return montant;
-    }
-
+    public int getIdAvance() { return idAvance; }
+    public BigDecimal getMontant() { return montant; }
     public int getDuree() {
         return duree;
     }
-
-    public LocalDate getDateAvance() {
-        return dateAvance;
-    }
-
-    public String getNiveauUrgence() {
-        return niveauUrgence;
-    }
-
-    public String getEtat() {
-        return etat;
-    }
+    public LocalDate getDateAvance() { return dateAvance; }
+    public String getNiveauUrgence() { return niveauUrgence; }
+    public String getEtat() { return etat; }
 
     // Setters
-    public void setIdAvance(int idAvance) {
-        this.idAvance = idAvance;
-    }
-
-    public void setMontant(BigDecimal montant) {
-        this.montant = montant;
-    }
-
+    public void setIdAvance(int idAvance) { this.idAvance = idAvance; }
+    public void setMontant(BigDecimal montant) { this.montant = montant; }
     public void setDuree(int duree) {
         this.duree = duree;
     }
-
-    public void setDateAvance(LocalDate dateAvance) {
-        this.dateAvance = dateAvance;
-    }
-
-    public void setNiveauUrgence(String niveauUrgence) {
-        this.niveauUrgence = niveauUrgence;
-    }
-
-    public void setEtat(String etat) {
-        this.etat = etat;
-    }
+    public void setDateAvance(LocalDate dateAvance) { this.dateAvance = dateAvance; }
+    public void setNiveauUrgence(String niveauUrgence) { this.niveauUrgence = niveauUrgence; }
+    public void setEtat(String etat) { this.etat = etat; }
 }

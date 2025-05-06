@@ -13,7 +13,6 @@ import entities.avance;
 public class ajouteravancecontroller {
     @FXML
     private TextField montantField;
-
     @FXML
     private TextField dureeField;
 
@@ -34,13 +33,14 @@ public class ajouteravancecontroller {
         try {
             BigDecimal montant = new BigDecimal(montantField.getText());
             int duree = Integer.parseInt(dureeField.getText());
+
             LocalDate dateAvance = dateAvancePicker.getValue();
             String urgence = niveauUrgenceField.getText();
             String etat = etatField.getText();
-            avance avance = new avance(0, montant, duree, dateAvance, urgence, etat);
+            avance avance = new avance(0, montant,duree, dateAvance, urgence, etat);
 
             avanceservice avanceService = new avanceservice();
-            avanceService.update(avance);
+            avanceService.create(avance);
 
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Succès");
@@ -54,7 +54,6 @@ public class ajouteravancecontroller {
 
             // Nettoyer les champs
             montantField.clear();
-            dureeField.clear();
             dateAvancePicker.setValue(null);
             niveauUrgenceField.clear();
             etatField.clear();
@@ -63,7 +62,7 @@ public class ajouteravancecontroller {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Erreur de saisie");
             alert.setHeaderText("Champs numériques incorrects");
-            alert.setContentText("Veuillez saisir un montant et une durée valides.");
+            alert.setContentText("Veuillez saisir un montant valide.");
             alert.showAndWait();
         } catch (Exception e) {
             Alert alert = new Alert(AlertType.ERROR);

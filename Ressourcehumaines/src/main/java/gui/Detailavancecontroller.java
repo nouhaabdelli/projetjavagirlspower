@@ -11,7 +11,6 @@ public class Detailavancecontroller {
 
     @FXML
     private Label labelMontant;
-
     @FXML
     private Label labelDuree;
 
@@ -24,9 +23,6 @@ public class Detailavancecontroller {
     @FXML
     private Label labelEtat;
 
-    @FXML
-    private Label labelUserId;
-
     public void setAvance(avance a) {
         labelIdAvance.setText(String.valueOf(a.getIdAvance()));
         labelMontant.setText(a.getMontant().toString());
@@ -34,6 +30,5 @@ public class Detailavancecontroller {
         labelDateAvance.setText(a.getDateAvance().toString());
         labelNiveauUrgence.setText(a.getNiveauUrgence());
         labelEtat.setText(a.getEtat());
-//        labelUserId.setText(String.valueOf(a.getUserId()));
     }
 }
