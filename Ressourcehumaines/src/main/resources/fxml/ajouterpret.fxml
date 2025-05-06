@@ -19,7 +19,7 @@
             <TextField fx:id="dureeField" promptText="Durée (mois)" />
             <DatePicker fx:id="datePretPicker" promptText="Date du prêt" />
             <TextField fx:id="niveauUrgenceField" promptText="Niveau d'urgence (faible, moyen, élevé)" />
-            <TextField fx:id="etatField" promptText="État (en attente, accepté, rejeté)" />
+            <TextField fx:id="etatField" promptText="État (mariage, frais médicaux, autres)" />
 
             <Button text="Ajouter" onAction="#ajouterPret" styleClass="form-button" />
         </VBox>

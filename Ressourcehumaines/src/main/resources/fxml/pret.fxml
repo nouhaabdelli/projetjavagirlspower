@@ -19,7 +19,7 @@
                     <children>
                         <Button onAction="#showAjouter" styleClass="sidebar-button" text="➕ Ajouter pret" />
                         <Button onAction="#showListe" styleClass="sidebar-button" text="📋 Liste pret" />
-<!--                        <Button onAction="#showReponses" styleClass="sidebar-button" text="💬 Réponses RH" />-->
+                        <!--                        <Button onAction="#showReponses" styleClass="sidebar-button" text="💬 Réponses RH" />-->
                     </children>
                 </VBox>
 

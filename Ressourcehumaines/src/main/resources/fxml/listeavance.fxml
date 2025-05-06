@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="700.0" prefWidth="950.0" style="-fx-background-color: #e6f0fa;" stylesheets="@../style/listeavance.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.listeavancecontroller">
+    <children>
+        <TableView fx:id="avanceTable" AnchorPane.topAnchor="20" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+            <columns>
+                <TableColumn fx:id="idAvanceColumn" prefWidth="75" text="ID Avance"/>
+                <TableColumn fx:id="montantColumn" prefWidth="100" text="Montant"/>
+                <TableColumn fx:id="dureeColumn" prefWidth="75" text="Durée"/>
+                <TableColumn fx:id="dateAvanceColumn" prefWidth="120" text="Date Avance"/>
+                <TableColumn fx:id="niveauUrgenceColumn" prefWidth="120" text="Niveau Urgence"/>
+                <TableColumn fx:id="etatColumn" prefWidth="100" text="État"/>
+                <TableColumn fx:id="modifierColumn" prefWidth="80" text="Modifier"/>
+                <TableColumn fx:id="supprimerColumn" prefWidth="80" text="Supprimer"/>
+                <TableColumn fx:id="afficherColumn" prefWidth="80" text="Afficher"/>
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

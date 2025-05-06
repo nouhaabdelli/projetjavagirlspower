@@ -1,0 +1,92 @@
+/* Gradient background for the AnchorPane */
+AnchorPane {
+    -fx-background-color: linear-gradient(to bottom right, #1a0033, #2a0047, #4b0082);
+}
+
+/* TreeView styling with a neon glow */
+.tree-view {
+    -fx-background-color: rgba(40, 0, 71, 0.85);
+    -fx-border-color: #ff00ff;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, #ff00ff, 20, 0.5, 0, 0);
+    -fx-padding: 10;
+}
+
+/* Tree item styling */
+.tree-cell {
+    -fx-text-fill: #e6e6fa;
+    -fx-font-size: 14px;
+    -fx-background-color: transparent;
+    -fx-padding: 5 10;
+    -fx-transition: all 0.3s ease;
+}
+
+/* Hover effect on tree items */
+.tree-cell:hover {
+    -fx-background-color: rgba(255, 0, 255, 0.2);
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(gaussian, #ff00ff, 15, 0.5, 0, 0);
+}
+
+/* Selected tree item styling */
+.tree-cell:selected {
+    -fx-background-color: rgba(255, 0, 255, 0.4);
+    -fx-text-fill: white;
+}
+
+/* Accept button with green glow */
+.tree-cell .accept-button {
+    -fx-font-size: 12px;
+    -fx-text-fill: white;
+    -fx-background-color: #28a745;
+    -fx-padding: 5 10;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #28a745, 10, 0.5, 0, 0);
+    -fx-transition: all 0.3s ease;
+}
+
+.tree-cell .accept-button:hover {
+    -fx-background-color: #218838;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-effect: dropshadow(gaussian, #28a745, 15, 0.7, 0, 0);
+}
+
+/* Reject button with red glow */
+.tree-cell .reject-button {
+    -fx-font-size: 12px;
+    -fx-text-fill: white;
+    -fx-background-color: #dc3545;
+    -fx-padding: 5 10;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #dc3545, 10, 0.5, 0, 0);
+    -fx-transition: all 0.3s ease;
+}
+
+.tree-cell .reject-button:hover {
+    -fx-background-color: #c82333;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-effect: dropshadow(gaussian, #dc3545, 15, 0.7, 0, 0);
+}
+
+/* Scrollbar styling */
+.tree-view .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.tree-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #ff00ff;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, #ff00ff, 5, 0.5, 0, 0);
+}
+
+.tree-view .scroll-bar:vertical .track {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
