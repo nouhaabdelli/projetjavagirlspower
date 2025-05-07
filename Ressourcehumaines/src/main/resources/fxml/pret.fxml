@@ -3,46 +3,42 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
-<SplitPane dividerPositions="0.20126203918963795" prefHeight="682.0" prefWidth="1180.0" stylesheets="@../style/pret.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.pretcontroller">
-
-    <items>
-        <!-- LEFT SIDEBAR -->
-        <AnchorPane prefHeight="610.0" prefWidth="230.0">
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: linear-gradient(to right, #1e3a8a, #60a5fa);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.pretcontroller">
+    <children>
+        <!-- Sidebar -->
+        <VBox fx:id="sideMenu" layoutX="0.0" layoutY="100.0" prefWidth="250.0" style="-fx-background-color: rgba(30, 58, 138, 0.9); -fx-padding: 20;">
             <children>
-                <VBox fx:id="sideMenu" layoutX="-1.0" layoutY="206.0" prefHeight="474.0" prefWidth="254.0" styleClass="left-panel">
-                    <children>
-                        <Button onAction="#showAjouter" styleClass="sidebar-button" text="➕ Ajouter pret" />
-                        <Button onAction="#showListe" styleClass="sidebar-button" text="📋 Liste pret" />
-                        <!--                        <Button onAction="#showReponses" styleClass="sidebar-button" text="💬 Réponses RH" />-->
-                    </children>
-                </VBox>
-
-                <ImageView fitHeight="87.0" fitWidth="137.0" layoutX="50.0" preserveRatio="true" styleClass="logo">
-                    <!-- Ton image de logo si nécessaire -->
-                </ImageView>
-                <ImageView fitHeight="216.0" fitWidth="240.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="100.0" fitWidth="200.0" preserveRatio="true">
                     <image>
-                        <Image url="@../images/NN.jpg" />
+                        <Image url="@../images/NN.jpg"/>
                     </image>
                 </ImageView>
+                <Button onAction="#showAjouterPret" text="➕ Ajouter Prêt" style="-fx-text-fill: white; -fx-background-color: transparent; -fx-font-size: 16px; -fx-padding: 10;" prefWidth="230.0"/>
+                <Button onAction="#showListePret" text="📋 Liste Prêt" style="-fx-text-fill: white; -fx-background-color: transparent; -fx-font-size: 16px; -fx-padding: 10;" prefWidth="230.0"/>
+                <Button onAction="#showReponsesRH" text="💬 Réponses RH" style="-fx-text-fill: white; -fx-background-color: transparent; -fx-font-size: 16px; -fx-padding: 10;" prefWidth="230.0"/>
             </children>
-            <opaqueInsets>
-                <Insets />
-            </opaqueInsets>
-        </AnchorPane>
+        </VBox>
 
-        <!-- MAIN CONTENT (Right Side) -->
-        <AnchorPane fx:id="mainContent" prefHeight="681.0" prefWidth="910.0">
+        <!-- Main Content -->
+        <AnchorPane fx:id="mainContent" layoutX="250.0" prefHeight="700.0" prefWidth="950.0" style="-fx-background-color: rgba(240, 248, 255, 0.8);">
             <children>
-                <Label fx:id="titrePrincipal" alignment="CENTER" layoutX="226.0" layoutY="44.0" prefHeight="66.0" prefWidth="338.0" styleClass="title" text="Gestion des Prets" textAlignment="CENTER" />
-                <!-- This is where content like "listeReclamations" will appear -->
+                <Button fx:id="retourButton" onAction="#handleRetour" text="⬅ Retour" style="-fx-background-color: #1e3a8a; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 5 10;" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0"/>
+                <Label fx:id="titrePrincipal" text="Gestion des Prêts" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #1e3a8a; -fx-padding: 20 0 0 20;" AnchorPane.topAnchor="0"/>
+                <!-- Creative empty space ideas -->
+                <VBox layoutX="300.0" layoutY="100.0" spacing="20" AnchorPane.bottomAnchor="20" AnchorPane.rightAnchor="20">
+                    <Label text="Bienvenue :" style="-fx-font-size: 20px; -fx-text-fill: #1e3a8a;"/>
+                    <Label text="1. Ajoutez des prêts par mois !"/>
+                    <Label text="2. Modifiez vos prêts !"/>
+                    <Label text="3. Supprimez vos prêts !"/>
+                </VBox>
+                <Circle fx:id="pulseDot" radius="10" fill="red" opacity="0.7" layoutX="900.0" layoutY="50.0"/>
             </children>
         </AnchorPane>
-    </items>
-</SplitPane>
+    </children>
+</AnchorPane>

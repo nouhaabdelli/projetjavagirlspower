@@ -1,18 +1,25 @@
 package gui;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import services.avanceservice;
 import entities.avance;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import services.avanceservice;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.sql.SQLException;
 
 public class ajouteravancecontroller {
     @FXML
+    private AnchorPane mainContent;
+
+    @FXML
     private TextField montantField;
+
     @FXML
     private TextField dureeField;
 
@@ -25,55 +32,75 @@ public class ajouteravancecontroller {
     @FXML
     private TextField etatField;
 
-    private avance avanceEnCours; // utilisé si modification
-    private listeavancecontroller controllerPrincipal; // référence au contrôleur principal
+    @FXML
+    private void handleRetour() {
+        try {
+            System.out.println("Tentative de retour à avance.fxml depuis ajouteravance.fxml");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/avance.fxml"));
+            Parent root = loader.load();
+            Stage newStage = new Stage();
+            Scene scene = new Scene(root);
+            if (getClass().getResource("/style/finance.css") != null) {
+                scene.getStylesheets().add(getClass().getResource("/style/finance.css").toExternalForm());
+                System.out.println("finance.css chargé avec succès");
+            } else {
+                System.err.println("Erreur : Le fichier finance.css n'est pas trouvé dans les ressources.");
+            }
+            newStage.setScene(scene);
+            newStage.show();
+            Stage currentStage = (Stage) mainContent.getScene().getWindow();
+            if (currentStage != null) {
+                currentStage.close();
+            }
+        } catch (IOException e) {
+            System.err.println("Erreur lors du chargement de avance.fxml dans ajouteravancecontroller : " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void ajouterAvance() {
         try {
-            BigDecimal montant = new BigDecimal(montantField.getText());
-            int duree = Integer.parseInt(dureeField.getText());
-
-            LocalDate dateAvance = dateAvancePicker.getValue();
-            String urgence = niveauUrgenceField.getText();
-            String etat = etatField.getText();
-            avance avance = new avance(0, montant,duree, dateAvance, urgence, etat);
-
-            avanceservice avanceService = new avanceservice();
-            avanceService.create(avance);
-
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Succès");
-            alert.setHeaderText(null);
-            alert.setContentText("L'avance a été enregistrée avec succès !");
-            alert.showAndWait();
-
-            if (controllerPrincipal != null) {
-                controllerPrincipal.rafraichirTable();
+            // Valider les champs
+            if (montantField.getText().isEmpty() || dureeField.getText().isEmpty() ||
+                    dateAvancePicker.getValue() == null || niveauUrgenceField.getText().isEmpty() ||
+                    etatField.getText().isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Tous les champs doivent être remplis !");
+                alert.showAndWait();
+                return;
             }
 
-            // Nettoyer les champs
+            // Créer une nouvelle avance
+            avance nouvelleAvance = new avance();
+            nouvelleAvance.setMontant(new BigDecimal(montantField.getText()));
+            nouvelleAvance.setDuree(Integer.parseInt(dureeField.getText()));
+            nouvelleAvance.setDateAvance(dateAvancePicker.getValue());
+            nouvelleAvance.setNiveauUrgence(niveauUrgenceField.getText());
+            nouvelleAvance.setEtat(etatField.getText());
+
+            // Ajouter à la base de données
+            avanceservice avanceService = new avanceservice();
+            avanceService.create(nouvelleAvance);
+
+            // Afficher une confirmation
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Avance ajoutée avec succès !");
+            alert.showAndWait();
+
+            // Réinitialiser les champs
             montantField.clear();
+            dureeField.clear();
             dateAvancePicker.setValue(null);
             niveauUrgenceField.clear();
             etatField.clear();
 
         } catch (NumberFormatException e) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Erreur de saisie");
-            alert.setHeaderText("Champs numériques incorrects");
-            alert.setContentText("Veuillez saisir un montant valide.");
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Montant et Durée doivent être des nombres valides !");
             alert.showAndWait();
-        } catch (Exception e) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText("Une erreur est survenue");
-            alert.setContentText(e.getMessage());
+            e.printStackTrace();
+        } catch (SQLException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Erreur lors de l'ajout : " + e.getMessage());
             alert.showAndWait();
+            e.printStackTrace();
         }
-    }
-
-    public void setControllerPrincipal(listeavancecontroller controller) {
-        this.controllerPrincipal = controller;
     }
 }

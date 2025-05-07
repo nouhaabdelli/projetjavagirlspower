@@ -1,11 +1,11 @@
 package gui;
+
 import javafx.stage.Stage;
 import services.pretservice;
 import entities.pret;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-
 import javafx.event.ActionEvent;
 import java.math.BigDecimal;
 import java.sql.SQLException;
@@ -14,7 +14,6 @@ import java.time.LocalDate;
 public class modifierpret {
     @FXML
     private TextField montantField;
-
 
     @FXML
     private TextField dureeField;
@@ -30,10 +29,10 @@ public class modifierpret {
 
     private pret pretEnCours; // utilisé si modification
     private listepretcontroller controllerPrincipal; // référence au contrôleur principal
+
     @FXML
     public void modifierPret(ActionEvent event) {
         try {
-
             BigDecimal montant = new BigDecimal(montantField.getText());
             int duree = Integer.parseInt(dureeField.getText());
             LocalDate date = datePretPicker.getValue();
@@ -59,9 +58,10 @@ public class modifierpret {
             e.printStackTrace();
         }
     }
+
     public void chargerPourModification(pret p) {
         this.pretEnCours = p;
-        System.out.println("Chargement du prêt pour modification, ID = " + p.getIdPret());
+        System.out.println("Chargement du prêt pour modification, ID = " + p.getIdavance());
 
         montantField.setText(String.valueOf(p.getMontant()));
         dureeField.setText(String.valueOf(p.getDuree()));
@@ -73,5 +73,4 @@ public class modifierpret {
     public void setControllerPrincipal(listepretcontroller controller) {
         this.controllerPrincipal = controller;
     }
-
 }

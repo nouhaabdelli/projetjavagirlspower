@@ -1,7 +1,6 @@
 package gui;
 
-
-import entities.avance;
+import entities.pret;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,28 +11,27 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import services.avanceservice;
+import services.pretservice;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class reponsesrhcontroller {
+public class reponsespretrhcontroller {
     @FXML
     private AnchorPane mainContent;
 
     @FXML
-    private TreeView<String> avanceTree;
+    private TreeView<String> pretTree;
 
-    private ObservableList<avance> avanceList;
+    private ObservableList<pret> pretList;
 
     @FXML
     private void initialize() {
-        if (avanceTree != null) {
-            // Charger les données initiales
+        if (pretTree != null) {
             rafraichirTree();
 
-            // Configurer le TreeView
-            avanceTree.setShowRoot(false);
-            avanceTree.setCellFactory(param -> new TreeCell<String>() {
+            pretTree.setShowRoot(false);
+            pretTree.setCellFactory(param -> new TreeCell<String>() {
                 private final Button acceptButton = new Button("Accepter");
                 private final Button rejectButton = new Button("Rejeter");
 
@@ -42,13 +40,13 @@ public class reponsesrhcontroller {
                     rejectButton.setStyle("-fx-font-size: 12px; -fx-text-fill: white; -fx-background-color: #dc3545; -fx-padding: 5 10; -fx-border-radius: 5; -fx-background-radius: 5; -fx-cursor: hand; -fx-effect: dropshadow(gaussian, #dc3545, 10, 0.5, 0, 0); -fx-transition: all 0.3s ease;");
 
                     acceptButton.setOnAction(event -> {
-                        avance avance = avanceList.get(getIndex());
-                        accepterAvance(avance);
+                        pret pret = pretList.get(getIndex());
+                        accepterPret(pret);
                     });
 
                     rejectButton.setOnAction(event -> {
-                        avance avance = avanceList.get(getIndex());
-                        rejeterAvance(avance);
+                        pret pret = pretList.get(getIndex());
+                        rejeterPret(pret);
                     });
 
                     acceptButton.setOnMouseEntered(e -> acceptButton.setStyle("-fx-background-color: #218838; -fx-scale-x: 1.1; -fx-scale-y: 1.1; -fx-effect: dropshadow(gaussian, #28a745, 15, 0.7, 0, 0);"));
@@ -71,37 +69,38 @@ public class reponsesrhcontroller {
                 }
             });
         } else {
-            System.err.println("avanceTree est null dans reponsesrhcontroller.initialize()");
+            System.err.println("pretTree est null dans reponsespretrhcontroller.initialize()");
         }
     }
 
     private void rafraichirTree() {
-        if (avanceTree != null) {
+        if (pretTree != null) {
             try {
-                avanceservice avanceService = new avanceservice();
-                avanceList = FXCollections.observableArrayList(avanceService.readAll());
+                pretservice pretService = new pretservice();
+                pretList = FXCollections.observableArrayList(pretService.readAll());
                 TreeItem<String> root = new TreeItem<>();
-                for (avance a : avanceList) {
-                    String itemText = String.format("Montant: %s, Durée: %d, Date: %s, Urgence: %s, État: %s",
-                            a.getMontant(), a.getDuree(), a.getDateAvance(), a.getNiveauUrgence(), a.getEtat());
+                for (pret p : pretList) {
+                    String itemText = String.format("ID: %d, Montant: %s, Date: %s, Durée: %d, Urgence: %s, État: %s, Réponse: %s",
+                            p.getIdavance(), p.getMontant(), p.getDatePret(), p.getDuree(), p.getNiveauUrgence(), p.getEtat(), p.getReponse());
                     TreeItem<String> item = new TreeItem<>(itemText);
                     root.getChildren().add(item);
                 }
-                avanceTree.setRoot(root);
+                pretTree.setRoot(root);
             } catch (SQLException e) {
-                System.err.println("Erreur lors du chargement des avances : " + e.getMessage());
+                System.err.println("Erreur lors du chargement des prêts : " + e.getMessage());
                 e.printStackTrace();
             }
         }
     }
 
-    private void accepterAvance(avance avance) {
+    private void accepterPret(pret pret) {
         try {
-            avance.setEtat("Accepté");
-            avanceservice avanceService = new avanceservice();
-            avanceService.update(avance);
+            pret.setEtat("Accepté");
+            pret.setReponse("accepter");
+            pretservice pretService = new pretservice();
+            pretService.update(pret);
             rafraichirTree();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Avance acceptée avec succès !");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Prêt accepté avec succès !");
             alert.showAndWait();
         } catch (SQLException e) {
             System.err.println("Erreur lors de l'acceptation : " + e.getMessage());
@@ -111,13 +110,14 @@ public class reponsesrhcontroller {
         }
     }
 
-    private void rejeterAvance(avance avance) {
+    private void rejeterPret(pret pret) {
         try {
-            avance.setEtat("Rejeté");
-            avanceservice avanceService = new avanceservice();
-            avanceService.update(avance);
+            pret.setEtat("Rejeté");
+            pret.setReponse("rejeter");
+            pretservice pretService = new pretservice();
+            pretService.update(pret);
             rafraichirTree();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Avance rejetée avec succès !");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Prêt rejeté avec succès !");
             alert.showAndWait();
         } catch (SQLException e) {
             System.err.println("Erreur lors du rejet : " + e.getMessage());
@@ -130,25 +130,27 @@ public class reponsesrhcontroller {
     @FXML
     private void handleRetour() {
         try {
-            System.out.println("Tentative de retour à avance.fxml depuis reponsesrh.fxml");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/avance.fxml"));
+            System.out.println("Retour à pret.fxml depuis reponsespretrh.fxml");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/pret.fxml"));
             Parent root = loader.load();
             Stage newStage = new Stage();
             Scene scene = new Scene(root);
             if (getClass().getResource("/style/finance.css") != null) {
                 scene.getStylesheets().add(getClass().getResource("/style/finance.css").toExternalForm());
                 System.out.println("finance.css chargé avec succès");
-            } else {
-                System.err.println("Erreur : Le fichier finance.css n'est pas trouvé dans les ressources.");
             }
             newStage.setScene(scene);
             newStage.show();
-            Stage currentStage = (Stage) mainContent.getScene().getWindow();
-            if (currentStage != null) {
-                currentStage.close();
+            if (mainContent != null && mainContent.getScene() != null) {
+                Stage currentStage = (Stage) mainContent.getScene().getWindow();
+                if (currentStage != null) {
+                    currentStage.close();
+                }
+            } else {
+                System.err.println("mainContent or its scene is null, cannot close the current stage.");
             }
         } catch (IOException e) {
-            System.err.println("Erreur lors du chargement de avance.fxml dans reponsesrhcontroller : " + e.getMessage());
+            System.err.println("Erreur lors du chargement de pret.fxml dans reponsespretrhcontroller : " + e.getMessage());
             e.printStackTrace();
         }
     }

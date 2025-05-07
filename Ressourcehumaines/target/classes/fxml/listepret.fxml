@@ -3,40 +3,48 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 
-<SplitPane prefHeight="618.0" prefWidth="959.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.listepretcontroller">
-    <items>
+<AnchorPane fx:id="mainContent" prefHeight="750.0" prefWidth="1250.0" style="-fx-background-color: #f0f8ff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.listepretcontroller">
+    <children>
+        <!-- Floating Header -->
+        <HBox layoutX="0.0" layoutY="29.0" prefHeight="126.0" prefWidth="1250.0" styleClass="header">
+            <Button fx:id="btnSidebarToggle" prefHeight="50.0" prefWidth="50.0" styleClass="sidebar-toggle" text="☰" />
+            <Label prefHeight="47.0" prefWidth="346.0" styleClass="header-title" text="Gestion des Prêts" />
+            <HBox prefHeight="86.0" prefWidth="94.0" spacing="15.0" styleClass="header-actions">
+                <ToggleButton fx:id="themeToggle" prefHeight="47.0" prefWidth="51.0" styleClass="theme-toggle" text="🌙" onAction="#toggleTheme" />
+                <Button onAction="#handleRetour" text="⬅ Retour" style="-fx-background-color: #1e3a8a; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 5 10;" />
+                <Button onAction="#showReponsesRH" text="💬 Réponses RH" style="-fx-background-color: #1e3a8a; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 5 10;" />
+            </HBox>
+        </HBox>
 
-        <!-- Zone centrale -->
-        <VBox alignment="TOP_CENTER" prefHeight="617.0" prefWidth="1014.0" spacing="15" style="-fx-background-color: #ecf0f1;">
-            <children>
-                <Label style="-fx-font-size: 20px; -fx-text-fill: #2980b9;" text="Liste des Prêts" />
-                <TableView fx:id="tableViewPret" prefHeight="400" prefWidth="600">
+        <!-- Content Area -->
+        <AnchorPane fx:id="contentArea" layoutX="0.0" layoutY="167.0" prefHeight="582.0" prefWidth="1250.0" styleClass="content-area">
+            <!-- Dynamic Content Area -->
+            <AnchorPane fx:id="dynamicContent" layoutX="39.0" layoutY="46.0" prefHeight="534.0" prefWidth="1191.0" styleClass="glass-card">
+                <TableView fx:id="tableViewPret" layoutX="23.0" layoutY="14.0" prefHeight="490.0" prefWidth="1157.0">
                     <columns>
-                        <TableColumn fx:id="colMontant" prefWidth="155.99999237060547" text="Montant" />
-                        <TableColumn fx:id="colDuree" prefWidth="212.800048828125" text="Durée" />
-                        <TableColumn fx:id="colDatePret" prefWidth="224.0" text="Date Prêt" />
-                        <TableColumn fx:id="colNiveauUrgence" prefWidth="143.2000732421875" text="Urgence" />
-                        <TableColumn fx:id="colEtat" prefWidth="182.39990234375" text="État" />
+                        <TableColumn fx:id="colMontant" prefWidth="150.0" text="Montant" />
+                        <TableColumn fx:id="colDuree" prefWidth="150.0" text="Durée" />
+                        <TableColumn fx:id="colDatePret" prefWidth="150.0" text="Date Prêt" />
+                        <TableColumn fx:id="colNiveauUrgence" prefWidth="150.0" text="Niveau Urgence" />
+                        <TableColumn fx:id="colEtat" prefWidth="150.0" text="État" />
+                        <TableColumn fx:id="colModifier" prefWidth="137.6" text="Modifier" />
+                        <TableColumn fx:id="colSupprimer" prefWidth="134.4" text="Supprimer" />
+                        <TableColumn fx:id="colAfficher" prefWidth="109.6" text="Afficher" />
                     </columns>
                 </TableView>
-
-                <HBox alignment="CENTER" spacing="20">
-                    <children>
-                        <Button onAction="#afficher" style="-fx-background-color: #3498db; -fx-text-fill: white;" text="Afficher" />
-                        <Button onAction="#modifier" style="-fx-background-color: #f39c12; -fx-text-fill: white;" text="Modifier" />
-                        <Button onAction="#supprimer" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" text="Supprimer" />
-                    </children>
-                </HBox>
-            </children>
-            <padding>
-                <Insets bottom="20" left="20" right="20" top="20" />
-            </padding>
-        </VBox>
-    </items>
-</SplitPane>
+            </AnchorPane>
+            <!-- Search Panel -->
+            <HBox layoutX="324.0" layoutY="3.0" prefHeight="86.0" prefWidth="694.0" spacing="15.0" styleClass="search-filter-panel">
+                <TextField fx:id="searchField" prefHeight="54.0" prefWidth="502.0" promptText="Rechercher un prêt..." styleClass="search-field" />
+                <Button fx:id="btnSearch" onAction="#rechercherPret" styleClass="action-button" text="🔍 Rechercher" />
+            </HBox>
+        </AnchorPane>
+    </children>
+</AnchorPane>

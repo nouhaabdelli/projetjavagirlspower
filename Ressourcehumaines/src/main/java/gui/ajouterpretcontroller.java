@@ -1,4 +1,5 @@
 package gui;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -10,11 +11,9 @@ import java.time.LocalDate;
 import services.pretservice;
 import entities.pret;
 
-
 public class ajouterpretcontroller {
     @FXML
     private TextField montantField;
-
 
     @FXML
     private TextField dureeField;
@@ -33,16 +32,14 @@ public class ajouterpretcontroller {
 
     @FXML
     private void ajouterPret() {
-
-
-        BigDecimal montant = new BigDecimal(montantField.getText());
+        try {
+            BigDecimal montant = new BigDecimal(montantField.getText());
             int duree = Integer.parseInt(dureeField.getText());
             LocalDate datePret = datePretPicker.getValue();
             String urgence = niveauUrgenceField.getText();
             String etat = etatField.getText();
-            pret pret = new pret(0,montant, duree, datePret, urgence , etat) ;
+            pret pret = new pret(0, montant, duree, datePret, urgence, etat); // Respecte l'ordre : idPret, montant, duree, datePret, niveauUrgence, etat
 
-        try {
             pretservice pretservice = new pretservice();
             pretservice.create(pret);
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -76,17 +73,6 @@ public class ajouterpretcontroller {
             alert.showAndWait();
         }
     }
-
-
-//    public void chargerPourModification(pret p) {
-//        this.pretEnCours = p;
-//        montantField.setText(String.valueOf(p.getMontant()));
-//        dureeField.setText(String.valueOf(p.getDuree()));
-//        datePretPicker.setValue(p.getDatePret());
-//        niveauUrgenceField.setText(p.getNiveauUrgence());
-//        etatField.setText(p.getEtat());
-//    }
-
 
     public void setControllerPrincipal(listepretcontroller controller) {
         this.controllerPrincipal = controller;

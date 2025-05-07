@@ -28,7 +28,8 @@
         <!-- Main Content -->
         <AnchorPane fx:id="mainContent" layoutX="250.0" prefHeight="700.0" prefWidth="950.0" style="-fx-background-color: rgba(240, 248, 255, 0.8);">
             <children>
-                <Label text="Gestion des Prêts et Avances" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #1e3a8a; -fx-padding: 20 0 0 20;" AnchorPane.topAnchor="0"/>
+                <Button fx:id="retourButton" onAction="#handleRetour" text="⬅ Retour" style="-fx-background-color: #1e3a8a; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 5 10;" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0"/>
+                <Label fx:id="titrePrincipal" text="Gestion des Prêts et Avances" style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #1e3a8a; -fx-padding: 20 0 0 20;" AnchorPane.topAnchor="0"/>
                 <!-- Creative empty space ideas -->
                 <VBox layoutX="300.0" layoutY="100.0" spacing="20" AnchorPane.bottomAnchor="20" AnchorPane.rightAnchor="20">
                     <Label text=" bienvenue :" style="-fx-font-size: 20px; -fx-text-fill: #1e3a8a;"/>

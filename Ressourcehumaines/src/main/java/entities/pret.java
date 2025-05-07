@@ -1,82 +1,64 @@
 package entities;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class pret {
-    // Attributs
-    private int idPret;
+    private int idavance;
     private BigDecimal montant;
     private int duree;
     private LocalDate datePret;
     private String niveauUrgence;
     private String etat;
-//    public int userId;
+    private String reponse;
 
-    // Constructeur vide
-    public void Pret() {}
+    public pret() {}
 
-    // Constructeur avec paramètres
-    public pret(int idPret, BigDecimal montant, int duree, LocalDate datePret, String niveauUrgence, String etat) {
-        this.idPret = idPret;
+    public pret(int idavance, BigDecimal montant, int duree, LocalDate datePret, String niveauUrgence, String etat) {
+        this.idavance = idavance;
         this.montant = montant;
         this.duree = duree;
         this.datePret = datePret;
         this.niveauUrgence = niveauUrgence;
         this.etat = etat;
+        this.reponse = null; // Allow reponse to be null initially
     }
 
-    // Getters
-    public int getIdPret() {
-        return idPret;
-    }
-
-    public BigDecimal getMontant() {
-        return montant;
-    }
-
-    public int getDuree() {
-        return duree;
-    }
-
-    public LocalDate getDatePret() {
-        return datePret;
-    }
-
-    public String getNiveauUrgence() {
-        return niveauUrgence;
-    }
-
-    public String getEtat() {
-        return etat;
-    }
-
-    // Setters
-    public void setIdPret(int idPret) {
-        this.idPret = idPret;
-    }
-
-    public void setMontant(BigDecimal montant) {
+    public pret(int idavance, BigDecimal montant, int duree, LocalDate datePret, String niveauUrgence, String etat, String reponse) {
+        this.idavance = idavance;
         this.montant = montant;
-    }
-
-    public void setDuree(int duree) {
         this.duree = duree;
-    }
-
-    public void setDatePret(LocalDate datePret) {
         this.datePret = datePret;
-    }
-
-    public void setNiveauUrgence(String niveauUrgence) {
         this.niveauUrgence = niveauUrgence;
-    }
-
-    public void setEtat(String etat) {
         this.etat = etat;
+        this.reponse = reponse;
     }
 
-//    public void setUserId(int userId) {
-//        this.userId = userId;
+    public int getIdavance() { return idavance; }
+    public void setIdavance(int idavance) { this.idavance = idavance; }
+    public BigDecimal getMontant() { return montant; }
+    public void setMontant(BigDecimal montant) { this.montant = montant; }
+    public int getDuree() { return duree; }
+    public void setDuree(int duree) { this.duree = duree; }
+    public LocalDate getDatePret() { return datePret; }
+    public void setDatePret(LocalDate datePret) { this.datePret = datePret; }
+    public String getNiveauUrgence() { return niveauUrgence; }
+    public void setNiveauUrgence(String niveauUrgence) { this.niveauUrgence = niveauUrgence; }
+    public String getEtat() { return etat; }
+    public void setEtat(String etat) { this.etat = etat; }
+    public String getReponse() { return reponse; }
+    public void setReponse(String reponse) { this.reponse = reponse; }
 
+    @Override
+    public String toString() {
+        return "pret{" +
+                "idavance=" + idavance +
+                ", montant=" + montant +
+                ", duree=" + duree +
+                ", datePret=" + datePret +
+                ", niveauUrgence='" + niveauUrgence + '\'' +
+                ", etat='" + etat + '\'' +
+                ", reponse='" + reponse + '\'' +
+                '}';
     }
-
+}
