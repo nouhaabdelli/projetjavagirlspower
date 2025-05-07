@@ -1,25 +1,28 @@
 package gui;
 
 import entities.Annonce;
+import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import services.AnnonceService;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Annonces {
 
@@ -41,6 +44,18 @@ public class Annonces {
     @FXML
     private TableColumn<Annonce, String> pj;
 
+    @FXML
+    private TableColumn<Annonce, Void> colAfficher;
+
+    @FXML
+    private TableColumn<Annonce, Void> colModifier;
+
+    @FXML
+    private TableColumn<Annonce, Void> colSupprimer;
+
+    @FXML
+    private DatePicker dateRecherchePicker;
+
     private final AnnonceService annonceService = new AnnonceService();
 
     @FXML
@@ -49,100 +64,155 @@ public class Annonces {
         contenu.setCellValueFactory(new PropertyValueFactory<>("contenu"));
         datepub.setCellValueFactory(new PropertyValueFactory<>("datePublication"));
         pj.setCellValueFactory(new PropertyValueFactory<>("pieceJointe"));
+
+        ajouterBoutonAfficher();
+        ajouterBoutonModifier();
+        ajouterBoutonSupprimer();
+
         chargerAnnonces();
     }
 
     private void chargerAnnonces() {
         try {
-            AnnonceService annonceService = new AnnonceService();
             List<Annonce> annonces = annonceService.readAll();
             ObservableList<Annonce> observableList = FXCollections.observableList(annonces);
             tableview.setItems(observableList);
         } catch (SQLException e) {
             e.printStackTrace();
-            // Tu peux afficher une alerte ici si tu veux
         }
     }
 
     @FXML
-    void btnaffich(ActionEvent event) {
-
-        Annonce selectedAnnonce = tableview.getSelectionModel().getSelectedItem();
-
-        if (selectedAnnonce != null) {
-            try {
-
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/DetailsAnnonce.fxml")); // Assure-toi que le chemin est correct
-                Parent root = loader.load();
-
-
-                DetailsAnnonce detailsAnnonceController = loader.getController();
-
-
-                detailsAnnonceController.setDetails(selectedAnnonce);
-
-
-                Scene scene = new Scene(root);
-                scene.getStylesheets().add(getClass().getResource("/css/ajouter.css").toExternalForm());
-
-                Stage stage = new Stage();
-                stage.setTitle("Détails de l'annonce");
-                stage.setScene(scene);
-                stage.show();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erreur");
-                alert.setHeaderText("Erreur lors du chargement des détails");
-                alert.setContentText("Une erreur est survenue lors de l'affichage des détails.");
-                alert.showAndWait();
-            }
+    void rechercherParDate(ActionEvent event) {
+        if (dateRecherchePicker.getValue() != null) {
+            Date selectedDate = Date.valueOf(dateRecherchePicker.getValue());
+            chargerAnnoncesFiltreesParDate(selectedDate);
         } else {
-            // Si aucune annonce n'est sélectionnée, afficher un message d'erreur
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Aucune sélection");
-            alert.setHeaderText("Aucune annonce sélectionnée");
-            alert.setContentText("Veuillez sélectionner une annonce pour afficher ses détails.");
-            alert.showAndWait();
+            chargerAnnonces(); // Si aucune date n'est sélectionnée, on recharge tout
         }
     }
+
+            private void chargerAnnoncesFiltreesParDate(Date date) {
+                try {
+                    List<Annonce> annonces = annonceService.readAll();
+                    List<Annonce> filtered = annonces.stream()
+                            .filter(a -> a.getDatePublication() != null &&
+                                    a.getDatePublication().toLocalDate().equals(date.toLocalDate()))
+                            .collect(Collectors.toList());
+                    tableview.setItems(FXCollections.observableList(filtered));
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
 
     @FXML
-    void btnmodif(ActionEvent event) {
-        Annonce selected = tableview.getSelectionModel().getSelectedItem();
-        if (selected != null) {
-            try {
-
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierAnnonce.fxml"));
-                Parent root = loader.load();
-
-                ModifierAnnonce modifierAnnonceController = loader.getController();
-                modifierAnnonceController.initialize(selected);
-
-                Scene scene = new Scene(root);
-                scene.getStylesheets().add(getClass().getResource("/css/ajouter.css").toExternalForm());
-
-                Stage stage = new Stage();
-                stage.setTitle("Modifier l'Annonce");
-                stage.setScene(scene);
-                stage.show();
-                stage.setOnHidden(e -> chargerAnnonces());
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Aucune sélection");
-            alert.setHeaderText("Aucune annonce sélectionnée");
-            alert.setContentText("Veuillez sélectionner une annonce à modifier.");
-            alert.showAndWait();
-        }
+    void resetTableView(ActionEvent event) {
+        dateRecherchePicker.setValue(null); // Efface la date sélectionnée
+        chargerAnnonces(); // Recharge toutes les annonces
     }
 
+    private void ajouterBoutonAfficher() {
+        colAfficher.setCellFactory(param -> new TableCell<>() {
+            private final Button btn = new Button("Afficher");
+
+            {
+                btn.setOnAction(event -> {
+                    Annonce annonce = getTableView().getItems().get(getIndex());
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/DetailsAnnonce.fxml"));
+                        Parent root = loader.load();
+
+                        DetailsAnnonce controller = loader.getController();
+                        controller.setDetails(annonce);
+
+                        Stage stage = new Stage();
+                        stage.setTitle("Détails de l'annonce");
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : btn);
+            }
+        });
+    }
+
+    private void ajouterBoutonModifier() {
+        colModifier.setCellFactory(param -> new TableCell<>() {
+            private final Button btn = new Button("Modifier");
+
+            {
+                btn.setOnAction(event -> {
+                    Annonce annonce = getTableView().getItems().get(getIndex());
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierAnnonce.fxml"));
+                        Parent root = loader.load();
+
+                        ModifierAnnonce controller = loader.getController();
+                        controller.initialize(annonce);
+
+                        Stage stage = new Stage();
+                        stage.setTitle("Modifier l'annonce");
+                        stage.setScene(new Scene(root));
+                        stage.show();
+
+                        stage.setOnHidden(e -> chargerAnnonces());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : btn);
+            }
+        });
+    }
+
+    private void ajouterBoutonSupprimer() {
+        colSupprimer.setCellFactory(param -> new TableCell<>() {
+            private final Button btn = new Button("Supprimer");
+
+            {
+                btn.setOnAction(event -> {
+                    Annonce annonce = getTableView().getItems().get(getIndex());
+
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmation");
+                    alert.setHeaderText("Voulez-vous vraiment supprimer cette annonce ?");
+                    alert.setContentText("Cette action est irréversible.");
+
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.isPresent() && result.get() == ButtonType.OK) {
+                        try {
+                            annonceService.delete(annonce);
+                            chargerAnnonces();
+                            Alert success = new Alert(Alert.AlertType.INFORMATION);
+                            success.setHeaderText("Suppression réussie");
+                            success.setContentText("L'annonce a été supprimée.");
+                            success.showAndWait();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : btn);
+            }
+        });
+    }
 
     @FXML
     void btnajout(ActionEvent event) {
@@ -150,66 +220,66 @@ public class Annonces {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterAnnonce.fxml"));
             Parent root = loader.load();
 
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/css/ajouter.css").toExternalForm());
+            AjouterAnnonce controller = loader.getController(); // Récupérer le contrôleur de la fenêtre d'ajout
 
             Stage stage = new Stage();
-            stage.setTitle("Ajouter une Annonce");
-            stage.setScene(scene);
+            stage.setTitle("Ajouter une annonce");
+            stage.setScene(new Scene(root));
             stage.show();
 
-            stage.setOnHidden(e -> chargerAnnonces());
+            // Lorsque la fenêtre d'ajout est fermée, charger les annonces et afficher la notification si nécessaire
+            stage.setOnHidden(e -> {
+                chargerAnnonces();
+
+                // Vérifie si l'annonce a été ajoutée avec succès
+                if (controller.isAnnonceAjoutee()) {
+                    // Utilise le Stage principal pour afficher la notification en vert (succès)
+                    showNotification((Stage) ((Node) event.getSource()).getScene().getWindow(), "Annonce ajoutée avec succès !", "#4CAF50");
+                } else {
+                    // En cas d'échec, afficher une notification en rouge (erreur)
+                    showNotification((Stage) ((Node) event.getSource()).getScene().getWindow(), "Erreur lors de l'ajout de l'annonce.", "#F44336");
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
 
+    public void showNotification(Stage stage, String message, String color) {
+        Popup popup = new Popup();
+        Label label = new Label(message);
+
+        // Utilisation de la couleur passée en paramètre pour le fond
+        label.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white; -fx-padding: 10px; -fx-font-size: 14px; -fx-background-radius: 5;");
+
+        popup.getContent().add(label);
+        popup.setAutoHide(true);
+
+        // Positionnement de la popup en bas à droite
+        popup.show(stage);
+        popup.setX(stage.getX() + stage.getWidth() - 300);
+        popup.setY(stage.getY() + stage.getHeight() - 100);
+
+        // Délai avant la fermeture automatique de la notification
+        PauseTransition delay = new PauseTransition(Duration.seconds(3));
+        delay.setOnFinished(e -> popup.hide());
+        delay.play();
+    }
     @FXML
-    void btnsupp(ActionEvent event) {
-        // Vérifie si une annonce est sélectionnée
-        Annonce selectedAnnonce = tableview.getSelectionModel().getSelectedItem();
+    private void ouvrirCalendrier(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Calendrier.fxml"));
+            Parent root = loader.load();
 
-        if (selectedAnnonce == null) {
-            // Si aucune annonce n'est sélectionnée, afficher un message d'avertissement
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Aucune sélection");
-            alert.setHeaderText("Aucune annonce sélectionnée");
-            alert.setContentText("Veuillez sélectionner une annonce à supprimer.");
-            alert.showAndWait();
-            return;
-        }
+            Stage stage = new Stage();
+            stage.setTitle("Calendrier des Annonces");
+            stage.setScene(new Scene(root));
+            stage.show();
 
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmer la suppression");
-        alert.setHeaderText("Êtes-vous sûr de vouloir supprimer cette annonce ?");
-        alert.setContentText("L'action est irréversible.");
-
-        // Si l'utilisateur clique sur "OK"
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            try {
-                // Effectuer la suppression de l'annonce sélectionnée
-                annonceService.delete(selectedAnnonce);
-
-                // Mettre à jour la table après la suppression
-                chargerAnnonces();
-
-                // Afficher un message de succès
-                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                successAlert.setTitle("Suppression réussie");
-                successAlert.setHeaderText(null);
-                successAlert.setContentText("L'annonce a été supprimée avec succès.");
-                successAlert.showAndWait();
-            } catch (Exception e) {
-                e.printStackTrace();
-                // En cas d'erreur lors de la suppression
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                errorAlert.setTitle("Erreur");
-                errorAlert.setHeaderText("Erreur lors de la suppression");
-                errorAlert.setContentText("Une erreur est survenue lors de la suppression de l'annonce.");
-                errorAlert.showAndWait();
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
+
 }

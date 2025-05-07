@@ -45,24 +45,24 @@ public class AjouterAnnonce {
     private Label titreann;
 
     private final AnnonceService annonceService = new AnnonceService();
+    private boolean annonceAjoutee = false;  // Pour vérifier si l'annonce a été ajoutée
+
+    public boolean isAnnonceAjoutee() {
+        return annonceAjoutee;
+    }
 
     @FXML
     void annuler(ActionEvent event) {
-
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("Annuler la saisie ?");
         alert.setContentText("Voulez-vous vraiment annuler l'ajout de l'annonce ?");
 
-
         if (alert.showAndWait().get() == ButtonType.OK) {
-
             titre.clear();
             contenu.clear();
             picejoin.clear();
             cal.setValue(null);
-
-
         }
     }
 
@@ -96,6 +96,7 @@ public class AjouterAnnonce {
 
         try {
             annonceService.create(annonce);
+            annonceAjoutee = true;  // Annonce ajoutée avec succès
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Succès");
             alert.setContentText("Annonce ajoutée avec succès !");

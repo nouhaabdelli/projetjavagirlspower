@@ -1,7 +1,14 @@
+gui\Annonces$2.class
+gui\Dashboard$2.class
+gui\Dashboard.class
 main\TestFX.class
 gui\DetailsEvenement.class
 gui\DetailsAnnonce.class
 gui\Evenements.class
+gui\Annonces$1.class
+gui\Dashboard$1.class
 gui\ModifierAnnonce.class
 gui\Annonces.class
 gui\ModifierEvenement.class
+gui\Annonces$3.class
+gui\Calendrier.class
