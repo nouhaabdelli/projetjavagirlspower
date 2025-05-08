@@ -174,7 +174,8 @@ public class AfficherUser {
                         rs.getString("statut"),
                         rs.getString("adresse"),
                         rs.getString("genre"),
-                        rs.getString("situationFamiliale")
+                        rs.getString("situationFamiliale"),
+                        rs.getInt("cin")
                 );
                 userList.add(u);
             }

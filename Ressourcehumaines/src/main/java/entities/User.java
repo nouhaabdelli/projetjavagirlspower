@@ -19,6 +19,8 @@ public class User {
     private String adresse;
     private String genre;
     private String situationFamiliale;
+    private int cin;
+
 
     // 🔹 Constructeur vide
     public User() {
@@ -28,7 +30,7 @@ public class User {
     public User(int id, String nom, String prenom, java.time.LocalDate dateNaissance, String motDePasse,
                 String email, String numTelephone, String role, String rib, int nombreEnfant, String cnam,
                 java.time.LocalDate dateEmbauche, String photoProfil, String statut, String adresse,
-                String genre, String situationFamiliale) {
+                String genre, String situationFamiliale, int cin) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -46,6 +48,7 @@ public class User {
         this.adresse = adresse;
         this.genre = genre;
         this.situationFamiliale = situationFamiliale;
+        this.cin = cin;
     }
 
     // 🔹 Getters et Setters
@@ -185,6 +188,9 @@ public class User {
     public void setSituationFamiliale(String situationFamiliale) {
         this.situationFamiliale = situationFamiliale;
     }
+    public int getCin() {return cin;}
+    public void setCin(int cin) {this.cin = cin;}
+
 
     @Override
     public String toString() {
@@ -195,6 +201,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
                 ", statut='" + statut + '\'' +
+                ", cin=" + cin +
                 '}';
     }
 }

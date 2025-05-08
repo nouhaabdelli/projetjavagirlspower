@@ -34,9 +34,9 @@ public class CrudUser {
             fxmlFile = "/FXML/ajouterUser.fxml";
         } else if (source == modifierUser) {
             fxmlFile = "/FXML/modifierUser.fxml";
-        } else if (source == supprimerUser) {
-            fxmlFile = "/FXML/supprimerUser.fxml";
-        } else if (source == afficherUser) {
+        } //else if (source == supprimerUser) {
+           // fxmlFile = "/FXML/supprimerUser.fxml";
+         else if (source == afficherUser) {
             fxmlFile = "/FXML/afficherUser.fxml";
         }
 

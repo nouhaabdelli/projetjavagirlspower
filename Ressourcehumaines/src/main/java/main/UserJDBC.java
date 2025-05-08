@@ -29,7 +29,7 @@ public class UserJDBC {
                 "actif",
                 "123 rue de Paris",
                 "Homme",
-                "Célibataire"
+                "Célibataire" , 14517898
         );
 
         // ➡️ Ajouter un utilisateur
