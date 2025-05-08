@@ -1,15 +1,13 @@
-/*package main;
+package main;
 
-import entities.Person;
-import services.PersonService;
+import entities.Per;
+
 
 import java.sql.SQLException;
 
-public class userJDBC {
+public class SignJDBC {
 
     public static void main(String[] args) {
-        PersonService ps = new PersonService();
-        Person p = new Person(1,22, "Ali", "Ben Foulen");
 
 
         try {
@@ -20,4 +18,3 @@ public class userJDBC {
 
     }
 }
-*/
