@@ -1,12 +1,11 @@
-package main;
+/*package main;
 
 import entities.Person;
 import services.PersonService;
-import utils.MyConnection;
 
 import java.sql.SQLException;
 
-public class TestJDBC {
+public class userJDBC {
 
     public static void main(String[] args) {
         PersonService ps = new PersonService();
@@ -21,3 +20,4 @@ public class TestJDBC {
 
     }
 }
+*/

@@ -1,0 +1,36 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #f3f4f6, #dbeafe);
+}
+
+.label {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1e3a8a;
+}
+
+.button {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-padding: 10px 30px;
+    -fx-background-radius: 12;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 4, 0, 0, 2);
+}
+
+.button:hover {
+    -fx-opacity: 0.9;
+}
+
+/* Spécifique à chaque bouton */
+#backButton {
+    -fx-background-color: #1e3a8a;
+}
+
+#frontButton {
+    -fx-background-color: #3b82f6;
+}
+
+.image-view {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.3, 0, 4);
+}
