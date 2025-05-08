@@ -1,6 +1,5 @@
 package gui;
 
-
 import entities.avance;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -135,17 +134,27 @@ public class reponsesrhcontroller {
             Parent root = loader.load();
             Stage newStage = new Stage();
             Scene scene = new Scene(root);
-            if (getClass().getResource("/style/finance.css") != null) {
-                scene.getStylesheets().add(getClass().getResource("/style/finance.css").toExternalForm());
-                System.out.println("finance.css chargé avec succès");
+            if (getClass().getResource("/style/reponsesrh.css") != null) {
+                scene.getStylesheets().add(getClass().getResource("/style/reponsesrh.css").toExternalForm());
+                System.out.println("reponsesrh.css chargé avec succès");
             } else {
-                System.err.println("Erreur : Le fichier finance.css n'est pas trouvé dans les ressources.");
+                System.err.println("Erreur : Le fichier reponsesrh.css n'est pas trouvé dans les ressources.");
             }
             newStage.setScene(scene);
             newStage.show();
-            Stage currentStage = (Stage) mainContent.getScene().getWindow();
-            if (currentStage != null) {
-                currentStage.close();
+            // Use avanceTree as a fallback if mainContent is null
+            if (mainContent != null && mainContent.getScene() != null) {
+                Stage currentStage = (Stage) mainContent.getScene().getWindow();
+                if (currentStage != null) {
+                    currentStage.close();
+                }
+            } else if (avanceTree != null && avanceTree.getScene() != null) {
+                Stage currentStage = (Stage) avanceTree.getScene().getWindow();
+                if (currentStage != null) {
+                    currentStage.close();
+                }
+            } else {
+                System.err.println("Both mainContent and avanceTree scenes are null, cannot close the current stage.");
             }
         } catch (IOException e) {
             System.err.println("Erreur lors du chargement de avance.fxml dans reponsesrhcontroller : " + e.getMessage());

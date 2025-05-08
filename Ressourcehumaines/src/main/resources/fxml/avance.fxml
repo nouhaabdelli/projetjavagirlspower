@@ -22,6 +22,7 @@
                 <Button onAction="#showAjouterAvance" text="➕ Ajouter Avance" style="-fx-text-fill: white; -fx-background-color: transparent; -fx-font-size: 16px; -fx-padding: 10;" prefWidth="230.0"/>
                 <Button onAction="#showListeAvance" text="📋 Liste Avance" style="-fx-text-fill: white; -fx-background-color: transparent; -fx-font-size: 16px; -fx-padding: 10;" prefWidth="230.0"/>
                 <Button onAction="#showReponsesRH" text="💬 Réponses RH" style="-fx-text-fill: white; -fx-background-color: transparent; -fx-font-size: 16px; -fx-padding: 10;" prefWidth="230.0"/>
+                <Button onAction="#showStatistiques" text="📊 Statistiques" style="-fx-text-fill: white; -fx-background-color: transparent; -fx-font-size: 16px; -fx-padding: 10;" prefWidth="230.0"/>
             </children>
         </VBox>
 

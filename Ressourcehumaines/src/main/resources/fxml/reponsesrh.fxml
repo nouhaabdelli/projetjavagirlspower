@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="750.0" prefWidth="1250.0" stylesheets="@../style/reponsesrh.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.reponsesrhcontroller">
+<AnchorPane fx:id="mainContent" prefHeight="750.0" prefWidth="1250.0" stylesheets="@../style/reponsesrh.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.reponsesrhcontroller">
     <children>
         <VBox alignment="TOP_CENTER" spacing="20.0" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
             <Button fx:id="retourButton" onAction="#handleRetour" text="⬅ Retour" style="-fx-background-color: #1e3a8a; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 5 10;" />

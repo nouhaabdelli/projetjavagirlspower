@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class avancecontroller {
@@ -18,9 +19,7 @@ public class avancecontroller {
 
     @FXML
     private void initialize() {
-        // Au démarrage, on ne charge rien dans mainContent
-        // L'interface initiale est définie directement dans avance.fxml
-        titrePrincipal.setText("Gestion des  Avances");
+        titrePrincipal.setText("Gestion des Avances");
     }
 
     @FXML
@@ -60,15 +59,27 @@ public class avancecontroller {
     }
 
     @FXML
+    private void showStatistiques() {
+        try {
+            Parent statsPane = FXMLLoader.load(getClass().getResource("/fxml/stats.fxml"));
+            mainContent.getChildren().setAll(statsPane);
+            titrePrincipal.setText("📊 Statistiques des Avances");
+        } catch (IOException e) {
+            System.err.println("Erreur lors du chargement de stats.fxml : " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     private void handleRetour() {
         try {
             System.out.println("Tentative de retour à finance.fxml depuis avance.fxml");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/finance.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/finance.fxml"));
             Parent root = loader.load();
             Stage newStage = new Stage();
             Scene scene = new Scene(root);
-            if (getClass().getResource("/style/finance.css") != null) {
-                scene.getStylesheets().add(getClass().getResource("/style/finance.css").toExternalForm());
+            if (getClass().getResource("/css/finance.css") != null) {
+                scene.getStylesheets().add(getClass().getResource("/css/finance.css").toExternalForm());
                 System.out.println("finance.css chargé avec succès");
             } else {
                 System.err.println("Erreur : Le fichier finance.css n'est pas trouvé dans les ressources.");
