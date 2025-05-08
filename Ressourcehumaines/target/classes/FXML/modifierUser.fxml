@@ -8,124 +8,123 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="642.0" stylesheets="@../CSS/back.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ModifierUser">
     <children>
-        <AnchorPane layoutX="18.0" layoutY="-25.0" prefHeight="401.0" prefWidth="605.0" stylesheets="@../CSS/back.css">
+        <AnchorPane layoutX="18.0" layoutY="-9.0" prefHeight="401.0" prefWidth="605.0" stylesheets="@../CSS/back.css">
             <children>
                 <TextField fx:id="usnom" layoutX="123.0" layoutY="54.0" />
                 <TextField fx:id="usprenom" layoutX="123.0" layoutY="87.0" />
                 <TextField fx:id="usemail" layoutX="123.0" layoutY="119.0" />
                 <TextField fx:id="ustelephone" layoutX="123.0" layoutY="148.0" />
                 <TextField fx:id="usrib" layoutX="123.0" layoutY="179.0" />
-                <TextField fx:id="usenfant" layoutX="123.0" layoutY="208.0" />
-                <Text fill="#1d2584" layoutX="56.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :" textAlignment="CENTER">
+                <TextField fx:id="usenfant" layoutX="285.0" layoutY="311.0" />
+                <Text fill="WHITE" layoutX="56.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :" textAlignment="CENTER">
                     <font>
                         <Font name="Algerian" size="12.0" />
                     </font>
                 </Text>
-                <Text fill="#1d2584" layoutX="45.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="prenom :" textAlignment="CENTER">
+                <Text fill="WHITE" layoutX="45.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="prenom :" textAlignment="CENTER">
                     <font>
                         <Font name="Algerian" size="12.0" />
                     </font>
                 </Text>
-                <Text fill="#1d2584" layoutX="50.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email :" textAlignment="CENTER">
+                <Text fill="WHITE" layoutX="50.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email :" textAlignment="CENTER">
                     <font>
                         <Font name="Algerian" size="12.0" />
                     </font>
                 </Text>
-                <Text fill="#1d2584" layoutX="29.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="telephone :" textAlignment="CENTER">
+                <Text fill="WHITE" layoutX="29.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="telephone :" textAlignment="CENTER">
                     <font>
                         <Font name="Algerian" size="12.0" />
                     </font>
                 </Text>
-                <Text fill="#1d2584" layoutX="44.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="r.i.b :" textAlignment="CENTER">
+                <Text fill="WHITE" layoutX="44.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="r.i.b :" textAlignment="CENTER">
                     <font>
                         <Font name="Algerian" size="12.0" />
                     </font>
                 </Text>
-                <TextField fx:id="uscnam" layoutX="123.0" layoutY="241.0" />
-                <TextField fx:id="usstatut" layoutX="123.0" layoutY="275.0" />
-                <Text fill="#1d2584" layoutX="3.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombre d'enfant  :">
+                <TextField fx:id="uscnam" layoutX="123.0" layoutY="213.0" />
+                <TextField fx:id="usstatut" layoutX="123.0" layoutY="245.0" />
+                <Text fx:id="usenfantLabel" fill="WHITE" layoutX="297.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombre d'enfant  :">
                     <font>
                         <Font name="Algerian" size="12.0" />
                     </font>
                 </Text>
-                <TextField fx:id="usadresse" layoutX="123.0" layoutY="310.0" />
-                <Text fill="#1d2584" layoutX="46.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CNAM :">
+                <TextField fx:id="usadresse" layoutX="123.0" layoutY="281.0" />
+                <Text fill="WHITE" layoutX="40.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CNAM :">
                     <font>
                         <Font name="Algerian" size="12.0" />
                     </font>
                 </Text>
-                <Text fill="#1d2584" layoutX="44.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="staut :">
+                <Text fill="WHITE" layoutX="44.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="staut :">
                     <font>
                         <Font name="Algerian" size="12.0" />
                     </font>
                 </Text>
-                <Text fill="#1d2584" layoutX="37.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="adresse :">
+                <Text fill="WHITE" layoutX="41.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="adresse :">
                     <font>
                         <Font name="Algerian" size="12.0" />
                     </font>
                 </Text>
-                <DatePicker fx:id="usembauche" layoutX="291.0" layoutY="93.0" />
-                <DatePicker fx:id="usnaissance" layoutX="291.0" layoutY="148.0" />
-                <Text fill="#1d2584" layoutX="313.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date embauche :">
+                <DatePicker fx:id="usembauche" layoutX="291.0" layoutY="77.0" />
+                <DatePicker fx:id="usnaissance" layoutX="291.0" layoutY="138.0" />
+                <Text fill="WHITE" layoutX="313.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date embauche :">
                     <font>
                         <Font name="Algerian" size="12.0" />
                     </font>
                 </Text>
-                <Text fill="#1d2584" layoutX="304.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date de naissance :" textAlignment="CENTER">
+                <Text fill="WHITE" layoutX="303.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date de naissance :" textAlignment="CENTER">
                     <font>
                         <Font name="Algerian" size="12.0" />
                     </font>
                 </Text>
-                <RadioButton fx:id="usmale" layoutX="289.0" layoutY="212.0" mnemonicParsing="false" text="male">
+                <RadioButton fx:id="usmale" layoutX="303.0" layoutY="204.0" mnemonicParsing="false" text="male" textFill="#7c218e">
                     <font>
                         <Font name="System Bold Italic" size="12.0" />
                     </font>
                 </RadioButton>
-                <RadioButton fx:id="usfemale" layoutX="437.0" layoutY="205.0" mnemonicParsing="false" text="female">
+                <RadioButton fx:id="usfemale" layoutX="402.0" layoutY="204.0" mnemonicParsing="false" text="female" textFill="#7c218e">
                     <font>
                         <Font name="System Bold Italic" size="12.0" />
                     </font>
                 </RadioButton>
-                <RadioButton fx:id="usmarie" layoutX="288.0" layoutY="278.0" mnemonicParsing="false" text="marie(e)">
+                <RadioButton fx:id="usmarie" layoutX="288.0" layoutY="251.0" mnemonicParsing="false" text="marie(e)" textFill="#7c218e">
                     <font>
                         <Font name="System Bold Italic" size="12.0" />
                     </font>
                 </RadioButton>
-                <RadioButton fx:id="usdivorce" layoutX="399.0" layoutY="279.0" mnemonicParsing="false" text="divorce(e)">
+                <RadioButton fx:id="usdivorce" layoutX="386.0" layoutY="250.0" mnemonicParsing="false" text="divorce(e)" textFill="#7c218e">
                     <font>
                         <Font name="System Bold Italic" size="12.0" />
                     </font>
                 </RadioButton>
-                <RadioButton fx:id="uscelibataire" layoutX="515.0" layoutY="278.0" mnemonicParsing="false" text="celibataire">
+                <RadioButton fx:id="uscelibataire" layoutX="496.0" layoutY="251.0" mnemonicParsing="false" text="celibataire" textFill="#7c218e">
                     <font>
                         <Font name="System Bold Italic" size="12.0" />
                     </font>
                 </RadioButton>
-                <Text fill="#1d2584" layoutX="299.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="genre :" textAlignment="CENTER">
+                <Text fill="WHITE" layoutX="301.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="genre :" textAlignment="CENTER">
                     <font>
                         <Font name="Algerian" size="12.0" />
                     </font>
                 </Text>
-                <Text fill="#1d2584" layoutX="296.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="situation familliale :" textAlignment="CENTER">
+                <Text fill="WHITE" layoutX="295.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="situation familliale :" textAlignment="CENTER">
                     <font>
                         <Font name="Algerian" size="12.0" />
                     </font>
                 </Text>
-                <Button fx:id="adduser" layoutX="171.0" layoutY="421.0" mnemonicParsing="false" onAction="#add" text="valider">
+                <Button fx:id="adduser" layoutX="172.0" layoutY="397.0" mnemonicParsing="false" onAction="#add" text="valider">
                     <font>
                         <Font name="System Bold Italic" size="12.0" />
                     </font>
                 </Button>
-                <Text fill="#1d2584" layoutX="37.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="role :">
+                <Text fill="WHITE" layoutX="52.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="role :">
                     <font>
                         <Font name="Algerian" size="12.0" />
                     </font>
                 </Text>
-                <TextField fx:id="usrole" layoutX="123.0" layoutY="349.0" />
-                <Button fx:id="back" layoutX="489.0" layoutY="421.0" mnemonicParsing="false" onAction="#back" text="retour">
+                <TextField fx:id="usrole" layoutX="123.0" layoutY="319.0" />
+                <Button fx:id="back" layoutX="482.0" layoutY="397.0" mnemonicParsing="false" onAction="#back" text="retour">
                     <font>
                         <Font name="System Bold Italic" size="12.0" />
                     </font>
