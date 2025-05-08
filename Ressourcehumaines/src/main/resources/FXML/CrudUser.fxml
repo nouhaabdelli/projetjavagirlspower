@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="151.0" fitWidth="190.0" layoutX="-32.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@/images/work.png" />
+            <Image url="@../images/work.png" />
 
 
          </image>
@@ -21,22 +21,17 @@
             <Font name="Algerian" size="24.0" />
          </font>
       </Text>
-      <Button fx:id="modifierUser" layoutX="220.0" layoutY="194.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="54.0" prefWidth="170.0" style="-fx-background-color: #FAFAFF;" text="Modifier employee" textFill="#091776">
+      <Button fx:id="modifierUser" layoutX="215.0" layoutY="219.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="54.0" prefWidth="170.0" text="Modifier employee" textFill="#091776">
          <font>
             <Font name="Algerian" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="supprimerUser" layoutX="220.0" layoutY="262.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="54.0" prefWidth="170.0" style="-fx-background-color: #FAFAFF;" text="Supprimer employee" textFill="#091776">
-         <font>
-            <Font name="Algerian" size="12.0" />
-         </font>
-      </Button>
-      <Button fx:id="afficherUser" layoutX="220.0" layoutY="329.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="54.0" prefWidth="170.0" style="-fx-background-color: #FAFAFF;" text="Afficher employee" textFill="#091776">
+      <Button fx:id="afficherUser" layoutX="215.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="54.0" prefWidth="170.0" text="Afficher employee" textFill="#091776">
          <font>
             <Font name="Algerian" size="11.0" />
          </font>
       </Button>
-      <Button fx:id="ajouterUser" layoutX="220.0" layoutY="124.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="54.0" prefWidth="170.0" style="-fx-background-color: #FFFF;" text=" Ajouter employee" textFill="#091776">
+      <Button fx:id="ajouterUser" layoutX="215.0" layoutY="132.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="54.0" prefWidth="170.0" text=" Ajouter employee" textFill="#091776">
          <font>
             <Font name="Algerian" size="12.0" />
          </font>

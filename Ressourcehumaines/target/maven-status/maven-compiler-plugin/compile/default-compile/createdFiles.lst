@@ -1,6 +1,10 @@
-gui\AjouterUser.class
+gui\LoginUser.class
 main\UserFX.class
+gui\ModifierUser.class
 entities\User.class
 gui\CrudUser.class
-main\UserJDBC.class
+gui\SupprimerUser.class
 services\UserCrud.class
+gui\AjouterUser.class
+gui\AfficherUser.class
+main\UserJDBC.class

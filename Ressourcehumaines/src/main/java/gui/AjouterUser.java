@@ -10,6 +10,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import entities.User;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import services.UserCrud;
 import javafx.scene.control.Alert;
@@ -25,6 +26,9 @@ import java.time.Period;
 public class AjouterUser {
     @FXML
     private Button back;
+    @FXML
+    private Text usenfantLabel;
+
 
     @FXML
     private Button adduser;
@@ -208,7 +212,33 @@ public class AjouterUser {
         e.printStackTrace();
     }
 
+    }  @FXML
+    public void initialize() {
+        // Masquer au démarrage
+        usenfant.setVisible(false);
+        usenfantLabel.setVisible(false);
+
+        usmarie.setOnAction(event -> {
+            boolean selected = usmarie.isSelected();
+            usenfant.setVisible(selected);
+            usenfantLabel.setVisible(selected);
+        });
+
+        uscelibataire.setOnAction(event -> {
+            if (uscelibataire.isSelected()) {
+                usenfant.setVisible(false);
+                usenfantLabel.setVisible(false);
+            }
+        });
+
+        usdivorce.setOnAction(event -> {
+            if (usdivorce.isSelected()) {
+                usenfant.setVisible(false);
+                usenfantLabel.setVisible(false);
+            }
+        });
     }
+
 
 
 }
