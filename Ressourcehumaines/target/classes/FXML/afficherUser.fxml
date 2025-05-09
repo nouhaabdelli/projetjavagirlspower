@@ -27,5 +27,6 @@
             <Font name="Algerian" size="49.0" />
          </font>
       </Text>
+      <Button fx:id="btnExportPDF" layoutX="667.0" layoutY="416.0" mnemonicParsing="false" onAction="#exportPDF" prefHeight="54.0" prefWidth="150.0" text="telecharger PDF" />
    </children>
 </AnchorPane>

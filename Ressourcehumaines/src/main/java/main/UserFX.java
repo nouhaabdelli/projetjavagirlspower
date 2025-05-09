@@ -14,7 +14,7 @@ public class UserFX extends Application {
         launch(args);
     }
 
-/*
+
     @Override
     public void start(Stage primaryStage) {
         try {
@@ -28,7 +28,8 @@ public class UserFX extends Application {
             System.out.println("Erreur de chargement FXML : " + e.getMessage());
         }
     }
-}*/
+}
+/*
 @Override
 public void start(Stage primaryStage) {
     try {
@@ -42,6 +43,6 @@ public void start(Stage primaryStage) {
         System.out.println("Erreur de chargement FXML : " + e.getMessage());
     }
 }
-}
+}*/
 
 

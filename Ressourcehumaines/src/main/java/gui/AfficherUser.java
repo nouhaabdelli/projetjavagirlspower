@@ -20,6 +20,21 @@ import javafx.scene.control.TreeTableCell;
 import javafx.scene.control.TreeTableRow;
 import javafx.scene.layout.HBox;
 import javafx.scene.Node;
+//import org.springframework.http.*;
+//import org.springframework.web.bind.annotation.*;
+import com.itextpdf.kernel.pdf.*;
+import com.itextpdf.layout.*;
+import com.itextpdf.layout.element.Paragraph;
+
+import java.io.ByteArrayOutputStream;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.element.Cell;
+import java.io.FileOutputStream;
+
 
 
 
@@ -28,6 +43,9 @@ import javafx.scene.Node;
 public class AfficherUser {
     @FXML
     private Button backcrud;
+    @FXML
+    private Button btnExportPDF;
+
 
     @FXML
     private Button modus;
@@ -252,4 +270,64 @@ public class AfficherUser {
         treeus.setRoot(root);
         treeus.setShowRoot(false);
     }
+    @FXML
+    void exportPDF(ActionEvent event) {
+        try {
+            // Chemin de sortie vers le bureau
+            String outputPath = System.getProperty("user.home") + "\\Desktop\\utilisateurs.pdf";
+
+            // Afficher le chemin de destination pour vérifier
+            System.out.println("Chemin d'exportation : " + outputPath);
+
+
+            // Création du document
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            PdfWriter writer = new PdfWriter(baos);
+            PdfDocument pdfDoc = new PdfDocument(writer);
+            Document document = new Document(pdfDoc);
+
+            document.add(new Paragraph("Liste des utilisateurs"));
+            document.add(new Paragraph(" ")); // saut de ligne
+
+            // Créer un tableau avec colonnes
+            float[] columnWidths = {100, 100, 150, 100, 100};
+            Table table = new Table(columnWidths);
+
+            // En-têtes du tableau
+            table.addHeaderCell("Nom");
+            table.addHeaderCell("Prénom");
+            table.addHeaderCell("Email");
+            table.addHeaderCell("Rôle");
+            table.addHeaderCell("Statut");
+
+            // Remplir le tableau avec les utilisateurs
+            for (TreeItem<User> item : treeus.getRoot().getChildren()) {
+                User user = item.getValue();
+                table.addCell(user.getNom());
+                table.addCell(user.getPrenom());
+                table.addCell(user.getEmail());
+                table.addCell(user.getRole());
+                table.addCell(user.getStatut());
+            }
+
+            document.add(table);
+            document.close();
+
+            // Écrire dans un fichier
+            FileOutputStream fos = new FileOutputStream(outputPath);
+            fos.write(baos.toByteArray());
+            fos.close();
+
+            // Afficher confirmation
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
+            alert.setTitle("Export PDF");
+            alert.setHeaderText(null);
+            alert.setContentText("PDF exporté avec succès !");
+            alert.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
