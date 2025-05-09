@@ -42,7 +42,7 @@
          <font>
             <Font name="Algerian" size="12.0" />
          </font></Text>
-      <TextField fx:id="usadresse" layoutX="94.0" layoutY="277.0" />
+      <TextField fx:id="usadresse" layoutX="88.0" layoutY="277.0" />
       <Text fill="WHITE" layoutX="25.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CNAM :">
          <font>
             <Font name="Algerian" size="12.0" />
@@ -51,7 +51,7 @@
          <font>
             <Font name="Algerian" size="12.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="27.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="adresse :">
+      <Text fill="WHITE" layoutX="15.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="adresse :">
          <font>
             <Font name="Algerian" size="12.0" />
          </font></Text>
@@ -89,7 +89,7 @@
          <font>
             <Font name="Algerian" size="12.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="23.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="etat civil :" textAlignment="CENTER">
+      <Text fill="WHITE" layoutX="11.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="etat civil :" textAlignment="CENTER">
          <font>
             <Font name="Algerian" size="12.0" />
          </font></Text>
@@ -97,16 +97,22 @@
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></Button>
-      <Text fill="WHITE" layoutX="39.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" text="role :">
+      <Text fill="WHITE" layoutX="27.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="role :">
          <font>
             <Font name="Algerian" size="12.0" />
          </font>
       </Text>
-      <TextField fx:id="usrole" layoutX="144.0" layoutY="352.0" />
+      <TextField fx:id="usrole" layoutX="94.0" layoutY="337.0" />
       <Button fx:id="back" layoutX="463.0" layoutY="404.0" mnemonicParsing="false" onAction="#back" text="retour">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
+      <Text fill="WHITE" layoutX="336.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="cin :">
+         <font>
+            <Font name="Algerian" size="12.0" />
+         </font>
+      </Text>
+      <TextField fx:id="uscin" layoutX="425.0" layoutY="337.0" />
    </children>
 </AnchorPane>

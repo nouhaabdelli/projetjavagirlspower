@@ -18,7 +18,7 @@ public class UserCrud {
 
     // Ajouter un utilisateur
     public void ajouterUser(User user) {
-        String sql = "INSERT INTO user (nom, prenom, dateNaissance, motDePasse, email, numTelephone, role, rib, nombreEnfant, cnam, dateEmbauche, photoProfil, statut, adresse, genre, situationFamiliale) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO user (nom, prenom, dateNaissance, motDePasse, email, numTelephone, role, rib, nombreEnfant, cnam, dateEmbauche, photoProfil, statut, adresse, genre, situationFamiliale,cin) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
         try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
             pstmt.setString(1, user.getNom());
             pstmt.setString(2, user.getPrenom());
@@ -36,6 +36,7 @@ public class UserCrud {
             pstmt.setString(14, user.getAdresse());
             pstmt.setString(15, user.getGenre());
             pstmt.setString(16, user.getSituationFamiliale());
+            pstmt.setInt(17, user.getCin());
 
             pstmt.executeUpdate();
             System.out.println("✅ Utilisateur ajouté !");
@@ -111,6 +112,7 @@ public class UserCrud {
                 user.setAdresse(rs.getString("adresse"));
                 user.setGenre(rs.getString("genre"));
                 user.setSituationFamiliale(rs.getString("situationFamiliale"));
+                user.setCin(rs.getInt("cin"));
 
                 users.add(user);
             }

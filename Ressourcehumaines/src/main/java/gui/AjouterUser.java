@@ -28,6 +28,9 @@ public class AjouterUser {
     private Button back;
     @FXML
     private Text usenfantLabel;
+    @FXML
+    private TextField uscin;
+
 
 
     @FXML
@@ -157,6 +160,23 @@ public class AjouterUser {
             showAlert("Incohérence des dates", "La date d'embauche ne peut pas être antérieure à la date de naissance.");
             return;
         }
+/// Vérification du champ CIN
+        if (uscin.getText().isEmpty()) {
+            showAlert("CIN requis", "Le champ CIN est obligatoire.");
+            return;
+        }
+
+// Vérification que le CIN est un entier valide
+        int cinValue;
+        try {
+            cinValue = Integer.parseInt(uscin.getText());
+        } catch (NumberFormatException e) {
+            showAlert("CIN invalide", "Le CIN doit être un entier valide.");
+            return;
+        }
+
+
+
 
 
         // Autres données
@@ -183,6 +203,8 @@ public class AjouterUser {
         user.setSituationFamiliale(situationFamiliale);
         user.setDateNaissance(usnaissance.getValue());
         user.setDateEmbauche(usembauche.getValue());
+        // Si tout est valide, ajouter le CIN à l'utilisateur
+        user.setCin(cinValue);
 
         // Ajout dans la base
         UserCrud crud = new UserCrud();

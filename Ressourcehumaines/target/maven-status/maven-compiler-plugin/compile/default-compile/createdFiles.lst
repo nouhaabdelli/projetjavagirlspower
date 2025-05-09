@@ -1,9 +1,12 @@
 gui\LoginUser.class
+gui\AfficherUser$1.class
 main\UserFX.class
 gui\ModifierUser.class
 entities\User.class
 gui\CrudUser.class
 services\UserCrud.class
 gui\AjouterUser.class
+gui\SignUp.class
 gui\AfficherUser.class
+gui\BackFront.class
 main\UserJDBC.class

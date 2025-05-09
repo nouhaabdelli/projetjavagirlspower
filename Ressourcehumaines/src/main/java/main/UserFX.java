@@ -18,7 +18,7 @@ public class UserFX extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/CrudUser.fxml")); // Vérifie que le chemin est correct
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/BackFront.fxml")); // Vérifie que le chemin est correct
             Parent root = loader.load();
             Scene scene = new Scene(root);
             primaryStage.setTitle("bienvenue");

@@ -10,19 +10,19 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/back.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginUser">
     <children>
-        <Text fill="#1d2584" layoutX="112.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email :">
+        <Text fill="WHITE" layoutX="112.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email :">
             <font>
                 <Font name="Algerian" size="12.0" />
             </font>
         </Text>
-        <Text fill="#1d2584" layoutX="89.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot De Passe :">
+        <Text fill="WHITE" layoutX="89.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot De Passe :">
             <font>
                 <Font name="Algerian" size="12.0" />
             </font>
         </Text>
-        <TextField fx:id="logemail" layoutX="269.0" layoutY="164.0" />
-        <TextField fx:id="logmdp" layoutX="269.0" layoutY="231.0" />
-        <Button fx:id="loginuser" layoutX="279.0" layoutY="338.0" mnemonicParsing="false" onAction="#loginus" prefHeight="14.0" prefWidth="114.0" style="-fx-background-color: #ffff;" text="login" textFill="#1d2584">
+        <TextField fx:id="logemail" layoutX="235.0" layoutY="177.0" prefHeight="34.0" prefWidth="200.0" />
+        <TextField fx:id="logmdp" layoutX="233.0" layoutY="231.0" prefHeight="34.0" prefWidth="200.0" />
+        <Button fx:id="loginuser" layoutX="264.0" layoutY="283.0" mnemonicParsing="false" onAction="#loginus" prefHeight="14.0" prefWidth="114.0" text="login" textFill="#1d2584">
             <font>
                 <Font name="Algerian" size="12.0" />
             </font>
@@ -32,10 +32,16 @@
                 <Image url="@/images/work.png" />
             </image>
         </ImageView>
-        <Text fill="#1d2584" layoutX="193.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="bienvenue ">
+        <Text fill="WHITE" layoutX="5.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="bienvenue sur WorkBridge">
             <font>
-                <Font name="Algerian" size="64.0" />
+                <Font name="Algerian" size="48.0" />
             </font>
         </Text>
+      <Button fx:id="signup" layoutX="268.0" layoutY="341.0" mnemonicParsing="false" onAction="#signup" prefHeight="34.0" prefWidth="107.0" text="sign up" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="489.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/work.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
