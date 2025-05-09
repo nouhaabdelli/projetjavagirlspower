@@ -7,7 +7,6 @@ entities\User.class
 gui\CrudUser.class
 services\UserCrud.class
 gui\AjouterUser.class
-gui\SignUp.class
 gui\AfficherUser.class
 gui\BackFront.class
 main\UserJDBC.class

@@ -2,51 +2,70 @@ package gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.Node;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+
 
 public class LoginUser {
 
     @FXML
-    private TextField logemail;
+    private Button createAccountButton;
 
     @FXML
-    private Button loginuser;
+    private TextField emailField;
 
     @FXML
-    private TextField logmdp;
+    private TextField nameField;
 
     @FXML
-    private Button signup;
+    private PasswordField passwordField;
 
     @FXML
-    void loginus(ActionEvent event) {
-
-    }
+    private Hyperlink signInLink;
 
     @FXML
-    void signup(ActionEvent event) {
-        Button source = (Button) event.getSource();
-        String fxmlFile = "";
+    private CheckBox termsCheckBox;
 
-        if (source == signup) {
-            fxmlFile = "/FXML/signup.fxml";
 
-        } try {
-            Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            System.out.println("Erreur de chargement : " + e.getMessage());
+
+
+    @FXML
+    void handleSignUp(ActionEvent event) {
+        String name = nameField.getText();
+        String email = emailField.getText();
+        String password = passwordField.getText();
+
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            System.out.println("Veuillez remplir tous les champs.");
+            return;
         }
 
+        if (!termsCheckBox.isSelected()) {
+            System.out.println("Vous devez accepter les Conditions Générales.");
+            return;
+        }
+
+
     }
+
+
+    @FXML
+    void termsCheckBox(ActionEvent event) {
+        if (termsCheckBox.isSelected()) {
+            System.out.println("Conditions Générales acceptées.");
+        } else {
+            System.out.println("Conditions Générales non acceptées.");
+        }
+    }
+
+
 }
