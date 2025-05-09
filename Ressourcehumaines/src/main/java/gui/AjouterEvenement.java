@@ -2,9 +2,13 @@ package gui;
 
 import entities.Evenement;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.event.ActionEvent;
+import javafx.stage.Stage;
 import services.EvenementService;
 
 import java.io.File;
@@ -37,9 +41,17 @@ public class AjouterEvenement {
 
     @FXML
     private ComboBox<String> statut;
+    @FXML
+    private ImageView imageView;
 
     @FXML
     private TextField photoPath;
+    private boolean evenementAjoute = false;
+
+    public boolean isEvenementAjoute() {
+        return evenementAjoute;
+    }
+
 
     private final EvenementService service = new EvenementService(); // Service pour interagir avec la BD
 
@@ -50,7 +62,7 @@ public class AjouterEvenement {
     }
 
     @FXML
-    private void parcourirPhoto(ActionEvent event) {
+    private void parcourirPhoto (ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir une image");
         fileChooser.getExtensionFilters().addAll(
@@ -58,7 +70,12 @@ public class AjouterEvenement {
         );
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
+            // Afficher le chemin dans le TextField
             photoPath.setText(selectedFile.getAbsolutePath());
+
+            // Charger et afficher l'image dans l'ImageView
+            Image image = new Image(selectedFile.toURI().toString());
+            imageView.setImage(image);
         }
     }
 
@@ -125,8 +142,14 @@ public class AjouterEvenement {
             Evenement e = new Evenement(nom, desc, dateDebutTime, dateFinTime, lieuEvt, orga, maxParticipants, statutEvt, photo);
 
             service.create(e);
+            evenementAjoute = true; // Marque que l'ajout a réussi
             showAlert(Alert.AlertType.INFORMATION, "Succès", "L'événement a été ajouté avec succès.");
             clearFields();
+
+// Ferme la fenêtre après ajout
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.close();
+
 
         } catch (Exception e) {
             showAlert(Alert.AlertType.ERROR, "Erreur", "Une erreur est survenue lors de l’ajout.");
@@ -151,6 +174,7 @@ public class AjouterEvenement {
         participantsMax.clear();
         statut.getSelectionModel().selectFirst();
         photoPath.clear();
+        imageView.setImage(null);
     }
 
     private void showAlert(Alert.AlertType type, String title, String message) {

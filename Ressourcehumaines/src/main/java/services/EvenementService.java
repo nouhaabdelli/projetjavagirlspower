@@ -105,4 +105,13 @@ public class EvenementService {
             throw new IllegalArgumentException("Le nombre maximal de participants doit être un nombre positif.");
         }
     }
+
+    public void updateParticope(Evenement ev) throws SQLException {
+        String req = "UPDATE evenement SET participants_max = ? WHERE id = ?";
+        PreparedStatement pst = cnx.prepareStatement(req);
+        pst.setInt(1, ev.getParticipantsMax());
+        pst.setInt(2, ev.getIdEvenement());
+        pst.executeUpdate();
+    }
+
 }

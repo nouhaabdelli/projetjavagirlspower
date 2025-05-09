@@ -1,29 +1,29 @@
 package gui;
 
+import entities.Evenement;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import entities.Annonce;
-import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import services.AnnonceService;
+import services.EvenementService;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.List;
 
-public class Calendrier {
-    private AnnonceService annonceService = new AnnonceService();
+public class CalendrierEvenement {
+    private final EvenementService evenementService = new EvenementService();
 
     @FXML
     private GridPane gridCalendar;
 
     @FXML
-    private Label CalAnn;
+    private Label calEv;
 
     @FXML
     public void initialize() {
@@ -33,24 +33,22 @@ public class Calendrier {
     public void afficherCalendrier(YearMonth month) {
         gridCalendar.getChildren().clear();
 
-        // ✅ Ajouter les en-têtes des jours
         String[] jours = {"Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"};
         for (int i = 0; i < jours.length; i++) {
             Label label = new Label(jours[i]);
             label.getStyleClass().add("grid-header");
-            gridCalendar.add(label, i, 0); // Ligne 0 pour les en-têtes
+            gridCalendar.add(label, i, 0);
         }
 
-        LocalDate premierJourDuMois = month.atDay(1);
-        int jourDeLaSemaine = premierJourDuMois.getDayOfWeek().getValue(); // 1 = Lundi
+        LocalDate premierJour = month.atDay(1);
+        int jourSemaine = premierJour.getDayOfWeek().getValue();
 
         int numJour = 1;
         for (int row = 1; numJour <= month.lengthOfMonth(); row++) {
-            for (int col = (row == 1 ? jourDeLaSemaine - 1 : 0); col < 7; col++) {
+            for (int col = (row == 1 ? jourSemaine - 1 : 0); col < 7; col++) {
                 if (numJour > month.lengthOfMonth()) break;
 
                 LocalDate dateDuJour = month.atDay(numJour);
-
                 Label labelDate = new Label(String.valueOf(numJour));
                 labelDate.getStyleClass().add("label-date");
 
@@ -58,23 +56,21 @@ public class Calendrier {
                 cell.getStyleClass().add("vbox-cell");
                 cell.getChildren().add(labelDate);
 
-                List<Annonce> annonces = getAnnoncesForDate(dateDuJour);
-                for (Annonce annonce : annonces) {
-                    Label labelAnnonce = new Label(annonce.getTitre());
-                    labelAnnonce.getStyleClass().add("label-annonce");
+                List<Evenement> evenements = getEvenementsForDate(dateDuJour);
+                for (Evenement evt : evenements) {
+                    Label labelEvt = new Label(evt.getNomEvenement());
+                    labelEvt.getStyleClass().add("label-evenement");
 
-                    // ✅ Ajouter action clic pour afficher détails
-                    labelAnnonce.setOnMouseClicked(event -> {
+                    labelEvt.setOnMouseClicked(event -> {
                         try {
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DetailsAnnonce.fxml"));
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DetailsEvent.fxml"));
                             Parent root = loader.load();
 
-                            // Envoyer l'annonce au contrôleur de détails
-                            DetailsAnnonce controller = loader.getController();
-                            controller.setDetails(annonce);
+                            DetailsEvenement controller = loader.getController();
+                            controller.setDetails(evt);
 
                             Stage stage = new Stage();
-                            stage.setTitle("Détails de l'annonce");
+                            stage.setTitle("Détails de l'événement");
                             stage.setScene(new Scene(root));
                             stage.show();
                         } catch (IOException e) {
@@ -82,7 +78,7 @@ public class Calendrier {
                         }
                     });
 
-                    cell.getChildren().add(labelAnnonce);
+                    cell.getChildren().add(labelEvt);
                 }
 
                 gridCalendar.add(cell, col, row);
@@ -91,10 +87,10 @@ public class Calendrier {
         }
     }
 
-    public List<Annonce> getAnnoncesForDate(LocalDate date) {
+    public List<Evenement> getEvenementsForDate(LocalDate date) {
         try {
-            return annonceService.readAll().stream()
-                    .filter(a -> a.getDatePublication().toLocalDate().isEqual(date))
+            return evenementService.readAll().stream()
+                    .filter(e -> e.getDateDebut().toLocalDate().isEqual(date))
                     .toList();
         } catch (Exception e) {
             e.printStackTrace();
@@ -105,7 +101,7 @@ public class Calendrier {
     @FXML
     public void Retour() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/annonces.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/evenements.fxml"));
             Parent root = loader.load();
 
             Scene currentScene = gridCalendar.getScene();
@@ -118,3 +114,4 @@ public class Calendrier {
         }
     }
 }
+

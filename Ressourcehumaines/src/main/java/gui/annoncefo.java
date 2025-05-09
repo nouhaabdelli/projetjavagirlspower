@@ -24,8 +24,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class Annonces {
-
+public class annoncefo {
     @FXML
     private Button btnAjouter;
 
@@ -50,11 +49,8 @@ public class Annonces {
     @FXML
     private TableColumn<Annonce, Void> colAfficher;
 
-    @FXML
-    private TableColumn<Annonce, Void> colModifier;
 
-    @FXML
-    private TableColumn<Annonce, Void> colSupprimer;
+
 
     @FXML
     private DatePicker dateRecherchePicker;
@@ -70,8 +66,7 @@ public class Annonces {
         pj.setCellValueFactory(new PropertyValueFactory<>("pieceJointe"));
 
         ajouterBoutonAfficher();
-        ajouterBoutonModifier();
-        ajouterBoutonSupprimer();
+
 
         chargerAnnonces();
 
@@ -150,107 +145,10 @@ public class Annonces {
         });
     }
 
-    private void ajouterBoutonModifier() {
-        colModifier.setCellFactory(param -> new TableCell<>() {
-            private final Button btn = new Button("Modifier");
 
-            {
-                btn.setOnAction(event -> {
-                    Annonce annonce = getTableView().getItems().get(getIndex());
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierAnnonce.fxml"));
-                        Parent root = loader.load();
 
-                        ModifierAnnonce controller = loader.getController();
-                        controller.initialize(annonce);
 
-                        Stage stage = new Stage();
-                        stage.setTitle("Modifier l'annonce");
-                        stage.setScene(new Scene(root));
-                        stage.show();
 
-                        stage.setOnHidden(e -> chargerAnnonces());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-            }
-
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                setGraphic(empty ? null : btn);
-            }
-        });
-    }
-
-    private void ajouterBoutonSupprimer() {
-        colSupprimer.setCellFactory(param -> new TableCell<>() {
-            private final Button btn = new Button("Supprimer");
-
-            {
-                btn.setOnAction(event -> {
-                    Annonce annonce = getTableView().getItems().get(getIndex());
-
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setTitle("Confirmation");
-                    alert.setHeaderText("Voulez-vous vraiment supprimer cette annonce ?");
-                    alert.setContentText("Cette action est irréversible.");
-
-                    Optional<ButtonType> result = alert.showAndWait();
-                    if (result.isPresent() && result.get() == ButtonType.OK) {
-                        try {
-                            annonceService.delete(annonce);
-                            chargerAnnonces();
-                            Alert success = new Alert(Alert.AlertType.INFORMATION);
-                            success.setHeaderText("Suppression réussie");
-                            success.setContentText("L'annonce a été supprimée.");
-                            success.showAndWait();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-            }
-
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                setGraphic(empty ? null : btn);
-            }
-        });
-    }
-
-    @FXML
-    void btnajout(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterAnnonce.fxml"));
-            Parent root = loader.load();
-
-            AjouterAnnonce controller = loader.getController(); // Récupérer le contrôleur de la fenêtre d'ajout
-
-            Stage stage = new Stage();
-            stage.setTitle("Ajouter une annonce");
-            stage.setScene(new Scene(root));
-            stage.show();
-
-            // Lorsque la fenêtre d'ajout est fermée, charger les annonces et afficher la notification si nécessaire
-            stage.setOnHidden(e -> {
-                chargerAnnonces();
-
-                // Vérifie si l'annonce a été ajoutée avec succès
-                if (controller.isAnnonceAjoutee()) {
-                    // Utilise le Stage principal pour afficher la notification en vert (succès)
-                    showNotification((Stage) ((Node) event.getSource()).getScene().getWindow(), "Annonce ajoutée avec succès !", "#4CAF50");
-                } else {
-                    // En cas d'échec, afficher une notification en rouge (erreur)
-                    showNotification((Stage) ((Node) event.getSource()).getScene().getWindow(), "Erreur lors de l'ajout de l'annonce.", "#F44336");
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void showNotification(Stage stage, String message, String color) {
         Popup popup = new Popup();
@@ -290,6 +188,6 @@ public class Annonces {
             e.printStackTrace();
         }
     }
-
-
 }
+
+

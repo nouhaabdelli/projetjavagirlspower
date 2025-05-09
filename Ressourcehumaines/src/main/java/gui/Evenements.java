@@ -1,24 +1,33 @@
 package gui;
 
 import entities.Evenement;
+import javafx.animation.PauseTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import java.time.LocalDate;
+
+import javafx.scene.control.TreeTableColumn;
+import javafx.scene.control.cell.TextFieldTreeTableCell;
+import javafx.util.Callback;
 import services.EvenementService;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Evenements {
 
@@ -45,9 +54,26 @@ public class Evenements {
     private TableColumn<Evenement, String> photo;
 
     @FXML
+    private TableColumn<Evenement, Void> colAfficher;
+    @FXML
+    private TableColumn<Evenement, Void> colModifier;
+    @FXML
+    private TableColumn<Evenement, Void> colSupprimer;
+    @FXML
+    private TableColumn<Evenement, Void> colParticiper;
+
+
+    @FXML
+    private Button btnAjouter;
+
+    @FXML
+    private DatePicker dateRecherchePicker;
+
+    private final EvenementService evenementService = new EvenementService();
+
+    @FXML
     public void initialize() {
-        // Ne pas lier de colonne à l'ID
-        nomEvenement.setCellValueFactory(new PropertyValueFactory<>("nomEvenement"));
+        nomEvenement.setCellValueFactory(new PropertyValueFactory<>("nom"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
         dateDebut.setCellValueFactory(new PropertyValueFactory<>("dateDebut"));
         dateFin.setCellValueFactory(new PropertyValueFactory<>("dateFin"));
@@ -57,166 +83,281 @@ public class Evenements {
         statut.setCellValueFactory(new PropertyValueFactory<>("statut"));
         photo.setCellValueFactory(new PropertyValueFactory<>("photo"));
 
+        ajouterBoutonAfficher();
+        ajouterBoutonModifier();
+        ajouterBoutonSupprimer();
+        ajouterBoutonParticiper();
+
+
         chargerEvenements();
     }
 
     private void chargerEvenements() {
         try {
-            EvenementService evenementService = new EvenementService();
             List<Evenement> evenements = evenementService.readAll();
-            ObservableList<Evenement> observableList = FXCollections.observableList(evenements);
-            tableview.setItems(observableList);
+            tableview.setItems(FXCollections.observableList(evenements));
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-   @FXML
-    void btnAfficherEvenement(ActionEvent event) {
-        // Récupérer l'événement sélectionné dans la TableView
-       Evenement selectedEvenement = tableview.getSelectionModel().getSelectedItem();
-
-       if (selectedEvenement != null) {
-           try {
-               // Charger le fichier FXML pour afficher les détails de l'événement
-               FXMLLoader loader = new FXMLLoader(getClass().getResource("/DetailsEvent.fxml")); // Chemin à adapter si nécessaire
-               Parent root = loader.load();
-
-               // Obtenir le contrôleur de la vue de détails
-               DetailsEvenement detailsEvenementController = loader.getController();
-
-               // Passer les détails de l'événement au contrôleur
-               detailsEvenementController.setDetails(selectedEvenement);
-
-               // Créer une nouvelle scène pour afficher les détails de l'événement
-               Scene scene = new Scene(root);
-               scene.getStylesheets().add(getClass().getResource("/css/ajouter.css").toExternalForm());
-
-               Stage stage = new Stage();
-               stage.setTitle("Détails de l'événement");
-               stage.setScene(scene);
-               stage.show();
-
-           } catch (IOException e) {
-               e.printStackTrace();
-               // Afficher une alerte si le chargement échoue
-               Alert alert = new Alert(Alert.AlertType.ERROR);
-               alert.setTitle("Erreur");
-               alert.setHeaderText("Erreur lors du chargement des détails");
-               alert.setContentText("Une erreur est survenue lors de l'affichage des détails de l'événement.");
-               alert.showAndWait();
-           }
-       } else {
-           // Si aucun événement n'est sélectionné, afficher une alerte
-           Alert alert = new Alert(Alert.AlertType.WARNING);
-           alert.setTitle("Aucune sélection");
-           alert.setHeaderText("Aucun événement sélectionné");
-           alert.setContentText("Veuillez sélectionner un événement pour afficher ses détails.");
-           alert.showAndWait();
-       }
-
+    private void chargerEvenementsFiltresParDate(Date date) {
+        try {
+            List<Evenement> evenements = evenementService.readAll();
+            List<Evenement> filtres = evenements.stream()
+                    .filter(e -> e.getDateDebut() != null &&
+                            e.getDateDebut().toLocalDate().equals(date.toLocalDate()))
+                    .collect(Collectors.toList());
+            tableview.setItems(FXCollections.observableList(filtres));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    void btnModifierEvenement(ActionEvent event) {
-        Evenement selected = tableview.getSelectionModel().getSelectedItem();
-        if (selected != null) {
-            try {
-
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierEvenement.fxml"));
-                Parent root = loader.load();
-
-
-                ModifierEvenement modifierEvenementController = loader.getController();
-                modifierEvenementController.initialize(selected);
-
-                Scene scene = new Scene(root);
-                scene.getStylesheets().add(getClass().getResource("/css/ajouter.css").toExternalForm());
-
-                Stage stage = new Stage();
-                stage.setTitle("Modifier l'Événement");
-                stage.setScene(scene);
-                stage.show();
-                stage.setOnHidden(e -> chargerEvenements());
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    void rechercherParDate(ActionEvent event) {
+        if (dateRecherchePicker.getValue() != null) {
+            Date selectedDate = Date.valueOf(dateRecherchePicker.getValue());
+            chargerEvenementsFiltresParDate(selectedDate);
         } else {
-
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Aucune sélection");
-            alert.setHeaderText("Aucun événement sélectionné");
-            alert.setContentText("Veuillez sélectionner un événement à modifier.");
-            alert.showAndWait();
+            chargerEvenements(); // Si aucune date n'est sélectionnée, on recharge tout
         }
+    }
+
+    private void ajouterBoutonAfficher() {
+        colAfficher.setCellFactory(param -> new TableCell<>() {
+            private final Button btn = new Button("Afficher");
+
+            {
+                btn.setOnAction(event -> {
+                    Evenement ev = getTableView().getItems().get(getIndex());
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/DetailsEvent.fxml"));
+                        Parent root = loader.load();
+
+                        DetailsEvenement controller = loader.getController();
+                        controller.setDetails(ev);
+
+                        Stage stage = new Stage();
+                        stage.setTitle("Détails de l'événement");
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : btn);
+            }
+        });
+    }
+
+    private void ajouterBoutonModifier() {
+        colModifier.setCellFactory(param -> new TableCell<>() {
+            private final Button btn = new Button("Modifier");
+
+            {
+                btn.setOnAction(event -> {
+                    Evenement ev = getTableView().getItems().get(getIndex());
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierEvenement.fxml"));
+                        Parent root = loader.load();
+
+                        ModifierEvenement controller = loader.getController();
+                        controller.initialize(ev);
+
+                        Stage stage = new Stage();
+                        stage.setTitle("Modifier l'événement");
+                        stage.setScene(new Scene(root));
+                        stage.show();
+
+                        stage.setOnHidden(e -> chargerEvenements());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : btn);
+            }
+        });
+    }
+
+    private void ajouterBoutonSupprimer() {
+        colSupprimer.setCellFactory(param -> new TableCell<>() {
+            private final Button btn = new Button("Supprimer");
+
+            {
+                btn.setOnAction(event -> {
+                    Evenement ev = getTableView().getItems().get(getIndex());
+
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Confirmation");
+                    alert.setHeaderText("Voulez-vous vraiment supprimer cet événement ?");
+                    alert.setContentText("Cette action est irréversible.");
+
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.isPresent() && result.get() == ButtonType.OK) {
+                        try {
+                            evenementService.delete(ev);
+                            chargerEvenements();
+                            showNotification((Stage) ((Node) event.getSource()).getScene().getWindow(),
+                                    "Événement supprimé avec succès !", "#4CAF50");
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : btn);
+            }
+        });
+    }
+
+    private void ajouterBoutonParticiper() {
+        colParticiper.setCellFactory(param -> new TableCell<>() {
+            private final Button btn = new Button("Je participe");
+
+            {
+                btn.setOnAction(event -> {
+                    Evenement ev = getTableView().getItems().get(getIndex());
+
+                    // Vérifie si des places sont encore disponibles
+                    if (ev.getParticipantsMax() > 0) {
+                        // Diminue de 1
+                        ev.setParticipantsMax(ev.getParticipantsMax() - 1);
+
+                        try {
+                            // Met à jour dans la base de données
+                            evenementService.update(ev); // Assure-toi que cette méthode existe dans EvenementService
+                            chargerEvenements(); // Recharge les données
+                            showNotification((Stage) ((Node) event.getSource()).getScene().getWindow(),
+                                    "Participation confirmée !", "#4CAF50");
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        // Affiche une alerte : plus de places
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Participation impossible");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Le nombre maximal de participants est atteint !");
+                        alert.showAndWait();
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (!empty) {
+                    Evenement ev = getTableView().getItems().get(getIndex());
+
+                    // Récupère les dates
+                    LocalDate dateDebut = ev.getDateDebut().toLocalDate();
+                    LocalDate dateFin = ev.getDateFin().toLocalDate();
+                    LocalDate aujourdHui = LocalDate.now();
+
+                    // Conditions pour désactiver le bouton
+                    boolean evenementDejaCommence = dateDebut.isBefore(aujourdHui) && dateFin.isAfter(aujourdHui);
+                    boolean evenementTermine = dateFin.isBefore(aujourdHui) || dateFin.isEqual(aujourdHui);
+                    boolean plusDePlaces = ev.getParticipantsMax() <= 0;
+
+                    // Désactiver si l’événement a déjà commencé, est terminé, ou plus de places
+                    btn.setDisable(evenementDejaCommence || evenementTermine || plusDePlaces);
+
+                    setGraphic(btn);
+                } else {
+                    setGraphic(null);
+                }
+            }
+
+        });
     }
 
 
     @FXML
     void btnAjouterEvenement(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterEvenement.fxml")); // ajuste si besoin
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterEvenement.fxml"));
             Parent root = loader.load();
 
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/css/ajouter.css").toExternalForm());
+            AjouterEvenement controller = loader.getController();
 
             Stage stage = new Stage();
-            stage.setTitle("Ajouter un Événement");
-            stage.setScene(scene);
+            stage.setTitle("Ajouter un événement");
+            stage.setScene(new Scene(root));
             stage.show();
-            stage.setOnHidden(e -> chargerEvenements());
+
+            stage.setOnHidden(e -> {
+                chargerEvenements();
+                if (controller.isEvenementAjoute()) {
+                    showNotification((Stage) ((Node) event.getSource()).getScene().getWindow(),
+                            "Événement ajouté avec succès !", "#4CAF50");
+                } else {
+                    showNotification((Stage) ((Node) event.getSource()).getScene().getWindow(),
+                            "Erreur lors de l'ajout de l'événement.", "#F44336");
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @FXML
-    void btnSupprimerEvenement(ActionEvent event) {
-        // Vérifie si un événement est sélectionné
-        Evenement selectedEvenement = tableview.getSelectionModel().getSelectedItem();
+    void resetTableView(ActionEvent event) {
+        dateRecherchePicker.setValue(null); // Efface la date sélectionnée
+        chargerEvenements(); // Recharge toutes les annonces
+    }
 
-        if (selectedEvenement == null) {
-            // Si aucun événement n'est sélectionné, afficher un message d'avertissement
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Aucune sélection");
-            alert.setHeaderText("Aucun événement sélectionné");
-            alert.setContentText("Veuillez sélectionner un événement à supprimer.");
-            alert.showAndWait();
-            return;
-        }
+    public void showNotification(Stage stage, String message, String color) {
+        Popup popup = new Popup();
+        Label label = new Label(message);
 
-        // Crée une boîte de dialogue de confirmation
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmer la suppression");
-        alert.setHeaderText("Êtes-vous sûr de vouloir supprimer cet événement ?");
-        alert.setContentText("L'action est irréversible.");
+        label.setStyle("-fx-background-color: " + color + "; -fx-text-fill: white; -fx-padding: 10px; -fx-font-size: 14px; -fx-background-radius: 5;");
+        popup.getContent().add(label);
+        popup.setAutoHide(true);
 
-        // Si l'utilisateur clique sur "OK"
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            try {
-                // Effectuer la suppression de l'événement sélectionné
-                EvenementService.delete(selectedEvenement);
+        popup.show(stage);
+        popup.setX(stage.getX() + stage.getWidth() - 300);
+        popup.setY(stage.getY() + stage.getHeight() - 100);
 
-                // Mettre à jour la table après la suppression
-                chargerEvenements();
+        PauseTransition delay = new PauseTransition(Duration.seconds(3));
+        delay.setOnFinished(e -> popup.hide());
+        delay.play();
+    }
 
-                // Afficher un message de succès
-                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                successAlert.setTitle("Suppression réussie");
-                successAlert.setHeaderText(null);
-                successAlert.setContentText("L'événement a été supprimé avec succès.");
-                successAlert.showAndWait();
-            } catch (Exception e) {
-                e.printStackTrace();
-                // En cas d'erreur lors de la suppression
-                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                errorAlert.setTitle("Erreur");
-                errorAlert.setHeaderText("Erreur lors de la suppression");
-                errorAlert.setContentText("Une erreur est survenue lors de la suppression de l'événement.");
-                errorAlert.showAndWait();
-            }
+    @FXML
+    private void ouvrirCalendrier(ActionEvent event) {
+        try {
+            // Ferme la fenêtre actuelle
+            Stage stageActuel = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stageActuel.close();
+
+            // Charge le FXML du calendrier des événements
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CalendrierEvent.fxml"));
+            Parent root = loader.load();
+
+            // Crée une nouvelle fenêtre
+            Stage stage = new Stage();
+            stage.setTitle("Calendrier des Événements");  // Titre de la fenêtre
+            stage.setScene(new Scene(root)); // Applique le FXML à la nouvelle scène
+            stage.show();  // Affiche la nouvelle fenêtre
+
+        } catch (IOException e) {
+            e.printStackTrace();  // En cas d'erreur, afficher les détails
         }
     }
+
 }

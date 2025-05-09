@@ -4,9 +4,13 @@ import entities.Evenement;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class DetailsEvenement {
+
+
 
     @FXML
     private Label titreLabel;
@@ -38,6 +42,9 @@ public class DetailsEvenement {
     @FXML
     private Label photoLabel;
 
+    @FXML
+    private ImageView imagevieww;
+
 
     public void setDetails(Evenement evenement) {
         nomEvenementLabel.setText(evenement.getNomEvenement());
@@ -48,7 +55,19 @@ public class DetailsEvenement {
         organisateurLabel.setText(evenement.getOrganisateur());
         participantsMaxLabel.setText(String.valueOf(evenement.getParticipantsMax()));
         statutLabel.setText(evenement.getStatut());
-        photoLabel.setText(evenement.getPhoto() != null ? evenement.getPhoto() : "Aucune");
+        // Afficher la photo si elle existe
+        if (evenement.getPhoto() != null && !evenement.getPhoto().isEmpty()) {
+            // Créer l'image à partir du chemin de la photo
+            // Utiliser le chemin fourni par evenement.getPhoto()
+            Image image = new Image("file:" + evenement.getPhoto()); // Cela chargera l'image à partir du chemin réel
+            imagevieww.setImage(image);  // Afficher l'image dans l'ImageView
+            photoLabel.setText("Photo disponible");
+        } else {
+            // Si aucune photo n'est disponible, afficher un message ou laisser vide
+            imagevieww.setImage(null);  // Aucune image affichée
+            photoLabel.setText("Aucune photo");
+        }
+
     }
 
 
