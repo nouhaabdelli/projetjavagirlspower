@@ -92,7 +92,7 @@ public class AjouterUser {
         // Vérification des champs vides
         if (usnom.getText().isEmpty() || usprenom.getText().isEmpty() || usadresse.getText().isEmpty()
                 || usemail.getText().isEmpty() || ustelephone.getText().isEmpty() || usrib.getText().isEmpty()
-                || usstatut.getText().isEmpty() || uscnam.getText().isEmpty() || usenfant.getText().isEmpty()
+                || usstatut.getText().isEmpty() || uscnam.getText().isEmpty()
                 || usnaissance.getValue() == null || usembauche.getValue() == null
                 || (!usmale.isSelected() && !usfemale.isSelected())
                 || (!usmarie.isSelected() && !uscelibataire.isSelected() && !usdivorce.isSelected())) {
