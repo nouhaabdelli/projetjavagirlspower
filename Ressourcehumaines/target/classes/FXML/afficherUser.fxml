@@ -9,18 +9,20 @@
 
 <AnchorPane prefHeight="502.0" prefWidth="838.0" stylesheets="@../CSS/back.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AfficherUser">
    <children>
-      <Button fx:id="backcrud" layoutX="681.0" layoutY="41.0" mnemonicParsing="false" onAction="#back" prefHeight="34.0" prefWidth="126.0" text="Retour" textFill="#091776">
+      <Button fx:id="backcrud" mnemonicParsing="false" onAction="#back" prefHeight="34.0" prefWidth="126.0" text="Retour" textFill="#091776" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
          <font>
             <Font name="Algerian" size="12.0" />
          </font>
       </Button>
-      <TreeTableView fx:id="treeus" layoutX="14.0" layoutY="118.0" prefHeight="346.0" prefWidth="794.0">
+
+      <TreeTableView fx:id="treeus" layoutX="143.0" layoutY="98.0" prefHeight="379.0" prefWidth="512.0" AnchorPane.bottomAnchor="25.19999999999999" AnchorPane.leftAnchor="143.0" AnchorPane.rightAnchor="183.39999999999998" AnchorPane.topAnchor="98.0">
          <columns>
             <TreeTableColumn prefWidth="75.0" text="C1" />
             <TreeTableColumn prefWidth="75.0" text="C2" />
          </columns>
       </TreeTableView>
-      <Text fill="WHITE" layoutX="35.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="listes des utilisateurs">
+
+      <Text fill="WHITE" layoutX="26.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="listes des utilisateurs">
          <font>
             <Font name="Algerian" size="49.0" />
          </font>
