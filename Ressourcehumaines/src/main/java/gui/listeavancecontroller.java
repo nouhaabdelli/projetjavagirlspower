@@ -62,6 +62,8 @@ public class listeavancecontroller {
 
     private boolean isDarkTheme = false;
 
+    private int currentUserId; // Ajout du champ pour stocker l'ID de l'utilisateur
+
     @FXML
     private void initialize() {
         // Initialiser les colonnes du TableView
@@ -131,6 +133,29 @@ public class listeavancecontroller {
 
         // Ajouter un écouteur pour la recherche
         searchField.textProperty().addListener((obs, oldValue, newValue) -> rechercherAvance());
+    }
+
+    @FXML
+    private void ajouterAvance() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ajouteravance.fxml"));
+            Parent root = loader.load();
+            ajouteravancecontroller controller = loader.getController();
+            controller.setCurrentUserId(currentUserId); // Passer l'ID de l'utilisateur courant
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            if (getClass().getResource("/style/finance.css") != null) {
+                scene.getStylesheets().add(getClass().getResource("/style/finance.css").toExternalForm());
+                System.out.println("finance.css chargé avec succès");
+            } else {
+                System.err.println("Erreur : Le fichier finance.css n'est pas trouvé dans les ressources.");
+            }
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Erreur lors du chargement de ajouteravance.fxml : " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     private void modifierAvance(avance avance) {
@@ -263,5 +288,10 @@ public class listeavancecontroller {
             contentArea.getStyleClass().remove("dark-theme");
             themeToggle.setText("🌙");
         }
+    }
+
+    // Méthode pour définir l'ID de l'utilisateur courant
+    public void setCurrentUserId(int userId) {
+        this.currentUserId = userId;
     }
 }

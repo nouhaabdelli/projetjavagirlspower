@@ -3,6 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -40,13 +42,31 @@
         </HBox>
     </center>
     <bottom>
-        <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+        <VBox spacing="10.0" BorderPane.alignment="CENTER">
             <children>
-                <ToggleButton fx:id="themeToggle" mnemonicParsing="false" onAction="#toggleTheme" text="Mode Sombre" />
+                <HBox alignment="CENTER_RIGHT" prefHeight="50.0" prefWidth="800.0">
+                    <children>
+                        <ToggleButton fx:id="themeToggle" mnemonicParsing="false" onAction="#toggleTheme" text="Mode Sombre" />
+                    </children>
+                    <padding>
+                        <Insets right="20.0" />
+                    </padding>
+                </HBox>
+                <VBox styleClass="chat-container">
+                    <children>
+                        <TextArea fx:id="chatArea" prefHeight="150.0" prefWidth="800.0" styleClass="chat-area" />
+                        <HBox alignment="CENTER" spacing="10.0">
+                            <children>
+                                <TextField fx:id="chatInput" prefWidth="700.0" onAction="#handleChatInput" promptText="Posez une question (ex. : Calculer prêt 10000 sur 24 mois)..." styleClass="chat-input" />
+                                <Button mnemonicParsing="false" onAction="#handleChatInput" text="💬 Envoyer" styleClass="chat-button" />
+                            </children>
+                            <padding>
+                                <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
+                            </padding>
+                        </HBox>
+                    </children>
+                </VBox>
             </children>
-            <padding>
-                <Insets right="20.0" />
-            </padding>
-        </HBox>
+        </VBox>
     </bottom>
 </BorderPane>

@@ -81,7 +81,8 @@ public class reponsesrhcontroller {
                 avanceList = FXCollections.observableArrayList(avanceService.readAll());
                 TreeItem<String> root = new TreeItem<>();
                 for (avance a : avanceList) {
-                    String itemText = String.format("Montant: %s, Durée: %d, Date: %s, Urgence: %s, État: %s",
+                    String itemText = String.format("Employé: %s, Montant: %s, Durée: %d, Date: %s, Urgence: %s, État: %s",
+                            a.getPrenomUser() != null ? a.getPrenomUser() : "Inconnu",
                             a.getMontant(), a.getDuree(), a.getDateAvance(), a.getNiveauUrgence(), a.getEtat());
                     TreeItem<String> item = new TreeItem<>(itemText);
                     root.getChildren().add(item);

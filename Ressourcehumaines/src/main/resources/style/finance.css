@@ -1,3 +1,4 @@
+
 .root-pane {
     -fx-background-color: linear-gradient(to bottom right, #f0f4f8, #d9e2ec); /* Elegant light theme gradient */
     -fx-background-radius: 15px;
@@ -46,6 +47,22 @@
     -fx-background-color: linear-gradient(to right, #3d8b40, #2a6f2d);
     -fx-scale-x: 0.98;
     -fx-scale-y: 0.98;
+}
+
+.send-button {
+    -fx-background-color: linear-gradient(to right, #2196F3, #1976D2); /* Blue gradient for send button */
+}
+
+.send-button:hover {
+    -fx-background-color: linear-gradient(to right, #1E88E5, #1565C0);
+    -fx-scale-x: 1.15;
+    -fx-scale-y: 1.15;
+}
+
+.send-button:pressed {
+    -fx-background-color: linear-gradient(to right, #1B76D2, #1357B0);
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
 }
 
 #themeToggle {
@@ -126,18 +143,65 @@
     -fx-transition: all 0.5s ease-in-out;
 }
 
-#financeTitle:hover {
-    -fx-scale-x: 1.05;
-    -fx-scale-y: 1.05;
-    -fx-effect: dropshadow(gaussian, rgba(76,175,80,1.0), 20, 0.7, 0, 8); /* Enhanced glow on hover */
-    -fx-rotate: 2; /* Slight tilt for fun */
+.chat-container {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 15px;
+    -fx-padding: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 12, 0.5, 0, 4);
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 2px;
+    -fx-border-radius: 15px;
 }
 
-.root-pane.dark-theme #financeTitle {
-    -fx-text-fill: linear-gradient(to right, #a3bffa, #4CAF50); /* Gradient for dark theme */
-    -fx-effect: dropshadow(gaussian, rgba(163,191,250,0.8), 15, 0.5, 0, 5);
+.root-pane.dark-theme .chat-container {
+    -fx-background-color: #2a2a3a;
+    -fx-border-color: #4a4a5a;
 }
 
-.root-pane.dark-theme #financeTitle:hover {
-    -fx-effect: dropshadow(gaussian, rgba(163,191,250,1.0), 20, 0.7, 0, 8);
+.chat-header {
+    -fx-font-family: "Arial Rounded MT Bold", sans-serif;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(to right, #2196F3, #4CAF50);
+    -fx-padding: 0 0 10 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0, 3);
+}
+
+.root-pane.dark-theme .chat-header {
+    -fx-text-fill: linear-gradient(to right, #64B5F6, #81C784);
+}
+
+.chat-area {
+    -fx-font-family: "Arial", sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #1e3a8a;
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+}
+
+.root-pane.dark-theme .chat-area {
+    -fx-text-fill: #e0e0e0;
+    -fx-background-color: #3a3a4a;
+    -fx-border-color: #5a5a6a;
+}
+
+#chatInput {
+    -fx-font-size: 14px;
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 20px;
+    -fx-padding: 10px 15px;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}
+
+.root-pane.dark-theme #chatInput {
+    -fx-background-color: #3a3a4a;
+    -fx-text-fill: #e0e0e0;
+    -fx-border-color: #5a5a6a;
 }

@@ -11,20 +11,13 @@ public class pret {
     private String niveauUrgence;
     private String etat;
     private String reponse;
+    private int id_user; // Link to user table
+    private String prenomUser; // Employee's first name
 
     public pret() {}
 
-    public pret(int idavance, BigDecimal montant, int duree, LocalDate datePret, String niveauUrgence, String etat) {
-        this.idavance = idavance;
-        this.montant = montant;
-        this.duree = duree;
-        this.datePret = datePret;
-        this.niveauUrgence = niveauUrgence;
-        this.etat = etat;
-        this.reponse = null; // Allow reponse to be null initially
-    }
-
-    public pret(int idavance, BigDecimal montant, int duree, LocalDate datePret, String niveauUrgence, String etat, String reponse) {
+    // Constructor for creating pret with all fields
+    public pret(int idavance, BigDecimal montant, int duree, LocalDate datePret, String niveauUrgence, String etat, String reponse, int id_user, String prenomUser) {
         this.idavance = idavance;
         this.montant = montant;
         this.duree = duree;
@@ -32,6 +25,21 @@ public class pret {
         this.niveauUrgence = niveauUrgence;
         this.etat = etat;
         this.reponse = reponse;
+        this.id_user = id_user;
+        this.prenomUser = prenomUser;
+    }
+
+    // Constructor for minimal initialization (if needed elsewhere)
+    public pret(int idavance, BigDecimal montant, int duree, LocalDate datePret, String niveauUrgence, String etat) {
+        this.idavance = idavance;
+        this.montant = montant;
+        this.duree = duree;
+        this.datePret = datePret;
+        this.niveauUrgence = niveauUrgence;
+        this.etat = etat;
+        this.reponse = null; // Default to null
+        this.id_user = 0; // Default to 0
+        this.prenomUser = null; // Default to null
     }
 
     public int getIdavance() { return idavance; }
@@ -48,6 +56,10 @@ public class pret {
     public void setEtat(String etat) { this.etat = etat; }
     public String getReponse() { return reponse; }
     public void setReponse(String reponse) { this.reponse = reponse; }
+    public int getId_user() { return id_user; }
+    public void setId_user(int id_user) { this.id_user = id_user; }
+    public String getPrenomUser() { return prenomUser; }
+    public void setPrenomUser(String prenomUser) { this.prenomUser = prenomUser; }
 
     @Override
     public String toString() {
@@ -59,6 +71,8 @@ public class pret {
                 ", niveauUrgence='" + niveauUrgence + '\'' +
                 ", etat='" + etat + '\'' +
                 ", reponse='" + reponse + '\'' +
+                ", id_user=" + id_user +
+                ", prenomUser='" + prenomUser + '\'' +
                 '}';
     }
 }

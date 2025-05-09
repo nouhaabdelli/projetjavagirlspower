@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 import services.avanceservice;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ajouteravancecontroller {
@@ -31,6 +33,8 @@ public class ajouteravancecontroller {
 
     @FXML
     private TextField etatField;
+
+    private int currentUserId; // Plus de valeur par défaut
 
     @FXML
     private void handleRetour() {
@@ -70,6 +74,13 @@ public class ajouteravancecontroller {
                 return;
             }
 
+            // Vérifier si currentUserId est défini et valide
+            if (currentUserId <= 0) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Utilisateur non identifié. Veuillez vous connecter.");
+                alert.showAndWait();
+                return;
+            }
+
             // Créer une nouvelle avance
             avance nouvelleAvance = new avance();
             nouvelleAvance.setMontant(new BigDecimal(montantField.getText()));
@@ -77,6 +88,7 @@ public class ajouteravancecontroller {
             nouvelleAvance.setDateAvance(dateAvancePicker.getValue());
             nouvelleAvance.setNiveauUrgence(niveauUrgenceField.getText());
             nouvelleAvance.setEtat(etatField.getText());
+            nouvelleAvance.setId_user(currentUserId);
 
             // Ajouter à la base de données
             avanceservice avanceService = new avanceservice();
@@ -102,5 +114,9 @@ public class ajouteravancecontroller {
             alert.showAndWait();
             e.printStackTrace();
         }
+    }
+
+    public void setCurrentUserId(int userId) {
+        this.currentUserId = userId;
     }
 }

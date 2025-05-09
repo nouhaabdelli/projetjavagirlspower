@@ -80,8 +80,9 @@ public class reponsespretrhcontroller {
                 pretList = FXCollections.observableArrayList(pretService.readAll());
                 TreeItem<String> root = new TreeItem<>();
                 for (pret p : pretList) {
-                    String itemText = String.format("ID: %d, Montant: %s, Date: %s, Durée: %d, Urgence: %s, État: %s, Réponse: %s",
-                            p.getIdavance(), p.getMontant(), p.getDatePret(), p.getDuree(), p.getNiveauUrgence(), p.getEtat(), p.getReponse());
+                    String itemText = String.format("Employé: %s, Montant: %s, Date: %s, Durée: %d, Urgence: %s, État: %s, Réponse: %s",
+                            p.getPrenomUser() != null ? p.getPrenomUser() : "Inconnu",
+                            p.getMontant(), p.getDatePret(), p.getDuree(), p.getNiveauUrgence(), p.getEtat(), p.getReponse());
                     TreeItem<String> item = new TreeItem<>(itemText);
                     root.getChildren().add(item);
                 }
