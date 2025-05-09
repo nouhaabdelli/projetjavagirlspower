@@ -27,7 +27,7 @@ public class BackFront {
         if (source == back) {
             fxmlFile = "/FXML/CrudUser.fxml"; // vers le Back Office
         } else if (source == front) {
-            fxmlFile = "/FXML/afficherUser.fxml"; // vers le Front Office
+            fxmlFile = "/FXML/AffichageFront.fxml"; // vers le Front Office
         }
 
         if (!fxmlFile.isEmpty()) {

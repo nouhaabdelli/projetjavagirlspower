@@ -126,8 +126,7 @@ public class AfficherUser {
         TreeTableColumn<User, String> statutCol = new TreeTableColumn<>("Statut");
         statutCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("statut"));
 
-        // ➕ Tu peux ajouter toutes les colonnes de la même manière
-        // Exemple :
+
         TreeTableColumn<User, String> adresseCol = new TreeTableColumn<>("Adresse");
         adresseCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("adresse"));
 
@@ -136,6 +135,9 @@ public class AfficherUser {
 
         TreeTableColumn<User, String> telCol = new TreeTableColumn<>("Téléphone");
         telCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("numTelephone"));
+        TreeTableColumn<User, Integer> cinCol = new TreeTableColumn<>("CIN");
+        cinCol.setCellValueFactory(new TreeItemPropertyValueFactory<>("cin"));
+
         TreeTableColumn<User, Void> actionCol = new TreeTableColumn<>("Actions");
 
         actionCol.setCellFactory(param -> new TreeTableCell<>() {
@@ -189,11 +191,11 @@ public class AfficherUser {
         });
 
 
-        // 🔹 Ajout des colonnes à la table
-        treeus.getColumns().setAll(nomCol, prenomCol, emailCol, roleCol, statutCol, adresseCol, genreCol, telCol,actionCol);
+
+        treeus.getColumns().setAll(nomCol, prenomCol, emailCol, roleCol, statutCol, adresseCol, genreCol, telCol,cinCol,actionCol);
 
 
-        // 🔹 Connexion à la base de données et récupération des utilisateurs
+
         ObservableList<User> userList = FXCollections.observableArrayList();
 
 

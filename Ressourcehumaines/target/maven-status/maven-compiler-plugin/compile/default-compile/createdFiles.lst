@@ -1,6 +1,7 @@
 gui\LoginUser.class
 gui\AfficherUser$1.class
 main\UserFX.class
+gui\AffichageFront.class
 gui\ModifierUser.class
 entities\User.class
 gui\CrudUser.class
