@@ -9,10 +9,8 @@
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../style/ajouterpret.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ajouterpretcontroller">
-
     <children>
         <VBox alignment="TOP_CENTER" layoutX="200.0" layoutY="50.0" spacing="15.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="50.0">
-
             <Label text="Ajouter un Prêt" styleClass="form-title"/>
 
             <TextField fx:id="montantField" promptText="Montant (ex: 1000.00)" />
@@ -22,7 +20,12 @@
             <TextField fx:id="etatField" promptText="État (mariage, frais médicaux, autres)" />
 
             <Button text="Ajouter" onAction="#ajouterPret" styleClass="form-button" />
+
+            <!-- Section pour la conversion TND en EUR -->
+            <Label text="Convertir TND en EUR" styleClass="form-title" style="-fx-font-size: 20px; -fx-text-fill: #1e3a8a;" />
+            <TextField fx:id="montantTNDField" promptText="Montant en TND" />
+            <Button text="Échanger" onAction="#convertTNDToEUR" styleClass="form-button" />
+            <Label fx:id="resultLabel" text="Résultat : " style="-fx-font-size: 16px; -fx-text-fill: #1e3a8a;" />
         </VBox>
     </children>
 </AnchorPane>
-

@@ -109,8 +109,7 @@ public class ajouterpretcontroller {
                 return;
             }
 
-            // Remplacez par votre clé API Xe (obtenue après inscription sur xe.com)
-            String apiKey = "VOTRE_CLÉ_API_ICI";
+            String apiKey = "VOTRE_CLÉ_API_ICI"; // Remplace ceci par ta clé API réelle
             String url = "https://xecdapi.xe.com/v1/convert_from?from=TND&to=EUR&amount=" + amountTND;
 
             HttpClient client = HttpClient.newHttpClient();
@@ -123,7 +122,8 @@ public class ajouterpretcontroller {
             String jsonResponse = response.body();
 
             JsonObject jsonObject = JsonParser.parseString(jsonResponse).getAsJsonObject();
-            double euroAmount = jsonObject.getAsJsonObject("to").get("EUR").getAsDouble();
+            JsonObject firstToObject = jsonObject.getAsJsonArray("to").get(0).getAsJsonObject();
+            double euroAmount = firstToObject.get("mid").getAsDouble();
 
             resultLabel.setText(String.format("Résultat : %.2f TND = %.2f EUR", amountTND, euroAmount));
 
@@ -134,14 +134,5 @@ public class ajouterpretcontroller {
         } catch (Exception e) {
             resultLabel.setText("Résultat : Erreur inattendue : " + e.getMessage());
         }
-    }
-
-    public void setControllerPrincipal(listepretcontroller controller) {
-        this.controllerPrincipal = controller;
-    }
-
-    // Method to set current user ID (e.g., from login session)
-    public void setCurrentUserId(int userId) {
-        this.currentUserId = userId;
     }
 }
