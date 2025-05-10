@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gui.DemandeController"
+            stylesheets="@style/style.css">
+
+    <children>
+        <!-- VBox added to contain the buttons -->
+        <VBox fx:id="demandeSection" spacing="10" layoutX="100.0" layoutY="30.0">
+            <Button fx:id="btnConge"
+                    mnemonicParsing="false"
+                    prefHeight="63.0" prefWidth="237.0"
+                    text="Demande Congé"
+                    onAction="#handleCongé">
+                <font>
+                    <Font name="Arial Rounded MT Bold" size="20.0"/>
+                </font>
+            </Button>
+
+            <Button fx:id="btnAttestation"
+                    mnemonicParsing="false"
+                    prefHeight="63.0" prefWidth="237.0"
+                    text="Demande Attestation"
+                    onAction="#handleAttestation">
+                <font>
+                    <Font name="Arial Rounded MT Bold" size="19.0"/>
+                </font>
+            </Button>
+
+            <Button fx:id="btnMesDemandes"
+                    mnemonicParsing="false"
+                    prefHeight="63.0" prefWidth="237.0"
+                    text="Mes Demandes"
+                    onAction="#handleMesDemandes">
+                <font>
+                    <Font name="Arial Rounded MT Bold" size="20.0"/>
+                </font>
+            </Button>
+        </VBox>
+
+        <!-- Image at the top right -->
+        <ImageView fitHeight="121.0" fitWidth="140.0" layoutX="430.0" layoutY="20.0">
+            <image>
+                <Image url="@images/Présentation_Projet_Entreprise_Minimaliste_Moderne_Sobre_Blanc_Noir-removebg-preview.png"/>
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

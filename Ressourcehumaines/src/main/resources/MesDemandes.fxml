@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.effect.DropShadow?>
+
+<BorderPane prefHeight="700.0" prefWidth="1000.0" stylesheets="@style/style.css"
+            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gui.MesDemandesController">
+
+    <!-- TOP : Titre -->
+    <top>
+        <VBox alignment="CENTER" spacing="10" styleClass="header">
+            <padding>
+                <Insets top="20" bottom="20" left="25" right="25"/>
+            </padding>
+            <Label text="Liste des Demandes" styleClass="title-label">
+                <font>
+                    <Font name="System Bold" size="26"/>
+                </font>
+            </Label>
+            <Separator/>
+        </VBox>
+    </top>
+
+    <!-- CENTER : Contenu principal -->
+    <center>
+        <VBox spacing="15">
+            <padding>
+                <Insets top="20" bottom="20" left="25" right="25"/>
+            </padding>
+
+            <!-- Barre de recherche -->
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Demandes Soumises" styleClass="section-title">
+                    <font>
+                        <Font size="16.0"/>
+                    </font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="filterField" promptText="Rechercher..." prefWidth="250" styleClass="search-field"/>
+            </HBox>
+
+            <!-- TableView des demandes -->
+            <TableView fx:id="tableViewDemandes" VBox.vgrow="ALWAYS" styleClass="reservations-table">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="50" visible="false"/>
+                    <TableColumn fx:id="colDateSoumission" text="Date de Soumission" prefWidth="180"/>
+                    <TableColumn fx:id="colStatut" text="Statut" prefWidth="120"/>
+                    <TableColumn fx:id="colType" text="Type" prefWidth="150"/>
+                    <TableColumn fx:id="colDescription" text="Description" prefWidth="300"/>
+                    <TableColumn fx:id="colActions" text="Actions" prefWidth="250"/>
+                </columns>
+                <effect>
+                    <DropShadow color="#00000026" radius="5.0" spread="0.05"/>
+                </effect>
+                <placeholder>
+                    <Label text="Aucune demande trouvée" style="-fx-text-fill: #888; -fx-font-style: italic;"/>
+                </placeholder>
+            </TableView>
+        </VBox>
+    </center>
+
+    <!-- BOTTOM : Bouton d’ajout ou autres actions -->
+    <bottom>
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <padding>
+                <Insets top="10" bottom="20" left="25" right="25"/>
+            </padding>
+
+        </HBox>
+    </bottom>
+
+</BorderPane>
