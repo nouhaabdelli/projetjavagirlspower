@@ -15,10 +15,14 @@ import javafx.stage.Stage;
 import services.UserCrud;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.io.File;
 
 
 
@@ -86,6 +90,14 @@ public class AjouterUser {
 
     @FXML
     private TextField ustelephone;
+
+    @FXML
+    private Button par;
+
+    @FXML
+    private ImageView pdp;
+    @FXML
+    private TextField photopath;
 
     @FXML
     void add(ActionEvent event) {
@@ -259,6 +271,23 @@ public class AjouterUser {
                 usenfantLabel.setVisible(false);
             }
         });
+    }
+    @FXML
+    void par(ActionEvent event) { FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg")
+        );
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            // Afficher le chemin dans le TextField
+            photopath.setText(selectedFile.getAbsolutePath());
+
+            // Charger et afficher l'image dans l'ImageView
+            Image image = new Image(selectedFile.toURI().toString());
+            pdp.setImage(image);
+        }
+
     }
 
 

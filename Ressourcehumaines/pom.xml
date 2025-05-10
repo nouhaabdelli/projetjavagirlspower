@@ -51,6 +51,16 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <version>2.7.7</version>
         </dependency>
+        <dependency>
+        <groupId>com.squareup.okhttp3</groupId>
+        <artifactId>okhttp</artifactId>
+        <version>4.12.0</version>
+    </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>${javafx.version}</version> <!-- This will use 21.0.2 -->
+        </dependency>
 
 
     </dependencies>

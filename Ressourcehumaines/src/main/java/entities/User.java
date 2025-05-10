@@ -50,6 +50,31 @@ public class User {
         this.situationFamiliale = situationFamiliale;
         this.cin = cin;
     }
+    // 🔹 Constructeur complet
+    public User( String nom, String prenom, java.time.LocalDate dateNaissance, String motDePasse,
+                String email, String numTelephone, String role, String rib, int nombreEnfant, String cnam,
+                java.time.LocalDate dateEmbauche, String photoProfil, String statut, String adresse,
+                String genre, String situationFamiliale, int cin) {
+
+        this.nom = nom;
+        this.prenom = prenom;
+        this.dateNaissance = dateNaissance;
+        this.motDePasse = motDePasse;
+        this.email = email;
+        this.numTelephone = numTelephone;
+        this.role = role;
+        this.rib = rib;
+        this.nombreEnfant = nombreEnfant;
+        this.cnam = cnam;
+        this.dateEmbauche = dateEmbauche;
+        this.photoProfil = photoProfil;
+        this.statut = statut;
+        this.adresse = adresse;
+        this.genre = genre;
+        this.situationFamiliale = situationFamiliale;
+        this.cin = cin;
+    }
+
 
     // 🔹 Getters et Setters
 

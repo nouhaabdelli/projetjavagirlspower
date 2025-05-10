@@ -34,6 +34,17 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.element.Cell;
 import java.io.FileOutputStream;
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.borders.SolidBorder;
+import com.itextpdf.kernel.colors.ColorConstants;
+import com.itextpdf.layout.properties.TextAlignment;
+import com.itextpdf.layout.properties.UnitValue;
+import com.itextpdf.layout.properties.HorizontalAlignment;
+
+
+
 
 
 
@@ -270,55 +281,80 @@ public class AfficherUser {
         treeus.setRoot(root);
         treeus.setShowRoot(false);
     }
+    private Cell headerStyle(String text) {
+        return new Cell()
+                .add(new Paragraph(text).setBold())
+                .setBackgroundColor(com.itextpdf.kernel.colors.ColorConstants.LIGHT_GRAY)
+                .setTextAlignment(com.itextpdf.layout.properties.TextAlignment.CENTER)
+                .setBorder(new com.itextpdf.layout.borders.SolidBorder(1));
+    }
+
     @FXML
     void exportPDF(ActionEvent event) {
         try {
             // Chemin de sortie vers le bureau
             String outputPath = System.getProperty("user.home") + "\\Desktop\\utilisateurs.pdf";
-
-            // Afficher le chemin de destination pour vérifier
             System.out.println("Chemin d'exportation : " + outputPath);
 
-
-            // Création du document
+            // Création du document PDF
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             PdfWriter writer = new PdfWriter(baos);
             PdfDocument pdfDoc = new PdfDocument(writer);
             Document document = new Document(pdfDoc);
+            document.setMargins(20, 20, 20, 20);
 
-            document.add(new Paragraph("Liste des utilisateurs"));
-            document.add(new Paragraph(" ")); // saut de ligne
+            // ✅ Utilise des doubles antislashs ou des slashes simples
+            String logoPath = "C:\\Users\\Hamdi\\Desktop\\pi\\projetjavagirlspower\\Ressourcehumaines\\src\\main\\resources\\images\\work.png";
 
-            // Créer un tableau avec colonnes
+// ✅ Création et ajout du logo
+            ImageData imageData = ImageDataFactory.create(logoPath);
+            Image logo = new Image(imageData)
+                    .scaleToFit(100, 100)
+                    .setHorizontalAlignment(HorizontalAlignment.CENTER);
+
+            document.add(logo);
+
+
+            // Titre stylisé
+            Paragraph title = new Paragraph("Liste des utilisateurs")
+                    .setTextAlignment(TextAlignment.CENTER)
+                    .setFontSize(18)
+                    .setBold()
+                    .setFontColor(ColorConstants.BLUE);
+            document.add(title);
+            document.add(new Paragraph("\n")); // saut de ligne
+
+            // Création du tableau
             float[] columnWidths = {100, 100, 150, 100, 100};
-            Table table = new Table(columnWidths);
+            Table table = new Table(columnWidths).setWidth(UnitValue.createPercentValue(100));
 
-            // En-têtes du tableau
-            table.addHeaderCell("Nom");
-            table.addHeaderCell("Prénom");
-            table.addHeaderCell("Email");
-            table.addHeaderCell("Rôle");
-            table.addHeaderCell("Statut");
 
-            // Remplir le tableau avec les utilisateurs
+
+            table.addHeaderCell(headerStyle("Nom"));
+            table.addHeaderCell(headerStyle("Prénom"));
+            table.addHeaderCell(headerStyle("Email"));
+            table.addHeaderCell(headerStyle("Rôle"));
+            table.addHeaderCell(headerStyle("Statut"));
+
+            // Remplir le tableau
             for (TreeItem<User> item : treeus.getRoot().getChildren()) {
                 User user = item.getValue();
-                table.addCell(user.getNom());
-                table.addCell(user.getPrenom());
-                table.addCell(user.getEmail());
-                table.addCell(user.getRole());
-                table.addCell(user.getStatut());
+                table.addCell(new Cell().add(new Paragraph(user.getNom())).setBorder(new SolidBorder(0.5f)));
+                table.addCell(new Cell().add(new Paragraph(user.getPrenom())).setBorder(new SolidBorder(0.5f)));
+                table.addCell(new Cell().add(new Paragraph(user.getEmail())).setBorder(new SolidBorder(0.5f)));
+                table.addCell(new Cell().add(new Paragraph(user.getRole())).setBorder(new SolidBorder(0.5f)));
+                table.addCell(new Cell().add(new Paragraph(user.getStatut())).setBorder(new SolidBorder(0.5f)));
             }
 
             document.add(table);
             document.close();
 
-            // Écrire dans un fichier
+            // Écriture dans le fichier
             FileOutputStream fos = new FileOutputStream(outputPath);
             fos.write(baos.toByteArray());
             fos.close();
 
-            // Afficher confirmation
+            // Confirmation
             javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
             alert.setTitle("Export PDF");
             alert.setHeaderText(null);
@@ -329,5 +365,6 @@ public class AfficherUser {
             e.printStackTrace();
         }
     }
+
 
 }

@@ -9,24 +9,24 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../CSS/back.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CrudUser">
    <children>
-      <ImageView fitHeight="151.0" fitWidth="190.0" layoutX="-32.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="151.0" fitWidth="190.0" layoutX="-21.0" layoutY="-18.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/work.png" />
 
 
          </image>
       </ImageView>
-      <Text fill="#1d2584" layoutX="125.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BIENVENUE DANS LA GESTION DES EMPLOYEES" textAlignment="CENTER" wrappingWidth="397.050048828125">
+      <Text fill="WHITE" layoutX="138.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BIENVENUE DANS LA GESTION DES EMPLOYEES" textAlignment="CENTER" underline="true" wrappingWidth="397.050048828125">
          <font>
             <Font name="Algerian" size="24.0" />
          </font>
       </Text>
-      <Button fx:id="afficherUser" layoutX="181.0" layoutY="242.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="58.0" prefWidth="238.0" text="Afficher employee" textFill="#091776">
+      <Button fx:id="afficherUser" layoutX="217.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="58.0" prefWidth="238.0" text="Afficher employee" textFill="#091776">
          <font>
             <Font name="Algerian" size="11.0" />
          </font>
       </Button>
-      <Button fx:id="ajouterUser" layoutX="178.0" layoutY="156.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="58.0" prefWidth="238.0" text=" Ajouter employee" textFill="#091776">
+      <Button fx:id="ajouterUser" layoutX="217.0" layoutY="182.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="58.0" prefWidth="238.0" text=" Ajouter employee" textFill="#091776">
          <font>
             <Font name="Algerian" size="12.0" />
          </font>
