@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -23,6 +24,7 @@
             <PasswordField fx:id="passwordField" promptText="Mot-De-Passe" styleClass="password-field" />
             <CheckBox fx:id="termsCheckBox" onAction="#termsCheckBox" prefHeight="19.0" prefWidth="244.0" styleClass="terms-label" text="J'ai lu et j'accepte les Conditions Générales" />
             <Button fx:id="createAccountButton" onAction="#handleSignUp" styleClass="button" text="se connecter" />
+         <Hyperlink fx:id="googleLoginLink" onAction="#handleGoogleLogin" text="Se connecter avec Google" />
         </VBox>
 
         <!-- Welcome Side -->

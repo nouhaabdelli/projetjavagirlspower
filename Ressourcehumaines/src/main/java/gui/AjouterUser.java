@@ -210,7 +210,7 @@ public class AjouterUser {
         user.setMotDePasse("123456");
         user.setRole("utilisateur");
         user.setNombreEnfant(nombreEnfant);
-        user.setPhotoProfil("default.png");
+        user.setPhotoProfil(photopath.getText());
         user.setGenre(genre);
         user.setSituationFamiliale(situationFamiliale);
         user.setDateNaissance(usnaissance.getValue());
