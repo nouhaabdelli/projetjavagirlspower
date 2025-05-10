@@ -16,6 +16,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import services.pretservice;
 import entities.pret;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -98,41 +99,80 @@ public class ajouterpretcontroller {
     private void convertTNDToEUR() {
         try {
             String tndText = montantTNDField.getText().trim();
+
+            // Test si le champ est vide
             if (tndText.isEmpty()) {
-                resultLabel.setText("Résultat : Veuillez entrer un montant en TND !");
+                // Appel API pour afficher la réponse brute
+                String apiKey = "fca_live_CcOjFkIyL5TjK7McBqyHG0e06esmIME9UEczeaem";
+                String url = "https://api.freecurrencyapi.com/v1/latest?apikey=" + apiKey + "&base_currency=EUR&currencies=USD";
+
+                HttpClient client = HttpClient.newHttpClient();
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create(url))
+                        .build();
+
+                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                String jsonResponse = response.body();
+
+                // Affiche la réponse brute JSON dans le label
+                resultLabel.setText(jsonResponse);
                 return;
             }
 
-            double amountTND = Double.parseDouble(tndText);
+            double amountTND;
+            try {
+                amountTND = Double.parseDouble(tndText);
+            } catch (NumberFormatException e) {
+                resultLabel.setText("Résultat : Veuillez entrer un montant numérique valide !");
+                return;
+            }
+
             if (amountTND <= 0) {
                 resultLabel.setText("Résultat : Le montant doit être positif !");
                 return;
             }
 
-            String apiKey = "VOTRE_CLÉ_API_ICI"; // Remplace ceci par ta clé API réelle
-            String url = "https://xecdapi.xe.com/v1/convert_from?from=TND&to=EUR&amount=" + amountTND;
+            String apiKey = "fca_live_CcOjFkIyL5TjK7McBqyHG0e06esmIME9UEczeaem";
+            String url = "https://api.freecurrencyapi.com/v1/latest?apikey=" + apiKey + "&base_currency=EUR&currencies=USD";
 
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(url))
-                    .header("Authorization", "Bearer " + apiKey)
                     .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             String jsonResponse = response.body();
 
+            System.out.println(jsonResponse);
+
             JsonObject jsonObject = JsonParser.parseString(jsonResponse).getAsJsonObject();
-            JsonObject firstToObject = jsonObject.getAsJsonArray("to").get(0).getAsJsonObject();
-            double euroAmount = firstToObject.get("mid").getAsDouble();
 
-            resultLabel.setText(String.format("Résultat : %.2f TND = %.2f EUR", amountTND, euroAmount));
+            if (!jsonObject.has("data") || !jsonObject.getAsJsonObject("data").has("USD")) {
+                resultLabel.setText("Résultat : Taux de conversion non trouvé !");
+                return;
+            }
 
-        } catch (NumberFormatException e) {
-            resultLabel.setText("Résultat : Veuillez entrer un montant valide !");
+            double tndPerEuro = jsonObject.getAsJsonObject("data").get("USD").getAsDouble();
+            double eurAmount = amountTND / tndPerEuro;
+
+            resultLabel.setText(String.format("Résultat : %.2f TND = %.2f EUR", amountTND, eurAmount));
+
         } catch (IOException | InterruptedException e) {
-            resultLabel.setText("Résultat : Erreur lors de la conversion : " + e.getMessage());
+            resultLabel.setText("Résultat : Erreur réseau : " + e.getMessage());
         } catch (Exception e) {
             resultLabel.setText("Résultat : Erreur inattendue : " + e.getMessage());
+            e.printStackTrace();
         }
+    }
+
+
+
+    public void setControllerPrincipal(listepretcontroller controller) {
+        this.controllerPrincipal = controller;
+    }
+
+    // Method to set current user ID (e.g., from login session)
+    public void setCurrentUserId(int userId) {
+        this.currentUserId = userId;
     }
 }

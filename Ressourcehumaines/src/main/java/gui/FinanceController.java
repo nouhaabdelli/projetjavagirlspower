@@ -1,4 +1,9 @@
 package gui;
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
@@ -277,5 +282,38 @@ public class FinanceController {
         }
         stage.setScene(scene);
         stage.show();
+    }
+    public class ChatGPTClient {
+        // ⚠️ Ne jamais mettre une clé API en dur dans le code en production !
+        private static final String API_KEY = "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";
+
+        public static String getChatResponse(String userMessage) throws IOException, InterruptedException {
+            // Construction du corps JSON
+            String json = String.format("""
+            {
+                "model": "gpt-3.5-turbo",
+                "messages": [
+                    {"role": "user", "content": "%s"}
+                ]
+            }
+            """, userMessage.replace("\"", "\\\"")); // échappe les guillemets si présents
+
+            // Création de la requête HTTP POST
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create("https://api.openai.com/v1/chat/completions"))
+                    .header("Content-Type", "application/json")
+                    .header("Authorization", "Bearer " + API_KEY)
+                    .POST(HttpRequest.BodyPublishers.ofString(json))
+                    .build();
+
+            // Envoi de la requête
+            HttpClient client = HttpClient.newHttpClient();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            // Retour du corps de la réponse
+            return response.body();
+        }
+
+
     }
 }
