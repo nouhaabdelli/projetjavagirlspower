@@ -293,7 +293,7 @@ public class AfficherUser {
     void exportPDF(ActionEvent event) {
         try {
             // Chemin de sortie vers le bureau
-            String outputPath = System.getProperty("user.home") + "\\Desktop\\utilisateurs.pdf";
+            String outputPath = System.getProperty("user.home") + "\\Desktop\\utilisateur.pdf";
             System.out.println("Chemin d'exportation : " + outputPath);
 
             // Création du document PDF
