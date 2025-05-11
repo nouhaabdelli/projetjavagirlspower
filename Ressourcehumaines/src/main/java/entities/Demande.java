@@ -1,20 +1,18 @@
+
 package entities;
 
 import java.time.LocalDate;
 
 public class Demande {
-
     private int id;
     private LocalDate dateSoumission;
     private String statut = "en attente";
     private String type;
     private String description;
     private int utilisateurId;
+    private LocalDate dateValidation;
+    private String tempsPrediction;
 
-    public Demande() {
-    }
-
-    // Constructeur avec tous les paramètres
     public Demande(int id, LocalDate dateSoumission, String statut, String type, String description, int utilisateurId) {
         this.id = id;
         this.dateSoumission = dateSoumission;
@@ -22,28 +20,30 @@ public class Demande {
         this.type = type;
         this.description = description;
         this.utilisateurId = utilisateurId;
+        this.dateValidation = null;
     }
 
-    // Constructeur sans id, utile pour les ajouts
-    public Demande(LocalDate dateSoumission, String statut, String type, String description, int utilisateurId) {
+    public Demande(int id, LocalDate dateSoumission, String statut, String type, String description, int utilisateurId, LocalDate dateValidation) {
+        this.id = id;
         this.dateSoumission = dateSoumission;
         this.statut = statut;
         this.type = type;
         this.description = description;
         this.utilisateurId = utilisateurId;
+        this.dateValidation = dateValidation;
     }
 
-    public int getUtilisateurId() {
-        return utilisateurId;
-    }
-
-    public void setUtilisateurId(int utilisateurId) {
+    public Demande(LocalDate dateSoumission, String statut, String type, String description, int utilisateurId, LocalDate dateValidation) {
+        this.dateSoumission = dateSoumission;
+        this.statut = statut;
+        this.type = type;
+        this.description = description;
         this.utilisateurId = utilisateurId;
+        this.dateValidation = dateValidation;
     }
 
-    // Getters et Setters
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(int id) {
@@ -51,7 +51,7 @@ public class Demande {
     }
 
     public LocalDate getDateSoumission() {
-        return dateSoumission;
+        return this.dateSoumission;
     }
 
     public void setDateSoumission(LocalDate dateSoumission) {
@@ -59,15 +59,23 @@ public class Demande {
     }
 
     public String getStatut() {
-        return statut;
+        return this.statut;
     }
 
     public void setStatut(String statut) {
         this.statut = statut;
     }
 
+    public String getTempsPrediction() {
+        return this.tempsPrediction;
+    }
+
+    public void setTempsPrediction(String tempsPrediction) {
+        this.tempsPrediction = tempsPrediction;
+    }
+
     public String getType() {
-        return type;
+        return this.type;
     }
 
     public void setType(String type) {
@@ -75,12 +83,26 @@ public class Demande {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
+    public int getUtilisateurId() {
+        return this.utilisateurId;
+    }
 
+    public void setUtilisateurId(int utilisateurId) {
+        this.utilisateurId = utilisateurId;
+    }
+
+    public LocalDate getDateValidation() {
+        return this.dateValidation;
+    }
+
+    public void setDateValidation(LocalDate dateValidation) {
+        this.dateValidation = dateValidation;
+    }
 }

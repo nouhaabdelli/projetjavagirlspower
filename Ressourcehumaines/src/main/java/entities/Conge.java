@@ -1,41 +1,44 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package entities;
-import java.security.PublicKey;
+
 import java.time.LocalDate;
 
-public class Conge extends Demande{
+public class Conge extends Demande {
     private LocalDate dateDebut;
     private LocalDate dateFin;
     private String motif;
-    private String typeConge;  // New attribute for type of leave
+    private String typeConge;
 
-    // Constructor including the new attribute
-
-    public Conge() {}
-    public Conge(LocalDate dateSoumission, String statut, String type, String description, int utilisateurId, LocalDate dateDebut, LocalDate dateFin, String motif, String typeConge) {
-        super(dateSoumission, statut, type, description, utilisateurId);
+    public Conge(LocalDate dateSoumission, String statut, String type, String description, int utilisateurId, LocalDate dateValidation, LocalDate dateDebut, LocalDate dateFin, String motif, String typeConge) {
+        super(dateSoumission, statut, type, description, utilisateurId, dateValidation);
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.motif = motif;
         this.typeConge = typeConge;
     }
 
-    @Override
-    public String toString() {
-        return "Conge{" +
-                "dateDebut=" + dateDebut +
-                ", dateFin=" + dateFin +
-                ", motif='" + motif + '\'' +
-                ", typeConge='" + typeConge + '\'' +
-                '}';
+    public Conge(int id, LocalDate dateSoumission, String statut, String type, String description, int utilisateurId, LocalDate dateValidation, LocalDate dateDebut, LocalDate dateFin, String motif, String typeConge) {
+        super(id, dateSoumission, statut, type, description, utilisateurId, dateValidation);
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.motif = motif;
+        this.typeConge = typeConge;
     }
 
-    public Conge(LocalDate dateSoumission, String statut, String type, String description, int utilisateurId, LocalDate dateDebut) {
-        super(dateSoumission, statut, type, description, utilisateurId);
+    public Conge(int id, LocalDate dateSoumission, String statut, String type, String description, int utilisateurId, LocalDate dateDebut, LocalDate dateFin, String motif, String typeConge) {
+        super(id, dateSoumission, statut, type, description, utilisateurId);
         this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.motif = motif;
+        this.typeConge = typeConge;
     }
 
     public LocalDate getDateDebut() {
-        return dateDebut;
+        return this.dateDebut;
     }
 
     public void setDateDebut(LocalDate dateDebut) {
@@ -43,7 +46,7 @@ public class Conge extends Demande{
     }
 
     public LocalDate getDateFin() {
-        return dateFin;
+        return this.dateFin;
     }
 
     public void setDateFin(LocalDate dateFin) {
@@ -51,7 +54,7 @@ public class Conge extends Demande{
     }
 
     public String getMotif() {
-        return motif;
+        return this.motif;
     }
 
     public void setMotif(String motif) {
@@ -59,7 +62,7 @@ public class Conge extends Demande{
     }
 
     public String getTypeConge() {
-        return typeConge;
+        return this.typeConge;
     }
 
     public void setTypeConge(String typeConge) {

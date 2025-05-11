@@ -26,8 +26,15 @@ public class TestJDBC {
             Utilisateur utilisateur = utilisateurService.getUtilisateurByEmail("johndoe@example.com");
 
             if (utilisateur != null) {
-                // 2. Créer une demande pour cet utilisateur
-                Demande demande = new Demande(LocalDate.now(), "en cours", "congé", "Demande de congé pour vacances", utilisateur.getId());
+                // 2. Créer une demande pour cet utilisateur avec dateValidation
+                Demande demande = new Demande(
+                        LocalDate.now(),               // dateSoumission
+                        "en cours",                    // statut
+                        "congé",                       // type
+                        "Demande de congé pour vacances", // description
+                        utilisateur.getId(),           // utilisateurId
+                        LocalDate.now()                // dateValidation (actuellement la date du jour)
+                );
                 demandeService.addDemande(demande);
 
                 // 3. Récupérer les demandes de cet utilisateur
@@ -36,6 +43,8 @@ public class TestJDBC {
                 // 4. Afficher les descriptions
                 for (Demande d : demandes) {
                     System.out.println("Description : " + d.getDescription());
+                    System.out.println("Date de soumission : " + d.getDateSoumission());
+                    System.out.println("Date de validation : " + d.getDateValidation());  // Affichage de la date de validation
                 }
             } else {
                 System.out.println("Utilisateur non trouvé.");

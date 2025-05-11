@@ -2,10 +2,7 @@ package services;
 
 import entities.Demande;
 import entities.Conge;
-import java.util.List;
 import entities.Attestation;
-import java.sql.Connection;
-
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,9 +15,9 @@ public class DemandeDAO {
         this.connection = connection;
     }
 
-    // ✅ Ajouter une demande générale
+    // Ajouter une demande générale
     public void addDemande(Demande demande) throws SQLException {
-        String sql = "INSERT INTO demande (date_soumission, statut, type, description, utilisateur_id) VALUES (?, 'en attente', ?, ?, ?)";
+        String sql = "INSERT INTO demande (date_soumission, statut, type, description, utilisateur_id, date_de_validation) VALUES (?, 'en attente', ?, ?, ?, null)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setDate(1, Date.valueOf(demande.getDateSoumission()));
             stmt.setString(2, demande.getType());
@@ -30,10 +27,9 @@ public class DemandeDAO {
         }
     }
 
-    // ✅ Ajouter une demande de congé
+    // Ajouter une demande de congé (Conge)
     public void addConge(Conge conge) throws SQLException {
-        String sql = "INSERT INTO demande (date_soumission, statut, type, description, utilisateur_id, date_debut, date_fin, motif, type_conge) " +
-                "VALUES (?, 'en attente', 'conge', ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO demande (date_soumission, statut, type, description, utilisateur_id, date_de_validation, date_debut, date_fin, motif, type_conge) VALUES (?, 'en attente', 'conge', ?, ?, null, ?, ?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setDate(1, Date.valueOf(conge.getDateSoumission()));
             stmt.setString(2, conge.getDescription());
@@ -46,10 +42,9 @@ public class DemandeDAO {
         }
     }
 
-    // ✅ Ajouter une demande d'attestation
+    // Ajouter une demande d'attestation (Attestation)
     public void addAttestation(Attestation attestation) throws SQLException {
-        String sql = "INSERT INTO demande (date_soumission, statut, type, description, utilisateur_id, type_attestation) " +
-                "VALUES (?, 'en attente', 'attestation', ?, ?, ?)";
+        String sql = "INSERT INTO demande (date_soumission, statut, type, description, utilisateur_id, date_de_validation, type_attestation) VALUES (?, 'en attente', 'attestation', ?, ?, null, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setDate(1, Date.valueOf(attestation.getDateSoumission()));
             stmt.setString(2, attestation.getDescription());
@@ -59,7 +54,17 @@ public class DemandeDAO {
         }
     }
 
-    // ✅ Récupérer une demande par ID
+    // Valider une demande
+    public void validerDemande(int demandeId) throws SQLException {
+        String sql = "UPDATE demande SET statut = 'validée', date_de_validation = ? WHERE id = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setDate(1, Date.valueOf(LocalDate.now())); // Met la date actuelle comme date de validation
+            stmt.setInt(2, demandeId);
+            stmt.executeUpdate();
+        }
+    }
+
+    // Récupérer une demande par ID
     public Demande getDemandeById(int id) throws SQLException {
         String sql = "SELECT * FROM demande WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -70,47 +75,50 @@ public class DemandeDAO {
 
                     switch (type) {
                         case "conge":
-                            Conge conge = new Conge();
-                            conge.setId(rs.getInt("id"));
-                            conge.setDateSoumission(rs.getDate("date_soumission").toLocalDate());
-                            conge.setStatut(rs.getString("statut"));
-                            conge.setType(type);
-                            conge.setDescription(rs.getString("description"));
-                            conge.setUtilisateurId(rs.getInt("utilisateur_id"));
-                            conge.setDateDebut(rs.getDate("date_debut").toLocalDate());
-                            conge.setDateFin(rs.getDate("date_fin").toLocalDate());
-                            conge.setMotif(rs.getString("motif"));
-                            conge.setTypeConge(rs.getString("type_conge"));
+                            Conge conge = new Conge(
+                                    rs.getDate("date_soumission").toLocalDate(),
+                                    rs.getString("statut"),
+                                    type,
+                                    rs.getString("description"),
+                                    rs.getInt("utilisateur_id"),
+                                    rs.getDate("date_de_validation") != null ? rs.getDate("date_de_validation").toLocalDate() : null,
+                                    rs.getDate("date_debut").toLocalDate(),
+                                    rs.getDate("date_fin").toLocalDate(),
+                                    rs.getString("motif"),
+                                    rs.getString("type_conge")
+                            );
+
                             return conge;
 
-                        case "attestation":
-                            Attestation att = new Attestation();
-                            att.setId(rs.getInt("id"));
-                            att.setDateSoumission(rs.getDate("date_soumission").toLocalDate());
-                            att.setStatut(rs.getString("statut"));
-                            att.setType(type);
-                            att.setDescription(rs.getString("description"));
-                            att.setUtilisateurId(rs.getInt("utilisateur_id"));
-                            att.setTypeAttestation(rs.getString("type_attestation"));
-                            return att;
 
-                        default:
-                            return new Demande(
+                        case "attestation":
+                            Attestation attestation = new Attestation(
                                     rs.getInt("id"),
                                     rs.getDate("date_soumission").toLocalDate(),
                                     rs.getString("statut"),
-                                    rs.getString("type"),
+                                    type,
                                     rs.getString("description"),
-                                    rs.getInt("utilisateur_id")
+                                    rs.getInt("utilisateur_id"),
+                                    rs.getDate("date_de_validation") != null ? rs.getDate("date_de_validation").toLocalDate() : null,
+                                    rs.getString("motif"),
+                                    rs.getString("type_attestation")
                             );
+
+                            return attestation;
+
+                        default:
+                            Demande demande = new Demande(rs.getInt("id"), rs.getDate("date_soumission").toLocalDate(),
+                                    rs.getString("statut"), type, rs.getString("description"), rs.getInt("utilisateur_id"));
+                            demande.setDateValidation(rs.getDate("date_de_validation") != null ? rs.getDate("date_de_validation").toLocalDate() : null);
+                            return demande;
                     }
                 }
             }
         }
-        return null;
+        return null; // Return null if no result is found
     }
 
-    // ✅ Récupérer les demandes d’un utilisateur
+    // Récupérer les demandes par utilisateur ID
     public List<Demande> getDemandeByUtilisateurId(int utilisateurId) throws SQLException {
         List<Demande> demandes = new ArrayList<>();
         String sql = "SELECT * FROM demande WHERE utilisateur_id = ?";
@@ -122,64 +130,37 @@ public class DemandeDAO {
 
                     switch (type) {
                         case "conge":
-                            Conge conge = new Conge();
-                            conge.setId(rs.getInt("id"));
-                            conge.setDateSoumission(rs.getDate("date_soumission").toLocalDate());
-                            conge.setStatut(rs.getString("statut"));
-                            conge.setType(type);
-                            conge.setDescription(rs.getString("description"));
-                            conge.setUtilisateurId(rs.getInt("utilisateur_id"));
-                            conge.setDateDebut(rs.getDate("date_debut").toLocalDate());
-                            conge.setDateFin(rs.getDate("date_fin").toLocalDate());
-                            conge.setMotif(rs.getString("motif"));
-                            conge.setTypeConge(rs.getString("type_conge"));
-                            demandes.add(conge);
-                            break;
-
-                        case "attestation":
-                            Attestation att = new Attestation();
-                            att.setId(rs.getInt("id"));
-                            att.setDateSoumission(rs.getDate("date_soumission").toLocalDate());
-                            att.setStatut(rs.getString("statut"));
-                            att.setType(type);
-                            att.setDescription(rs.getString("description"));
-                            att.setUtilisateurId(rs.getInt("utilisateur_id"));
-                            att.setTypeAttestation(rs.getString("type_attestation"));
-                            demandes.add(att);
-                            break;
-
-                        default:
-                            Demande d = new Demande(
-                                    rs.getInt("id"),
+                            Conge conge = new Conge(rs.getInt("id"),
                                     rs.getDate("date_soumission").toLocalDate(),
                                     rs.getString("statut"),
                                     rs.getString("type"),
                                     rs.getString("description"),
-                                    rs.getInt("utilisateur_id")
-                            );
-                            demandes.add(d);
+                                    rs.getInt("utilisateur_id"),
+                                    rs.getDate("date_debut").toLocalDate(),
+                                    rs.getDate("date_fin").toLocalDate(),
+                                    rs.getString("motif"),
+                                    rs.getString("type_conge"));
+                            demandes.add(conge);
+                            break;
+
+                        case "attestation":
+                            Attestation attestation = new Attestation(rs.getInt("id"), rs.getDate("date_soumission").toLocalDate(),
+                                    rs.getString("statut"), type, rs.getString("description"),
+                                    rs.getInt("utilisateur_id"), rs.getDate("date_de_validation") != null ? rs.getDate("date_de_validation").toLocalDate() : null,
+                                    rs.getString("motif"), rs.getString("type_attestation"));
+                            attestation.setDateValidation(rs.getDate("date_de_validation") != null ? rs.getDate("date_de_validation").toLocalDate() : null);
+                            demandes.add(attestation);
+                            break;
+
+                        default:
+                            Demande demande = new Demande(rs.getInt("id"), rs.getDate("date_soumission").toLocalDate(),
+                                    rs.getString("statut"), type, rs.getString("description"), rs.getInt("utilisateur_id"));
+                            demande.setDateValidation(rs.getDate("date_de_validation") != null ? rs.getDate("date_de_validation").toLocalDate() : null);
+                            demandes.add(demande);
                     }
                 }
             }
         }
         return demandes;
-    }
-
-    // ✅ Valider une demande
-    public void validerDemande(int demandeId) throws SQLException {
-        String sql = "UPDATE demande SET statut = 'validée' WHERE id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, demandeId);
-            stmt.executeUpdate();
-        }
-    }
-
-    // ✅ Refuser une demande
-    public void refuserDemande(int demandeId) throws SQLException {
-        String sql = "UPDATE demande SET statut = 'refusée' WHERE id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, demandeId);
-            stmt.executeUpdate();
-        }
     }
 }
