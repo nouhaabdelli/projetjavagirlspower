@@ -26,6 +26,45 @@ public class DemandeDAO {
             stmt.executeUpdate();
         }
     }
+    public void modifierDemande(Demande demande) throws SQLException {
+        String type = demande.getType();
+
+        switch (type) {
+            case "conge":
+                Conge conge = (Conge) demande;
+                String sqlConge = "UPDATE demande SET description = ?, date_debut = ?, date_fin = ?, motif = ?, type_conge = ? WHERE id = ?";
+                try (PreparedStatement stmt = connection.prepareStatement(sqlConge)) {
+                    stmt.setString(1, conge.getDescription());
+                    stmt.setDate(2, Date.valueOf(conge.getDateDebut()));
+                    stmt.setDate(3, Date.valueOf(conge.getDateFin()));
+                    stmt.setString(4, conge.getMotif());
+                    stmt.setString(5, conge.getTypeConge());
+                    stmt.setInt(6, conge.getId());
+                    stmt.executeUpdate();
+                }
+                break;
+
+            case "attestation":
+                Attestation attestation = (Attestation) demande;
+                String sqlAttestation = "UPDATE demande SET description = ?, motif = ?, type_attestation = ? WHERE id = ?";
+                try (PreparedStatement stmt = connection.prepareStatement(sqlAttestation)) {
+                    stmt.setString(1, attestation.getDescription());
+                    stmt.setString(2, attestation.getMotif());
+                    stmt.setString(3, attestation.getTypeAttestation());
+                    stmt.setInt(4, attestation.getId());
+                    stmt.executeUpdate();
+                }
+                break;
+
+            default:
+                String sql = "UPDATE demande SET description = ? WHERE id = ?";
+                try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+                    stmt.setString(1, demande.getDescription());
+                    stmt.setInt(2, demande.getId());
+                    stmt.executeUpdate();
+                }
+        }
+    }
 
     // Ajouter une demande de congé (Conge)
     public void addConge(Conge conge) throws SQLException {

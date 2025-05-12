@@ -1,5 +1,6 @@
 gui\MesDemandesController.class
-main\TestFX.class
+utils\AttestationStatistics.class
+utils\PDFSignatureUtil.class
 services\UtilisateurService.class
 entities\Utilisateur.class
 gui\DashboardController.class
@@ -7,9 +8,12 @@ gui\ModifierCongeFormController.class
 services\DemandeDAO.class
 entities\Conge.class
 gui\MesDemandesController$1.class
+utils\OpenAIService$OpenAIResponse$Choice.class
 entities\Demande.class
 gui\AttestationFormController.class
 entities\Attestation.class
 gui\CongéFormController.class
+utils\OpenAIService.class
 gui\DemandeController.class
+utils\OpenAIService$OpenAIResponse.class
 gui\ModifierAttestationFormController.class

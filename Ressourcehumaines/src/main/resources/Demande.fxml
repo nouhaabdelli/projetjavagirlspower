@@ -1,57 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="gui.DemandeController"
-            stylesheets="@style/style.css">
-
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DemandeController">
+    
     <children>
-        <!-- VBox added to contain the buttons -->
-        <VBox fx:id="demandeSection" spacing="10" layoutX="100.0" layoutY="30.0">
-            <Button fx:id="btnConge"
-                    mnemonicParsing="false"
-                    prefHeight="63.0" prefWidth="237.0"
-                    text="Demande Congé"
-                    onAction="#handleCongé">
-                <font>
-                    <Font name="Arial Rounded MT Bold" size="20.0"/>
-                </font>
-            </Button>
-
-            <Button fx:id="btnAttestation"
-                    mnemonicParsing="false"
-                    prefHeight="63.0" prefWidth="237.0"
-                    text="Demande Attestation"
-                    onAction="#handleAttestation">
-                <font>
-                    <Font name="Arial Rounded MT Bold" size="19.0"/>
-                </font>
-            </Button>
-
-            <Button fx:id="btnMesDemandes"
-                    mnemonicParsing="false"
-                    prefHeight="63.0" prefWidth="237.0"
-                    text="Mes Demandes"
-                    onAction="#handleMesDemandes">
-                <font>
-                    <Font name="Arial Rounded MT Bold" size="20.0"/>
-                </font>
-            </Button>
+        <!-- En-tête -->
+        <VBox spacing="20" styleClass="header-box" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+            
+            <Text styleClass="label-title" text="Gestion des Demandes" />
+            
+            <HBox alignment="CENTER" spacing="10" />
         </VBox>
-
-        <!-- Image at the top right -->
-        <ImageView fitHeight="121.0" fitWidth="140.0" layoutX="430.0" layoutY="20.0">
-            <image>
-                <Image url="@images/Présentation_Projet_Entreprise_Minimaliste_Moderne_Sobre_Blanc_Noir-removebg-preview.png"/>
-            </image>
-        </ImageView>
+        
+        <!-- Contenu principal -->
+        <VBox spacing="20" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="120.0">
+            
+            <Text styleClass="label-title" text="Bienvenue dans votre espace de gestion" />
+            <Text styleClass="label" />
+            
+            <HBox alignment="CENTER" spacing="20" />
+             <Button onAction="#handleCongé" styleClass="btn-primary" text="Congé" />
+             <Button onAction="#handleAttestation" styleClass="btn-primary" text="Attestation" />
+             <Button onAction="#handleMesDemandes" styleClass="btn-secondary" text="Mes Demandes" />
+             <Button onAction="#ouvrirStatistiques" styleClass="btn-statistiques" text="Statistiques" />
+        </VBox>
+        
+        <!-- Pied de page -->
+        <HBox alignment="CENTER_RIGHT" styleClass="footer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <padding>
+                <Insets bottom="10" left="20" right="20" top="10" />
+            </padding>
+        </HBox>
     </children>
 </AnchorPane>

@@ -8,6 +8,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
 
 import java.io.IOException;
 import java.sql.*;
@@ -15,7 +18,7 @@ import java.sql.*;
 public class DemandeController {
 
     @FXML
-    private VBox demandeSection; // Cette VBox contient les boutons et les informations des demandes
+    private VBox demandeSection;
 
     @FXML
     private Button btnConge;
@@ -26,56 +29,50 @@ public class DemandeController {
     @FXML
     private Button btnMesDemandes;
 
+    @FXML
+    private Button btnStatistiques;
+
     // Méthode pour gérer la demande de congé
     @FXML
-    private void handleCongé() {
+    private void handleCongé(ActionEvent event) {
         System.out.println("Demande Congé clicked");
-
-        // Charger le formulaire de demande de congé (dans un autre scene ou un autre formulaire)
-        // Exemple : Redirection vers un autre formulaire (en fonction de ton application)
-        loadForm("/CongéForm.fxml");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CongéForm.fxml"));
+            Parent root = loader.load();
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+            showErrorAlert("Une erreur s'est produite lors du chargement du formulaire.");
+        }
     }
 
     // Méthode pour gérer la demande d'attestation
     @FXML
-    private void handleAttestation() {
+    private void handleAttestation(ActionEvent event) {
         System.out.println("Demande Attestation clicked");
-
-        // Charger le formulaire de demande d'attestation
-        loadForm("/AttestationForm.fxml");
-    }
-
-    // Méthode pour gérer l'affichage des demandes de l'utilisateur
-
-
-    // Méthode pour charger un formulaire spécifique
-    private void loadForm(String fxmlFile) {
         try {
-            // Charger le fichier FXML pour le formulaire
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AttestationForm.fxml"));
             Parent root = loader.load();
-
-            // Afficher la nouvelle scène dans la fenêtre actuelle
-            Stage stage = (Stage) demandeSection.getScene().getWindow();
-            stage.getScene().setRoot(root);
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
-            showAlert("Erreur", "Une erreur s'est produite lors du chargement du formulaire.");
+            showErrorAlert("Une erreur s'est produite lors du chargement du formulaire.");
         }
     }
-    @FXML
-    private void handleMesDemandes() {
-        System.out.println("Mes Demandes clicked");
 
+    @FXML
+    private void handleMesDemandes(ActionEvent event) {
+        System.out.println("Mes Demandes clicked");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/MesDemandes.fxml"));
             Parent root = loader.load();
-
-            Stage stage = (Stage) demandeSection.getScene().getWindow();
-            stage.getScene().setRoot(root);
+            Scene scene = ((Node) event.getSource()).getScene();
+            scene.setRoot(root);
         } catch (IOException e) {
             e.printStackTrace();
-            showAlert("Erreur", "Impossible de charger l'interface des demandes.");
+            showErrorAlert("Impossible de charger l'interface des demandes.");
         }
     }
 
@@ -83,12 +80,12 @@ public class DemandeController {
     private void loadMesDemandes() {
         String url = "jdbc:mysql://localhost:3306/workbridge";
         String username = "root";
-        String password = "";  // Remplace par tes vrais identifiants
+        String password = "";
 
-        String query = "SELECT * FROM demande WHERE utilisateur_id = ?";  // Adapté à l'utilisateur connecté
+        String query = "SELECT * FROM demande WHERE utilisateur_id = ?";
         try (Connection conn = DriverManager.getConnection(url, username, password);
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, getUtilisateurId());  // Remplace par l'ID de l'utilisateur actuel
+            stmt.setInt(1, getUtilisateurId());
 
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -98,33 +95,75 @@ public class DemandeController {
                 String statut = rs.getString("statut");
                 String dateSoumission = rs.getString("date_soumission");
 
-                // Affichage des demandes dans l'interface utilisateur
                 System.out.println("ID: " + id + ", Type: " + type + ", Statut: " + statut + ", Date: " + dateSoumission);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            showAlert("Erreur", "Une erreur s'est produite lors de la récupération des demandes.");
+            showErrorAlert("Une erreur s'est produite lors de la récupération des demandes.");
         }
     }
 
-    // Méthode pour afficher des alertes
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle(title);
+    private void showAlert(String message) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Information");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }
-    public void initData(String data) {
-        System.out.println("Initializing data with: " + data);
-        // Tu peux ajouter ici des logiques pour initialiser des composants,
-        // comme remplir un champ avec des données passées en paramètre.
+
+    private void showErrorAlert(String message) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
-    // Méthode pour obtenir l'ID de l'utilisateur connecté (à adapter selon ton système)
+    public void initData(String data) {
+        System.out.println("Initializing data with: " + data);
+    }
+
     private int getUtilisateurId() {
         // Retourner l'ID de l'utilisateur connecté
         // Remplace cela par la logique pour obtenir l'ID réel de l'utilisateur
         return 1;  // Valeur par défaut, remplace par la valeur dynamique de l'utilisateur connecté
+    }
+
+    @FXML
+    void ouvrirStatistiques(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/Statistics.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setTitle("Statistiques des Attestations");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showErrorAlert("Erreur lors de l'ouverture des statistiques : " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleDeconnexion(ActionEvent event) {
+        try {
+            // Charger la scène de connexion
+            Parent root = FXMLLoader.load(getClass().getResource("/Login.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showError("Erreur", "Impossible de charger la page de connexion");
+        }
+    }
+
+    private void showError(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }

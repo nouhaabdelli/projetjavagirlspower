@@ -1,67 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Alert?>
+<?import javafx.scene.control.Alert.AlertType?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="gui.ModifierCongeFormController" spacing="15" style="-fx-padding: 20;">
+    <!-- Titre de la fenêtre -->
+    <Label text="Modifier la demande de congé" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
 
-<AnchorPane prefHeight="700.0" prefWidth="930.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CongéFormController">
-    <children>
+    <!-- Champ Motif -->
+    <HBox spacing="10">
+        <Label text="Motif" style="-fx-font-size: 14px;" />
+        <TextField fx:id="textMotif" promptText="Motif du congé" style="-fx-pref-width: 200px;" />
+    </HBox>
 
-        <!-- Titre -->
-        <Text layoutX="282.0" layoutY="88.0" text="Demande De Congé" textAlignment="CENTER" wrappingWidth="374.0">
-            <font><Font size="27.0" /></font>
-        </Text>
+    <!-- Champ Type de Congé -->
+    <HBox spacing="10">
+        <Label text="Type de Congé" style="-fx-font-size: 14px;" />
+        <TextField fx:id="textTypeConge" promptText="Type de congé (ex: maladie, annuel)" style="-fx-pref-width: 200px;" />
+    </HBox>
 
-        <!-- Logo -->
-        <ImageView fitHeight="88.0" fitWidth="98.0" layoutX="26.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@images/Présentation_Projet_Entreprise_Minimaliste_Moderne_Sobre_Blanc_Noir-removebg-preview.png" />
-            </image>
-        </ImageView>
+    <!-- Champ Date Début -->
+    <HBox spacing="10">
+        <Label text="Date de début" style="-fx-font-size: 14px;" />
+        <DatePicker fx:id="dateDebut" style="-fx-pref-width: 200px;" />
+    </HBox>
 
-        <!-- Type de congé -->
-        <Text layoutX="20.0" layoutY="150.0" text="Type de congé">
-            <font><Font size="17.0" /></font>
-        </Text>
-        <ComboBox fx:id="comboType" layoutX="150.0" layoutY="130.0" prefWidth="200.0" />
+    <!-- Champ Date Fin -->
+    <HBox spacing="10">
+        <Label text="Date de fin" style="-fx-font-size: 14px;" />
+        <DatePicker fx:id="dateFin" style="-fx-pref-width: 200px;" />
+    </HBox>
 
-        <!-- Objet -->
-        <Text layoutX="20.0" layoutY="200.0" text="Objet">
-            <font><Font size="17.0" /></font>
-        </Text>
-        <TextField fx:id="textObjet" layoutX="150.0" layoutY="180.0" prefWidth="400.0" />
+    <!-- Champ Statut -->
+    <HBox spacing="10">
+        <Label text="Statut" style="-fx-font-size: 14px;" />
+        <ComboBox fx:id="comboStatut" style="-fx-pref-width: 200px;">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="En attente" />
+                    <String fx:value="Validé" />
+                    <String fx:value="Refusé" />
+                </FXCollections>
+            </items>
+        </ComboBox>
+    </HBox>
 
-        <!-- Description -->
-        <Text layoutX="20.0" layoutY="250.0" text="Description">
-            <font><Font size="17.0" /></font>
-        </Text>
-        <TextArea fx:id="boxtext" layoutX="150.0" layoutY="230.0" prefHeight="120.0" prefWidth="500.0" />
-
-        <!-- Date début -->
-        <Text layoutX="20.0" layoutY="380.0" text="Date Début">
-            <font><Font size="17.0" /></font>
-        </Text>
-        <DatePicker fx:id="dateDebut" layoutX="150.0" layoutY="360.0" prefWidth="200.0" />
-
-        <!-- Date fin -->
-        <Text layoutX="20.0" layoutY="430.0" text="Date Fin">
-            <font><Font size="17.0" /></font>
-        </Text>
-        <DatePicker fx:id="dateFin" layoutX="150.0" layoutY="410.0" prefWidth="200.0" />
-
-        <!-- Pièce jointe -->
-        <Text layoutX="20.0" layoutY="480.0" text="Documents liés">
-            <font><Font size="17.0" /></font>
-        </Text>
-        <Button layoutX="150.0" layoutY="460.0" onAction="#ajoutpiece" text="Ajouter pièce jointe" />
-        <Hyperlink fx:id="hyperlinkPieceJointe" layoutX="320.0" layoutY="465.0" text="Aucun fichier sélectionné" />
-
-        <!-- Boutons -->
-        <Button fx:id="btnAjouter" layoutX="150.0" layoutY="530.0" prefWidth="150.0" onAction="#ajoute" text="Ajouter" />
-        <Button layoutX="320.0" layoutY="530.0" prefWidth="180.0" onAction="#retourPagePrecedente" text="retour" />
-
-    </children>
-</AnchorPane>
+    <!-- Boutons d'action -->
+    <HBox spacing="10" alignment="center">
+        <Button text="Sauvegarder" onAction="#saveChanges" style="-fx-pref-width: 120px; -fx-background-color: #4c77af; -fx-text-fill: white;" />
+        <Button text="Retour" onAction="#retourPagePrecedente" style="-fx-pref-width: 120px; -fx-background-color: #3665f4; -fx-text-fill: white;" />
+    </HBox>
+</VBox>

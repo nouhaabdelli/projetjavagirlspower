@@ -1,87 +1,235 @@
-/* Root style */
+/* Variables de couleurs */
+* {
+    -color-primary: #2196F3;
+    -color-secondary: #FFFFFF;
+    -color-text: #000000;
+    -color-background: #F5F5F5;
+}
+
+/* Style général */
 .root {
-    -fx-background-color: #e8f0f8;
-    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-background-color: -color-background;
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
 }
 
-/* Label for the title */
-#GrandTitre {
-    -fx-font-size: 30px;
-    -fx-text-fill: #1a4a66;
-    -fx-padding: 12px;
-    -fx-background-radius: 10px;
-    -fx-font-family: sans-serif;
-}
-
-/* TableView style */
-.table-view {
-    -fx-background-color: white;
-    -fx-border-color: #cccccc;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 4);
-    -fx-font-family: 'Segoe UI', sans-serif;
-}
-
-/* TableView column headers */
-.table-view .column-header {
-    -fx-background-color: #9bd2f3;
-    -fx-text-fill: black;
-    -fx-font-weight: bold;
-    -fx-alignment: CENTER;
-    -fx-font-size: 15px;
-}
-
-/* TableView cells */
-.table-view .table-cell {
-    -fx-padding: 10px;
-    -fx-font-size: 13px;
-}
-
-/* Button for adding items */
-#btnAjouter {
-    -fx-background-color: #1a4a66;
-    -fx-text-fill: white;
-    -fx-font-size: 14px;
-    -fx-cursor: hand;
-    -fx-padding: 8px 16px;
-    -fx-background-radius: 5px;
-}
-
-/* General button style */
+/* Style des boutons */
 .button {
-    -fx-background-color: #badef3;
-    -fx-font-size: 13px;
+    -fx-background-color: -color-primary;
+    -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-padding: 5px 10px;
-    -fx-background-radius: 10px;
+    -fx-padding: 8 15;
+    -fx-background-radius: 4;
     -fx-cursor: hand;
 }
 
-/* Modifier button (green) */
-.button.modify {
+.button:hover {
+    -fx-background-color: derive(-color-primary, 20%);
+}
+
+.button:pressed {
+    -fx-background-color: derive(-color-primary, -20%);
+}
+
+/* Style des champs de texte */
+.text-field, .text-area, .combo-box {
+    -fx-background-color: -color-secondary;
+    -fx-border-color: -color-primary;
+    -fx-border-radius: 4;
+    -fx-padding: 5;
+}
+
+.text-field:focused, .text-area:focused, .combo-box:focused {
+    -fx-border-color: derive(-color-primary, 20%);
+}
+
+/* Style des tableaux */
+.table-view {
+    -fx-background-color: -color-secondary;
+    -fx-border-color: -color-primary;
+    -fx-border-radius: 4;
+}
+
+.table-view .column-header {
+    -fx-background-color: -color-primary;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: -color-secondary;
+    -fx-border-color: transparent transparent -color-primary transparent;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: derive(-color-secondary, 5%);
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: derive(-color-primary, 50%);
+    -fx-text-fill: white;
+}
+
+/* Style des onglets */
+.tab-pane {
+    -fx-background-color: -color-secondary;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: -color-primary;
+}
+
+.tab-pane .tab {
+    -fx-background-color: derive(-color-primary, 20%);
+    -fx-text-fill: white;
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: -color-secondary;
+    -fx-text-fill: -color-primary;
+}
+
+/* Style des graphiques */
+.chart {
+    -fx-background-color: -color-secondary;
+    -fx-padding: 10;
+}
+
+.chart-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.axis-label {
+    -fx-font-size: 12px;
+}
+
+/* Style des alertes */
+.dialog-pane {
+    -fx-background-color: -color-secondary;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: -color-primary;
+}
+
+/* Style des labels */
+.label {
+    -fx-text-fill: -color-text;
+    -fx-font-size: 12px;
+}
+
+.label-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-primary;
+}
+
+/* Style des conteneurs */
+.vbox, .hbox {
+    -fx-spacing: 5;
+    -fx-padding: 5;
+}
+
+/* Style des boutons spécifiques */
+.btn-primary {
+    -fx-background-color: -color-primary;
+}
+
+.btn-secondary {
+    -fx-background-color: -color-secondary;
+    -fx-text-fill: -color-primary;
+    -fx-border-color: -color-primary;
+}
+
+.btn-danger {
+    -fx-background-color: #F44336;
+}
+
+.btn-success {
+    -fx-background-color: #4CAF50;
+}
+
+/* Style des tooltips */
+.tooltip {
+    -fx-background-color: -color-primary;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+}
+
+/* Style des scrollbars */
+.scroll-bar {
+    -fx-background-color: -color-secondary;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: -color-primary;
+}
+
+/* Style des menus */
+.menu-bar {
+    -fx-background-color: -color-primary;
+}
+
+.menu {
+    -fx-text-fill: white;
+}
+
+/* Style des boutons de navigation */
+.btn-nav {
+    -fx-background-color: -color-primary;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 4;
+}
+
+.btn-nav:hover {
+    -fx-background-color: derive(-color-primary, 20%);
+}
+
+/* Style des cartes */
+.card {
+    -fx-background-color: -color-secondary;
+    -fx-padding: 10;
+    -fx-background-radius: 4;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+/* Style des en-têtes */
+.header {
+    -fx-background-color: -color-primary;
+    -fx-padding: 10;
+}
+
+.header .label-title {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+}
+
+/* Style des pieds de page */
+.footer {
+    -fx-background-color: -color-primary;
+    -fx-padding: 10;
+}
+
+/* Style des messages */
+.message {
+    -fx-padding: 10;
+    -fx-background-radius: 4;
+    -fx-margin: 5;
+}
+
+.message-info {
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+}
+
+.message-error {
+    -fx-background-color: #F44336;
+    -fx-text-fill: white;
+}
+
+.message-success {
     -fx-background-color: #4CAF50;
     -fx-text-fill: white;
-}
-
-/* Supprimer button (red) */
-.button.delete {
-    -fx-background-color: #d32f2f;
-    -fx-text-fill: white;
-}
-
-/* Valider button (blue) */
-.button.valider {
-    -fx-background-color: #1976d2;
-    -fx-text-fill: white;
-}
-
-/* ImageView (logo) */
-.image-view {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0.2, 2, 2);
-    -fx-border-radius: 10px;
-}
-
-/* Aligning buttons in TableCell */
-.table-view .column-header .button,
-.table-view .table-cell .button {
-    -fx-padding: 5px;
 }

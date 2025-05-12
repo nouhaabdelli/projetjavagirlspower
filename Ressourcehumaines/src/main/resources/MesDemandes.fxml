@@ -3,69 +3,40 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.effect.DropShadow?>
 
-<BorderPane prefHeight="700.0" prefWidth="1000.0"
-            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="gui.MesDemandesController"
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MesDemandesController"
             stylesheets="@style/style.css">
 
-    <!-- TOP : Titre -->
-    <top>
-        <VBox alignment="CENTER" spacing="10" styleClass="header">
+    <children>
+        <!-- En-tête -->
+        <VBox spacing="10" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" styleClass="header-box">
             <padding>
-                <Insets top="20" bottom="20" left="25" right="25"/>
-            </padding>
-            <Label text="Liste des Demandes" styleClass="title-label">
-                <font>
-                    <Font name="System Bold" size="26"/>
-                </font>
-            </Label>
-            <Separator/>
-        </VBox>
-    </top>
-
-    <!-- CENTER : Contenu principal -->
-    <center>
-        <VBox spacing="15">
-            <padding>
-                <Insets top="20" bottom="20" left="25" right="25"/>
+                <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
 
-            <!-- Barre de recherche -->
-            <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text="Demandes Soumises" styleClass="section-title">
-                    <font>
-                        <Font size="16.0"/>
-                    </font>
-                </Label>
-                <Region HBox.hgrow="ALWAYS"/>
-                <TextField fx:id="filterField" promptText="Rechercher..." prefWidth="250" styleClass="search-field"/>
+            <Label text="Mes Demandes" styleClass="header-label"/>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Button text="Retour" onAction="#handleRetour" styleClass="btn-retour"/>
             </HBox>
-
-            <!-- TableView des demandes -->
-            <TableView fx:id="tableViewDemandes" VBox.vgrow="ALWAYS" styleClass="reservations-table">
-                <columns>
-                    <TableColumn fx:id="colId" text="ID" prefWidth="50" visible="false"/>
-                    <TableColumn fx:id="colDateSoumission" text="Date de Soumission" prefWidth="180"/>
-                    <TableColumn fx:id="colStatut" text="Statut" prefWidth="120"/>
-                    <TableColumn fx:id="colType" text="Type" prefWidth="150"/>
-                    <TableColumn fx:id="colDescription" text="Description" prefWidth="300"/>
-                    <TableColumn fx:id="colDateValidation" text="Date de Validation" prefWidth="180"/>
-                    <TableColumn fx:id="colActions" text="Actions" prefWidth="350"/>
-                </columns>
-                <effect>
-                    <DropShadow color="#00000026" radius="5.0" spread="0.05"/>
-                </effect>
-                <placeholder>
-                    <Label text="Aucune demande trouvée" style="-fx-text-fill: #888; -fx-font-style: italic;"/>
-                </placeholder>
-            </TableView>
-
-            <!-- Label de prédiction -->
-            <Label fx:id="predictionLabel" text="Résultat de la prédiction apparaîtra ici." styleClass="prediction-label"/>
         </VBox>
-    </center>
 
-</BorderPane>
+        <!-- Contenu principal -->
+        <VBox spacing="20" AnchorPane.topAnchor="100.0" AnchorPane.bottomAnchor="20.0"
+              AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+
+            <TableView fx:id="tableDemandes" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                    <TableColumn fx:id="colType" text="Type" prefWidth="100"/>
+                    <TableColumn fx:id="colDescription" text="Description" prefWidth="200"/>
+                    <TableColumn fx:id="colDate" text="Date" prefWidth="100"/>
+                    <TableColumn fx:id="colStatut" text="Statut" prefWidth="100"/>
+                    <TableColumn fx:id="colActions" text="Actions" prefWidth="150"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </children>
+</AnchorPane>

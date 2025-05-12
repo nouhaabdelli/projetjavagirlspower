@@ -1,4 +1,3 @@
-
 package entities;
 
 import java.time.LocalDate;
@@ -6,6 +5,8 @@ import java.time.LocalDate;
 public class Attestation extends Demande {
     private String motif;
     private String typeAttestation;
+    private String objet;
+    private String fichier;
 
     public Attestation(int id, LocalDate dateSoumission, String statut, String type, String description, int utilisateurId, LocalDate dateValidation, String motif, String typeAttestation) {
         super(id, dateSoumission, statut, type, description, utilisateurId, dateValidation);
@@ -33,6 +34,22 @@ public class Attestation extends Demande {
 
     public void setTypeAttestation(String typeAttestation) {
         this.typeAttestation = typeAttestation;
+    }
+
+    public String getObjet() {
+        return this.objet;
+    }
+
+    public void setObjet(String objet) {
+        this.objet = objet;
+    }
+
+    public String getFichier() {
+        return this.fichier;
+    }
+
+    public void setFichier(String fichier) {
+        this.fichier = fichier;
     }
 
     public String toString() {
