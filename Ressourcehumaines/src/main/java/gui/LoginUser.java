@@ -27,6 +27,10 @@ import java.util.regex.Matcher;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import java.sql.*;
+import javafx.application.Platform;
+import org.mindrot.jbcrypt.BCrypt;
+
+
 
 
 
@@ -34,14 +38,15 @@ import java.sql.*;
 public class LoginUser {
 
     @FXML
-    private Button createAccountButton;
+    private Hyperlink mdpoub;
+    @FXML
+    private Button signin;
 
     @FXML
     private TextField emailField;
 
     @FXML
-    private TextField nameField;
-
+    private TextField statutField;
     @FXML
     private PasswordField passwordField;
 
@@ -50,9 +55,6 @@ public class LoginUser {
     @FXML
     private Hyperlink googleLoginLink;
 
-
-    @FXML
-    private CheckBox termsCheckBox;
     private static final String DB_URL = "jdbc:mysql://localhost:3306/workbridge";
     private static final String DB_USER = "root";  // Should be configured externally
     private static final String DB_PASSWORD = ""; // Should never be empty in production
@@ -89,12 +91,12 @@ public class LoginUser {
 
 
     @FXML
-    void handleSignUp(ActionEvent event) {
-        String name = nameField.getText();
+    void handleSignIn(ActionEvent event) {
+        String statut = statutField.getText();
         String email = emailField.getText();
         String password = passwordField.getText();
 
-        if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+        if (statut.isEmpty() || email.isEmpty() || password.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Champs manquants");
             alert.setHeaderText(null);
@@ -103,14 +105,7 @@ public class LoginUser {
             return;
         }
 
-        if (!termsCheckBox.isSelected()) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Conditions non acceptées");
-            alert.setHeaderText(null);
-            alert.setContentText("Vous devez accepter les Conditions Générales.");
-            alert.showAndWait();
-            return;
-        }
+
 
         if (!emailExists(email)) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -127,18 +122,44 @@ public class LoginUser {
         alert.setHeaderText(null);
         alert.setContentText("Connexion réussie !");
         alert.showAndWait();
+
+        String apiKey = "AIzaSyCF_WYiihngjigbicM_VKNCBolfsjku_II";
+        String jsonBody = """
+    {
+        "email": "%s",
+        "password": "%s",
+        "returnSecureToken": true
+    }
+    """.formatted(email, password);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + apiKey))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
+                .build();
+
+        HttpClient client = HttpClient.newHttpClient();
+        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenAccept(response -> {
+                    if (response.statusCode() == 200) {
+                        Platform.runLater(() -> {
+                            System.out.println("Succès Connexion réussie avec Firebase !");
+                            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+                            updatePasswordInDB(email, hashedPassword);
+
+                        });
+                    } else {
+                        Platform.runLater(() -> {
+                            System.out.println("Erreur Firebase Échec de la connexion Firebase : " + response.body());
+                        });
+                    }
+                });
     }
 
 
 
-    @FXML
-    void termsCheckBox(ActionEvent event) {
-        if (termsCheckBox.isSelected()) {
-            System.out.println("Conditions Générales acceptées.");
-        } else {
-            System.out.println("Conditions Générales non acceptées.");
-        }
-    }
+
+
     @FXML
     private void handleGoogleLogin(ActionEvent event) {
         WebView webView = new WebView();
@@ -239,5 +260,68 @@ public class LoginUser {
             System.out.println("Impossible de récupérer l'email depuis Firebase.");
         }
     }
+    @FXML
+    void mdpoub(ActionEvent event) {String email = emailField.getText();
+        if (email.isEmpty()) {
+            showAlert("Erreur", "Veuillez entrer votre adresse email.");
+            return;
+        }
+
+        String apiKey = "AIzaSyCF_WYiihngjigbicM_VKNCBolfsjku_II";  // à remplacer
+
+        String jsonBody = """
+        {
+            "requestType": "PASSWORD_RESET",
+            "email": "%s"
+        }
+        """.formatted(email);
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=" + apiKey))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
+                .build();
+
+        HttpClient client = HttpClient.newHttpClient();
+        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenAccept(response -> {
+                    if (response.statusCode() == 200) {
+                        showAlert("Succès", "Un email de réinitialisation a été envoyé.");
+                    } else {
+                        showAlert("Erreur", "Échec de la réinitialisation : " + response.body());
+                    }
+                });
+    }
+
+    private void showAlert(String title, String message) {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle(title);
+            alert.setHeaderText(null);
+            alert.setContentText(message);
+            alert.showAndWait();
+        });
+    }
+
+
+    private void updatePasswordInDB(String email, String newPassword) {
+        // Mettre à jour le mot de passe dans la base de données
+        String sql = "UPDATE user SET MotDePasse = ? WHERE Email = ?";
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, newPassword);
+            pstmt.setString(2, email);
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                showAlert("Succès", "Mot de passe mis à jour avec succès dans la base de données !");
+            } else {
+                showAlert("Erreur", "Impossible de mettre à jour le mot de passe en base de données.");
+            }
+        } catch (SQLException e) {
+            showAlert("Erreur", "Erreur lors de la mise à jour en base de données : " + e.getMessage());
+        }
+    }
+
+
 
 }
