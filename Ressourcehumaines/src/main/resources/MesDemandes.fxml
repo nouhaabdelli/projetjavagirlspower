@@ -27,12 +27,24 @@
         <VBox spacing="20" AnchorPane.topAnchor="100.0" AnchorPane.bottomAnchor="20.0"
               AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
 
-            <TableView fx:id="tableDemandes" VBox.vgrow="ALWAYS">
+            <!-- Search Bar -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="searchField" promptText="Rechercher..." prefWidth="200"/>
+                <ComboBox fx:id="searchTypeComboBox" prefWidth="150"/>
+                <Button text="Rechercher" onAction="#handleSearch"/>
+                <Button text="Effacer" onAction="#handleClearSearch"/>
+            </HBox>
+
+            <!-- Prediction Label -->
+            <Label fx:id="predictionLabel" wrapText="true"/>
+
+            <TableView fx:id="tableViewDemandes" VBox.vgrow="ALWAYS">
                 <columns>
                     <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
                     <TableColumn fx:id="colType" text="Type" prefWidth="100"/>
                     <TableColumn fx:id="colDescription" text="Description" prefWidth="200"/>
-                    <TableColumn fx:id="colDate" text="Date" prefWidth="100"/>
+                    <TableColumn fx:id="colDateSoumission" text="Date Soumission" prefWidth="100"/>
+                    <TableColumn fx:id="colDateValidation" text="Date Validation" prefWidth="100"/>
                     <TableColumn fx:id="colStatut" text="Statut" prefWidth="100"/>
                     <TableColumn fx:id="colActions" text="Actions" prefWidth="150"/>
                 </columns>
