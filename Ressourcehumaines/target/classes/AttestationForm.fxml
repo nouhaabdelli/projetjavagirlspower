@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+
+<AnchorPane prefHeight="700.0" prefWidth="930.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AttestationFormController">
+    <children>
+
+        <!-- Titre -->
+        <Text layoutX="282.0" layoutY="88.0" text="Demande d'Attestation" textAlignment="CENTER" wrappingWidth="374.0">
+            <font><Font size="27.0" /></font>
+        </Text>
+
+        <!-- Logo -->
+        <ImageView fitHeight="88.0" fitWidth="98.0" layoutX="26.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/Présentation_Projet_Entreprise_Minimaliste_Moderne_Sobre_Blanc_Noir-removebg-preview.png" />
+            </image>
+        </ImageView>
+
+        <!-- Type d'attestation -->
+        <Text layoutX="20.0" layoutY="150.0" text="Type d'attestation">
+            <font><Font size="17.0" /></font>
+        </Text>
+        <ComboBox fx:id="comboTypeAttestation" layoutX="200.0" layoutY="130.0" prefWidth="200.0" />
+
+        <!-- Description -->
+        <Text layoutX="20.0" layoutY="180.0" text="Description">
+            <font><Font size="17.0" /></font>
+        </Text>
+        <TextArea fx:id="textDescriptif" layoutX="200.0" layoutY="160.0" prefHeight="60.0" prefWidth="500.0" editable="false" wrapText="true" />
+
+        <!-- Objet -->
+        <Text layoutX="20.0" layoutY="250.0" text="Objet">
+            <font><Font size="17.0" /></font>
+        </Text>
+        <TextField fx:id="textObjet" layoutX="200.0" layoutY="230.0" prefWidth="400.0" />
+
+        <!-- Motif / précision -->
+        <Text layoutX="20.0" layoutY="320.0" text="Précision / Motif">
+            <font><Font size="17.0" /></font>
+        </Text>
+        <TextArea fx:id="textMotif" layoutX="200.0" layoutY="300.0" prefHeight="120.0" prefWidth="500.0" />
+
+        <!-- Pièce jointe -->
+        <Text layoutX="20.0" layoutY="450.0" text="Documents liés">
+            <font><Font size="17.0" /></font>
+        </Text>
+        <HBox spacing="10" layoutX="200.0" layoutY="430.0">
+            <children>
+                <Hyperlink fx:id="hyperlinkPieceJointe" text="Aucun fichier sélectionné" />
+                <Button onAction="#ajoutpiece" text="Parcourir" />
+                <Button fx:id="btnSigner" onAction="#signerDocument" text="Signer" disable="true" />
+                <Button fx:id="btnTelecharger" mnemonicParsing="false" onAction="#telechargerPDF" text="Télécharger PDF" disable="true" />
+            </children>
+        </HBox>
+
+        <!-- Boutons -->
+        <Button fx:id="btnAjouter" layoutX="200.0" layoutY="500.0" prefWidth="150.0" onAction="#ajoute" text="Soumettre" />
+        <Button layoutX="370.0" layoutY="500.0" prefWidth="180.0" onAction="#retourPagePrecedente" text="Retour" />
+
+    </children>
+</AnchorPane>

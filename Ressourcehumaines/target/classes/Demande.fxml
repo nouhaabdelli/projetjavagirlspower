@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DemandeController">
+    
+    <children>
+        <!-- En-tête -->
+        <VBox spacing="20" styleClass="header-box" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+            
+            <Text styleClass="label-title" text="Gestion des Demandes" />
+            
+            <HBox alignment="CENTER" spacing="10" />
+        </VBox>
+        
+        <!-- Contenu principal -->
+        <VBox spacing="20" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="120.0">
+            
+            <Text styleClass="label-title" text="Bienvenue dans votre espace de gestion" />
+            <Text styleClass="label" />
+            
+            <HBox alignment="CENTER" spacing="20" />
+             <Button onAction="#handleCongé" styleClass="btn-primary" text="Congé" />
+             <Button onAction="#handleAttestation" styleClass="btn-primary" text="Attestation" />
+             <Button onAction="#handleMesDemandes" styleClass="btn-secondary" text="Mes Demandes" />
+             <Button onAction="#ouvrirStatistiques" styleClass="btn-statistiques" text="Statistiques" />
+        </VBox>
+        
+        <!-- Pied de page -->
+        <HBox alignment="CENTER_RIGHT" styleClass="footer" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <padding>
+                <Insets bottom="10" left="20" right="20" top="10" />
+            </padding>
+        </HBox>
+    </children>
+</AnchorPane>

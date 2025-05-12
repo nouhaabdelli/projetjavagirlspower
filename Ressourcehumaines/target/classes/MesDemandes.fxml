@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MesDemandesController"
+            stylesheets="@style/style.css">
+
+    <children>
+        <!-- En-tête -->
+        <VBox spacing="10" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" styleClass="header-box">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Label text="Mes Demandes" styleClass="header-label"/>
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Button text="Retour" onAction="#handleRetour" styleClass="btn-retour"/>
+            </HBox>
+        </VBox>
+
+        <!-- Contenu principal -->
+        <VBox spacing="20" AnchorPane.topAnchor="100.0" AnchorPane.bottomAnchor="20.0"
+              AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+
+            <TableView fx:id="tableDemandes" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                    <TableColumn fx:id="colType" text="Type" prefWidth="100"/>
+                    <TableColumn fx:id="colDescription" text="Description" prefWidth="200"/>
+                    <TableColumn fx:id="colDate" text="Date" prefWidth="100"/>
+                    <TableColumn fx:id="colStatut" text="Statut" prefWidth="100"/>
+                    <TableColumn fx:id="colActions" text="Actions" prefWidth="150"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </children>
+</AnchorPane>
