@@ -96,7 +96,7 @@ public class ajouterpretcontroller {
     }
 
     @FXML
-    private void convertTNDToEUR() {
+    private void convertUSDToEUR() {
         try {
             String tndText = montantTNDField.getText().trim();
 
@@ -155,7 +155,7 @@ public class ajouterpretcontroller {
             double tndPerEuro = jsonObject.getAsJsonObject("data").get("USD").getAsDouble();
             double eurAmount = amountTND / tndPerEuro;
 
-            resultLabel.setText(String.format("Résultat : %.2f TND = %.2f EUR", amountTND, eurAmount));
+            resultLabel.setText(String.format("Résultat : %.2f USD = %.2f EUR", amountTND, eurAmount));
 
         } catch (IOException | InterruptedException e) {
             resultLabel.setText("Résultat : Erreur réseau : " + e.getMessage());

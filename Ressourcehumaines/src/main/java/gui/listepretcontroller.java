@@ -1,4 +1,12 @@
 package gui;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
+import javafx.event.ActionEvent;
+import java.io.IOException;
+
 
 import entities.pret;
 import javafx.collections.FXCollections;

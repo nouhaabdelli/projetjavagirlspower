@@ -21,10 +21,10 @@
 
             <Button text="Ajouter" onAction="#ajouterPret" styleClass="form-button" />
 
-            <!-- Section pour la conversion TND en EUR -->
-            <Label text="Convertir TND en EUR" styleClass="form-title" style="-fx-font-size: 20px; -fx-text-fill: #1e3a8a;" />
-            <TextField fx:id="montantTNDField" promptText="Montant en TND" />
-            <Button text="Échanger" onAction="#convertTNDToEUR" styleClass="form-button" />
+            <!-- Section pour la conversion USD en EUR -->
+            <Label text="Convertir USD en EUR" styleClass="form-title" style="-fx-font-size: 20px; -fx-text-fill: #1e3a8a;" />
+            <TextField fx:id="montantTNDField" promptText="Montant en USD" />
+            <Button text="Échanger" onAction="#convertUSDToEUR" styleClass="form-button" />
             <Label fx:id="resultLabel" text="Résultat : " style="-fx-font-size: 16px; -fx-text-fill: #1e3a8a;" />
         </VBox>
     </children>
