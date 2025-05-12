@@ -36,6 +36,8 @@ import org.mindrot.jbcrypt.BCrypt;
 
 
 public class LoginUser {
+    @FXML
+    private WebView captchaWebView;
 
     @FXML
     private Hyperlink mdpoub;
@@ -313,12 +315,12 @@ public class LoginUser {
             pstmt.setString(2, email);
             int rowsAffected = pstmt.executeUpdate();
             if (rowsAffected > 0) {
-                showAlert("Succès", "Mot de passe mis à jour avec succès dans la base de données !");
+                System.out.println("Succès Mot de passe mis à jour avec succès dans la base de données !");
             } else {
-                showAlert("Erreur", "Impossible de mettre à jour le mot de passe en base de données.");
+                System.out.println("Erreur Impossible de mettre à jour le mot de passe en base de données.");
             }
         } catch (SQLException e) {
-            showAlert("Erreur", "Erreur lors de la mise à jour en base de données : " + e.getMessage());
+            System.out.println("Erreur Erreur lors de la mise à jour en base de données : " + e.getMessage());
         }
     }
 

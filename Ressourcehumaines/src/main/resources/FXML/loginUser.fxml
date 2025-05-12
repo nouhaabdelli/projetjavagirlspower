@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.web.WebView?>
 
 <AnchorPane prefHeight="400.0" prefWidth="700.0" stylesheets="@../CSS/sign.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginUser">
 
@@ -21,6 +22,7 @@
             <TextField fx:id="statutField" promptText="statut" styleClass="text-field" />
             <TextField fx:id="emailField" promptText="E-mail" styleClass="text-field" />
             <PasswordField fx:id="passwordField" promptText="Mot-De-Passe" styleClass="password-field" />
+         <WebView fx:id="captchaWebView" prefHeight="200.0" prefWidth="200.0" />
          <Hyperlink fx:id="mdpoub" onAction="#mdpoub" text="mot de passe oubliee" />
             <Button fx:id="signin" onAction="#handleSignIn" styleClass="button" text="se connecter" />
          <Hyperlink fx:id="googleLoginLink" onAction="#handleGoogleLogin" text="Se connecter avec Google" />
