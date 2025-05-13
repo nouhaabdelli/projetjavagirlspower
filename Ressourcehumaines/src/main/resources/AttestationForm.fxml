@@ -45,27 +45,33 @@
         <TextField fx:id="textObjet" layoutX="200.0" layoutY="230.0" prefWidth="400.0" />
 
         <!-- Motif / précision -->
-        <Text layoutX="20.0" layoutY="320.0" text="Précision / Motif">
+        <Text layoutX="20.0" layoutY="300.0" text="Précision / Motif">
             <font><Font size="17.0" /></font>
         </Text>
-        <TextArea fx:id="textMotif" layoutX="200.0" layoutY="300.0" prefHeight="120.0" prefWidth="500.0" />
+        <TextArea fx:id="textMotif" layoutX="200.0" layoutY="280.0" prefHeight="60.0" prefWidth="500.0" wrapText="true" />
 
-        <!-- Pièce jointe -->
-        <Text layoutX="20.0" layoutY="450.0" text="Documents liés">
+        <!-- Prévisualisation de l'attestation -->
+        <Text layoutX="20.0" layoutY="340.0" text="Prévisualisation :">
             <font><Font size="17.0" /></font>
         </Text>
-        <HBox spacing="10" layoutX="200.0" layoutY="430.0">
+        <TextArea fx:id="attestationPreview" layoutX="200.0" layoutY="320.0" prefHeight="80.0" prefWidth="500.0" editable="false" wrapText="true" />
+
+        <!-- Pièce jointe (optionnelle) -->
+        <Text layoutX="20.0" layoutY="440.0" text="Pièce jointe (optionnelle, justificatif seulement)">
+            <font><Font size="17.0" /></font>
+        </Text>
+        <Button layoutX="200.0" layoutY="420.0" text="Ajouter une pièce jointe" onAction="#ajoutpiece" />
+        <Hyperlink fx:id="hyperlinkPieceJointe" layoutX="400.0" layoutY="430.0" text="Aucun fichier sélectionné" />
+
+        <!-- Boutons en bas -->
+        <Button fx:id="btnAjouter" layoutX="200.0" layoutY="600.0" prefWidth="150.0" onAction="#ajoute" text="Soumettre" />
+        <HBox spacing="15" layoutX="600.0" layoutY="630.0">
             <children>
-                <Hyperlink fx:id="hyperlinkPieceJointe" text="Aucun fichier sélectionné" />
-                <Button onAction="#ajoutpiece" text="Parcourir" />
-                <Button fx:id="btnSigner" onAction="#signerDocument" text="Signer" disable="true" />
-                <Button fx:id="btnTelecharger" mnemonicParsing="false" onAction="#telechargerPDF" text="Télécharger PDF" disable="true" />
+                <Button fx:id="btnSigner" onAction="#signerDocument" text="Signer" />
+                <Button fx:id="btnTelecharger" onAction="#telechargerPDF" text="Télécharger PDF" disable="true" />
+                <Button layoutX="320.0" layoutY="530.0" prefWidth="180.0" onAction="#retourPagePrecedente" text="retour" />
             </children>
         </HBox>
-
-        <!-- Boutons -->
-        <Button fx:id="btnAjouter" layoutX="200.0" layoutY="500.0" prefWidth="150.0" onAction="#ajoute" text="Soumettre" />
-        <Button layoutX="370.0" layoutY="500.0" prefWidth="180.0" onAction="#retourPagePrecedente" text="Retour" />
 
     </children>
 </AnchorPane>

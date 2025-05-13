@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MesDemandesController"
@@ -29,14 +30,17 @@
 
             <!-- Search Bar -->
             <HBox spacing="10" alignment="CENTER_LEFT">
-                <TextField fx:id="searchField" promptText="Rechercher..." prefWidth="200"/>
-                <ComboBox fx:id="searchTypeComboBox" prefWidth="150"/>
-                <Button text="Rechercher" onAction="#handleSearch"/>
-                <Button text="Effacer" onAction="#handleClearSearch"/>
+                <TextField fx:id="searchField" promptText="Rechercher..." prefWidth="200" styleClass="search-field"/>
+                <ComboBox fx:id="searchTypeComboBox" prefWidth="150" styleClass="search-combo"/>
+                <Button text="Rechercher" onAction="#handleSearch" styleClass="btn-primary"/>
+                <Button text="Effacer" onAction="#handleClearSearch" styleClass="btn-secondary"/>
             </HBox>
 
-            <!-- Prediction Label -->
-            <Label fx:id="predictionLabel" wrapText="true"/>
+            <!-- Prediction Result -->
+            <VBox spacing="5" styleClass="prediction-box">
+                <Label text="Résultat de la prédiction" styleClass="prediction-title"/>
+                <Label fx:id="predictionLabel" wrapText="true" styleClass="prediction-label"/>
+            </VBox>
 
             <TableView fx:id="tableViewDemandes" VBox.vgrow="ALWAYS">
                 <columns>
@@ -46,7 +50,7 @@
                     <TableColumn fx:id="colDateSoumission" text="Date Soumission" prefWidth="100"/>
                     <TableColumn fx:id="colDateValidation" text="Date Validation" prefWidth="100"/>
                     <TableColumn fx:id="colStatut" text="Statut" prefWidth="100"/>
-                    <TableColumn fx:id="colActions" text="Actions" prefWidth="150"/>
+                    <TableColumn fx:id="colActions" text="Actions" prefWidth="400"/>
                 </columns>
             </TableView>
         </VBox>

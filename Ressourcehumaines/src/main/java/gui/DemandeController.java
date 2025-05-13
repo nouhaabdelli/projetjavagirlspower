@@ -7,30 +7,47 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
+import javafx.animation.TranslateTransition;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.sql.*;
 
 public class DemandeController {
+    @FXML private Button btnConge;
+    @FXML private Button btnAttestation;
+    @FXML private Button btnMesDemandes;
+    @FXML private Button btnStatistiques;
+    @FXML private VBox sidebar;
+    @FXML private VBox contentArea;
+
+    private boolean isSidebarVisible = true;
 
     @FXML
-    private VBox demandeSection;
+    public void initialize() {
+        ouvrirStatistiques(); // Appelle la version sans paramètre
+    }
+
+    private void ouvrirStatistiques() {
+        ouvrirStatistiques(null); // Appelle la version FXML avec null
+    }
 
     @FXML
-    private Button btnConge;
-
-    @FXML
-    private Button btnAttestation;
-
-    @FXML
-    private Button btnMesDemandes;
-
-    @FXML
-    private Button btnStatistiques;
+    private void toggleSidebar(ActionEvent event) {
+        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), sidebar);
+        if (isSidebarVisible) {
+            tt.setToX(-250);
+        } else {
+            tt.setToX(0);
+        }
+        tt.play();
+        isSidebarVisible = !isSidebarVisible;
+    }
 
     // Méthode pour gérer la demande de congé
     @FXML
@@ -39,8 +56,8 @@ public class DemandeController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/CongéForm.fxml"));
             Parent root = loader.load();
-            Scene scene = ((Node) event.getSource()).getScene();
-            scene.setRoot(root);
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(root);  // Ajout du formulaire dans contentArea
         } catch (IOException e) {
             e.printStackTrace();
             showErrorAlert("Une erreur s'est produite lors du chargement du formulaire.");
@@ -54,8 +71,8 @@ public class DemandeController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AttestationForm.fxml"));
             Parent root = loader.load();
-            Scene scene = ((Node) event.getSource()).getScene();
-            scene.setRoot(root);
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(root);  // Ajout du formulaire dans contentArea
         } catch (IOException e) {
             e.printStackTrace();
             showErrorAlert("Une erreur s'est produite lors du chargement du formulaire.");
@@ -68,8 +85,8 @@ public class DemandeController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/MesDemandes.fxml"));
             Parent root = loader.load();
-            Scene scene = ((Node) event.getSource()).getScene();
-            scene.setRoot(root);
+            contentArea.getChildren().clear();
+            contentArea.getChildren().add(root);  // Affichage dans contentArea
         } catch (IOException e) {
             e.printStackTrace();
             showErrorAlert("Impossible de charger l'interface des demandes.");
@@ -132,33 +149,15 @@ public class DemandeController {
     @FXML
     void ouvrirStatistiques(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/Statistics.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setTitle("Statistiques des Attestations");
-            stage.setScene(scene);
-            stage.show();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Statistics.fxml"));
+            Parent statisticsContent = loader.load();
+            contentArea.getChildren().clear(); // Vide le contenu actuel
+            contentArea.getChildren().add(statisticsContent); // Ajoute la vue statistiques
         } catch (IOException e) {
             e.printStackTrace();
-            showErrorAlert("Erreur lors de l'ouverture des statistiques : " + e.getMessage());
+            showErrorAlert("Erreur lors du chargement des statistiques : " + e.getMessage());
         }
     }
-
-    @FXML
-    private void handleDeconnexion(ActionEvent event) {
-        try {
-            // Charger la scène de connexion
-            Parent root = FXMLLoader.load(getClass().getResource("/Login.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-            showError("Erreur", "Impossible de charger la page de connexion");
-        }
-    }
-
     private void showError(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -167,3 +166,7 @@ public class DemandeController {
         alert.showAndWait();
     }
 }
+
+
+
+

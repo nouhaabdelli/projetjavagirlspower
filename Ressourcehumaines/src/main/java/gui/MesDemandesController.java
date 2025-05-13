@@ -32,6 +32,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -40,6 +41,8 @@ import javafx.scene.Node;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import javafx.geometry.Pos;
+
 
 public class MesDemandesController {
 
@@ -83,33 +86,34 @@ public class MesDemandesController {
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
         colDateValidation.setCellValueFactory(new PropertyValueFactory<>("dateValidation"));
 
+        // Définir une largeur fixe pour la colonne Actions
+        colActions.setPrefWidth(600);
+
+        // Configuration de la colonne Actions
         colActions.setCellFactory(param -> new TableCell<Demande, Void>() {
-            private final Button btnModifier = new Button("Modifier");
-            private final Button btnSupprimer = new Button("Supprimer");
-            private final Button btnValider = new Button("Valider");
-            private final Button btnRefuser = new Button("Refuser");
-            private final Button btnPredire = new Button("Prédire");
+            private final Button btnPredict = new Button("Prédire");
+            private final Button btnValidate = new Button("Valider");
+            private final Button btnReject = new Button("Refuser");
+            private final Button btnView = new Button("Voir");
+            private final Button btnEdit = new Button("Modifier");
+            private final Button btnDelete = new Button("Supprimer");
 
             {
-                btnModifier.setOnAction(e -> {
-                    try {
-                        modifierDemande(getCurrentDemande());
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                        System.out.println("Erreur lors de la modification de la demande : " + ex.getMessage());
-                    }
-                });
-                btnSupprimer.setOnAction(e -> supprimerDemande(getCurrentDemande()));
-                btnValider.setOnAction(e -> validerDemande(getCurrentDemande()));
-                btnRefuser.setOnAction(e -> refuserDemande(getCurrentDemande()));
-                btnPredire.setOnAction(e -> predireTempsReponse(getCurrentDemande()));
+                // Configuration des boutons avec une largeur fixe
+                btnPredict.setPrefWidth(90);
+                btnValidate.setPrefWidth(90);
+                btnReject.setPrefWidth(90);
+                btnView.setPrefWidth(90);
+                btnEdit.setPrefWidth(90);
+                btnDelete.setPrefWidth(90);
 
-                // Style des boutons
-                btnRefuser.setStyle("-fx-background-color: #d32f2f; -fx-text-fill: white;");
-            }
-
-            private Demande getCurrentDemande() {
-                return getTableView().getItems().get(getIndex());
+                // Configuration des gestionnaires d'événements
+                btnPredict.setOnAction(e -> handlePredictDemande(e));
+                btnValidate.setOnAction(e -> handleValidateDemande(e));
+                btnReject.setOnAction(e -> handleRejectDemande(e));
+                btnView.setOnAction(e -> handleViewDemande(e));
+                btnEdit.setOnAction(e -> handleEditDemande(e));
+                btnDelete.setOnAction(e -> handleDeleteDemande(e));
             }
 
             @Override
@@ -118,28 +122,23 @@ public class MesDemandesController {
                 if (empty) {
                     setGraphic(null);
                 } else {
-                    Demande demande = getCurrentDemande();
+                    Demande demande = getTableView().getItems().get(getIndex());
+                    HBox hbox = new HBox(10); // Espacement entre les boutons
+                    hbox.setAlignment(javafx.geometry.Pos.CENTER);
                     
-                    // Créer une liste de boutons de base (pour tous les utilisateurs)
-                    List<Button> baseButtons = new ArrayList<>();
-                    baseButtons.add(btnModifier);
-                    baseButtons.add(btnSupprimer);
-                    baseButtons.add(btnPredire);
-
+                    // Ajouter les boutons de base
+                    hbox.getChildren().addAll(btnPredict, btnView, btnEdit, btnDelete);
+                    
                     // Si c'est un admin, ajouter les boutons de validation et refus
                     if (isAdmin) {
-                        baseButtons.add(btnValider);
-                        baseButtons.add(btnRefuser);
+                        hbox.getChildren().addAll(btnValidate, btnReject);
                         
                         // Désactiver les boutons si la demande est déjà traitée
                         boolean isProcessed = demande.getStatut().equals("Validée") || demande.getStatut().equals("Refusée");
-                        btnValider.setDisable(isProcessed);
-                        btnRefuser.setDisable(isProcessed);
+                        btnValidate.setDisable(isProcessed);
+                        btnReject.setDisable(isProcessed);
                     }
-
-                    // Créer le HBox avec les boutons appropriés
-                    HBox hbox = new HBox(5);
-                    hbox.getChildren().addAll(baseButtons);
+                    
                     setGraphic(hbox);
                 }
             }
@@ -602,6 +601,109 @@ public class MesDemandesController {
         demande.setDateValidation(currentDate);
         updateStatutAndValidationDateInDB(demande);
         tableViewDemandes.refresh();
+    }
+
+    @FXML
+    private void handlePredictDemande(ActionEvent event) {
+        Demande selectedDemande = tableViewDemandes.getSelectionModel().getSelectedItem();
+        if (selectedDemande != null) {
+            predireTempsReponse(selectedDemande);
+        } else {
+            showErrorAlert("Veuillez sélectionner une demande pour prédire son statut.");
+        }
+    }
+
+    @FXML
+    private void handleValidateDemande(ActionEvent event) {
+        Demande selectedDemande = tableViewDemandes.getSelectionModel().getSelectedItem();
+        if (selectedDemande != null) {
+            if (!selectedDemande.getStatut().equals("Validée") && !selectedDemande.getStatut().equals("Refusée")) {
+                validerDemande(selectedDemande);
+                showSuccessAlert("La demande a été validée avec succès.");
+            } else {
+                showErrorAlert("Cette demande a déjà été traitée.");
+            }
+        } else {
+            showErrorAlert("Veuillez sélectionner une demande à valider.");
+        }
+    }
+
+    @FXML
+    private void handleRejectDemande(ActionEvent event) {
+        Demande selectedDemande = tableViewDemandes.getSelectionModel().getSelectedItem();
+        if (selectedDemande != null) {
+            if (!selectedDemande.getStatut().equals("Validée") && !selectedDemande.getStatut().equals("Refusée")) {
+                refuserDemande(selectedDemande);
+                showSuccessAlert("La demande a été refusée.");
+            } else {
+                showErrorAlert("Cette demande a déjà été traitée.");
+            }
+        } else {
+            showErrorAlert("Veuillez sélectionner une demande à refuser.");
+        }
+    }
+
+    private void showSuccessAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Succès");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void handleViewDemande(ActionEvent event) {
+        Demande selectedDemande = tableViewDemandes.getSelectionModel().getSelectedItem();
+        if (selectedDemande != null) {
+            // Afficher les détails de la demande
+            String details = String.format(
+                "Détails de la demande:\n" +
+                "ID: %d\n" +
+                "Type: %s\n" +
+                "Description: %s\n" +
+                "Date de soumission: %s\n" +
+                "Statut: %s\n" +
+                "Date de validation: %s",
+                selectedDemande.getId(),
+                selectedDemande.getType(),
+                selectedDemande.getDescription(),
+                selectedDemande.getDateSoumission(),
+                selectedDemande.getStatut(),
+                selectedDemande.getDateValidation() != null ? selectedDemande.getDateValidation() : "Non validée"
+            );
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Détails de la demande");
+            alert.setHeaderText(null);
+            alert.setContentText(details);
+            alert.showAndWait();
+        } else {
+            showErrorAlert("Veuillez sélectionner une demande pour voir ses détails.");
+        }
+    }
+
+    @FXML
+    private void handleEditDemande(ActionEvent event) {
+        Demande selectedDemande = tableViewDemandes.getSelectionModel().getSelectedItem();
+        if (selectedDemande != null) {
+            try {
+                modifierDemande(selectedDemande);
+            } catch (IOException e) {
+                showErrorAlert("Erreur lors de la modification : " + e.getMessage());
+            }
+        } else {
+            showErrorAlert("Veuillez sélectionner une demande à modifier.");
+        }
+    }
+
+    @FXML
+    private void handleDeleteDemande(ActionEvent event) {
+        Demande selectedDemande = tableViewDemandes.getSelectionModel().getSelectedItem();
+        if (selectedDemande != null) {
+            supprimerDemande(selectedDemande);
+        } else {
+            showErrorAlert("Veuillez sélectionner une demande à supprimer.");
+        }
     }
 
 }
