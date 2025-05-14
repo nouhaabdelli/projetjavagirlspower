@@ -1,15 +1,25 @@
 package gui;
-
 import entities.Evenement;
+import javafx.concurrent.Worker;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.web.WebEngine;
 import javafx.stage.FileChooser;
 import javafx.event.ActionEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import jdk.jfr.Description;
+import netscape.javascript.JSObject;
 import services.EvenementService;
+import javafx.scene.web.WebView;
+import javafx.scene.layout.AnchorPane;
+
 
 import java.io.File;
 import java.time.LocalDate;
@@ -17,6 +27,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class AjouterEvenement {
+
+
+
 
     @FXML
     private TextField nomEvenement;
@@ -46,6 +59,8 @@ public class AjouterEvenement {
 
     @FXML
     private TextField photoPath;
+
+
     private boolean evenementAjoute = false;
 
     public boolean isEvenementAjoute() {
@@ -59,8 +74,65 @@ public class AjouterEvenement {
     public void initialize() {
         statut.getItems().addAll("prévu", "annulé", "terminé");
         statut.getSelectionModel().selectFirst();
+
     }
 
+    @FXML
+    private void generateDescription() {
+        String nomEvent = nomEvenement.getText();
+
+        // Vérifie que le champ nomEvenement n'est pas vide
+        if (nomEvent == null || nomEvent.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Nom d'événement manquant");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez entrer un nom pour l'événement.");
+            alert.showAndWait();
+            return;
+        }
+
+        try {
+            // Appeler la méthode qui interroge l'API Gemini pour générer la description
+            String descript = HttpURLConnectionExample.generateDescription(nomEvent);
+
+            // Mettre la description générée dans le champ de texte de description
+            description.setText(descript);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Afficher un message d'erreur en cas d'échec
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Une erreur est survenue lors de la génération de la description.");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void ouvrirCarte() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/mapPopup.fxml"));
+            Parent root = loader.load();
+
+            MapPopupController mapController = loader.getController();
+
+            // Définir une callback pour récupérer le lieu sélectionné
+            mapController.setOnLieuSelected(nomLieu -> {
+                lieu.setText(nomLieu);
+            });
+
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL); // bloque la fenêtre principale
+            stage.setTitle("Choisir un lieu");
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     private void parcourirPhoto (ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -78,6 +150,7 @@ public class AjouterEvenement {
             imageView.setImage(image);
         }
     }
+
 
     @FXML
     private void soumettre(ActionEvent event) {

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Carte OpenStreetMap avec Leaflet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Lien vers la feuille de style de Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+    <!-- Lien vers le script JavaScript de Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <style>
+        /* S'assurer que le body et le html prennent toute la hauteur de la fenêtre */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        /* Style pour la carte - prendre toute la hauteur de la fenêtre */
+        #map {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div> <!-- Div où la carte sera affichée -->
+
+<script>
+    // Vérification du bon chargement de la carte dans la console
+    console.log("Carte en cours de création...");
+
+    // Créer une carte centrée sur Tunis (latitude 36.8065, longitude 10.1815)
+    var map = L.map('map').setView([36.8065, 10.1815], 13);
+
+    // Ajouter un calque de tuiles OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Ajouter un événement de clic pour afficher les coordonnées du lieu sélectionné
+    map.on('click', function(e) {
+        alert("Coordonnées sélectionnées :\nLatitude : " + e.latlng.lat + "\nLongitude : " + e.latlng.lng);
+    });
+
+    console.log("Carte créée.");
+</script>
+</body>
+</html>
