@@ -38,6 +38,7 @@ public class maquette {
     }
 
     @FXML private void handleAnnonce() {
+
     }
 
     @FXML private void handleFormations() {

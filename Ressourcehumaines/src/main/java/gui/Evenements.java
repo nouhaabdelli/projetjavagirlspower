@@ -1,7 +1,7 @@
 package gui;
 
 import entities.Evenement;
-import entities.User;
+import entities.user;
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.animation.TranslateTransition;
@@ -318,7 +318,7 @@ public class Evenements {
 
                             evenementsParticipe.add(ev.getIdEvenement());
 
-                            User currentUser = new User();
+                            user currentUser = new user();
                             currentUser.setPrenom("Maram");
                             currentUser.setEmail("ghribimaram24@gmail.com");
 
@@ -340,7 +340,7 @@ public class Evenements {
                 });
             }
 
-            private void sendParticipationConfirmationEmail(User user, Evenement event) {
+            private void sendParticipationConfirmationEmail(user user, Evenement event) {
                 mailService emailService = new mailService();
                 String subject = "Confirmation de participation à l'événement";
                 String body = "Bonjour " + user.getPrenom() + ",\n\n"

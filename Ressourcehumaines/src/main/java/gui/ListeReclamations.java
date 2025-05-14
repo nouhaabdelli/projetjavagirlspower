@@ -1,6 +1,6 @@
 package gui;
 import entities.Reponses;
-import entities.User;
+import entities.user;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ButtonType;
 import java.io.IOException;
@@ -172,7 +172,7 @@ public class ListeReclamations {
         }
         try {
             UserService userService = new UserService();
-            User user = userService.getUserById(selected.getUserId());
+            user user = userService.getUserById(selected.getUserId());
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/detailreclamation.fxml"));
             Parent root = loader.load();

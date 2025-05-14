@@ -2,7 +2,7 @@ package gui;
 
 import entities.Reponses;
 import entities.Reclamations;
-import entities.User;
+import entities.user;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -177,7 +177,7 @@ public class AjouterReponse {
                 reclamation.setStatut("traitée");
 
                 UserService userService = new UserService();
-                User user = userService.getUserById(reclamation.getUserId());
+                user user = userService.getUserById(reclamation.getUserId());
                 if (user != null) {
                     String typeNotif = reclamation.getRecevoirNotifications(); // Exemple : "email", "sms", ou "both"
 
@@ -212,7 +212,7 @@ public class AjouterReponse {
     }
 
 
-    private void sendReclamationStatusSMS(User user, Reclamations reclamation) {
+    private void sendReclamationStatusSMS(user user, Reclamations reclamation) {
         String phone = user.getNumTelephone();
         if (phone != null && !phone.trim().isEmpty()) {
             String smsBody = "Votre réclamation du " + reclamation.getDateDemande() + " a été traitée. Merci. - RH";
@@ -225,15 +225,15 @@ public class AjouterReponse {
 
 
 
-    public User getUserById(int userId) {
-        User user = null;
+    public user getUserById(int userId) {
+        user user = null;
         try {
             Connection conn = MyConnection.getInstance().getConnection();
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM user WHERE id = ?");
             stmt.setInt(1, userId);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                user = new User();
+                user = new user();
                 user.setId(rs.getInt("id"));
                 user.setNom(rs.getString("nom"));
                 user.setPrenom(rs.getString("prenom"));
@@ -246,7 +246,7 @@ public class AjouterReponse {
         return user;
     }
 
-    private void sendReclamationStatusEmail(User user, Reclamations reclamation) {
+    private void sendReclamationStatusEmail(user user, Reclamations reclamation) {
         System.out.println("sendReclamationStatusEmail called");
 
         if ("traitée".equalsIgnoreCase(reclamation.getStatut())) {

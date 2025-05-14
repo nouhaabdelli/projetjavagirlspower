@@ -232,7 +232,7 @@ public class AjouterReclamations {
     @FXML
     void afficherreclamations(ActionEvent event) {
         try {
-            User user = userService.getUserById(4);  // À adapter selon utilisateur connecté
+            user user = userService.getUserById(4);  // À adapter selon utilisateur connecté
             Reclamations reclamation = new Reclamations(
                     0,
                     tftitre.getText(),
