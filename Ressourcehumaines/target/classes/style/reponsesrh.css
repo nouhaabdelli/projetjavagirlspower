@@ -1,0 +1,126 @@
+/* Fond de l'AnchorPane avec un dégradé fixe */
+AnchorPane {
+    -fx-background-color: linear-gradient(to bottom right, #0d1b2a, #1b263b, #415a77);
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.2), 50, 0.5, 0, 0);
+    -fx-background-insets: 0;
+}
+
+/* Style du TreeView avec un effet de néon et un fond semi-transparent */
+.tree-view {
+    -fx-background-color: rgba(27, 38, 59, 0.9);
+    -fx-border-color: linear-gradient(to right, #00ddeb, #ff00ff);
+    -fx-border-width: 3;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(gaussian, #00ddeb, 25, 0.7, 0, 0);
+    -fx-padding: 15;
+}
+
+/* Style des éléments TreeCell avec un texte lumineux */
+.tree-cell {
+    -fx-text-fill: #e0e1dd;
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial";
+    -fx-background-color: transparent;
+    -fx-padding: 10 15;
+    -fx-effect: dropshadow(gaussian, #00ddeb, 5, 0.3, 0, 0);
+    -fx-transition: all 0.5s ease;
+}
+
+/* Effet au survol des TreeCell */
+.tree-cell:hover {
+    -fx-background-color: rgba(0, 221, 235, 0.2);
+    -fx-scale-y: 1.1;
+    -fx-effect: dropshadow(gaussian, #ff00ff, 20, 0.8, 0, 0);
+    -fx-text-fill: #ffffff;
+}
+
+/* Style des TreeCell sélectionnés */
+.tree-cell:selected {
+    -fx-background-color: rgba(0, 221, 235, 0.4);
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(gaussian, #ff00ff, 25, 0.9, 0, 0);
+}
+
+/* Bouton Accepter avec un effet de néon vert */
+.tree-cell .accept-button {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: linear-gradient(to right, #00ff00, #00cc00);
+    -fx-padding: 8 15;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #00ff00, 15, 0.6, 0, 0);
+    -fx-transition: all 0.3s ease;
+}
+
+/* Effet au survol du bouton Accepter */
+.tree-cell .accept-button:hover {
+    -fx-background-color: linear-gradient(to right, #00cc00, #009900);
+    -fx-scale-x: 1.15;
+    -fx-scale-y: 1.15;
+    -fx-effect: dropshadow(gaussian, #00ff00, 25, 0.8, 0, 0);
+    -fx-rotate: 5;
+}
+
+/* Bouton Rejeter avec un effet de néon rouge */
+.tree-cell .reject-button {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: linear-gradient(to right, #ff3333, #cc0000);
+    -fx-padding: 8 15;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, #ff3333, 15, 0.6, 0, 0);
+    -fx-transition: all 0.3s ease;
+}
+
+/* Effet au survol du bouton Rejeter */
+.tree-cell .reject-button:hover {
+    -fx-background-color: linear-gradient(to right, #cc0000, #990000);
+    -fx-scale-x: 1.15;
+    -fx-scale-y: 1.15;
+    -fx-effect: dropshadow(gaussian, #ff3333, 25, 0.8, 0, 0);
+    -fx-rotate: -5;
+}
+
+/* Style de la barre de défilement du TreeView */
+.tree-view .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.tree-view .scroll-bar:vertical .thumb {
+    -fx-background-color: linear-gradient(to bottom, #00ddeb, #ff00ff);
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(gaussian, #00ddeb, 10, 0.5, 0, 0);
+}
+
+.tree-view .scroll-bar:vertical .track {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-background-radius: 15;
+}
+
+/* Bouton Retour avec un style futuriste */
+#retourButton {
+    -fx-background-color: linear-gradient(to right, #1e3a8a, #60a5fa);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 8 15;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, #60a5fa, 15, 0.6, 0, 0);
+    -fx-transition: all 0.3s ease;
+}
+
+/* Effet au survol du bouton Retour */
+#retourButton:hover {
+    -fx-background-color: linear-gradient(to right, #60a5fa, #1e3a8a);
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-effect: dropshadow(gaussian, #60a5fa, 25, 0.8, 0, 0);
+}

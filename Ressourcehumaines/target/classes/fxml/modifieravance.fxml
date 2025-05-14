@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f0f8ff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.modifieravancecontroller">
+    <children>
+        <Button fx:id="retourButton" onAction="#handleRetour" text="⬅ Retour" style="-fx-background-color: #1e3a8a; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 5 10;" AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0"/>
+        <VBox alignment="CENTER" spacing="20.0" AnchorPane.topAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+            <children>
+                <Label text="Modifier une Avance" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1e3a8a;" />
+                <HBox spacing="10.0">
+                    <Label text="Montant :" style="-fx-font-size: 14px;" />
+                    <TextField fx:id="montantField" prefWidth="200.0" />
+                </HBox>
+                <HBox spacing="10.0">
+                    <Label text="Durée :" style="-fx-font-size: 14px;" />
+                    <TextField fx:id="dureeField" prefWidth="200.0" />
+                </HBox>
+                <HBox spacing="10.0">
+                    <Label text="Date Avance :" style="-fx-font-size: 14px;" />
+                    <DatePicker fx:id="dateAvancePicker" prefWidth="200.0" />
+                </HBox>
+                <HBox spacing="10.0">
+                    <Label text="Niveau Urgence :" style="-fx-font-size: 14px;" />
+                    <TextField fx:id="niveauUrgenceField" prefWidth="200.0" />
+                </HBox>
+                <HBox spacing="10.0">
+                    <Label text="État :" style="-fx-font-size: 14px;" />
+                    <TextField fx:id="etatField" prefWidth="200.0" />
+                </HBox>
+                <Button fx:id="saveButton" text="Enregistrer" style="-fx-background-color: #1e3a8a; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 5 10;" />
+            </children>
+            <padding>
+                <Insets top="20.0" bottom="20.0" left="20.0" right="20.0" />
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>
