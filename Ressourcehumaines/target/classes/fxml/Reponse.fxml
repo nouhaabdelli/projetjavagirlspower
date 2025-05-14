@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="682.0" prefWidth="1047.0" styleClass="root" stylesheets="@../styles/Reponse.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Reponses">
+
+    <!-- Menu latéral -->
+    <VBox fx:id="sideMenu" layoutX="0.0" layoutY="0.0" prefHeight="682.0" prefWidth="225.0" styleClass="left-panel">
+        <children>
+            <Button onAction="#RepondreReclamations" prefHeight="70.0" prefWidth="178.0" styleClass="sidebar-button" text="Repondre Réclamations" />
+            <Button onAction="#ConsulterReclamation" prefHeight="75.0" prefWidth="178.0" styleClass="sidebar-button" text="Les Réponses" />
+        </children>
+    </VBox>
+
+    <!-- Contenu dynamique (à droite des boutons) -->
+    <AnchorPane fx:id="mainContent" layoutX="225.0" layoutY="0.0" prefHeight="682.0" prefWidth="1183.0">
+      <children>
+      
+          <!-- Titre -->
+          <Label fx:id="GrandTitre" layoutX="423.0" layoutY="24.0" prefHeight="50.0" prefWidth="400.0" styleClass="title" text="Gestion des Réponses" textAlignment="CENTER" underline="true">
+              <font>
+                  <Font name="Arial Bold Italic" size="20.0" />
+              </font>
+          </Label>
+      </children></AnchorPane>
+
+</AnchorPane>

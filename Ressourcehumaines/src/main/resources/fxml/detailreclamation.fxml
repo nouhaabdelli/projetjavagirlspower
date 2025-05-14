@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="596.0" prefWidth="531.0" stylesheets="@../styles/detaill.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Afficherdetail">
+    <!-- Titre de la page -->
+    <Text layoutX="92.0" layoutY="51.0" styleClass="title" text="Détails de la Réclamation" wrappingWidth="316.73046875" />
+
+    <!-- Coordonnées de l'utilisateur -->
+    <Text fx:id="nomText" layoutX="28.0" layoutY="116.0" text="Nom: " />
+    <Text fx:id="prenomText" layoutX="24.0" layoutY="143.0" text="Prénom: " />
+    <Text fx:id="emailText" layoutX="256.0" layoutY="143.0" text="Email: " />
+    <Text fx:id="cinText" layoutX="32.0" layoutY="203.0" text="CIN: " />
+    <Text fx:id="numTelephoneText" layoutX="250.0" layoutY="117.0" text="Numéro de téléphone: " />
+    <Text fx:id="genreText" layoutX="26.0" layoutY="169.0" text="Genre: " />
+    <Text fx:id="adresseText" layoutX="250.0" layoutY="170.0" text="Adresse: " />
+
+    <!-- Séparateur -->
+    <Separator layoutX="20.0" layoutY="221.0" prefHeight="16.0" prefWidth="460.0" />
+
+    <!-- Détails de la réclamation -->
+    <Text layoutX="21.0" layoutY="245.0" styleClass="text-section" text="Détails de la Réclamation" wrappingWidth="154.4281" />
+
+    <!-- GridPane pour les détails de la réclamation -->
+    <GridPane hgap="10" layoutX="29.0" layoutY="279.0" prefHeight="236.0" prefWidth="488.0" vgap="8">
+        <columnConstraints>
+            <ColumnConstraints maxWidth="170.4" minWidth="83.19998016357422" prefWidth="83.19998016357422" />
+            <ColumnConstraints maxWidth="394.60001983642576" minWidth="300.0" prefWidth="394.60001983642576" />
+        </columnConstraints>
+
+        <!-- Titre -->
+        <Label text="Titre:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Text fx:id="titreText" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+        <!-- Description -->
+        <Label text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <TextArea fx:id="descriptionTextArea" editable="false" prefHeight="105.0" prefWidth="366.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+        <!-- Priorité -->
+        <Label text="Priorité:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <Text fx:id="prioriteText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <!-- Notifications -->
+        <Label text="Notifications:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <Text fx:id="notificationsText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+        <!-- Pièce Jointe -->
+        <Label prefHeight="29.0" prefWidth="74.0" text="Pièce jointe:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <Hyperlink fx:id="hyperlinkPieceJointe" text="Télécharger la pièce jointe" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints maxHeight="120.0" minHeight="103.599951171875" prefHeight="113.60003662109375" />
+         <RowConstraints maxHeight="15.200048828125006" minHeight="0.0" prefHeight="15.200048828125006" />
+         <RowConstraints maxHeight="18.399987792968744" minHeight="9.599951171875006" prefHeight="18.399987792968744" />
+         <RowConstraints maxHeight="20.00001220703126" minHeight="16.00001220703126" prefHeight="16.00001220703126" />
+      </rowConstraints>
+    </GridPane>
+   <Text layoutX="21.0" layoutY="89.0" styleClass="text-section" text="Coordonnées personnelles" wrappingWidth="154.4281" />
+
+    <!-- Bouton Quitter -->
+    <Button layoutX="380.0" layoutY="520.0" onAction="#quitterButton" prefWidth="100.0" styleClass="button-quit" text="Quitter" />
+</AnchorPane>

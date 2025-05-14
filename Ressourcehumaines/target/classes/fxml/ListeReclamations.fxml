@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="556.0" prefWidth="1051.0" stylesheets="@../styles/consulterreponse.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListeReclamations">
+
+    <!-- TableView des réclamations -->
+    <TableView id="table-view" fx:id="tableViewReclamations" layoutX="14.0" layoutY="21.0" prefHeight="478.0" prefWidth="1027.0">
+        <columns>
+            <TableColumn fx:id="colTitre" prefWidth="100.9999656677246" text="Titre" />
+            <TableColumn fx:id="colDescription" prefWidth="160.80003356933594" text="Description" />
+            <TableColumn fx:id="colPriorite" prefWidth="119.199951171875" text="Priorité" />
+            <TableColumn fx:id="colNotifications" prefWidth="138.4000244140625" text="Notifications" />
+            <TableColumn fx:id="colPieceJointe" minWidth="0.0" prefWidth="120.79998779296875" text="Pièce Jointe" />
+            <TableColumn fx:id="date_creation" maxWidth="3900.0" minWidth="-Infinity" prefWidth="116.79998779296875" text="date creation " />
+            <TableColumn fx:id="colStatus" prefWidth="106.39996337890625" text="Statut" />
+            <TableColumn fx:id="Reponse" prefWidth="122.400146484375" text="Reponse" />
+
+        </columns>
+    </TableView>
+
+    <!-- Boutons d'action -->
+    <HBox layoutX="200" layoutY="500" spacing="20" />
+     <Button layoutX="513.0" layoutY="506.0" onAction="#afficher" prefHeight="42.0" prefWidth="190.0" styleClass="btn-action" text="Afficher Reclamation " />
+
+</AnchorPane>

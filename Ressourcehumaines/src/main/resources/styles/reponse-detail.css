@@ -1,0 +1,115 @@
+/* Root styles for the AnchorPane */
+AnchorPane {
+    -fx-background-color: #F5F7FA; /* Light gray-white background */
+}
+
+/* ScrollPane styling */
+ScrollPane {
+    -fx-background: #FFFFFF; /* White background */
+    -fx-border-color: #D3DCE6; /* Light gray border */
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+}
+
+/* VBox inside ScrollPane */
+VBox {
+    -fx-background-color: #FFFFFF; /* White background */
+    -fx-padding: 20;
+}
+
+/* Title styling */
+.title {
+    -fx-font-family: "Arial";
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-fill: #1E3A8A; /* Dark blue for title */
+    -fx-text-alignment: center;
+}
+
+/* GridPane styling */
+GridPane {
+    -fx-background-color: #FFFFFF; /* White background */
+    -fx-padding: 15;
+    -fx-border-color: #E2E8F0; /* Light gray border */
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+}
+
+/* Label styling */
+Label {
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-text-fill: #4B5EAA; /* Medium blue for labels */
+    -fx-font-weight: bold;
+}
+
+/* Text value styling */
+.text-value {
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-fill: #2D3748; /* Dark gray for text values */
+}
+
+/* TextArea styling */
+.text-area {
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-text-fill: #2D3748; /* Dark gray text */
+    -fx-background-color: #F1F5F9; /* Light gray background */
+    -fx-border-color: #D3DCE6; /* Light gray border */
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-padding: 10;
+}
+
+/* Hyperlink styling */
+.hyperlink {
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-text-fill: #2563EB; /* Bright blue for hyperlinks */
+    -fx-underline: true;
+}
+
+.hyperlink:hover {
+    -fx-text-fill: #1E3A8A; /* Darker blue on hover */
+    -fx-cursor: hand;
+}
+
+/* Button styling */
+.button-quit {
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF; /* White text */
+    -fx-background-color: #3B82F6; /* Bright blue background */
+    -fx-background-radius: 5;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.button-quit:hover {
+    -fx-background-color: #2563EB; /* Slightly darker blue on hover */
+}
+
+.button-quit:pressed {
+    -fx-background-color: #1E3A8A; /* Dark blue when pressed */
+}
+
+/* ScrollPane viewport */
+ScrollPane > .viewport {
+    -fx-background-color: #FFFFFF; /* White background for viewport */
+}
+
+/* Scrollbar styling */
+ScrollPane .scroll-bar:vertical {
+    -fx-background-color: #F5F7FA; /* Light gray background */
+}
+
+ScrollPane .scroll-bar:vertical .thumb {
+    -fx-background-color: #A0AEC0; /* Gray thumb */
+    -fx-background-radius: 5;
+}
+
+ScrollPane .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #718096; /* Darker gray on hover */
+}

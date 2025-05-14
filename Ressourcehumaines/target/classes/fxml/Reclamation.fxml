@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="682.0" prefWidth="1246.0" stylesheets="@../styles/consulterreponse.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReclamationDashboard">
+
+        <!-- LEFT SIDEBAR (Sliding, inspired by second interface) -->
+        <AnchorPane prefHeight="610.0" prefWidth="230.0">
+            <children>
+                <VBox fx:id="sidebar" prefHeight="682.0" prefWidth="230.0" styleClass="sidebar" translateX="-230.0">
+                    <children>
+                        <!-- Sidebar Title -->
+                        <Label styleClass="sidebar-title" text="Navigation" />
+                        <!-- Menu Items -->
+                        <Button fx:id="btnAjouter" onAction="#showAjouter" styleClass="menu-item" text="➕ Ajouter Réclamation" />
+                        <Button fx:id="btnListe" onAction="#showListe" styleClass="menu-item" text="📋 Liste Réclamations" />
+                        <Button fx:id="btnConsulter" styleClass="menu-item" text="Consulter Réponses" />
+                        <Button fx:id="btnRepondre" styleClass="menu-item" text="Répondre" />
+                    </children>
+                    <padding>
+                        <Insets bottom="10" left="10" right="10" top="20" />
+                    </padding>
+                </VBox>
+                <!-- Logo -->
+                <ImageView fitHeight="87.0" fitWidth="137.0" layoutX="50.0" layoutY="20.0" preserveRatio="true" styleClass="logo">
+                    <!-- Ton image de logo si nécessaire -->
+                </ImageView>
+            </children>
+        </AnchorPane>
+
+        <!-- MAIN CONTENT (Right Side) -->
+        <AnchorPane fx:id="mainContent" prefHeight="682.0" prefWidth="1200.0">
+            <children>
+                <!-- Header (Top Bar) -->
+                <HBox prefHeight="88.0" prefWidth="1246.0" styleClass="header">
+                    <children>
+                        <Button fx:id="btnSidebarToggle" prefHeight="40.0" prefWidth="40.0" styleClass="sidebar-toggle" text="☰" />
+                        <Label prefHeight="40.0" prefWidth="300.0" styleClass="header-title" text="Gestion des Réclamations" />
+                        <Region HBox.hgrow="ALWAYS" /> <!-- Spacer -->
+                        <HBox prefHeight="40.0" prefWidth="400.0" spacing="10.0" styleClass="search-panel" />
+                    </children>
+                    <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                    </padding>
+                </HBox>
+                <!-- Dynamic content like TableView can be added here -->
+            </children>
+        </AnchorPane>
+</AnchorPane>
