@@ -44,7 +44,7 @@
 
             <TableView fx:id="tableViewDemandes" VBox.vgrow="ALWAYS">
                 <columns>
-                    <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                    <TableColumn fx:id="colId" text="ID" prefWidth="50" visible="false"/>
                     <TableColumn fx:id="colType" text="Type" prefWidth="100"/>
                     <TableColumn fx:id="colDescription" text="Description" prefWidth="200"/>
                     <TableColumn fx:id="colDateSoumission" text="Date Soumission" prefWidth="100"/>

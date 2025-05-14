@@ -34,6 +34,8 @@
             <Button fx:id="btnMesDemandes" styleClass="menu-item" text="Mes demandes" onAction="#handleMesDemandes" />
             <Button fx:id="btnConge" styleClass="menu-item" text="Demande Congé" onAction="#handleCongé" />
             <Button fx:id="btnAttestation" styleClass="menu-item" text="Demande Attestation" onAction="#handleAttestation" />
+            <Button fx:id="btnToutesLesDemandes" styleClass="menu-item" text="Toutes les Demandes" onAction="#handleToutesLesDemandes" visible="true" />
+
         </VBox>
 
         <!-- Contenu principal -->

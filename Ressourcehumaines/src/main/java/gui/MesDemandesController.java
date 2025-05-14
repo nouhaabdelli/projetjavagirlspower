@@ -1,14 +1,20 @@
 package gui;
-
+import utils.EnvConfig;
+import io.github.cdimascio.dotenv.Dotenv;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.SocketException;
 import java.net.URL;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import gui.ModifierAttestationFormController;
-import gui.ModifierCongeFormController;
-
+import entities.Demande;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
+import okhttp3.*;
+import org.json.JSONArray;
+import services.DemandeDAO;
+import utils.GeminiAPIClient;
 import entities.Attestation;
 import entities.Conge;
 import javafx.application.Platform;
@@ -19,6 +25,8 @@ import javafx.stage.Stage;
 import org.json.JSONObject;
 import java.io.OutputStream;
 import entities.Demande;
+
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -38,37 +46,53 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
-import javafx.geometry.Pos;
+import java.io.*;
+import java.net.*;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.concurrent.TimeUnit;
+
+import org.json.*;
+
 
 
 public class MesDemandesController {
 
-    @FXML private TableView<Demande> tableViewDemandes;
-    @FXML private TableColumn<Demande, Integer> colId;
-    @FXML private TableColumn<Demande, String> colType;
-    @FXML private TableColumn<Demande, String> colStatut;
-    @FXML private TableColumn<Demande, LocalDate> colDateSoumission;
-    @FXML private TableColumn<Demande, String> colDescription;
-    @FXML private TableColumn<Demande, LocalDate> colDateValidation;
-    @FXML private TableColumn<Demande, Void> colActions;
-    @FXML private Label predictionLabel;
-    @FXML private TextField searchField;
-    @FXML private ComboBox<String> searchTypeComboBox;
-
+    @FXML
+    private TableView<Demande> tableViewDemandes;
+    @FXML
+    private TableColumn<Demande, Integer> colId;
+    @FXML
+    private TableColumn<Demande, String> colType;
+    @FXML
+    private TableColumn<Demande, String> colStatut;
+    @FXML
+    private TableColumn<Demande, LocalDate> colDateSoumission;
+    @FXML
+    private TableColumn<Demande, String> colDescription;
+    @FXML
+    private TableColumn<Demande, LocalDate> colDateValidation;
+    @FXML
+    private TableColumn<Demande, Void> colActions;
+    @FXML
+    private Label predictionLabel;
+    @FXML
+    private TextField searchField;
+    @FXML
+    private ComboBox<String> searchTypeComboBox;
+    private int demandeId = 1;
     private int utilisateurId;
     private boolean isAdmin;
+    private volatile boolean isProcessing = false;
+    // Évite les requêtes simultanées
+    private static final long DEBOUNCE_DELAY_MS = 1000; // Délai de débordement de 1 seconde
+    private long lastClickTime = 0; // Stocke l'heure du dernier clic
     private ObservableList<Demande> observableDemandes = FXCollections.observableArrayList();
     private ObservableList<Demande> filteredDemandes = FXCollections.observableArrayList();
 
-    private static final String OPENAI_API_KEY = "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";
-    private static final int MAX_RETRIES = 3;
-    private static final int INITIAL_RETRY_DELAY = 5000; // 5 secondes
-    private static final int MAX_RETRY_DELAY = 30000; // 30 secondes maximum
 
-    public MesDemandesController() {}
+    public MesDemandesController() {
+    }
 
     public void initialize() {
         this.setUtilisateurId(1);  // ID utilisateur par défaut
@@ -92,7 +116,7 @@ public class MesDemandesController {
         // Configuration de la colonne Actions
         colActions.setCellFactory(param -> new TableCell<Demande, Void>() {
             private final Button btnPredict = new Button("Prédire");
-            private final Button btnValidate = new Button("Valider");
+            private final Button btnValidate = new Button("Valider" );
             private final Button btnReject = new Button("Refuser");
             private final Button btnView = new Button("Voir");
             private final Button btnEdit = new Button("Modifier");
@@ -108,7 +132,77 @@ public class MesDemandesController {
                 btnDelete.setPrefWidth(90);
 
                 // Configuration des gestionnaires d'événements
-                btnPredict.setOnAction(e -> handlePredictDemande(e));
+                btnPredict.setOnAction(e -> {
+                    // Debounce: Ignore clicks within 1 second of the last click
+                    long currentTime = System.currentTimeMillis();
+                    if (currentTime - lastClickTime < DEBOUNCE_DELAY_MS) {
+                        System.out.println("Click ignored due to debounce");
+                        return;
+                    }
+                    lastClickTime = currentTime;
+
+                    // Prevent concurrent requests
+                    if (isProcessing) {
+                        Platform.runLater(() ->
+                                predictionLabel.setText("Veuillez attendre la fin du traitement..."));
+                        return;
+                    }
+
+                    // Get selected Demande
+                    Demande demande = getTableView().getItems().get(getIndex());
+                    if (demande == null || demande.getDateSoumission() == null) {
+                        Platform.runLater(() ->
+                                predictionLabel.setText("Erreur: Demande invalide"));
+                        return;
+                    }
+
+                    // Validate fields to prevent null issues
+                    String type = demande.getType() != null ? demande.getType() : "Inconnu";
+                    String dateSoumission = demande.getDateSoumission().toString();
+                    String statut = demande.getStatut() != null ? demande.getStatut() : "Inconnu";
+                    String description = demande.getDescription() != null ? demande.getDescription() : "Aucune description";
+
+                    // Build prompt
+                    String prompt = String.format(
+                            "Analysez cette demande:\n" +
+                                    "Type: %s\n" +
+                                    "Soumission: %s\n" +
+                                    "Statut: %s\n" +
+                                    "Description: %s\n" +
+                                    "Prédisez le temps de traitement probable.",
+                            type, dateSoumission, statut, description
+                    );
+
+                    // Update UI to show processing
+                    Platform.runLater(() -> {
+                        predictionLabel.setText("Traitement en cours...");
+                        btnPredict.setDisable(true); // Disable button during processing
+                    });
+
+                    // Run API call in a separate thread
+                    new Thread(() -> {
+                        try {
+                            isProcessing = true;
+                            String response = sendToGemini(prompt);
+                            Platform.runLater(() -> {
+                                predictionLabel.setText("Prédiction: " + response);
+                                btnPredict.setDisable(false); // Re-enable button
+                            });
+                        } catch (IOException ex) {
+                            String errorMessage = ex.getMessage().contains("429") ?
+                                    "Erreur: Quota API dépassé, réessayez plus tard." :
+                                    "Erreur API: " + ex.getMessage();
+                            Platform.runLater(() -> {
+                                predictionLabel.setText(errorMessage);
+                                btnPredict.setDisable(false); // Re-enable button
+                            });
+                            ex.printStackTrace();
+                        } finally {
+                            isProcessing = false;
+                        }
+                    }).start();
+                });
+
                 btnValidate.setOnAction(e -> handleValidateDemande(e));
                 btnReject.setOnAction(e -> handleRejectDemande(e));
                 btnView.setOnAction(e -> handleViewDemande(e));
@@ -125,20 +219,20 @@ public class MesDemandesController {
                     Demande demande = getTableView().getItems().get(getIndex());
                     HBox hbox = new HBox(10); // Espacement entre les boutons
                     hbox.setAlignment(javafx.geometry.Pos.CENTER);
-                    
+
                     // Ajouter les boutons de base
                     hbox.getChildren().addAll(btnPredict, btnView, btnEdit, btnDelete);
-                    
+
                     // Si c'est un admin, ajouter les boutons de validation et refus
                     if (isAdmin) {
                         hbox.getChildren().addAll(btnValidate, btnReject);
-                        
+
                         // Désactiver les boutons si la demande est déjà traitée
                         boolean isProcessed = demande.getStatut().equals("Validée") || demande.getStatut().equals("Refusée");
                         btnValidate.setDisable(isProcessed);
                         btnReject.setDisable(isProcessed);
                     }
-                    
+
                     setGraphic(hbox);
                 }
             }
@@ -203,154 +297,6 @@ public class MesDemandesController {
         tableViewDemandes.refresh();
     }
 
-    private void predireTempsReponse(Demande demande) {
-        try {
-            predictionLabel.setText("Calcul de la prédiction en cours...");
-            String prompt = String.format(
-                "Estimez le temps de réponse pour une demande de type %s avec le motif suivant : %s",
-                demande.getType(),
-                demande.getDescription()
-            );
-            
-            String prediction = sendRequestToOpenAI(prompt);
-            if (prediction != null) {
-                try {
-                    JSONObject jsonResponse = new JSONObject(prediction);
-                    if (jsonResponse.has("choices") && jsonResponse.getJSONArray("choices").length() > 0) {
-                        String predictionText = jsonResponse.getJSONArray("choices")
-                                .getJSONObject(0)
-                                .getJSONObject("message")
-                                .getString("content").trim();
-                        predictionLabel.setText("Prédiction : " + predictionText);
-                    } else {
-                        predictionLabel.setText("Aucune prédiction disponible");
-                    }
-                } catch (Exception e) {
-                    predictionLabel.setText("Erreur lors du traitement de la réponse : " + e.getMessage());
-                    e.printStackTrace();
-                }
-            } else {
-                predictionLabel.setText("Impossible d'obtenir une prédiction");
-            }
-        } catch (Exception e) {
-            String errorMessage = e.getMessage();
-            if (errorMessage.contains("Limite de requêtes API dépassée")) {
-                predictionLabel.setText("L'API est temporairement surchargée. Veuillez réessayer dans quelques minutes.");
-        } else {
-                predictionLabel.setText("Erreur lors de la prédiction : " + errorMessage);
-            }
-            e.printStackTrace();
-        }
-    }
-
-    private String sendRequestToOpenAI(String prompt) {
-        HttpURLConnection conn = null;
-        int retryCount = 0;
-        int retryDelay = INITIAL_RETRY_DELAY;
-
-        while (retryCount < MAX_RETRIES) {
-            try {
-                String apiKey = OPENAI_API_KEY;
-                String apiUrl = "https://api.openai.com/v1/chat/completions";
-
-                URL url = new URL(apiUrl);
-                conn = (HttpURLConnection) url.openConnection();
-                conn.setRequestMethod("POST");
-                conn.setRequestProperty("Content-Type", "application/json");
-                conn.setRequestProperty("Authorization", "Bearer " + apiKey);
-                conn.setConnectTimeout(10000); // 10 secondes
-                conn.setReadTimeout(10000);    // 10 secondes
-                conn.setDoOutput(true);
-
-                String jsonInputString = String.format(
-                    "{\"model\": \"gpt-3.5-turbo\", \"messages\": [{\"role\": \"user\", \"content\": \"%s\"}], \"max_tokens\": 100}",
-                    prompt.replace("\"", "\\\"")
-                );
-
-                try (OutputStream os = conn.getOutputStream()) {
-                    byte[] input = jsonInputString.getBytes("utf-8");
-                os.write(input, 0, input.length);
-            }
-
-                int responseCode = conn.getResponseCode();
-                if (responseCode == 401) {
-                    throw new IOException("Erreur d'authentification API OpenAI. Vérifiez votre clé API.");
-                } else if (responseCode == 429) {
-                    // Récupérer le délai d'attente suggéré par l'API si disponible
-                    String retryAfter = conn.getHeaderField("Retry-After");
-                    if (retryAfter != null) {
-                        retryDelay = Math.min(Integer.parseInt(retryAfter) * 1000, MAX_RETRY_DELAY);
-                    } else {
-                        retryDelay = Math.min(retryDelay * 2, MAX_RETRY_DELAY);
-                    }
-                    
-                    if (retryCount < MAX_RETRIES - 1) {
-                        String message = String.format("Limite d'API atteinte. Nouvelle tentative dans %d secondes...", retryDelay/1000);
-                        System.out.println(message);
-                        Platform.runLater(() -> predictionLabel.setText(message));
-                        Thread.sleep(retryDelay);
-                        retryCount++;
-                        continue;
-                    } else {
-                        throw new IOException("Limite de requêtes API dépassée. Veuillez réessayer dans quelques minutes.");
-                    }
-                } else if (responseCode == 503) {
-                    throw new IOException("Service API temporairement indisponible. Veuillez réessayer plus tard.");
-                } else if (responseCode != 200) {
-                    throw new IOException("Erreur API OpenAI. Code de réponse : " + responseCode);
-                }
-
-                try (BufferedReader br = new BufferedReader(
-                        new InputStreamReader(conn.getInputStream(), "utf-8"))) {
-                StringBuilder response = new StringBuilder();
-                    String responseLine = null;
-                    while ((responseLine = br.readLine()) != null) {
-                        response.append(responseLine.trim());
-                    }
-                    return response.toString();
-                }
-            } catch (SocketException e) {
-                if (retryCount < MAX_RETRIES - 1) {
-                    String message = String.format("Erreur de connexion. Nouvelle tentative dans %d secondes...", retryDelay/1000);
-                    System.out.println(message);
-                    Platform.runLater(() -> predictionLabel.setText(message));
-                    try {
-                        Thread.sleep(retryDelay);
-                        retryDelay = Math.min(retryDelay * 2, MAX_RETRY_DELAY);
-                        retryCount++;
-                        continue;
-                    } catch (InterruptedException ie) {
-                        Thread.currentThread().interrupt();
-                        throw new RuntimeException("Tentative de reconnexion interrompue", ie);
-                    }
-                }
-                throw new RuntimeException("Erreur de connexion réseau. Vérifiez votre connexion internet.", e);
-            } catch (IOException e) {
-                if (retryCount < MAX_RETRIES - 1) {
-                    String message = String.format("Erreur de communication. Nouvelle tentative dans %d secondes...", retryDelay/1000);
-                    System.out.println(message);
-                    Platform.runLater(() -> predictionLabel.setText(message));
-                    try {
-                        Thread.sleep(retryDelay);
-                        retryDelay = Math.min(retryDelay * 2, MAX_RETRY_DELAY);
-                        retryCount++;
-                        continue;
-                    } catch (InterruptedException ie) {
-                        Thread.currentThread().interrupt();
-                        throw new RuntimeException("Tentative de reconnexion interrompue", ie);
-                    }
-                }
-                throw new RuntimeException("Erreur de communication avec l'API OpenAI : " + e.getMessage(), e);
-            } catch (Exception e) {
-                throw new RuntimeException("Erreur inattendue : " + e.getMessage(), e);
-            } finally {
-                if (conn != null) {
-                    conn.disconnect();
-                }
-            }
-        }
-        throw new RuntimeException("Nombre maximum de tentatives atteint");
-    }
 
     private void updateStatutAndValidationDateInDB(Demande demande) {
         String query = "UPDATE demande SET statut = ?, date_validation = ? WHERE id = ?";
@@ -373,7 +319,7 @@ public class MesDemandesController {
 
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/workbridge", "root", "");
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            
+
             if (!isAdmin) {
                 stmt.setInt(1, utilisateurId);
             }
@@ -448,8 +394,8 @@ public class MesDemandesController {
                 fxmlPath = "/ModifierAttestationForm.fxml";
                 break;
             default:
-                showError("Type de demande non supporté", 
-                    "Le type de demande '" + demande.getType() + "' n'est pas supporté pour la modification.");
+                showError("Type de demande non supporté",
+                        "Le type de demande '" + demande.getType() + "' n'est pas supporté pour la modification.");
                 return;
         }
 
@@ -472,17 +418,17 @@ public class MesDemandesController {
                     } else {
                         // Si ce n'est pas déjà un Conge, on crée un nouveau Conge avec les données de base
                         Conge conge = new Conge(
-                            demande.getId(),
-                            demande.getDateSoumission(),
-                            demande.getStatut(),
-                            demande.getType(),
-                            demande.getDescription(),
-                            demande.getUtilisateurId(),
-                            demande.getDateValidation(),
-                            null, // dateDebut sera à définir dans le formulaire
-                            null, // dateFin sera à définir dans le formulaire
-                            demande.getDescription(), // utiliser description comme motif initial
-                            demande.getType() // utiliser type comme typeConge initial
+                                demande.getId(),
+                                demande.getDateSoumission(),
+                                demande.getStatut(),
+                                demande.getType(),
+                                demande.getDescription(),
+                                demande.getUtilisateurId(),
+                                demande.getDateValidation(),
+                                null, // dateDebut sera à définir dans le formulaire
+                                null, // dateFin sera à définir dans le formulaire
+                                demande.getDescription(), // utiliser description comme motif initial
+                                demande.getType() // utiliser type comme typeConge initial
                         );
                         controller.setConge(conge);
                     }
@@ -498,16 +444,16 @@ public class MesDemandesController {
                         // Si ce n'est pas déjà une Attestation, on crée une nouvelle Attestation avec les données de base
                         // On garde le type général comme "attestation" et on utilise la description pour le type spécifique
                         Attestation attestation = new Attestation(
-                            demande.getDateSoumission(),
-                            demande.getStatut(),
-                            "attestation", // type général toujours "attestation"
-                            demande.getDescription(),
-                            demande.getUtilisateurId(),
-                            null, // dateDebut
-                            null, // dateFin
-                            demande.getDescription(), // motif
-                            demande.getDescription(), // typeAttestation spécifique (sera modifié dans le formulaire)
-                            demande.getDateValidation()
+                                demande.getDateSoumission(),
+                                demande.getStatut(),
+                                "attestation", // type général toujours "attestation"
+                                demande.getDescription(),
+                                demande.getUtilisateurId(),
+                                null, // dateDebut
+                                null, // dateFin
+                                demande.getDescription(), // motif
+                                demande.getDescription(), // typeAttestation spécifique (sera modifié dans le formulaire)
+                                demande.getDateValidation()
                         );
                         controller.setAttestation(attestation);
                     }
@@ -520,8 +466,8 @@ public class MesDemandesController {
             stage.show();
 
         } catch (IOException e) {
-            showError("Erreur de chargement", 
-                "Impossible de charger l'interface de modification: " + e.getMessage());
+            showError("Erreur de chargement",
+                    "Impossible de charger l'interface de modification: " + e.getMessage());
             e.printStackTrace();
         } catch (IllegalStateException e) {
             showError("Erreur de configuration", e.getMessage());
@@ -603,15 +549,6 @@ public class MesDemandesController {
         tableViewDemandes.refresh();
     }
 
-    @FXML
-    private void handlePredictDemande(ActionEvent event) {
-        Demande selectedDemande = tableViewDemandes.getSelectionModel().getSelectedItem();
-        if (selectedDemande != null) {
-            predireTempsReponse(selectedDemande);
-        } else {
-            showErrorAlert("Veuillez sélectionner une demande pour prédire son statut.");
-        }
-    }
 
     @FXML
     private void handleValidateDemande(ActionEvent event) {
@@ -657,21 +594,21 @@ public class MesDemandesController {
         if (selectedDemande != null) {
             // Afficher les détails de la demande
             String details = String.format(
-                "Détails de la demande:\n" +
-                "ID: %d\n" +
-                "Type: %s\n" +
-                "Description: %s\n" +
-                "Date de soumission: %s\n" +
-                "Statut: %s\n" +
-                "Date de validation: %s",
-                selectedDemande.getId(),
-                selectedDemande.getType(),
-                selectedDemande.getDescription(),
-                selectedDemande.getDateSoumission(),
-                selectedDemande.getStatut(),
-                selectedDemande.getDateValidation() != null ? selectedDemande.getDateValidation() : "Non validée"
+                    "Détails de la demande:\n" +
+                            "ID: %d\n" +
+                            "Type: %s\n" +
+                            "Description: %s\n" +
+                            "Date de soumission: %s\n" +
+                            "Statut: %s\n" +
+                            "Date de validation: %s",
+                    selectedDemande.getId(),
+                    selectedDemande.getType(),
+                    selectedDemande.getDescription(),
+                    selectedDemande.getDateSoumission(),
+                    selectedDemande.getStatut(),
+                    selectedDemande.getDateValidation() != null ? selectedDemande.getDateValidation() : "Non validée"
             );
-            
+
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Détails de la demande");
             alert.setHeaderText(null);
@@ -706,4 +643,111 @@ public class MesDemandesController {
         }
     }
 
+    private String sendToGemini(String prompt) throws IOException {
+        String apiKey = EnvConfig.getGeminiApiKey();
+        System.out.println("API Key: " + apiKey);
+        if (apiKey == null || apiKey.isEmpty()) {
+            throw new IOException("Clé API Gemini non configurée");
+        }
+
+        String urlStr = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-pro:generateContent?key=" +
+                URLEncoder.encode(apiKey, StandardCharsets.UTF_8);
+
+        int maxRetries = 3;
+        int retryCount = 0;
+        long retryDelaySeconds = 4;
+
+        while (retryCount <= maxRetries) {
+            try {
+                URL url = new URL(urlStr);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setRequestProperty("Content-Type", "application/json");
+                connection.setRequestProperty("Accept", "application/json");
+                connection.setDoOutput(true);
+                connection.setConnectTimeout(5000);
+                connection.setReadTimeout(10000);
+
+                String inputJson = String.format("{\"contents\":[{\"parts\":[{\"text\":\"%s\"}]}]}",
+                        prompt.replace("\"", "\\\"").replace("\n", "\\n"));
+
+                try (OutputStream os = connection.getOutputStream()) {
+                    byte[] input = inputJson.getBytes(StandardCharsets.UTF_8);
+                    os.write(input, 0, input.length);
+                }
+
+                int responseCode = connection.getResponseCode();
+                if (responseCode != HttpURLConnection.HTTP_OK) {
+                    String errorMessage = connection.getResponseMessage();
+                    StringBuilder errorResponse = new StringBuilder();
+                    try (BufferedReader br = new BufferedReader(
+                            new InputStreamReader(connection.getErrorStream(), StandardCharsets.UTF_8))) {
+                        String errorLine;
+                        while ((errorLine = br.readLine()) != null) {
+                            errorResponse.append(errorLine.trim());
+                        }
+                        System.out.println("Error Response: " + errorResponse);
+                    }
+
+                    if (responseCode == 429 && retryCount < maxRetries) {
+                        try {
+                            JSONObject errorJson = new JSONObject(errorResponse.toString());
+                            if (errorJson.has("error") && errorJson.getJSONObject("error").has("details")) {
+                                JSONArray details = errorJson.getJSONObject("error").getJSONArray("details");
+                                for (int i = 0; i < details.length(); i++) {
+                                    JSONObject detail = details.getJSONObject(i);
+                                    if (detail.has("retryDelay")) {
+                                        String retryDelayStr = detail.getString("retryDelay").replace("s", "");
+                                        retryDelaySeconds = Long.parseLong(retryDelayStr);
+                                        break;
+                                    }
+                                }
+                            }
+                        } catch (JSONException e) {
+                            System.out.println("Failed to parse retryDelay: " + e.getMessage());
+                        }
+
+                        System.out.println("HTTP 429 - Retrying after " + retryDelaySeconds + " seconds...");
+                        try {
+                            TimeUnit.SECONDS.sleep(retryDelaySeconds);
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            throw new IOException("Interrupted during retry", e);
+                        }
+                        retryCount++;
+                        continue;
+                    }
+                    throw new IOException("Erreur HTTP: " + responseCode + " - " + errorMessage);
+                }
+
+                try (BufferedReader br = new BufferedReader(
+                        new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8))) {
+                    StringBuilder response = new StringBuilder();
+                    String responseLine;
+                    while ((responseLine = br.readLine()) != null) {
+                        response.append(responseLine.trim());
+                    }
+
+                    System.out.println("Raw API Response: " + response);
+                    JSONObject json = new JSONObject(response.toString());
+                    if (!json.has("candidates")) {
+                        throw new IOException("Réponse API invalide: structure 'candidates' manquante");
+                    }
+
+                    JSONArray candidates = json.getJSONArray("candidates");
+                    if (candidates.length() == 0) {
+                        throw new IOException("Réponse API vide: aucun candidat trouvé");
+                    }
+
+                    JSONObject content = candidates.getJSONObject(0).getJSONObject("content");
+                    return content.getJSONArray("parts").getJSONObject(0).getString("text");
+                }
+            } catch (MalformedURLException e) {
+                throw new IOException("URL invalide: " + e.getMessage());
+            } catch (JSONException e) {
+                throw new IOException("Erreur d'analyse JSON: " + e.getMessage());
+            }
+        }
+        throw new IOException("Échec après " + maxRetries + " tentatives en raison d'erreurs HTTP 429");
+    }
 }

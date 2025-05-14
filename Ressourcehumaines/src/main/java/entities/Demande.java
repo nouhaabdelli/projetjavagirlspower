@@ -32,7 +32,15 @@ public class Demande {
         this.utilisateurId = utilisateurId;
         this.dateValidation = dateValidation;
     }
+    public Demande(int id, String statut, String type, String description,LocalDate dateSoumission , LocalDate dateValidation) {
+        this.id = id;
+        this.dateSoumission = dateSoumission;
+        this.statut = statut;
+        this.type = type;
+        this.description = description;
+        this.dateValidation = dateValidation;
 
+    }
     public Demande(LocalDate dateSoumission, String statut, String type, String description, int utilisateurId, LocalDate dateValidation) {
         this.dateSoumission = dateSoumission;
         this.statut = statut;
@@ -106,3 +114,4 @@ public class Demande {
         this.dateValidation = dateValidation;
     }
 }
+

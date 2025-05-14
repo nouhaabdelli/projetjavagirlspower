@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DemandeAdminController">
+
+    <children>
+        <!-- En-tête -->
+        <VBox spacing="10" styleClass="header-box" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+
+            <Label prefHeight="49.0" prefWidth="257.0" styleClass="header-label" text="Gestion des Demandes">
+                <font>
+                    <Font name="Arial Rounded MT Bold" size="38.0" />
+                </font>
+            </Label>
+        </VBox>
+
+        <!-- Contenu principal -->
+        <VBox spacing="20" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="100.0">
+            <!-- Table des demandes -->
+            <TableView fx:id="tableViewDemandes" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="ID" />
+                    <TableColumn fx:id="typeColumn" text="Type" prefWidth="100"/>
+                    <TableColumn fx:id="statutColumn" text="Statut" prefWidth="100" />
+                    <TableColumn fx:id="descriptionColumn" text="Description" prefWidth="200" />
+                    <TableColumn fx:id="dateColumn" text="Date Soumission" prefWidth="150" />
+                    <TableColumn fx:id="actionColumn" text="Actions" prefWidth="150"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </children>
+</AnchorPane>

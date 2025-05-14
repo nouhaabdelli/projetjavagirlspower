@@ -3,6 +3,8 @@ package services;
 import entities.Demande;
 import entities.Conge;
 import entities.Attestation;
+import utils.MyConnection;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,8 +13,8 @@ import java.util.List;
 public class DemandeDAO {
     private Connection connection;
 
-    public DemandeDAO(Connection connection) {
-        this.connection = connection;
+    public DemandeDAO() {
+        this.connection = MyConnection.getConnection();  // Assure-toi que cette méthode retourne une connexion valide
     }
 
     // Ajouter une demande générale
@@ -26,6 +28,7 @@ public class DemandeDAO {
             stmt.executeUpdate();
         }
     }
+
     public void modifierDemande(Demande demande) throws SQLException {
         String type = demande.getType();
 
@@ -115,20 +118,18 @@ public class DemandeDAO {
                     switch (type) {
                         case "conge":
                             Conge conge = new Conge(
+                                    rs.getInt("id"),
                                     rs.getDate("date_soumission").toLocalDate(),
                                     rs.getString("statut"),
                                     type,
                                     rs.getString("description"),
                                     rs.getInt("utilisateur_id"),
-                                    rs.getDate("date_de_validation") != null ? rs.getDate("date_de_validation").toLocalDate() : null,
                                     rs.getDate("date_debut").toLocalDate(),
                                     rs.getDate("date_fin").toLocalDate(),
                                     rs.getString("motif"),
                                     rs.getString("type_conge")
                             );
-
                             return conge;
-
 
                         case "attestation":
                             Attestation attestation = new Attestation(
@@ -142,12 +143,17 @@ public class DemandeDAO {
                                     rs.getString("motif"),
                                     rs.getString("type_attestation")
                             );
-
                             return attestation;
 
                         default:
-                            Demande demande = new Demande(rs.getInt("id"), rs.getDate("date_soumission").toLocalDate(),
-                                    rs.getString("statut"), type, rs.getString("description"), rs.getInt("utilisateur_id"));
+                            Demande demande = new Demande(
+                                    rs.getInt("id"),
+                                    rs.getDate("date_soumission").toLocalDate(),
+                                    rs.getString("statut"),
+                                    type,
+                                    rs.getString("description"),
+                                    rs.getInt("utilisateur_id")
+                            );
                             demande.setDateValidation(rs.getDate("date_de_validation") != null ? rs.getDate("date_de_validation").toLocalDate() : null);
                             return demande;
                     }
@@ -169,7 +175,8 @@ public class DemandeDAO {
 
                     switch (type) {
                         case "conge":
-                            Conge conge = new Conge(rs.getInt("id"),
+                            Conge conge = new Conge(
+                                    rs.getInt("id"),
                                     rs.getDate("date_soumission").toLocalDate(),
                                     rs.getString("statut"),
                                     rs.getString("type"),
@@ -178,26 +185,76 @@ public class DemandeDAO {
                                     rs.getDate("date_debut").toLocalDate(),
                                     rs.getDate("date_fin").toLocalDate(),
                                     rs.getString("motif"),
-                                    rs.getString("type_conge"));
+                                    rs.getString("type_conge")
+                            );
                             demandes.add(conge);
                             break;
 
                         case "attestation":
-                            Attestation attestation = new Attestation(rs.getInt("id"), rs.getDate("date_soumission").toLocalDate(),
-                                    rs.getString("statut"), type, rs.getString("description"),
-                                    rs.getInt("utilisateur_id"), rs.getDate("date_de_validation") != null ? rs.getDate("date_de_validation").toLocalDate() : null,
-                                    rs.getString("motif"), rs.getString("type_attestation"));
+                            Attestation attestation = new Attestation(
+                                    rs.getInt("id"),
+                                    rs.getDate("date_soumission").toLocalDate(),
+                                    rs.getString("statut"),
+                                    type,
+                                    rs.getString("description"),
+                                    rs.getInt("utilisateur_id"),
+                                    rs.getDate("date_de_validation") != null ? rs.getDate("date_de_validation").toLocalDate() : null,
+                                    rs.getString("motif"),
+                                    rs.getString("type_attestation")
+                            );
                             attestation.setDateValidation(rs.getDate("date_de_validation") != null ? rs.getDate("date_de_validation").toLocalDate() : null);
                             demandes.add(attestation);
                             break;
 
                         default:
-                            Demande demande = new Demande(rs.getInt("id"), rs.getDate("date_soumission").toLocalDate(),
-                                    rs.getString("statut"), type, rs.getString("description"), rs.getInt("utilisateur_id"));
+                            Demande demande = new Demande(
+                                    rs.getInt("id"),
+                                    rs.getDate("date_soumission").toLocalDate(),
+                                    rs.getString("statut"),
+                                    type,
+                                    rs.getString("description"),
+                                    rs.getInt("utilisateur_id")
+                            );
                             demande.setDateValidation(rs.getDate("date_de_validation") != null ? rs.getDate("date_de_validation").toLocalDate() : null);
                             demandes.add(demande);
                     }
                 }
+            }
+        }
+        return demandes;
+    }
+
+    // Mettre à jour le statut d'une demande
+    // Mettre à jour le statut d'une demande
+    public void updateDemandeStatut(Demande demande) {
+        String query = "UPDATE demande SET statut = ?, date_validation = ? WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {  // Use the existing 'connection'
+            statement.setString(1, demande.getStatut());
+            statement.setDate(2, java.sql.Date.valueOf(demande.getDateValidation()));  // Assurez-vous que getDateValidation() renvoie un LocalDate
+            statement.setInt(3, demande.getId());
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();  // Traite l'exception comme nécessaire (log ou gestion de l'erreur)
+        }
+    }
+
+    // Récupérer toutes les demandes avec statut "En attente"
+    public List<Demande> getAllDemandesEnAttente() throws SQLException {
+        List<Demande> demandes = new ArrayList<>();
+        String query = "SELECT * FROM demande WHERE statut = 'En attente'";
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                Demande demande = new Demande(
+                        resultSet.getInt("id"),
+                        resultSet.getString("statut"),
+                        resultSet.getString("type"),
+                        resultSet.getString("description"),
+                        resultSet.getDate("date_soumission").toLocalDate(),
+                        resultSet.getDate("date_validation") != null ? resultSet.getDate("date_validation").toLocalDate() : null
+                );
+                demandes.add(demande);
             }
         }
         return demandes;

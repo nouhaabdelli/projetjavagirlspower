@@ -2,16 +2,15 @@ package gui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.event.ActionEvent;
-import javafx.scene.Node;
 import javafx.animation.TranslateTransition;
 import javafx.util.Duration;
 
@@ -36,7 +35,23 @@ public class DemandeController {
     private void ouvrirStatistiques() {
         ouvrirStatistiques(null); // Appelle la version FXML avec null
     }
+    public void handleToutesLesDemandes(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/DemandesAdmin.fxml"));
+        try {
+            // Charger la vue FXML
+            Parent root = loader.load();
 
+            // Effacer le contenu actuel dans contentArea
+            contentArea.getChildren().clear();
+
+            // Ajouter le nouveau contenu dans contentArea
+            contentArea.getChildren().add(root);
+
+        } catch (IOException e) {
+            e.printStackTrace(); // voir où ça coince
+            showErrorAlert("Une erreur s'est produite lors du chargement de la page des demandes administratives.");
+        }
+    }
     @FXML
     private void toggleSidebar(ActionEvent event) {
         TranslateTransition tt = new TranslateTransition(Duration.seconds(0.3), sidebar);
