@@ -4,7 +4,7 @@ import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
 public class SmsService {
-    public static final String ACCOUNT_SID = "AC50923b89c730b8640d640d3254300100";
+    public static final String ACCOUNT_SID =  System.getenv("AC50923b89c730b8640d640d3254300100");
     public static final String AUTH_TOKEN = "4b0f2d2d2790155d32a8f90e81a12129";
     public static final String FROM_NUMBER = "+17624225809"; // Ton numéro Twilio
 
