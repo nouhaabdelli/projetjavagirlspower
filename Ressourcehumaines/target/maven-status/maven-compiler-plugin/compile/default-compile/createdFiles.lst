@@ -1,3 +1,4 @@
+gui\Statistique$1.class
 gui\LoginUser.class
 gui\AfficherUser$1.class
 main\UserFX.class
@@ -9,8 +10,8 @@ utils\UserSession.class
 services\UserCrud.class
 gui\AjouterUser.class
 gui\AfficherUser.class
-gui\maquette.class
 gui\LoginUser$JavaBridge.class
 gui\BackFront.class
 gui\Statistique.class
+gui\StatistiqueModel.class
 main\UserJDBC.class

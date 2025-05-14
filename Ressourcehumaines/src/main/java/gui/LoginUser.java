@@ -22,6 +22,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.LocalTime;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import javafx.scene.control.Alert;
@@ -159,6 +160,12 @@ public class LoginUser {
                         Platform.runLater(() -> {
                             UserSession.getInstance().setFirebaseIdToken(idToken);
                             UserSession.getInstance().setFirebaseRefreshToken(refreshToken);
+                            // Au login
+                            LocalTime debut = LocalTime.now();
+
+
+
+
 
 
                             alert.setTitle("Succès");

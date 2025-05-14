@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -13,7 +14,7 @@
 
 <AnchorPane prefHeight="485.0" prefWidth="791.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Statistique">
 
-    <HBox spacing="0" stylesheets="@../CSS/sign.css" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+    <HBox spacing="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
 
         <!-- Form Side -->
         <VBox alignment="CENTER" prefWidth="350" spacing="15" styleClass="form-container">
@@ -47,6 +48,10 @@
 
             <Button fx:id="retourButton" onAction="#retourAccueil" styleClass="button" text="Retour" />
         </VBox>
+      <stylesheets>
+         <URL value="@../CSS/sign.css" />
+         <URL value="@../CSS/back.css" />
+      </stylesheets>
     </HBox>
 
 </AnchorPane>
