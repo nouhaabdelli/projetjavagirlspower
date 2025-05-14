@@ -2,7 +2,6 @@ package gui;
 
 import entities.*;
 import javafx.animation.PauseTransition;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,16 +14,12 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import services.*;
-
-import javafx.animation.PauseTransition;
-import javafx.util.Duration;
 
 import java.awt.*;
 import java.io.File;
