@@ -7,9 +7,9 @@
 /dataSources/
 /dataSources.local.xml
 /services/
-/services.SmsService
+/services.SmsService.java
 /gui/
-/gui.AjouterReclamations
+/gui.AjouterReclamations.java
 
 
 
