@@ -8,6 +8,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
 
@@ -32,9 +34,9 @@ public class slideefeect {
     }
 
     private void initializeSlides() {
-        slides.add(createSlide("Événements à venir", "Participez à nos conférences , \n ateliers et rencontres", "Voir les événements", "/images/2.jpg"));
-        slides.add(createSlide("Formations spécialisées", "Développez vos compétences\n avec nos parcours adaptés", "Découvrir les formations", "/images/3.jpg"));
-        slides.add(createSlide("Annonces importantes", "Restez informé des dernières\n nouvelles et mises à jour", "Voir les annonces", "/images/4.jpg"));
+        slides.add(createSlide("Événements à venir", "           Notre Application vous aide  \n              à gérer vos Evénements  ", "Gestion des événements", "/images/evenement.jpg" ));
+        slides.add(createSlide("Formations spécialisées", "           Notre Application vous aide\n                à gérer vos Formations ", "Gestion des formations", "/images/FORMATION.jpg"));
+        slides.add(createSlide("Employés Satisfaits", "          Notre Application vous aide\n              à gérer vos Employés", "Gestion des employés", "/images/personnel.jpg"));
 
         if (!slides.isEmpty()) {
             contentPane.getChildren().setAll(slides.get(0));
@@ -48,31 +50,47 @@ public class slideefeect {
 
     private Pane createSlide(String titleText, String subtitleText, String buttonText, String imagePath) {
         BorderPane slide = new BorderPane();
+
         slide.setStyle("-fx-background-image: url('" + imagePath + "'); " +
                 "-fx-background-size: cover; " +
                 "-fx-background-repeat: no-repeat; " +
                 "-fx-background-position: center;");
 
         VBox box = new VBox(15);
-        box.setStyle("-fx-background-color: rgba(150, 150, 150, 0.85); " + // Gris semi-transparent
+        box.setStyle("-fx-background-color: rgba(173, 216, 230, 0.75); " +
                 "-fx-padding: 30; " +
                 "-fx-alignment: center-left; " +
                 "-fx-background-radius: 10; " +
                 "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 2);");
-        box.setPrefWidth(400); // Largeur fixe pour éviter qu'elle s'étende sur toute la photo
+
+
+        box.setPrefWidth(400);// Largeur fixe pour éviter qu'elle s'étende sur toute la photo
+        box.setAlignment(Pos.CENTER);
 
         Label title = new Label(titleText);
-        title.setStyle("-fx-font-size: 28px; -fx-text-fill: black; -fx-font-family: 'Poppins', sans-serif; -fx-font-weight: bold;");
+        title.setStyle("-fx-font-size: 28px; -fx-text-fill: #273b60; -fx-font-family: 'Poppins', sans-serif; -fx-font-weight: bold; -fx-underline: true;");
         Label subtitle = new Label(subtitleText);
-        subtitle.setStyle("-fx-font-size: 16px; -fx-text-fill: black; -fx-font-family: 'Poppins', sans-serif;");
+        subtitle.setStyle("-fx-font-size: 18px; -fx-text-fill: #273b60; -fx-font-family: 'Poppins' , sans-serif; -fx-font-weight: bold;");
         Button button = new Button(buttonText);
-        button.setStyle("-fx-background-color: #E30613; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-family: 'Poppins', sans-serif; -fx-background-radius: 5;");
+        button.setStyle("-fx-background-color: #6fccdc; -fx-text-fill: #273b60; -fx-font-size: 15px; -fx-font-weight: bold; -fx-font-family: 'Poppins', sans-serif; -fx-background-radius: 5;");
+        button.setTranslateX(80);
+        button.setTranslateY(10); // déplace verticalement vers le bas
+        title.setTranslateX(40);
+        ImageView logo = new ImageView(new Image(getClass().getResourceAsStream("/images/NN.jpeg")));
+        logo.setFitWidth(100);
+        logo.setPreserveRatio(true);
+        logo.setTranslateX(100);
+        logo.setFitWidth(150); // agrandit le logo
+        logo.setPreserveRatio(true); // garde la forme
+        logo.setTranslateY(20); // déplace verticalement vers le bas
 
-        box.getChildren().addAll(title, subtitle, button);
+        box.getChildren().addAll(title, subtitle, button,logo);
+
+
 
         // Placer la boîte dans la région center et centrer horizontalement
         slide.setRight(box);
-        BorderPane.setMargin(box, new Insets(0, 200, 0, 0)); // Ajuste les marges si besoin
+        BorderPane.setMargin(box, new Insets(0, 0, 0, 0)); // Ajuste les marges si besoin
 
         return slide;
     }
