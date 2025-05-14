@@ -6,10 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
@@ -157,20 +154,30 @@ public class pretcontroller extends FinanceController {
     @FXML
     private void handleRetour() {
         try {
-            System.out.println("Tentative de retour à l'interface précédente depuis pret.fxml");
-            Stage stage = (Stage) mainContent.getScene().getWindow();
-            stage.close();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/finance.fxml"));
+            System.out.println("Retour à finance.fxml depuis reponsespretrh.fxml");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/finance.fxml"));
             Parent root = loader.load();
             Stage newStage = new Stage();
             Scene scene = new Scene(root);
             if (getClass().getResource("/style/finance.css") != null) {
                 scene.getStylesheets().add(getClass().getResource("/style/finance.css").toExternalForm());
+                System.out.println("finance.css chargé avec succès");
             }
             newStage.setScene(scene);
             newStage.show();
+            if (mainContent != null && mainContent.getScene() != null) {
+                Stage currentStage = (Stage) mainContent.getScene().getWindow();
+                if (currentStage != null) {
+                    currentStage.close();
+                }
+            } else {
+                System.err.println("mainContent or its scene is null, cannot close the current stage.");
+            }
         } catch (IOException e) {
+            System.err.println("Erreur lors du chargement de pret.fxml dans reponsespretrhcontroller : " + e.getMessage());
             e.printStackTrace();
         }
     }
+
+
 }

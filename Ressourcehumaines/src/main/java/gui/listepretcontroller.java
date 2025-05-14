@@ -1,4 +1,18 @@
 package gui;
+import entities.avance;
+import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
+import javafx.animation.TranslateTransition;
+import javafx.scene.layout.VBox;
+import javafx.util.Duration;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
+import javafx.event.ActionEvent;
+import java.io.IOException;
+
 
 import entities.pret;
 import javafx.collections.FXCollections;
@@ -11,17 +25,44 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import services.avanceservice;
 import services.pretservice;
 
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 public class listepretcontroller {
+
+
+
+    @FXML
+    private AnchorPane chatbotPane;
+
+    @FXML
+    private Button btnChatbot;
+
+
     @FXML
     private AnchorPane mainContent;
+    @FXML
+    private Button btnAjouter;
 
+    @FXML
+    private Button btnConsulter;
+
+    @FXML
+    private Button btnReponse;
+
+    @FXML
+    private Button btnSearch;
+    @FXML
+    private Button btnSidebarToggle;
+
+    @FXML
+    private VBox sidebar;
     @FXML
     private AnchorPane contentArea;
 
@@ -66,9 +107,22 @@ public class listepretcontroller {
     private boolean isDarkTheme = false;
 
     private pretservice pretService = new pretservice();
+    private PauseTransition autoCloseTimer;
+    private boolean isTransitioning = false;
+    private int currentUserId; // Ajout du champ pour stocker l'ID de l'utilisateur
+    private boolean isSidebarOpen = false;
+    private boolean chatbotVisible = false;
 
     @FXML
     private void initialize() {
+        autoCloseTimer = new PauseTransition(Duration.seconds(20));
+        autoCloseTimer.setOnFinished(event -> {
+            if (isSidebarOpen && !isTransitioning) {
+                toggleSidebar();
+                System.out.println("Sidebar auto-collapsed after 3 seconds");
+            }
+        });
+        setupEventHandlers(); // s'assurer que tout est prêt
         colMontant.setCellValueFactory(new PropertyValueFactory<>("montant"));
         colDuree.setCellValueFactory(new PropertyValueFactory<>("duree"));
         colDatePret.setCellValueFactory(new PropertyValueFactory<>("datePret"));
@@ -259,4 +313,169 @@ public class listepretcontroller {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    private void setupEventHandlers() {
+        if (btnSidebarToggle != null) {
+            btnSidebarToggle.setOnAction(event -> toggleSidebar());
+        } else {
+            System.err.println("btnSidebarToggle is null");
+        }
+
+        themeToggle.setOnAction(event -> toggleTheme());
+        btnConsulter.setOnAction(e -> showReponsesTable());
+        btnAjouter.setOnAction(e -> loadAjoutReponse());
+        btnReponse.setOnAction(e -> loadReponse());
+
+
+    }
+    private void toggleSidebar() {
+        if (sidebar == null || contentArea == null || tableViewPret == null) {
+            System.err.println("Cannot toggle sidebar: sidebar=" + sidebar + ", contentArea=" + contentArea + ", tableView=" + tableViewPret);
+            return;
+        }
+        if (isTransitioning) {
+            System.out.println("Toggle ignored: Transition in progress");
+            return;
+        }
+        isTransitioning = true;
+        autoCloseTimer.stop();
+        TranslateTransition sidebarTransition = new TranslateTransition(Duration.millis(300), sidebar);
+        FadeTransition fade = new FadeTransition(Duration.millis(300), sidebar);
+
+        if (isSidebarOpen) {
+            // Collapse
+            sidebarTransition.setToX(-250);
+            fade.setToValue(0.5);
+//            sidebar.setPrefWidth(50);
+            contentArea.setLayoutX(60.0);
+            contentArea.setPrefWidth(1200.0);
+            isSidebarOpen = false;
+        } else {
+            // Open
+            sidebarTransition.setToX(0);
+            fade.setToValue(1.0);
+            sidebar.setPrefWidth(300);
+            contentArea.setLayoutX(310.0);
+            contentArea.setPrefWidth(1070.0);
+            isSidebarOpen = true;
+            autoCloseTimer.playFromStart();
+
+        }
+        sidebarTransition.setOnFinished(e -> isTransitioning = false);
+        sidebarTransition.play();
+        fade.play();
+    }
+
+
+
+
+    private void showReponsesTable() {
+
+        FadeTransition fade = new FadeTransition(Duration.millis(200), dynamicContent);
+        fade.setFromValue(1.0);
+        fade.setToValue(0.0);
+        fade.setOnFinished(e -> {
+            reloadReponsesFromDatabase(); // ici
+
+            dynamicContent.getChildren().setAll(tableViewPret);
+            FadeTransition fadeIn = new FadeTransition(Duration.millis(300), dynamicContent);
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+            fadeIn.play();
+        });
+        fade.play();
+    }
+    private void reloadReponsesFromDatabase () {
+        try {
+            pretservice reponseService = new pretservice();
+            List<pret> updatedList = reponseService.readAll();
+            ObservableList<pret> observableList = FXCollections.observableArrayList(updatedList);
+            tableViewPret.setItems(observableList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur de chargement");
+            alert.setHeaderText("Impossible de charger les réponses");
+            alert.setContentText("Une erreur est survenue lors de la connexion à la base de données.");
+            alert.showAndWait();
+        }
+    }
+
+
+    private void loadReponse() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/reponsespretrh.fxml"));
+            searchField.setVisible(false);
+            btnSearch.setVisible(false);
+//            Recher.setVisible(false);
+            FadeTransition fade = new FadeTransition(Duration.millis(300), dynamicContent);
+            fade.setFromValue(1.0);
+            fade.setToValue(0.0);
+            fade.setOnFinished(e -> {
+                dynamicContent.getChildren().setAll(root);
+                FadeTransition fadeIn = new FadeTransition(Duration.millis(300), dynamicContent);
+                fadeIn.setFromValue(0.0);
+                fadeIn.setToValue(1.0);
+                fadeIn.play();
+            });
+            fade.play();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Échec du chargement du formulaire");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+
+
+    private void loadAjoutReponse() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/ajouterpret.fxml"));
+            searchField.setVisible(false);
+            btnSearch.setVisible(false);
+//            Recher.setVisible(false);
+            FadeTransition fade = new FadeTransition(Duration.millis(300), dynamicContent);
+            fade.setFromValue(1.0);
+            fade.setToValue(0.0);
+            fade.setOnFinished(e -> {
+                dynamicContent.getChildren().setAll(root);
+                FadeTransition fadeIn = new FadeTransition(Duration.millis(300), dynamicContent);
+                fadeIn.setFromValue(0.0);
+                fadeIn.setToValue(1.0);
+                fadeIn.play();
+            });
+            fade.play();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Échec du chargement du formulaire");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void toggleChatbot(ActionEvent event) {
+        if (!chatbotVisible) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/finance.fxml"));
+                Parent chatbotContent = loader.load(); // ✅ Plus générique
+                chatbotPane.getChildren().setAll(chatbotContent);
+                chatbotPane.setVisible(true);
+                chatbotVisible = true;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            chatbotPane.setVisible(false);
+            chatbotPane.getChildren().clear();
+            chatbotVisible = false;
+        }
+    }
+
+
 }
