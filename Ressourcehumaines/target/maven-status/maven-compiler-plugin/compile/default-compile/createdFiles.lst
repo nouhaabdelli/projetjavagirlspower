@@ -13,6 +13,7 @@ gui\Evenements$4.class
 gui\Evenements$1.class
 gui\CalendrierEvenement.class
 gui\evenementfo$1.class
+gui\HttpURLConnectionExample.class
 gui\ModifierEvenement.class
 gui\Annonces$3.class
 gui\Calendrier.class

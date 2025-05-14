@@ -53,6 +53,6 @@
         </ImageView>
       <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="541.0" layoutY="405.0" pickOnBounds="true" preserveRatio="true" />
       <Button layoutX="306.0" layoutY="388.0" mnemonicParsing="false" onAction="#ouvrirCarte" text="Voir la carte" />
-      <!--<Button fx:id="generateButton" layoutX="343.0" layoutY="79.0" mnemonicParsing="false" onAction="#generateDescription" prefHeight="7.0" prefWidth="91.0" text="Generate" /> -->
+      <Button  layoutX="343.0" layoutY="79.0" mnemonicParsing="false" onAction="#generateDescription" prefHeight="7.0" prefWidth="91.0" text="Generate" />
     </children>
 </AnchorPane>

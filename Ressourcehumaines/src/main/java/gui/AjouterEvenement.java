@@ -14,6 +14,7 @@ import javafx.stage.FileChooser;
 import javafx.event.ActionEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import jdk.jfr.Description;
 import netscape.javascript.JSObject;
 import services.EvenementService;
 import javafx.scene.web.WebView;
@@ -27,8 +28,6 @@ import java.time.LocalTime;
 
 public class AjouterEvenement {
 
-    @FXML
-    private Button generateButton;
 
 
 
@@ -78,27 +77,38 @@ public class AjouterEvenement {
 
     }
 
-    /*@FXML
+    @FXML
     private void generateDescription() {
-        String title = nomEvenement.getText();
-        if (title == null || title.isEmpty()) {
-            description.setText("Please enter a title.");
+        String nomEvent = nomEvenement.getText();
+
+        // Vérifie que le champ nomEvenement n'est pas vide
+        if (nomEvent == null || nomEvent.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Nom d'événement manquant");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez entrer un nom pour l'événement.");
+            alert.showAndWait();
             return;
         }
 
-        description.setText("Generating...");
+        try {
+            // Appeler la méthode qui interroge l'API Gemini pour générer la description
+            String descript = HttpURLConnectionExample.generateDescription(nomEvent);
 
-        // Exécuter dans un thread séparé pour ne pas bloquer l'UI
-        new Thread(() -> {
-            try {
-                String result = AITextGenerator.generateDescription(title);
-                javafx.application.Platform.runLater(() -> description.setText(result));
-            } catch (Exception e) {
-                javafx.application.Platform.runLater(() -> description.setText("Error: " + e.getMessage()));
-            }
-        }).start();
+            // Mettre la description générée dans le champ de texte de description
+            description.setText(descript);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Afficher un message d'erreur en cas d'échec
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Une erreur est survenue lors de la génération de la description.");
+            alert.showAndWait();
+        }
     }
-*/
+
     @FXML
     private void ouvrirCarte() {
         try {
