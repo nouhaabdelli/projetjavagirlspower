@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@style/style.css"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gui.DemandeController">
+    <children>
+
+        <!-- En-tête -->
+        <VBox spacing="20" styleClass="header-box"
+              AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <padding>
+                <Insets bottom="20" left="20" right="20" top="20" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Button fx:id="btnSidebarToggle" prefHeight="50.0" prefWidth="50.0"
+                        styleClass="sidebar-toggle" text="☰" onAction="#toggleSidebar" />
+                <Text styleClass="label-title" text="Gestion des Demandes" />
+            </HBox>
+        </VBox>
+
+        <!-- Sidebar -->
+        <VBox fx:id="sidebar" layoutY="131.0" prefHeight="669.0" prefWidth="250.0" styleClass="sidebar"
+              AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="120.0">
+            <Label styleClass="sidebar-title" text="Navigation" />
+            <Button fx:id="btnStatistiques" styleClass="menu-item" text="Statistiques" onAction="#ouvrirStatistiques" />
+            <Button fx:id="btnMesDemandes" styleClass="menu-item" text="Mes demandes" onAction="#handleMesDemandes" />
+            <Button fx:id="btnConge" styleClass="menu-item" text="Demande Congé" onAction="#handleCongé" />
+            <Button fx:id="btnAttestation" styleClass="menu-item" text="Demande Attestation" onAction="#handleAttestation" />
+            <Button fx:id="btnToutesLesDemandes" styleClass="menu-item" text="Toutes les Demandes" onAction="#handleToutesLesDemandes" visible="true" />
+
+        </VBox>
+
+        <!-- Contenu principal -->
+        <VBox fx:id="contentArea" spacing="20" alignment="CENTER"
+              AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="20.0"
+              AnchorPane.topAnchor="120.0">
+            <Text styleClass="label-title" text="Bienvenue dans votre espace de gestion" />
+            <Text styleClass="label" />
+        </VBox>
+
+        <!-- Pied de page -->
+        <HBox alignment="CENTER_RIGHT" styleClass="footer"
+              AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <padding>
+                <Insets bottom="10" left="20" right="20" top="10" />
+            </padding>
+        </HBox>
+
+    </children>
+</AnchorPane>
