@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<HBox spacing="0" stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="gui.CertificatFrontController">
+
+    <!-- SIDEBAR -->
+    <AnchorPane prefWidth="250.0" styleClass="sidebar">
+        <VBox alignment="TOP_CENTER" spacing="25.0" AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+
+            <ImageView fitWidth="80" fitHeight="80" preserveRatio="true"/>
+
+            <Button text="⏪ Retour" onAction="#retourPostFront" styleClass="sidebar-return"/>
+
+            <Separator/>
+
+            <VBox spacing="10" alignment="TOP_CENTER">
+                <Button onAction="#ajoutFormation" styleClass="sidebar-btn" text="🧠 Ajouter Formation"/>
+                <Button onAction="#AfficherFormation" styleClass="sidebar-btn" text="📚 Liste des Formations"/>
+                <Button onAction="#ajouterCertif" styleClass="sidebar-btn" text="📝 Ajouter Certificat"/>
+                <Button onAction="#AfficherCertif" styleClass="sidebar-btn" text="🎓 Liste des Certificats"/>
+            </VBox>
+        </VBox>
+    </AnchorPane>
+
+    <!-- MAIN CONTENT -->
+    <AnchorPane fx:id="anch" styleClass="main-panel">
+        <VBox alignment="TOP_CENTER" spacing="20.0" AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+
+            <HBox alignment="CENTER_RIGHT">
+                <Label text="👤 Mon Compte" styleClass="label-title"/>
+            </HBox>
+
+            <Separator/>
+
+            <VBox alignment="CENTER" spacing="10">
+                <Button fx:id="generatePdfButton" text="Générer PDF" onAction="#generatePdf" styleClass="generate-btn"/>
+                <Label fx:id="pdfStatusLabel" text="" styleClass="status-label"/>
+            </VBox>
+
+            <TitledPane text="📘 Mes Formations" expanded="true" styleClass="titled-pane">
+                <ScrollPane fx:id="scroll" fitToWidth="true" prefHeight="200.0" styleClass="transparent">
+                    <content>
+                        <GridPane fx:id="grid" hgap="10" vgap="10"/>
+                    </content>
+                </ScrollPane>
+            </TitledPane>
+
+            <TitledPane text="📜 Mes Certificats" expanded="true" styleClass="titled-pane">
+                <ScrollPane fitToWidth="true" prefHeight="180.0" styleClass="transparent">
+                    <content>
+                        <GridPane fx:id="commentsGrid" hgap="10" vgap="10"/>
+                    </content>
+                </ScrollPane>
+            </TitledPane>
+        </VBox>
+
+        <HBox alignment="CENTER" visible="false">
+            <TextArea fx:id="idtf" prefHeight="60.0" prefWidth="180.0" visible="false"/>
+            <TextArea fx:id="idtf1" prefHeight="60.0" prefWidth="180.0" visible="false"/>
+        </HBox>
+    </AnchorPane>
+</HBox>

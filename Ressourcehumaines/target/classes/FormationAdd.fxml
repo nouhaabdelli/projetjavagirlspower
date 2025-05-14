@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="rec" prefHeight="575.0" prefWidth="1127.0" stylesheets="@style/certificat.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FormationAddController">
+
+    <VBox alignment="TOP_CENTER" layoutX="19.0" layoutY="21.0" prefHeight="516.0" prefWidth="1002.0" spacing="25" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="378.0" AnchorPane.topAnchor="21.0">
+
+        <!-- Title -->
+        <Label styleClass="header-title" text="Ajout des Formations" />
+
+        <!-- FORM SECTION -->
+        <GridPane hgap="20" styleClass="form-grid" vgap="15">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" minWidth="150.0" />
+                <ColumnConstraints minWidth="300.0" />
+                <ColumnConstraints halignment="RIGHT" minWidth="150.0" />
+                <ColumnConstraints />
+            </columnConstraints>
+
+            <!-- Titre Field -->
+            <Label text="Titre:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #34495e;" />
+            <TextField fx:id="titreField" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="input-field" />
+
+            <!-- Description Field -->
+            <Label text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #34495e;" />
+            <TextArea fx:id="descriptionField" prefHeight="54.0" prefRowCount="2" prefWidth="715.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" styleClass="input-field" />
+
+            <!-- Domaine Field -->
+            <Label text="Domaine:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #34495e;" />
+            <TextField fx:id="domaineField" GridPane.columnIndex="1" GridPane.rowIndex="2" styleClass="input-field" />
+
+            <!-- Lieu Field -->
+            <Label text="Lieu:" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #34495e;" />
+            <TextField fx:id="lieuField" GridPane.columnIndex="1" GridPane.rowIndex="3" styleClass="input-field" />
+
+            <!-- Date Début Field -->
+            <Label text="Date Début:" GridPane.columnIndex="0" GridPane.rowIndex="4" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #34495e;" />
+            <DatePicker fx:id="dateDebutField" GridPane.columnIndex="1" GridPane.rowIndex="4" styleClass="input-field" />
+
+            <!-- Date Fin Field -->
+            <Label text="Date Fin:" GridPane.columnIndex="0" GridPane.rowIndex="5" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #34495e;" />
+            <DatePicker fx:id="dateFinField" GridPane.columnIndex="1" GridPane.rowIndex="5" styleClass="input-field" />
+
+            <!-- Hidden ID field for editing -->
+            <TextField fx:id="idField" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+
+        </GridPane>
+
+        <!-- Button section -->
+        <Button mnemonicParsing="false" onAction="#addFormation" styleClass="btn-ajouter" text="Ajouter" style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-padding: 10 20; -fx-background-radius: 8;" />
+    </VBox>
+
+</AnchorPane>

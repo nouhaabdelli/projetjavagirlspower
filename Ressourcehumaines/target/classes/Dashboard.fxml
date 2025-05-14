@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.image.Image?>
+<HBox stylesheets="@style/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CertificatFrontController">
+
+    <!-- NAVIGATION -->
+    <AnchorPane prefHeight="614.0" prefWidth="303.0" styleClass="sidebar">
+        <VBox alignment="TOP_CENTER" layoutY="140.0" prefHeight="371.0" prefWidth="300.0" spacing="20" AnchorPane.bottomAnchor="212.0" AnchorPane.topAnchor="90.0">
+            <Button onAction="#ajoutFormation" styleClass="sidebar-btn" text="➕ Ajouter Formation" />
+            <Button onAction="#AfficherFormation" prefHeight="38.0" prefWidth="250.0" styleClass="sidebar-btn" text="📋 Liste des formations" />
+            <Button onAction="#ajouterCertif" styleClass="sidebar-btn" text="➕ Ajouter Certificat" />
+            <Button onAction="#AfficherCertif" styleClass="sidebar-btn" text="📋 Liste des Certificat" />
+        </VBox>
+    </AnchorPane>
+
+    <!-- CONTENT -->
+    <AnchorPane fx:id="anch" prefHeight="582.0" prefWidth="757.0" styleClass="main-panel" />
+
+</HBox>

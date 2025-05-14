@@ -1,0 +1,93 @@
+/* Partie générale */
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Mise à jour des boutons (plus modernes et cohérents) */
+.btn-danger {
+    -fx-background-color: linear-gradient(to right, #5fa8f5, #80c0ff);
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-padding: 12 35;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0, 0, 2);
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+.btn-danger:hover {
+    -fx-background-color: linear-gradient(to right, #3498db, #5dade2);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* Style spécifique au bouton "Ajouter" */
+.btn-ajouter {
+    -fx-background-color: linear-gradient(to right, #6db3f2, #b3d9ff);
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-padding: 12 35;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0, 0, 2);
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+.btn-ajouter:hover {
+    -fx-background-color: linear-gradient(to right, #4fa3d1, #75c2f7);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* Styles généraux des autres éléments */
+.header-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1356a0;
+}
+
+.form-grid {
+    -fx-background-color: transparent;
+}
+
+.form-grid .label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #1356a0;
+    -fx-font-weight: normal;
+}
+
+.form-grid .text-field, .form-grid .combo-box, .form-grid .date-picker {
+    -fx-background-color: #f0f8ff;
+    -fx-border-color: #c0d9f7;
+    -fx-border-radius: 10;
+    -fx-padding: 8 12;
+    -fx-font-size: 14px;
+}
+
+/* Titre et style général de la fenêtre */
+.rootPane {
+    -fx-background-color: #f9fcff;
+    -fx-padding: 20;
+}
+
+.button-row {
+    -fx-padding: 15;
+    -fx-alignment: center;
+}
+
+/* Style pour les champs sélectionnés */
+.text-field:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: #3498db;
+    -fx-background-color: #e7f2fc;
+}
+
+/* Icône sur le bouton (optionnel si vous souhaitez l'ajouter) */
+.btn-ajouter .graphic {
+    -fx-fill: white;
+    -fx-font-size: 18px;
+    -fx-padding-right: 10px;
+}

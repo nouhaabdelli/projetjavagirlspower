@@ -1,0 +1,50 @@
+/* Global Styles */
+.vbox-container {
+    -fx-background-color: #f4f4f4;
+    -fx-padding: 20px;
+    -fx-spacing: 15px;
+}
+
+.title-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-margin-bottom: 20px;
+}
+
+.form-field {
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5px;
+    -fx-pref-height: 40px;
+}
+
+.form-field:focused {
+    -fx-border-color: #5e9ed6;
+    -fx-background-color: #f5faff;
+}
+
+.text-area {
+    -fx-border-radius: 5px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+}
+
+.button-box {
+    -fx-alignment: center;
+    -fx-padding-top: 20px;
+}
+
+.save-button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-padding: 10px 20px;
+    -fx-font-size: 14px;
+    -fx-border-radius: 5px;
+}
+
+.save-button:hover {
+    -fx-background-color: #45a049;
+}

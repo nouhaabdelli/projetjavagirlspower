@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="rootPane" prefHeight="620" prefWidth="860" stylesheets="@style/certificatadd.css"
+            xmlns="http://javafx.com/javafx/19"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gui.CertificatAddController">
+
+    <VBox spacing="25" alignment="TOP_CENTER"
+          AnchorPane.topAnchor="15" AnchorPane.leftAnchor="15"
+          AnchorPane.rightAnchor="15" AnchorPane.bottomAnchor="15"
+          styleClass="container">
+
+        <!-- Title -->
+        <Label text="Gestion des Certificats" styleClass="header-title"/>
+
+        <!-- Form -->
+        <GridPane hgap="20" vgap="15" styleClass="form-grid" prefWidth="740">
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" minWidth="120"/>
+                <ColumnConstraints minWidth="180"/>
+                <ColumnConstraints halignment="RIGHT" minWidth="120"/>
+                <ColumnConstraints minWidth="180"/>
+            </columnConstraints>
+
+            <!-- Row 1 -->
+            <Label text="Titre :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="titreField" prefWidth="300" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+
+            <!-- Row 2 -->
+            <Label text="Description :" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextArea fx:id="descriptionField" prefRowCount="2" prefWidth="400" GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+
+            <!-- Row 3 -->
+            <Label text="Date Expiration :" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="dateExpirationPicker" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Niveau :" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+            <ComboBox fx:id="niveauComboBox" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+
+            <!-- Row 4 -->
+            <Label text="Validité (années) :" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="validiteField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <!-- Row 5 -->
+            <Label text="Nom et prénom de l'Utilisateur:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="userComboBox" onAction="#onUserSelected" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+            <Label text="Nom d'utilisateur :" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
+            <TextField fx:id="usernameField" editable="false" GridPane.rowIndex="4" GridPane.columnIndex="3"/>
+
+            <!-- Row 6 -->
+            <Label text="Formation:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="formationComboBox" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+        </GridPane>
+
+        <!-- Button -->
+        <HBox spacing="15" alignment="CENTER" styleClass="button-row">
+            <Button text="Ajouter" onAction="#addCertificat" styleClass="btn-primary"/>
+        </HBox>
+    </VBox>
+</AnchorPane>
