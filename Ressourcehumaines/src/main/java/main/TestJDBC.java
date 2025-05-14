@@ -1,9 +1,5 @@
 package main;
 
-import entities.Person;
-import services.PersonService;
-import utils.MyConnection;
-
 import java.sql.SQLException;
 
 public class TestJDBC {
