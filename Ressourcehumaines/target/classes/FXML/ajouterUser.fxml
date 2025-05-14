@@ -1,138 +1,152 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="530.0" prefWidth="811.0" stylesheets="@../CSS/back.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterUser">
-   <children>
-      <TextField fx:id="usnom" layoutX="79.0" layoutY="60.0" />
-      <TextField fx:id="usprenom" layoutX="425.0" layoutY="59.0" />
-      <TextField fx:id="usemail" layoutX="79.0" layoutY="99.0" />
-      <TextField fx:id="ustelephone" layoutX="425.0" layoutY="93.0" />
-      <TextField fx:id="usrib" layoutX="425.0" layoutY="132.0" />
-      <TextField fx:id="usenfant" layoutX="425.0" layoutY="183.0" />
-      <Text fill="WHITE" layoutX="27.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :" textAlignment="CENTER">
-         <font>
-            <Font name="Algerian" size="12.0" />
-         </font></Text>
-      <Text fill="WHITE" layoutX="338.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="prenom :" textAlignment="CENTER">
-         <font>
-            <Font name="Algerian" size="12.0" />
-         </font></Text>
-      <Text fill="WHITE" layoutX="24.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email :" textAlignment="CENTER">
-         <font>
-            <Font name="Algerian" size="12.0" />
-         </font></Text>
-      <Text fill="WHITE" layoutX="337.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="telephone :" textAlignment="CENTER">
-         <font>
-            <Font name="Algerian" size="12.0" />
-         </font></Text>
-      <Text fill="WHITE" layoutX="348.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="r.i.b :" textAlignment="CENTER">
-         <font>
-            <Font name="Algerian" size="12.0" />
-         </font></Text>
-      <TextField fx:id="uscnam" layoutX="88.0" layoutY="197.0" />
-      <TextField fx:id="usstatut" layoutX="88.0" layoutY="237.0" />
-      <Text fx:id="usenfantLabel" fill="WHITE" layoutX="292.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombre d'enfant  :">
-         <font>
-            <Font name="Algerian" size="12.0" />
-         </font></Text>
-      <TextField fx:id="usadresse" layoutX="88.0" layoutY="277.0" />
-      <Text fill="WHITE" layoutX="25.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CNAM :">
-         <font>
-            <Font name="Algerian" size="12.0" />
-         </font></Text>
-      <Text fill="WHITE" layoutX="23.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="staut :">
-         <font>
-            <Font name="Algerian" size="12.0" />
-         </font></Text>
-      <Text fill="WHITE" layoutX="15.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="adresse :">
-         <font>
-            <Font name="Algerian" size="12.0" />
-         </font></Text>
-      <DatePicker fx:id="usembauche" layoutX="412.0" layoutY="236.0" />
-      <DatePicker fx:id="usnaissance" layoutX="412.0" layoutY="270.0" />
-      <Text fill="WHITE" layoutX="276.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date embauche :">
-         <font>
-            <Font name="Algerian" size="12.0" />
-         </font></Text>
-      <Text fill="WHITE" layoutX="276.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date de naissance :" textAlignment="CENTER">
-         <font>
-            <Font name="Algerian" size="12.0" />
-         </font></Text>
-      <RadioButton fx:id="usmale" layoutX="94.0" layoutY="131.0" mnemonicParsing="false" text="male" textFill="#7c218e">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font></RadioButton>
-      <RadioButton fx:id="usfemale" layoutX="223.0" layoutY="131.0" mnemonicParsing="false" text="female" textFill="#7c218e">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font></RadioButton>
-      <RadioButton fx:id="usmarie" layoutX="97.0" layoutY="175.0" mnemonicParsing="false" text="marie(e)" textFill="#7c218e">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font></RadioButton>
-      <RadioButton fx:id="usdivorce" layoutX="173.0" layoutY="175.0" mnemonicParsing="false" text="divorce(e)" textFill="#7c218e">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font></RadioButton>
-      <RadioButton fx:id="uscelibataire" layoutX="256.0" layoutY="175.0" mnemonicParsing="false" text="celibataire" textFill="#7c218e">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font></RadioButton>
-      <Text fill="WHITE" layoutX="22.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="genre :" textAlignment="CENTER">
-         <font>
-            <Font name="Algerian" size="12.0" />
-         </font></Text>
-      <Text fill="WHITE" layoutX="11.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="etat civil :" textAlignment="CENTER">
-         <font>
-            <Font name="Algerian" size="12.0" />
-         </font></Text>
-      <Button fx:id="adduser" layoutX="665.0" layoutY="274.0" mnemonicParsing="false" onAction="#add" text="valider">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font></Button>
-      <Text fill="WHITE" layoutX="27.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="role :">
-         <font>
-            <Font name="Algerian" size="12.0" />
-         </font>
-      </Text>
-      <TextField fx:id="usrole" layoutX="94.0" layoutY="337.0" />
-      <Button fx:id="back" layoutX="667.0" layoutY="234.0" mnemonicParsing="false" onAction="#back" text="retour">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font>
-      </Button>
-      <Text fill="WHITE" layoutX="336.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="cin :">
-         <font>
-            <Font name="Algerian" size="12.0" />
-         </font>
-      </Text>
-      <TextField fx:id="uscin" layoutX="425.0" layoutY="337.0" />
-      <Text fill="WHITE" layoutX="25.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout d'un utilisateur " underline="true">
-         <font>
-            <Font name="Algerian" size="48.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="606.0" layoutY="-21.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/work.png" />
-         </image>
-      </ImageView>
-      <Text fill="WHITE" layoutX="3.0" layoutY="459.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Photo De Profil :">
-         <font>
-            <Font name="Algerian" size="14.0" />
-         </font>
-      </Text>
-      <TextField fx:id="photopath" layoutX="133.0" layoutY="440.0" />
-      <Button fx:id="par" layoutX="310.0" layoutY="437.0" mnemonicParsing="false" onAction="#par" text="parcourir" />
-      <ImageView fx:id="pdp" fitHeight="150.0" fitWidth="200.0" layoutX="425.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" />
-   </children>
-</AnchorPane>
+<ScrollPane fitToWidth="true" prefHeight="829.0" prefWidth="832.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterUser">
+   <content>
+      <VBox alignment="TOP_CENTER" spacing="15" styleClass="root" stylesheets="@../CSS/ajout.css">
+         <padding>
+            <Insets bottom="20" left="40" right="40" top="20" />
+         </padding>
+         <children>
+            <!-- Titre -->
+            <Text fill="#f3f4f4" styleClass="title-text" text="Ajout d'un utilisateur">
+               <font>
+                  <Font name="Algerian" size="32" />
+               </font>
+            </Text>
+
+            <!-- Image -->
+            <ImageView fitHeight="116.0" fitWidth="186.0">
+               <image>
+                  <Image url="@../images/work.png" />
+               </image>
+            </ImageView>
+
+            <!-- Nom & Prénom -->
+            <HBox spacing="10">
+               <VBox>
+                  <Label text="Nom:" />
+                  <TextField fx:id="usnom" />
+               </VBox>
+               <VBox>
+                  <Label text="Prénom:" />
+                  <TextField fx:id="usprenom" />
+               </VBox>
+            </HBox>
+
+            <!-- Email & Téléphone -->
+            <HBox spacing="10">
+               <VBox>
+                  <Label text="Email:" />
+                  <TextField fx:id="usemail" />
+               </VBox>
+               <VBox>
+                  <Label text="Téléphone:" />
+                  <TextField fx:id="ustelephone" />
+               </VBox>
+            </HBox>
+
+            <!-- Genre -->
+            <VBox spacing="5">
+               <Label text="Genre:" />
+               <HBox spacing="10">
+                  <RadioButton fx:id="usmale" text="Male" />
+                  <RadioButton fx:id="usfemale" text="Female" />
+               </HBox>
+            </VBox>
+
+            <!-- Etat civil -->
+            <VBox spacing="5">
+               <Label text="État civil:" />
+               <HBox spacing="10">
+                  <RadioButton fx:id="usmarie" text="Marié(e)" />
+                  <RadioButton fx:id="usdivorce" text="Divorcé(e)" />
+                  <RadioButton fx:id="uscelibataire" text="Célibataire" />
+               </HBox>
+            </VBox>
+
+            <!-- CNAM, Statut, Adresse -->
+            <HBox spacing="10">
+               <VBox>
+                  <Label text="CNAM:" />
+                  <TextField fx:id="uscnam" />
+               </VBox>
+               <VBox>
+                  <Label text="Statut:" />
+                  <TextField fx:id="usstatut" />
+               </VBox>
+               <VBox>
+                  <Label text="Adresse:" />
+                  <TextField fx:id="usadresse" />
+               </VBox>
+            </HBox>
+
+            <!-- RIB, Nombre d'enfants -->
+            <HBox spacing="10">
+               <VBox>
+                  <Label text="R.I.B:" />
+                  <TextField fx:id="usrib" />
+               </VBox>
+               <VBox>
+                  <Text fx:id="usenfantLabel" text="Nombre d'enfants:" />
+                  <TextField fx:id="usenfant" />
+               </VBox>
+            </HBox>
+
+            <!-- Dates -->
+            <HBox spacing="10">
+               <VBox>
+                  <Label text="Date embauche:" />
+                  <DatePicker fx:id="usembauche" />
+               </VBox>
+               <VBox>
+                  <Label text="Date de naissance:" />
+                  <DatePicker fx:id="usnaissance" />
+               </VBox>
+            </HBox>
+
+            <!-- Rôle & CIN -->
+            <HBox spacing="10">
+               <VBox>
+                  <Label text="Rôle:" />
+                  <ComboBox fx:id="usrole" promptText="Choisir un rôle" />
+               </VBox>
+               <VBox>
+                  <Label text="CIN:" />
+                  <TextField fx:id="uscin" />
+               </VBox>
+            </HBox>
+
+            <!-- Image de profil -->
+            <VBox spacing="5">
+               <Label text="Photo de profil:" />
+               <HBox spacing="10">
+                  <TextField fx:id="photopath" promptText="Chemin de l'image" />
+                  <Button fx:id="par" onAction="#par" text="Parcourir" />
+               </HBox>
+   
+               <!-- Boutons -->
+               <HBox spacing="20">
+                  <Button fx:id="back" onAction="#back" text="Retour" />
+                  <Button fx:id="adduser" onAction="#add" text="Valider" />
+               </HBox>
+               <ImageView fx:id="pdp" fitHeight="150" fitWidth="200" preserveRatio="true" />
+            </VBox>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

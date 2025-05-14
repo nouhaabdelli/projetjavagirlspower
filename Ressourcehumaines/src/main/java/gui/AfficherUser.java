@@ -1,6 +1,8 @@
 package gui;
 
 import entities.User;
+import javafx.animation.PauseTransition;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +15,7 @@ import java.sql.*;
 import javafx.scene.control.Button;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import java.io.IOException;
@@ -42,13 +45,7 @@ import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
 import com.itextpdf.layout.properties.HorizontalAlignment;
-
-
-
-
-
-
-
+import javafx.util.Duration;
 
 
 public class AfficherUser {
@@ -56,6 +53,19 @@ public class AfficherUser {
     private Button backcrud;
     @FXML
     private Button btnExportPDF;
+    @FXML
+    private VBox sidebar;
+
+    @FXML
+    private Button btnSidebarToggle;
+
+    @FXML
+    private Button btnAjouter;
+
+    @FXML
+    private Button Réinitialiser;
+
+
 
 
     @FXML
@@ -237,49 +247,10 @@ public class AfficherUser {
                 }
             }
         });
+        loadUsers();
 
 
-        try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/workbridge", "root", "");
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM user");
 
-            while (rs.next()) {
-                User u = new User(
-                        rs.getInt("id"),
-                        rs.getString("nom"),
-                        rs.getString("prenom"),
-                        rs.getDate("dateNaissance").toLocalDate(),
-                        rs.getString("motDePasse"),
-                        rs.getString("email"),
-                        rs.getString("numTelephone"),
-                        rs.getString("role"),
-                        rs.getString("rib"),
-                        rs.getInt("nombreEnfant"),
-                        rs.getString("cnam"),
-                        rs.getDate("dateEmbauche").toLocalDate(),
-                        rs.getString("photoProfil"),
-                        rs.getString("statut"),
-                        rs.getString("adresse"),
-                        rs.getString("genre"),
-                        rs.getString("situationFamiliale"),
-                        rs.getInt("cin")
-                );
-                userList.add(u);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        // 🔹 Création du root et remplissage
-        TreeItem<User> root = new TreeItem<>(new User());
-        for (User u : userList) {
-            root.getChildren().add(new TreeItem<>(u));
-        }
-
-        treeus.setRoot(root);
-        treeus.setShowRoot(false);
     }
     private Cell headerStyle(String text) {
         return new Cell()
@@ -365,6 +336,118 @@ public class AfficherUser {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    void openAjouterUserForm(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/AjouterUser.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle fenêtre pour l'ajout de l'utilisateur
+            Stage stage = new Stage();
+            stage.setTitle("Ajouter un utilisateur");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    void resetTableView(ActionEvent event) {
+        // Logique pour réinitialiser ta table ou ta vue
+        treeus.getRoot().getChildren().clear();  // Exemple de réinitialisation de la table
+        // Étape 2 : Attendre un peu avant de recharger les données
+        PauseTransition pause = new PauseTransition(Duration.seconds(0.5)); // délai de 0.5s
+        pause.setOnFinished(e -> loadUsers()); // recharge les données après le délai
+        pause.play();
+    }
+
+    // Variable pour suivre l'état de la sidebar
+    private boolean isSidebarOpen = false;
+    @FXML
+    private void toggleSidebar() {
+        if (sidebar == null) return;
+
+        TranslateTransition transition = new TranslateTransition(Duration.millis(300), sidebar);
+        if (isSidebarOpen) {
+            transition.setToX(-250);
+            isSidebarOpen = false;
+        } else {
+            transition.setToX(0);
+            isSidebarOpen = true;
+        }
+        transition.play();
+    }
+
+    private void setupEventHandlers() {
+        if (btnSidebarToggle != null) {
+            btnSidebarToggle.setOnAction(event -> toggleSidebar());
+        } else {
+            System.err.println("btnSidebarToggle is null");
+        }
+
+        // Réinitialiser la table ou la vue
+        if (Réinitialiser != null) {
+            Réinitialiser.setOnAction(e -> resetTableView(e));
+        }
+
+        // Ajouter un employé
+        if (btnAjouter != null) {
+            btnAjouter.setOnAction(e -> openAjouterUserForm(e));  // Appel de ta méthode existante
+        }
+    }
+    private void loadUsers() {
+        ObservableList<User> userList = FXCollections.observableArrayList();
+
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/workbridge", "root", "");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM user");
+
+            while (rs.next()) {
+                User u = new User(
+                        rs.getInt("id"),
+                        rs.getString("nom"),
+                        rs.getString("prenom"),
+                        rs.getDate("dateNaissance").toLocalDate(),
+                        rs.getString("motDePasse"),
+                        rs.getString("email"),
+                        rs.getString("numTelephone"),
+                        rs.getString("role"),
+                        rs.getString("rib"),
+                        rs.getInt("nombreEnfant"),
+                        rs.getString("cnam"),
+                        rs.getDate("dateEmbauche").toLocalDate(),
+                        rs.getString("photoProfil"),
+                        rs.getString("statut"),
+                        rs.getString("adresse"),
+                        rs.getString("genre"),
+                        rs.getString("situationFamiliale"),
+                        rs.getInt("cin")
+                );
+                userList.add(u);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        TreeItem<User> root = new TreeItem<>(new User());
+        for (User u : userList) {
+            root.getChildren().add(new TreeItem<>(u));
+        }
+
+        treeus.setRoot(root);
+        treeus.setShowRoot(false);
+    }
+
+
+
+
+
 
 
 }

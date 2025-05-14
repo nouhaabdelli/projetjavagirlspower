@@ -1,135 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="642.0" stylesheets="@../CSS/back.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ModifierUser">
-    <children>
-        <AnchorPane layoutX="18.0" layoutY="-9.0" prefHeight="401.0" prefWidth="605.0" stylesheets="@../CSS/back.css">
+<ScrollPane fitToWidth="true" prefHeight="750.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ModifierUser">
+    <content>
+        <VBox alignment="TOP_CENTER" spacing="15" styleClass="root" stylesheets="@../CSS/ajout.css">
+            <padding>
+                <Insets bottom="20" left="40" right="40" top="20" />
+            </padding>
             <children>
-                <TextField fx:id="usnom" layoutX="123.0" layoutY="54.0" />
-                <TextField fx:id="usprenom" layoutX="123.0" layoutY="87.0" />
-                <TextField fx:id="usemail" layoutX="123.0" layoutY="119.0" />
-                <TextField fx:id="ustelephone" layoutX="123.0" layoutY="148.0" />
-                <TextField fx:id="usrib" layoutX="123.0" layoutY="179.0" />
-                <TextField fx:id="usenfant" layoutX="285.0" layoutY="311.0" />
-                <Text fill="WHITE" layoutX="56.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :" textAlignment="CENTER">
+                <Text fill="#f3f4f4" styleClass="title-text" text="Modifier un utilisateur">
                     <font>
-                        <Font name="Algerian" size="12.0" />
+                        <Font name="Algerian" size="32" />
                     </font>
                 </Text>
-                <Text fill="WHITE" layoutX="45.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="prenom :" textAlignment="CENTER">
-                    <font>
-                        <Font name="Algerian" size="12.0" />
-                    </font>
-                </Text>
-                <Text fill="WHITE" layoutX="50.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email :" textAlignment="CENTER">
-                    <font>
-                        <Font name="Algerian" size="12.0" />
-                    </font>
-                </Text>
-                <Text fill="WHITE" layoutX="29.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="telephone :" textAlignment="CENTER">
-                    <font>
-                        <Font name="Algerian" size="12.0" />
-                    </font>
-                </Text>
-                <Text fill="WHITE" layoutX="44.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="r.i.b :" textAlignment="CENTER">
-                    <font>
-                        <Font name="Algerian" size="12.0" />
-                    </font>
-                </Text>
-                <TextField fx:id="uscnam" layoutX="123.0" layoutY="213.0" />
-                <TextField fx:id="usstatut" layoutX="123.0" layoutY="245.0" />
-                <Text fx:id="usenfantLabel" fill="WHITE" layoutX="297.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombre d'enfant  :">
-                    <font>
-                        <Font name="Algerian" size="12.0" />
-                    </font>
-                </Text>
-                <TextField fx:id="usadresse" layoutX="123.0" layoutY="281.0" />
-                <Text fill="WHITE" layoutX="40.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CNAM :">
-                    <font>
-                        <Font name="Algerian" size="12.0" />
-                    </font>
-                </Text>
-                <Text fill="WHITE" layoutX="44.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="staut :">
-                    <font>
-                        <Font name="Algerian" size="12.0" />
-                    </font>
-                </Text>
-                <Text fill="WHITE" layoutX="41.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="adresse :">
-                    <font>
-                        <Font name="Algerian" size="12.0" />
-                    </font>
-                </Text>
-                <DatePicker fx:id="usembauche" layoutX="291.0" layoutY="77.0" />
-                <DatePicker fx:id="usnaissance" layoutX="291.0" layoutY="138.0" />
-                <Text fill="WHITE" layoutX="313.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date embauche :">
-                    <font>
-                        <Font name="Algerian" size="12.0" />
-                    </font>
-                </Text>
-                <Text fill="WHITE" layoutX="303.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date de naissance :" textAlignment="CENTER">
-                    <font>
-                        <Font name="Algerian" size="12.0" />
-                    </font>
-                </Text>
-                <RadioButton fx:id="usmale" layoutX="303.0" layoutY="204.0" mnemonicParsing="false" text="male" textFill="#7c218e">
-                    <font>
-                        <Font name="System Bold Italic" size="12.0" />
-                    </font>
-                </RadioButton>
-                <RadioButton fx:id="usfemale" layoutX="402.0" layoutY="204.0" mnemonicParsing="false" text="female" textFill="#7c218e">
-                    <font>
-                        <Font name="System Bold Italic" size="12.0" />
-                    </font>
-                </RadioButton>
-                <RadioButton fx:id="usmarie" layoutX="288.0" layoutY="251.0" mnemonicParsing="false" text="marie(e)" textFill="#7c218e">
-                    <font>
-                        <Font name="System Bold Italic" size="12.0" />
-                    </font>
-                </RadioButton>
-                <RadioButton fx:id="usdivorce" layoutX="386.0" layoutY="250.0" mnemonicParsing="false" text="divorce(e)" textFill="#7c218e">
-                    <font>
-                        <Font name="System Bold Italic" size="12.0" />
-                    </font>
-                </RadioButton>
-                <RadioButton fx:id="uscelibataire" layoutX="496.0" layoutY="251.0" mnemonicParsing="false" text="celibataire" textFill="#7c218e">
-                    <font>
-                        <Font name="System Bold Italic" size="12.0" />
-                    </font>
-                </RadioButton>
-                <Text fill="WHITE" layoutX="301.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="genre :" textAlignment="CENTER">
-                    <font>
-                        <Font name="Algerian" size="12.0" />
-                    </font>
-                </Text>
-                <Text fill="WHITE" layoutX="295.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="situation familliale :" textAlignment="CENTER">
-                    <font>
-                        <Font name="Algerian" size="12.0" />
-                    </font>
-                </Text>
-                <Button fx:id="adduser" layoutX="172.0" layoutY="397.0" mnemonicParsing="false" onAction="#add" text="valider">
-                    <font>
-                        <Font name="System Bold Italic" size="12.0" />
-                    </font>
-                </Button>
-                <Text fill="WHITE" layoutX="52.0" layoutY="345.0" strokeType="OUTSIDE" strokeWidth="0.0" text="role :">
-                    <font>
-                        <Font name="Algerian" size="12.0" />
-                    </font>
-                </Text>
-                <TextField fx:id="usrole" layoutX="123.0" layoutY="319.0" />
-                <Button fx:id="back" layoutX="482.0" layoutY="397.0" mnemonicParsing="false" onAction="#back" text="retour">
-                    <font>
-                        <Font name="System Bold Italic" size="12.0" />
-                    </font>
-                </Button>
+
+                <ImageView fitHeight="116.0" fitWidth="186.0">
+                    <image>
+                        <Image url="@../images/work.png" />
+                    </image>
+                </ImageView>
+
+                <HBox spacing="10">
+                    <VBox>
+                        <Label text="Nom:" />
+                        <TextField fx:id="usnom" />
+                    </VBox>
+                    <VBox>
+                        <Label text="Prénom:" />
+                        <TextField fx:id="usprenom" />
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="10">
+                    <VBox>
+                        <Label text="Email:" />
+                        <TextField fx:id="usemail" />
+                    </VBox>
+                    <VBox>
+                        <Label text="Téléphone:" />
+                        <TextField fx:id="ustelephone" />
+                    </VBox>
+                </HBox>
+
+                <VBox spacing="5">
+                    <Label text="Genre:" />
+                    <HBox spacing="10">
+                        <RadioButton fx:id="usmale" text="Male" />
+                        <RadioButton fx:id="usfemale" text="Female" />
+                    </HBox>
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="État civil:" />
+                    <HBox spacing="10">
+                        <RadioButton fx:id="usmarie" text="Marié(e)" />
+                        <RadioButton fx:id="usdivorce" text="Divorcé(e)" />
+                        <RadioButton fx:id="uscelibataire" text="Célibataire" />
+                    </HBox>
+                </VBox>
+
+                <HBox spacing="10">
+                    <VBox>
+                        <Label text="CNAM:" />
+                        <TextField fx:id="uscnam" />
+                    </VBox>
+                    <VBox>
+                        <Label text="Statut:" />
+                        <TextField fx:id="usstatut" />
+                    </VBox>
+                    <VBox>
+                        <Label text="Adresse:" />
+                        <TextField fx:id="usadresse" />
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="10">
+                    <VBox>
+                        <Label text="R.I.B:" />
+                        <TextField fx:id="usrib" />
+                    </VBox>
+                    <VBox>
+                        <Text fx:id="usenfantLabel" text="Nombre d'enfants:" />
+                        <TextField fx:id="usenfant" />
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="10">
+                    <VBox>
+                        <Label text="Date embauche:" />
+                        <DatePicker fx:id="usembauche" />
+                    </VBox>
+                    <VBox>
+                        <Label text="Date de naissance:" />
+                        <DatePicker fx:id="usnaissance" />
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="10">
+                    <VBox>
+                        <Label text="Rôle:" />
+                        <TextField fx:id="usrole" />
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="20">
+                    <Button fx:id="back" onAction="#back" text="Retour" />
+                    <Button fx:id="adduser" onAction="#add" text="Valider" />
+                </HBox>
             </children>
-        </AnchorPane>
-    </children>
-</AnchorPane>
+        </VBox>
+    </content>
+</ScrollPane>

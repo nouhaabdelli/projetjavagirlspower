@@ -5,8 +5,12 @@ gui\AffichageFront.class
 gui\ModifierUser.class
 entities\User.class
 gui\CrudUser.class
+utils\UserSession.class
 services\UserCrud.class
 gui\AjouterUser.class
 gui\AfficherUser.class
+gui\maquette.class
+gui\LoginUser$JavaBridge.class
 gui\BackFront.class
+gui\Statistique.class
 main\UserJDBC.class

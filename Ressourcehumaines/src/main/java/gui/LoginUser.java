@@ -28,11 +28,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import java.sql.*;
 import javafx.application.Platform;
+import org.json.JSONObject;
 import org.mindrot.jbcrypt.BCrypt;
-
-
-
-
+import netscape.javascript.JSObject;
+import utils.UserSession;
 
 
 public class LoginUser {
@@ -60,6 +59,8 @@ public class LoginUser {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/workbridge";
     private static final String DB_USER = "root";  // Should be configured externally
     private static final String DB_PASSWORD = ""; // Should never be empty in production
+    private boolean isCaptchaValid = false;
+
 
     private boolean emailExists(String email) {
         String sql = "SELECT COUNT(*) FROM user WHERE Email = ?";
@@ -117,6 +118,13 @@ public class LoginUser {
             alert.showAndWait();
             return;
         }
+       /* if (!isCaptchaValid) {
+            showAlert("reCAPTCHA", "Veuillez valider le reCAPTCHA avant de vous connecter.");
+            return;
+        }
+*/
+
+
 
         // Connexion réussie
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -143,16 +151,28 @@ public class LoginUser {
         HttpClient client = HttpClient.newHttpClient();
         client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenAccept(response -> {
-                    if (response.statusCode() == 200) {
+                    if (response.statusCode() == 200) { String responseBody = response.body();
+                        JSONObject jsonResponse = new JSONObject(responseBody);
+                        String idToken = jsonResponse.getString("idToken");
+                        String refreshToken = jsonResponse.getString("refreshToken");
+
                         Platform.runLater(() -> {
-                            System.out.println("Succès Connexion réussie avec Firebase !");
+                            UserSession.getInstance().setFirebaseIdToken(idToken);
+                            UserSession.getInstance().setFirebaseRefreshToken(refreshToken);
+
+
+                            alert.setTitle("Succès");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Connexion réussie !");
+                            alert.showAndWait();
+
                             String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
                             updatePasswordInDB(email, hashedPassword);
-
                         });
+
                     } else {
                         Platform.runLater(() -> {
-                            System.out.println("Erreur Firebase Échec de la connexion Firebase : " + response.body());
+                            System.out.println("Erreur Firebase : " + response.body());
                         });
                     }
                 });
@@ -203,6 +223,7 @@ public class LoginUser {
                 }
             }
         });
+
     }
 
     private String extractTokenFromUrl(String url) {
@@ -323,6 +344,57 @@ public class LoginUser {
             System.out.println("Erreur Erreur lors de la mise à jour en base de données : " + e.getMessage());
         }
     }
+    public class JavaBridge {
+        public void sendToken(String token) {
+            System.out.println("reCAPTCHA token reçu : " + token);
+            verifyCaptchaToken(token); // Appelle la vérification serveur
+        }
+    }
+
+    private void verifyCaptchaToken(String token) {
+        String secretKey = "6Le3YjcrAAAAAEeJlZbZ1TDpGqp6IhMUiJAaVr2u"; // Remplacez par la vôtre
+        String requestBody = "secret=" + secretKey + "&response=" + token ;
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://www.google.com/recaptcha/api/siteverify"))
+                .header("Content-Type", "application/x-www-form-urlencoded")
+                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                .build();
+
+        HttpClient client = HttpClient.newHttpClient();
+        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenAccept(response -> {
+                    System.out.println("Réponse reCAPTCHA : " + response.body());
+                    if (response.body().contains("\"success\": true")) {
+                        isCaptchaValid = true;
+                        Platform.runLater(() -> showAlert("Succès", "reCAPTCHA validé avec succès."));
+                    } else {
+                        isCaptchaValid = false;
+                        Platform.runLater(() -> showAlert("Échec", "Échec de la validation reCAPTCHA."));
+                    }
+                });
+    }
+
+    @FXML
+    public void initialize() {
+        WebEngine webEngine = captchaWebView.getEngine();
+
+        // Permettre à JS d'appeler Java
+        webEngine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
+            if (newState == javafx.concurrent.Worker.State.SUCCEEDED) {
+                JSObject window = (JSObject) webEngine.executeScript("window");
+                window.setMember("javaApp", new JavaBridge());
+            }
+        });
+
+        // Charger le HTML dans WebView (depuis une ressource locale)
+        webEngine.load(getClass().getResource("/recaptcha.html").toExternalForm());
+    }
+
+
+
+
+
 
 
 

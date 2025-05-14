@@ -66,6 +66,12 @@
             <artifactId>jbcrypt</artifactId>
             <version>0.4</version>
         </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20210307</version>
+        </dependency>
+
 
 
 
@@ -79,7 +85,7 @@
                 <version>0.0.8</version> <!-- version mise à jour -->
                 <configuration>
                     <mainClass>${main.class}</mainClass>
-                    <executable>C:/Users/Hamdi/.jdks/ms-17.0.15/bin/java</executable>
+
                 </configuration>
             </plugin>
         </plugins>

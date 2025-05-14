@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane prefHeight="400.0" prefWidth="700.0" stylesheets="@../CSS/sign.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginUser">
+<AnchorPane prefHeight="485.0" prefWidth="791.0" stylesheets="@../CSS/sign.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LoginUser">
 
     <HBox spacing="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
 
@@ -22,14 +22,14 @@
             <TextField fx:id="statutField" promptText="statut" styleClass="text-field" />
             <TextField fx:id="emailField" promptText="E-mail" styleClass="text-field" />
             <PasswordField fx:id="passwordField" promptText="Mot-De-Passe" styleClass="password-field" />
-         <WebView fx:id="captchaWebView" prefHeight="200.0" prefWidth="200.0" />
+         <WebView fx:id="captchaWebView" prefHeight="183.0" prefWidth="280.0" />
          <Hyperlink fx:id="mdpoub" onAction="#mdpoub" text="mot de passe oubliee" />
             <Button fx:id="signin" onAction="#handleSignIn" styleClass="button" text="se connecter" />
          <Hyperlink fx:id="googleLoginLink" onAction="#handleGoogleLogin" text="Se connecter avec Google" />
         </VBox>
 
         <!-- Welcome Side -->
-        <VBox alignment="CENTER" prefWidth="350" spacing="10" style="-fx-background-color: transparent;">
+        <VBox alignment="CENTER" prefHeight="372.0" prefWidth="346.0" spacing="10" style="-fx-background-color: transparent;">
             <ImageView fitHeight="150.0" fitWidth="212.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../images/work.png" />

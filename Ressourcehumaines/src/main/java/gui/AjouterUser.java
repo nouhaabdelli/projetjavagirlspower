@@ -5,15 +5,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import entities.User;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import services.UserCrud;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -83,7 +79,7 @@ public class AjouterUser {
     private TextField usrib;
 
     @FXML
-    private TextField usrole;
+    private ComboBox<String> usrole;
 
     @FXML
     private TextField usstatut;
@@ -208,7 +204,7 @@ public class AjouterUser {
         user.setStatut(usstatut.getText());
         user.setCnam(uscnam.getText());
         user.setMotDePasse("123456");
-        user.setRole("utilisateur");
+        user.setRole(usrole.getValue());
         user.setNombreEnfant(nombreEnfant);
         user.setPhotoProfil(photopath.getText());
         user.setGenre(genre);
@@ -271,6 +267,9 @@ public class AjouterUser {
                 usenfantLabel.setVisible(false);
             }
         });
+        usrole.getItems().addAll("Administrateur", "Utilisateur" );
+        usrole.setValue("Utilisateur"); // Valeur par défaut
+
     }
     @FXML
     void par(ActionEvent event) { FileChooser fileChooser = new FileChooser();
