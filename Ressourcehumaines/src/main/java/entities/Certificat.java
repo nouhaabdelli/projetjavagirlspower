@@ -1,56 +1,53 @@
 package entities;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 public class Certificat {
-
-    private int codeCertificat;
+    private int idCertificat;
     private String titre;
     private String description;
-    private String dateExpiration;
+    private Date dateDelivrance;
+    private Date dateExpiration;
     private String niveau;
-    private int validiteAnnees;
-    private String username;
-    private int formationid; // Added formationid
-    private Integer userId; // Assuming it's a foreign key (adjust as needed)
-    private String createdAt;
+    private String codeCertificat;
+    private int validiteAnnee;
+    private boolean renouvelable;
+    private String statut;
+    private int id; // id utilisateur
+    private Date createdAt;
+    private Date updatedAt;
 
-    // Constructor with formationid
-    public Certificat(int codeCertificat, String titre, String description, String dateExpiration, String niveau,
-                      int validiteAnnees, String username, Integer userId, int formationid, String createdAt) {
-        this.codeCertificat = codeCertificat;
+    // Constructeur vide
+    public Certificat() {}
+
+    // Constructeur complet
+    public Certificat(int idCertificat, String titre, String description, Date dateDelivrance,
+                      Date dateExpiration, String niveau, String codeCertificat,
+                      int validiteAnnee, boolean renouvelable, String statut,
+                      int id, Date createdAt, Date updatedAt) {
+        this.idCertificat = idCertificat;
         this.titre = titre;
         this.description = description;
+        this.dateDelivrance = dateDelivrance;
         this.dateExpiration = dateExpiration;
         this.niveau = niveau;
-        this.validiteAnnees = validiteAnnees;
-        this.username = username;
-        this.userId = userId;
-        this.formationid = formationid; // Initialize formationid
+        this.codeCertificat = codeCertificat;
+        this.validiteAnnee = validiteAnnee;
+        this.renouvelable = renouvelable;
+        this.statut = statut;
+        this.id = id;
         this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
-    // Constructor without codeCertificat
-    public Certificat(String titre, String description, String dateExpiration, String niveau, int validiteAnnees,
-                      String username, int userId, int formationid) {
-        this.titre = titre;
-        this.description = description;
-        this.dateExpiration = dateExpiration;
-        this.niveau = niveau;
-        this.validiteAnnees = validiteAnnees;
-        this.username = username;
-        this.userId = userId;
-        this.formationid = formationid; // Initialize formationid
+    // Getters et Setters
+
+    public int getIdCertificat() {
+        return idCertificat;
     }
 
-    // Getters and Setters
-    public int getCodeCertificat() {
-        return codeCertificat;
-    }
-
-    public void setCodeCertificat(int codeCertificat) {
-        this.codeCertificat = codeCertificat;
+    public void setIdCertificat(int idCertificat) {
+        this.idCertificat = idCertificat;
     }
 
     public String getTitre() {
@@ -69,11 +66,19 @@ public class Certificat {
         this.description = description;
     }
 
-    public String getDateExpiration() {
+    public Date getDateDelivrance() {
+        return dateDelivrance;
+    }
+
+    public void setDateDelivrance(Date dateDelivrance) {
+        this.dateDelivrance = dateDelivrance;
+    }
+
+    public Date getDateExpiration() {
         return dateExpiration;
     }
 
-    public void setDateExpiration(String dateExpiration) {
+    public void setDateExpiration(Date dateExpiration) {
         this.dateExpiration = dateExpiration;
     }
 
@@ -85,59 +90,59 @@ public class Certificat {
         this.niveau = niveau;
     }
 
-    public int getValiditeAnnees() {
-        return validiteAnnees;
+    public String getCodeCertificat() {
+        return codeCertificat;
     }
 
-    public void setValiditeAnnees(int validiteAnnees) {
-        this.validiteAnnees = validiteAnnees;
+    public void setCodeCertificat(String codeCertificat) {
+        this.codeCertificat = codeCertificat;
     }
 
-    public String getUsername() {
-        return username;
+    public int getValiditeAnnee() {
+        return validiteAnnee;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setValiditeAnnee(int validiteAnnee) {
+        this.validiteAnnee = validiteAnnee;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public boolean isRenouvelable() {
+        return renouvelable;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setRenouvelable(boolean renouvelable) {
+        this.renouvelable = renouvelable;
     }
 
-    public int getFormationid() {
-        return formationid;
+    public String getStatut() {
+        return statut;
     }
 
-    public void setFormationid(int formationid) {
-        this.formationid = formationid;
+    public void setStatut(String statut) {
+        this.statut = statut;
     }
 
-    public String getCreatedAt() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
 
-    @Override
-    public String toString() {
-        return "Certificat{" +
-                "codeCertificat=" + codeCertificat +
-                ", titre='" + titre + '\'' +
-                ", description='" + description + '\'' +
-                ", dateExpiration='" + dateExpiration + '\'' +
-                ", niveau='" + niveau + '\'' +
-                ", validiteAnnees=" + validiteAnnees +
-                ", username='" + username + '\'' +
-                ", formationid=" + formationid +
-                ", userId=" + userId +
-                ", createdAt='" + createdAt + '\'' +
-                '}';
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
