@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="mainContent" layoutX="20.0" layoutY="14.0" prefHeight="500.0" prefWidth="1000.0" stylesheets="@../styles/consulterreponse.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.RepondreReclamations">
+
+      <TableView fx:id="tableViewReclamations" layoutX="21.0" layoutY="23.0" prefHeight="442.0" prefWidth="1050.0">
+          <columns>
+              <TableColumn fx:id="colTitre" prefWidth="83.2" text="Titre" />
+              <TableColumn fx:id="colContenu" prefWidth="185.6" text="Description" />
+              <TableColumn fx:id="colDate" prefWidth="121.6" text="Date création" />
+              <TableColumn fx:id="colStatus" prefWidth="95.2" text="Priorité" />
+              <TableColumn fx:id="colAction" prefWidth="137.5999755859375" text="Notifications" />
+              <TableColumn fx:id="Fichier_jointe" prefWidth="152.79998779296875" text="Fichier jointe" />
+              <TableColumn fx:id="Statut" prefWidth="112.00006103515625" text="Statut" />
+              <TableColumn fx:id="Reponse" prefWidth="142.4000244140625" text="Réponse" />
+          </columns>
+      </TableView>
+
+</AnchorPane>

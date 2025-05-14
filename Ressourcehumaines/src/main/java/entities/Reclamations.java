@@ -12,8 +12,14 @@ public class Reclamations {
         private String priorite ;
         private String RecevoirNotifications ;
     private int  userId ;
+    public Reclamations() {}
+    public Reclamations(int id) {
+        this.id = id;
+    }
 
-
+    public Reclamations(int id , String titre ,String description ,LocalDate dateDemande,String cheminPieceJointe , String priorite) {
+        this.id = id;
+    }
     // Constructeur
         public Reclamations(int id, String titre, String description, LocalDate dateDemande, String statut , String cheminPieceJointe , String priorite, String RecevoirNotifications, int userId) {
             this.id = id;
@@ -64,6 +70,19 @@ public class Reclamations {
          public int getUserId() { return userId; }
     public void setUserId(int userId) { this.userId = userId; }
 
+    @Override
+    public String toString() {
+        return "Reclamations{" +
+                "id=" + id +
+                ", titre='" + titre + '\'' +
+                ", description='" + description + '\'' +
+                ", dateDemande=" + dateDemande +
+                ", dateDemande=" + statut +
+
+                ", priorite='" + priorite + '\'' +
+                ", cheminPieceJointe='" + cheminPieceJointe + '\'' +
+                '}';
+    }
 
 
 }

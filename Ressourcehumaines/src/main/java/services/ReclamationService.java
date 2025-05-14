@@ -2,14 +2,9 @@ package services;
 
 import entities.Reclamations;
 import utils.MyConnection;
-
-import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import java.time.LocalDate;
-
 public   class ReclamationService implements IService<Reclamations> {
 
     private Connection cnx;
@@ -20,7 +15,7 @@ public   class ReclamationService implements IService<Reclamations> {
 
     @Override
     public void create(Reclamations reclamation) throws SQLException {
-        String query = "INSERT INTO reclamations(titre, description, date_creation, status , cheminPieceJointe , priorite ,RecevoirNotifications ,userId ) " +
+        String query = "INSERT INTO reclamations(titre, description, date_creation, statut , cheminPieceJointe , priorite ,RecevoirNotifications ,userId ) " +
                 "VALUES (?, ?, ?, ?,?,?,? ,?  )";
         PreparedStatement ps = cnx.prepareStatement(query);
         ps.setString(1, reclamation.getTitre());
@@ -31,12 +26,13 @@ public   class ReclamationService implements IService<Reclamations> {
         ps.setString(6, reclamation.getPriorite());
         ps.setString(7, reclamation.getRecevoirNotifications());
         ps.setInt(8, reclamation.getUserId());
+
         ps.executeUpdate();
     }
 
     @Override
     public void update(Reclamations reclamation) throws SQLException {
-        String query = "UPDATE reclamations SET titre = ?, description = ?, date_creation = ?, status = ? , cheminPieceJointe = ? , priorite = ? ,RecevoirNotifications=?  WHERE id = ?";
+        String query = "UPDATE reclamations SET titre = ?, description = ?, date_creation = ?, statut = ? , cheminPieceJointe = ? , priorite = ? ,RecevoirNotifications=?  WHERE id = ?";
         PreparedStatement ps = cnx.prepareStatement(query);
         ps.setString(1, reclamation.getTitre());
         ps.setString(2, reclamation.getDescription());
@@ -63,7 +59,7 @@ public   class ReclamationService implements IService<Reclamations> {
     @Override
     public List<Reclamations> readAll() throws SQLException {
         List<Reclamations> reclamations = new ArrayList<>();
-        String query = "SELECT id, titre, description, date_creation, status, cheminPieceJointe, priorite, RecevoirNotifications FROM reclamations";
+        String query = "SELECT id, titre, description, date_creation, statut, cheminPieceJointe, priorite, RecevoirNotifications FROM reclamations";
         Statement st = cnx.createStatement();
         ResultSet rs = st.executeQuery(query);
 
@@ -72,7 +68,7 @@ public   class ReclamationService implements IService<Reclamations> {
             String titre = rs.getString("titre");
             String description = rs.getString("description");
             Date dateDemande = rs.getDate("date_creation");
-            String status = rs.getString("status");
+            String status = rs.getString("statut");
             String cheminPieceJointe = rs.getString("cheminPieceJointe"); // tu avais mis null, ici on lit depuis la BDD
             String priorite = rs.getString("priorite");
             String recevoirNotifications = rs.getString("RecevoirNotifications");
@@ -94,5 +90,37 @@ public   class ReclamationService implements IService<Reclamations> {
         }
 
         return reclamations;
-    }  }
+    }
+
+    public void setStatutTraite(int id) throws SQLException {
+        String sql = "UPDATE reclamations SET statut = 'traitée' WHERE id = ?";
+      try (
+             PreparedStatement stmt = cnx.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        }
+    }
+
+    public Reclamations get(Long id) {
+        String sql = "SELECT * FROM reclamations WHERE id = ?";
+        try (PreparedStatement stmt = cnx.prepareStatement(sql)) {
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                Reclamations r = new Reclamations();
+                r.setId(rs.getInt("id"));
+                r.setTitre(rs.getString("titre")); // selon les colonnes de votre table
+                r.setDescription(rs.getString("description"));
+                r.setDateDemande(rs.getDate("date_creation").toLocalDate()); // ou .toLocalDateTime()
+                // ajoutez les autres attributs nécessaires
+                return r;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+}
 

@@ -4,44 +4,37 @@ import java.time.LocalDate;
 
 public class Reponses {
     private int id;
-    private String titre;
     private String contenu;
     private LocalDate dateReponse;
     private LocalDate dateModification;
-    private String importance;
+    private String priorite;
     private String fichierJoint;
-    private int reclamationId;
     private int userId;
+    private int reclamationId;
+    public Reponses() {
 
-    // Constructeurs
-    public Reponses() {}
-
-    public Reponses(int id, String titre, String contenu, LocalDate dateReponse, LocalDate dateModification,
-                    String importance, String fichierJoint, int reclamationId , int userId) {
+    }
+    public Reponses( int id , String contenu, LocalDate dateReponse, LocalDate dateModification,
+                     String priorite, String fichierJoint,int reclamationId) {
         this.id = id;
-        this.titre = titre;
         this.contenu = contenu;
         this.dateReponse = dateReponse;
         this.dateModification = dateModification;
-        this.importance = importance;
+        this.priorite = priorite;
         this.fichierJoint = fichierJoint;
         this.reclamationId = reclamationId;
-        this.userId = userId;
     }
 
-    public Reponses(String titre, String contenu, LocalDate dateReponse, String importance,
-                    String fichierJoint, int reclamationId , int userId) {
-        this.titre = titre;
+    public Reponses( int id , String contenu, LocalDate dateReponse, LocalDate dateModification,
+                    String priorite, String fichierJoint ) {
+        this.id = id;
         this.contenu = contenu;
         this.dateReponse = dateReponse;
-        this.importance = importance;
+        this.dateModification = dateModification;
+        this.priorite = priorite;
         this.fichierJoint = fichierJoint;
-        this.reclamationId = reclamationId;
-        this.userId = userId;
     }
 
-    public Reponses(int i, String titreTxt, String contenuTxt, LocalDate date, Object o, String importanceTxt, String fichier, int reclamationId) {
-    }
 
     // Getters et Setters
     public int getId() {
@@ -50,14 +43,6 @@ public class Reponses {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getTitre() {
-        return titre;
-    }
-
-    public void setTitre(String titre) {
-        this.titre = titre;
     }
 
     public String getContenu() {
@@ -84,12 +69,11 @@ public class Reponses {
         this.dateModification = dateModification;
     }
 
-    public String getImportance() {
-        return importance;
+    public String getPriorite() {
+        return priorite;
     }
-
-    public void setImportance(String importance) {
-        this.importance = importance;
+    public void setPriorite(String priorite) {
+        this.priorite = priorite;
     }
 
     public String getFichierJoint() {
@@ -100,13 +84,7 @@ public class Reponses {
         this.fichierJoint = fichierJoint;
     }
 
-    public int getReclamationId() {
-        return reclamationId;
-    }
 
-    public void setReclamationId(int reclamationId) {
-        this.reclamationId = reclamationId;
-    }
     public int getUserId() {
         return userId;
 
@@ -114,18 +92,25 @@ public class Reponses {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+    public int getReclamationId() {
+        return reclamationId;
+    }
+    public void setReclamationId(int reclamationId) {
+        this.reclamationId = reclamationId;
+    }
 
     @Override
     public String toString() {
         return "Reponses{" +
                 "id=" + id +
-                ", titre='" + titre + '\'' +
                 ", contenu='" + contenu + '\'' +
                 ", dateReponse=" + dateReponse +
                 ", dateModification=" + dateModification +
-                ", importance='" + importance + '\'' +
+                ", importance='" + priorite + '\'' +
                 ", fichierJoint='" + fichierJoint + '\'' +
-                ", reclamationId=" + reclamationId +
                 '}';
     }
+
+
+
 }

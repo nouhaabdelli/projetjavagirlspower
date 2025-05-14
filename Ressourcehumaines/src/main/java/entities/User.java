@@ -10,6 +10,7 @@ public class User {
     private String Genre;
     private String Adresse;
     // Constructeur
+    public User() {}
     public User(int id, String nom, String prenom, String email, String cin , String NumTelephone, String Genre, String Adresse  ) {
         this.id = id;
         this.nom = nom;

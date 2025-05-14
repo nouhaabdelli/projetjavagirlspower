@@ -5,39 +5,53 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bfc9399-2d02-4d05-b5d6-3ee5bd5d13f8" name="Changes" comment="Recamations">
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/Reponses.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AfficherReponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/ModifierReponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/Reponses.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/detailsReponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/ReponseService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/AjoutReponse.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/DetailReponse.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/Reclamation.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/Reponse.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/listReclaReponse.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/reponseReclamations.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/styles/AjoutReponse.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/styles/Reponse.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/styles/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/Notifications.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/RepondreReclamations.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/maquette.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/reponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/slideefeect.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/CorrectionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/EmailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/Notificationservice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/SmsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/consulterreponse.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/maquette.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/slideefeect.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/styles/consulterreponse.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/styles/maquette.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/styles/reponse-detail.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/Reclamations.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/Reclamations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/Reponses.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/Reponses.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/reponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AfficherReclamations.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/ReclamationDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AfficherReponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AfficherReponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/Afficherdetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/Afficherdetail.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReclamations.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReclamations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/ListeReclamations.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/ListeReclamations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/ModifierReponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/ReclamationDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/ReclamationDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/Reponses.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/detailsReponse.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/mainfx.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/mainfx.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/ReclamationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/ReclamationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/ReponseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/ReponseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/AjoutReponse.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/AjoutReponse.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/AjouterReclamation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/AjouterReclamation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/DetailReponse.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/RepondreReclamations.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/ListeReclamations.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/ListeReclamations.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/styles/detaill.css" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/styles/detaill.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/Reclamation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/Reclamation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/Reponse.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/listReclaReponse.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/reponseReclamations.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/detailreponse.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/images/NN.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/styles/AjoutReponse.css" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/styles/AjoutReponse.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/styles/listereclamation.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/styles/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/styles/reclamations.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/entities/Reclamations.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/entities/Reclamations.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/entities/reponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/Afficherreclamations.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/AfficherReclamation.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/AjouterReclamations.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AjouterReclamations.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AjouterReclamations.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/main/mainfx.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/main/mainfx.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/ReclamationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/ReclamationService.class" afterDir="false" />
@@ -53,8 +67,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -150,7 +164,19 @@
       <workItem from="1745966696091" duration="1573000" />
       <workItem from="1745970024457" duration="1211000" />
       <workItem from="1745971276414" duration="24636000" />
-      <workItem from="1746093080329" duration="45963000" />
+      <workItem from="1746093080329" duration="63243000" />
+      <workItem from="1746187993332" duration="79683000" />
+      <workItem from="1746400988895" duration="14910000" />
+      <workItem from="1746537940305" duration="12281000" />
+      <workItem from="1746577588325" duration="21730000" />
+      <workItem from="1746652455185" duration="903000" />
+      <workItem from="1746653374941" duration="38691000" />
+      <workItem from="1746783423677" duration="7436000" />
+      <workItem from="1746799859350" duration="30006000" />
+      <workItem from="1746978852630" duration="621000" />
+      <workItem from="1746979495683" duration="5651000" />
+      <workItem from="1746985211422" duration="51638000" />
+      <workItem from="1747145739255" duration="28462000" />
     </task>
     <task id="LOCAL-00001" summary="Recamations">
       <option name="closed" value="true" />
@@ -176,7 +202,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746066095597</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Recamations">
+      <option name="closed" value="true" />
+      <created>1746144531983</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1746144531983</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -185,6 +219,25 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Recamations" />
     <option name="LAST_COMMIT_MESSAGE" value="Recamations" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.sql.SQLSyntaxErrorException" package="java.sql" />
+          <option name="timeStamp" value="4" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/RepondreReclamations.java</url>
+          <line>92</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

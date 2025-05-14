@@ -3,46 +3,54 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<SplitPane dividerPositions="0.20126203918963795" prefHeight="682.0" prefWidth="1180.0" stylesheets="@../styles/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReclamationDashboard">
+<AnchorPane prefHeight="682.0" prefWidth="1246.0" stylesheets="@../styles/consulterreponse.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReclamationDashboard">
 
-    <items>
-        <!-- LEFT SIDEBAR -->
+        <!-- LEFT SIDEBAR (Sliding, inspired by second interface) -->
         <AnchorPane prefHeight="610.0" prefWidth="230.0">
             <children>
-                <VBox fx:id="sideMenu" layoutX="-1.0" layoutY="206.0" prefHeight="474.0" prefWidth="254.0" styleClass="left-panel">
+                <VBox fx:id="sidebar" prefHeight="682.0" prefWidth="230.0" styleClass="sidebar" translateX="-230.0">
                     <children>
-                        <Button onAction="#showAjouter" styleClass="sidebar-button" text="➕ Ajouter Réclamation" />
-                        <Button onAction="#showListe" styleClass="sidebar-button" text="📋 Liste Réclamations" />
-                        <Button onAction="#showReponses" styleClass="sidebar-button" text="💬 Réponses RH" />
+                        <!-- Sidebar Title -->
+                        <Label styleClass="sidebar-title" text="Navigation" />
+                        <!-- Menu Items -->
+                        <Button fx:id="btnAjouter" onAction="#showAjouter" styleClass="menu-item" text="➕ Ajouter Réclamation" />
+                        <Button fx:id="btnListe" onAction="#showListe" styleClass="menu-item" text="📋 Liste Réclamations" />
+                        <Button fx:id="btnConsulter" styleClass="menu-item" text="Consulter Réponses" />
+                        <Button fx:id="btnRepondre" styleClass="menu-item" text="Répondre" />
                     </children>
+                    <padding>
+                        <Insets bottom="10" left="10" right="10" top="20" />
+                    </padding>
                 </VBox>
-
-                <ImageView fitHeight="87.0" fitWidth="137.0" layoutX="50.0" preserveRatio="true" styleClass="logo">
+                <!-- Logo -->
+                <ImageView fitHeight="87.0" fitWidth="137.0" layoutX="50.0" layoutY="20.0" preserveRatio="true" styleClass="logo">
                     <!-- Ton image de logo si nécessaire -->
                 </ImageView>
-            <ImageView fitHeight="216.0" fitWidth="240.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/NN.jpg" />
-               </image>
-            </ImageView>
             </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
         </AnchorPane>
 
         <!-- MAIN CONTENT (Right Side) -->
-        <AnchorPane fx:id="mainContent" prefHeight="681.0" prefWidth="910.0">
+        <AnchorPane fx:id="mainContent" prefHeight="682.0" prefWidth="1200.0">
             <children>
-                <Label fx:id="titrePrincipal" alignment="CENTER" layoutX="226.0" layoutY="44.0" prefHeight="66.0" prefWidth="338.0" styleClass="title" text="Gestion des Réclamations" textAlignment="CENTER" />
-                <!-- This is where content like "listeReclamations" will appear -->
+                <!-- Header (Top Bar) -->
+                <HBox prefHeight="88.0" prefWidth="1246.0" styleClass="header">
+                    <children>
+                        <Button fx:id="btnSidebarToggle" prefHeight="40.0" prefWidth="40.0" styleClass="sidebar-toggle" text="☰" />
+                        <Label prefHeight="40.0" prefWidth="300.0" styleClass="header-title" text="Gestion des Réclamations" />
+                        <Region HBox.hgrow="ALWAYS" /> <!-- Spacer -->
+                        <HBox prefHeight="40.0" prefWidth="400.0" spacing="10.0" styleClass="search-panel" />
+                    </children>
+                    <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                    </padding>
+                </HBox>
+                <!-- Dynamic content like TableView can be added here -->
             </children>
         </AnchorPane>
-    </items>
-</SplitPane>
+</AnchorPane>

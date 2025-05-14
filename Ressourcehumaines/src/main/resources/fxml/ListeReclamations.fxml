@@ -6,25 +6,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="650.0" prefWidth="844.0" stylesheets="@../styles/listereclamation.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListeReclamations">
+<AnchorPane prefHeight="556.0" prefWidth="1051.0" stylesheets="@../styles/consulterreponse.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ListeReclamations">
 
     <!-- TableView des réclamations -->
-    <TableView id="table-view" fx:id="tableViewReclamations" layoutX="-3.0" layoutY="55.0" prefHeight="478.0" prefWidth="842.0">
+    <TableView id="table-view" fx:id="tableViewReclamations" layoutX="14.0" layoutY="21.0" prefHeight="478.0" prefWidth="1027.0">
         <columns>
             <TableColumn fx:id="colTitre" prefWidth="100.9999656677246" text="Titre" />
-            <TableColumn fx:id="colDescription" prefWidth="250.39999389648438" text="Description" />
-            <TableColumn fx:id="colPriorite" prefWidth="126.39999389648438" text="Priorité" />
-            <TableColumn fx:id="colNotifications" prefWidth="104.0" text="Notifications" />
-            <TableColumn fx:id="colPieceJointe" minWidth="0.0" prefWidth="128.79998779296875" text="Pièce Jointe" />
-            <TableColumn fx:id="date_creation" maxWidth="3900.0" minWidth="-Infinity" prefWidth="127.20013427734375" text="date creation " />
+            <TableColumn fx:id="colDescription" prefWidth="160.80003356933594" text="Description" />
+            <TableColumn fx:id="colPriorite" prefWidth="119.199951171875" text="Priorité" />
+            <TableColumn fx:id="colNotifications" prefWidth="138.4000244140625" text="Notifications" />
+            <TableColumn fx:id="colPieceJointe" minWidth="0.0" prefWidth="120.79998779296875" text="Pièce Jointe" />
+            <TableColumn fx:id="date_creation" maxWidth="3900.0" minWidth="-Infinity" prefWidth="116.79998779296875" text="date creation " />
+            <TableColumn fx:id="colStatus" prefWidth="106.39996337890625" text="Statut" />
+            <TableColumn fx:id="Reponse" prefWidth="122.400146484375" text="Reponse" />
 
         </columns>
     </TableView>
 
     <!-- Boutons d'action -->
     <HBox layoutX="200" layoutY="500" spacing="20" />
-     <Button layoutX="406.0" layoutY="581.0" onAction="#modifier" styleClass="btn-action" text="Modifier Reclamation " />
-     <Button layoutX="633.0" layoutY="580.0" onAction="#supprimer" styleClass="btn-action" text="Supprimer Reclamation " />
-     <Button layoutX="200.0" layoutY="581.0" onAction="#afficher" styleClass="btn-action" text="Afficher Reclamation " />
+     <Button layoutX="513.0" layoutY="506.0" onAction="#afficher" prefHeight="42.0" prefWidth="190.0" styleClass="btn-action" text="Afficher Reclamation " />
 
 </AnchorPane>

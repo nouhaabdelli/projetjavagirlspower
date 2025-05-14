@@ -1,11 +1,12 @@
 package gui;
+import entities.Reponses;
+import entities.User;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.ButtonType;
 import java.io.IOException;
 import javafx.scene.Parent;
 
-import entities.*;
+import entities.Reclamations;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -42,7 +43,10 @@ public class ListeReclamations {
 
     @FXML
     private TableColumn<?, ?> date_creation;
-
+    @FXML
+    private TableColumn<Reclamations, Void> Reponse;
+    @FXML
+    private TableColumn<Reclamations, String> colStatus;
 
     @FXML
     private TableView<Reclamations> tableViewReclamations;
@@ -55,12 +59,14 @@ public class ListeReclamations {
         this.reclamationService = new ReclamationService();
     }
 
+
     @FXML
     public void initialize() {
         try {
             List<Reclamations> reclamationsList = reclamationService.readAll();  // Appel du service pour récupérer les réclamations
             ObservableList<Reclamations> observableList = FXCollections.observableList(reclamationsList);
             tableViewReclamations.setItems(observableList);
+            colStatus.setCellValueFactory(new PropertyValueFactory<>("Statut"));
 
             colTitre.setCellValueFactory(new PropertyValueFactory<>("titre"));
             colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -68,6 +74,68 @@ public class ListeReclamations {
             colNotifications.setCellValueFactory(new PropertyValueFactory<>("recevoirNotifications"));
             colPieceJointe.setCellValueFactory(new PropertyValueFactory<>("cheminPieceJointe"));
             date_creation.setCellValueFactory(new PropertyValueFactory<>("dateDemande")) ;
+            Reponse.setCellFactory(param -> new TableCell<Reclamations, Void>() {
+                private final Button btn = new Button("Réponse");
+
+                {
+                    btn.setOnAction(event -> {
+                        Reclamations reclamation = getTableView().getItems().get(getIndex());
+                        afficherReponsePourReclamation(reclamation.getId());
+                    });
+                }
+
+                private void afficherReponsePourReclamation(int idReclamation) {
+                    try {
+                        ReponseService reponseService = new ReponseService();
+                        Reponses reponse = reponseService.getByReclamationId(idReclamation);
+
+                        if (reponse != null) {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/detailreponse.fxml"));
+                            Parent root = loader.load();
+                            AfficherReponse controller = loader.getController();
+                            controller.setReponse(reponse); // On passe l'objet Réponse
+                            Stage stage = new Stage();
+                            stage.setTitle("Afficher la Réponse");
+                            stage.setScene(new Scene(root));
+                            stage.show();
+                        } else {
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Aucune réponse");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Aucune réponse n'a encore été envoyée pour cette réclamation.");
+                            alert.showAndWait();
+                        }
+                    } catch (IOException | SQLException e) {
+                        e.printStackTrace();
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Erreur");
+                        alert.setHeaderText("Impossible d'afficher la réponse");
+                        alert.setContentText(e.getMessage());
+                        alert.showAndWait();
+                    }
+                }
+
+                @Override
+                protected void updateItem(Void item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        Reclamations reclamation = getTableView().getItems().get(getIndex());
+                        String statut = reclamation.getStatut();  // Utilise getStatut() si disponible
+
+                        if ("traitee".equalsIgnoreCase(statut)) {
+                            btn.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;"); // Vert
+                        } else {
+                            btn.setStyle(""); // Style par défaut si non "traitee"
+                        }
+
+                        setGraphic(btn);
+                    }
+                }
+            });
+
+
         } catch (SQLException e) {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Erreur");
@@ -75,6 +143,9 @@ public class ListeReclamations {
             alert.showAndWait();
         }
     }
+    TableColumn<Reclamations, Void> colRepondre = new TableColumn<>("Répondre");
+
+
     public void rafraichirTable() {
         try {
             List<Reclamations> reclamationsList = reclamationService.readAll();
@@ -99,17 +170,12 @@ public class ListeReclamations {
             alert.showAndWait();
             return;
         }
-
         try {
-            // Récupérer l'utilisateur lié à cette réclamation
-            UserService userService = new UserService(); // Ajoute cette ligne avant de l’utiliser
+            UserService userService = new UserService();
             User user = userService.getUserById(selected.getUserId());
 
-            // Charger l'interface de détails
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/detailreclamation.fxml"));
             Parent root = loader.load();
-
-            // Passer les données au contrôleur
             Afficherdetail controller = loader.getController();
             controller.setReclamation(selected, user);
 
@@ -130,73 +196,72 @@ public class ListeReclamations {
         }
     }
 
-    @FXML
-    void modifier(ActionEvent event) {
-        Reclamations selectedReclamation = tableViewReclamations.getSelectionModel().getSelectedItem();
+//    @FXML
+//    void modifier(ActionEvent event) {
+//        Reclamations selectedReclamation = tableViewReclamations.getSelectionModel().getSelectedItem();
+//
+//        if (selectedReclamation == null) {
+//            Alert alert = new Alert(Alert.AlertType.WARNING);
+//            alert.setTitle("Aucune sélection");
+//            alert.setContentText("Veuillez sélectionner une réclamation à modifier.");
+//            alert.showAndWait();
+//            return;
+//        }
+//
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AjouterReclamation.fxml"));
+//            Parent root = loader.load();
+//
+//            AjouterReclamations controller = loader.getController();
+//            controller.chargerDonneesPourModification(selectedReclamation);
+//
+//            controller.setControllerPrincipal(this);
+//
+//            Stage stage = new Stage();
+//            stage.setTitle("Modification de la Réclamation");
+//            stage.setScene(new Scene(root));
+//            stage.initModality(Modality.APPLICATION_MODAL);
+//            stage.show();
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    @FXML
+//    void supprimer(ActionEvent event) {
+//
+//        Reclamations selectedReclamation = tableViewReclamations.getSelectionModel().getSelectedItem();
+//
+//        if (selectedReclamation != null) {
+//            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+//            alert.setTitle("Confirmation de suppression");
+//            alert.setHeaderText("Êtes-vous sûr de vouloir supprimer cette réclamation ?");
+//            alert.setContentText("Cette action est irréversible.");
+//
+//            alert.showAndWait().ifPresent(response -> {
+//                if (response == ButtonType.OK) {
+//                    try {
+//                        ReclamationService service = new ReclamationService(); // ou statique selon ton code
+//                        service.delete(selectedReclamation);
+//                        tableViewReclamations.getItems().remove(selectedReclamation);
+//                    } catch (SQLException e) {
+//                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+//                        errorAlert.setTitle("Erreur de suppression");
+//                        errorAlert.setHeaderText("Échec de la suppression");
+//                        errorAlert.setContentText("Une erreur est survenue : " + e.getMessage());
+//                        errorAlert.showAndWait();
+//                    }
+//                }
+//            });
+//        } else {
+//            Alert noSelection = new Alert(Alert.AlertType.WARNING);
+//            noSelection.setTitle("Aucune sélection");
+//            noSelection.setHeaderText("Aucune réclamation sélectionnée");
+//            noSelection.setContentText("Veuillez sélectionner une réclamation à supprimer.");
+//            noSelection.showAndWait();
+//        }
+//    }
 
-        if (selectedReclamation == null) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Aucune sélection");
-            alert.setContentText("Veuillez sélectionner une réclamation à modifier.");
-            alert.showAndWait();
-            return;
-        }
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AjouterReclamation.fxml"));
-            Parent root = loader.load();
-
-            // Récupère le contrôleur et passe les données
-            AjouterReclamations controller = loader.getController();
-            controller.chargerDonneesPourModification(selectedReclamation);
-
-            // Passe la référence du contrôleur principal à la fenêtre de modification
-            controller.setControllerPrincipal(this);
-
-            Stage stage = new Stage();
-            stage.setTitle("Modification de la Réclamation");
-            stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    void supprimer(ActionEvent event) {
-
-        Reclamations selectedReclamation = tableViewReclamations.getSelectionModel().getSelectedItem();
-
-        if (selectedReclamation != null) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation de suppression");
-            alert.setHeaderText("Êtes-vous sûr de vouloir supprimer cette réclamation ?");
-            alert.setContentText("Cette action est irréversible.");
-
-            alert.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.OK) {
-                    try {
-                        ReclamationService service = new ReclamationService(); // ou statique selon ton code
-                        service.delete(selectedReclamation);
-                        tableViewReclamations.getItems().remove(selectedReclamation);
-                    } catch (SQLException e) {
-                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setTitle("Erreur de suppression");
-                        errorAlert.setHeaderText("Échec de la suppression");
-                        errorAlert.setContentText("Une erreur est survenue : " + e.getMessage());
-                        errorAlert.showAndWait();
-                    }
-                }
-            });
-        } else {
-            Alert noSelection = new Alert(Alert.AlertType.WARNING);
-            noSelection.setTitle("Aucune sélection");
-            noSelection.setHeaderText("Aucune réclamation sélectionnée");
-            noSelection.setContentText("Veuillez sélectionner une réclamation à supprimer.");
-            noSelection.showAndWait();
-        }
-    }
 }
 

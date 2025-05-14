@@ -10,58 +10,41 @@ import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 import services.UserService;
 import javafx.event.ActionEvent;
-
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
-
 public class Afficherdetail {
     @FXML
     private Text adresseText;
-
     @FXML
     private Text cinText;
-
     @FXML
     private TextArea descriptionTextArea;
-
     @FXML
     private Text emailText;
-
     @FXML
     private Text genreText;
-
     @FXML
     private Hyperlink hyperlinkPieceJointe;
-
     @FXML
     private Text nomText;
-
     @FXML
     private Text notificationsText;
-
     @FXML
     private Text numTelephoneText;
-
     @FXML
     private Text prenomText;
-
     @FXML
     private Text prioriteText;
-
     @FXML
     private Text titreText;
-
     @FXML
-
     private  UserService userService = new UserService();
     private Reclamations reclamation;
     private User user;
-
       public void setReclamation(Reclamations reclamation, User user) {
           this.reclamation = reclamation;
           this.user = user;
-
           // Affichage des informations de l'utilisateur
           nomText.setText("Nom : " + user.getNom());
           prenomText.setText("Prénom : " + user.getPrenom());
@@ -94,11 +77,8 @@ public class Afficherdetail {
           } }
           @FXML
           void quitterButton(ActionEvent event) {
-              // Fermer la fenêtre actuelle
               Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
               stage.close();
           }
-
-
 
       }
