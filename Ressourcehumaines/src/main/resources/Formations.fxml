@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="720" prefWidth="1000.0" stylesheets="@style/certificat.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FormationController">
+
+    <!-- Conteneur principal -->
+    <VBox alignment="TOP_CENTER" layoutX="6.0" layoutY="14.0" prefHeight="680.0" prefWidth="992.0" spacing="25" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="14.0">
+
+        <!-- Titre principal -->
+        <Label styleClass="header-title" text="Gestion des Formations" />
+
+        <!-- Ligne des boutons -->
+        <HBox alignment="CENTER" spacing="20" styleClass="button-row">
+            <Button onAction="#updateFormation" styleClass="btn-warning" text="Modifier" />
+            <Button onAction="#deleteFormation" styleClass="btn-danger" text="Supprimer" />
+            <TextField fx:id="searchField" onKeyReleased="#searchFormation" promptText="🔍 Rechercher..." styleClass="search-field" />
+            <Button onAction="#printFormation" styleClass="btn-info" text="Imprimer" />
+        </HBox>
+
+        <!-- Section Table -->
+        <TableView fx:id="formationTable" maxWidth="782.0" onMouseClicked="#getSelected" prefHeight="183.0" prefWidth="782.0" styleClass="styled-table">
+            <columns>
+                <TableColumn fx:id="titreCol" prefWidth="106.4" text="Titre" />
+                <TableColumn fx:id="descCol" prefWidth="157.6" text="Description" />
+                <TableColumn fx:id="domaineCol" prefWidth="125.6" text="Domaine" />
+                <TableColumn fx:id="lieuCol" prefWidth="108.8" text="Lieu" />
+                <TableColumn fx:id="debutCol" prefWidth="141.6" text="Date Début" />
+                <TableColumn fx:id="finCol" prefWidth="177.6" text="Date Fin" />
+            </columns>
+        </TableView>
+
+    </VBox>
+</AnchorPane>
