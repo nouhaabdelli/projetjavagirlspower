@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gui.ModifierEvenement"
+            stylesheets="@css/ajouter.css">
+    <children>
+        <Label fx:id="modifEvent" alignment="CENTER" layoutX="61.0" prefHeight="60.0" prefWidth="500.0"
+               text="Modifier Un Événement" textAlignment="CENTER" />
+
+        <Label fx:id="nom" layoutX="79.0" layoutY="75.0" text="Nom de l'Événement" />
+        <TextField fx:id="nomEvenement" layoutX="210.0" layoutY="71.0" />
+
+        <Label fx:id="descriptionLabel" layoutX="68.0" layoutY="142.0" text="Description" />
+        <TextArea fx:id="description" layoutX="180.0" layoutY="121.0" prefHeight="60.0" prefWidth="210.0" />
+
+        <Label fx:id="dateDebutLabel" layoutX="38.0" layoutY="209.0" text="Date de Début" />
+        <DatePicker fx:id="dateDebut" layoutX="212.0" layoutY="205.0" />
+
+        <Label fx:id="dateFinLabel" layoutX="38.0" layoutY="259.0" text="Date de Fin" />
+        <DatePicker fx:id="dateFin" layoutX="212.0" layoutY="255.0" />
+
+        <Label fx:id="lieuLabel" layoutX="38.0" layoutY="311.0" text="Lieu" />
+        <TextField fx:id="lieu" layoutX="212.0" layoutY="307.0" />
+
+        <Label fx:id="organisateurLabel" layoutX="38.0" layoutY="361.0" text="Organisateur" />
+        <TextField fx:id="organisateur" layoutX="212.0" layoutY="357.0" />
+
+        <Label fx:id="participantsMaxLabel" layoutX="38.0" layoutY="411.0" text="Participants Max" />
+        <TextField fx:id="participantsMax" layoutX="212.0" layoutY="407.0" />
+
+        <Label fx:id="statutLabel" layoutX="38.0" layoutY="461.0" text="Statut" />
+        <TextField fx:id="statut" layoutX="212.0" layoutY="457.0" />
+
+        <Label fx:id="photoLabel" layoutX="38.0" layoutY="511.0" text="Photo" />
+        <TextField fx:id="photo" layoutX="212.0" layoutY="507.0" />
+
+        <Button layoutX="180.0" layoutY="550.0" mnemonicParsing="false" onAction="#soumettre" text="Enregistrer" />
+        <Button layoutX="320.0" layoutY="550.0" mnemonicParsing="false" onAction="#annuler" text="Annuler" />
+
+        <ImageView fitHeight="100.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@css/logo.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

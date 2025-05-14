@@ -1,0 +1,77 @@
+/* Général */
+.root {
+    -fx-background-color: #e8f0f8;
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+/* Label titre */
+#GrandTitre {
+    -fx-font-size: 30px;
+    -fx-text-fill: #1a4a66;
+    -fx-padding: 12px;
+    -fx-background-radius: 10px;
+    -fx-font-family: sans-serif;
+}
+
+/* TableView */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #cccccc;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 4);
+}
+
+.table-view .column-header {
+    -fx-background-color: #9bd2f3;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER;
+    -fx-font-size: 15px;
+}
+
+.table-view .table-cell {
+    -fx-padding: 10px;
+    -fx-font-size: 13px;
+}
+
+/* Bouton Ajouter */
+#btnAjouter {
+    -fx-background-color: #1a4a66;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-padding: 8px 16px;
+}
+
+/* Boutons dans le tableau */
+.button {
+    -fx-background-color: #badef3;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-padding: 5px 10px;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+
+/* Modifier (vert)
+.button:modify {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}
+
+/* Supprimer (rouge)
+.button:delete {
+    -fx-background-color: #d32f2f;
+    -fx-text-fill: white;
+}
+
+/* Afficher (bleu)
+.button:Afficher {
+    -fx-background-color: #1976d2;
+    -fx-text-fill: white;
+}
+
+/* ImageView (logo) */
+.image-view {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0.2, 2, 2);
+    -fx-border-radius: 10;
+}
