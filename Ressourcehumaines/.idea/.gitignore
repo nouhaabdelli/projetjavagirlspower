@@ -7,10 +7,8 @@
 /dataSources/
 /dataSources.local.xml
 /services/
-/services.SmsService.java
-/gui/
-/gui.AjouterReclamations.java
-
+/services/SmsService.java
+*.env
 
 
 

@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bfc9399-2d02-4d05-b5d6-3ee5bd5d13f8" name="Changes" comment="Recamations">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReclamations.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReclamations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/SmsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/SmsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AjouterReclamations.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AjouterReclamations.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AjouterReponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AjouterReponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/SmsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/SmsService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +130,7 @@
       <workItem from="1746978852630" duration="621000" />
       <workItem from="1746979495683" duration="5651000" />
       <workItem from="1746985211422" duration="51638000" />
-      <workItem from="1747145739255" duration="39593000" />
+      <workItem from="1747145739255" duration="40239000" />
     </task>
     <task id="LOCAL-00001" summary="Recamations">
       <option name="closed" value="true" />
