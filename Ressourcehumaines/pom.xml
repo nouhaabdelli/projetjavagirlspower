@@ -19,6 +19,12 @@
     <dependencies>
 
         <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>21.0.2</version>
+        </dependency>
+
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
@@ -28,11 +34,26 @@
             <artifactId>javafx-fxml</artifactId>
             <version>21.0.2</version>
         </dependency>
+
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>21.0.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20230227</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -43,11 +64,15 @@
                 <version>0.0.8</version>
                 <configuration>
                     <mainClass>main.TestFX</mainClass>
+                    <options>
+                        <option>--add-modules</option>
+                        <option>javafx.controls,javafx.fxml,javafx.web</option>
+                    </options>
                 </configuration>
                 <executions>
                     <execution>
                         <goals>
-                            <goal>run</goal> <!-- Ce but permet d'exécuter l'application JavaFX -->
+                            <goal>run</goal>
                         </goals>
                     </execution>
                 </executions>

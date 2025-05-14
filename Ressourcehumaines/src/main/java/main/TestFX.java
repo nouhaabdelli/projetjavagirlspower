@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
+
 public class TestFX extends Application {
 
     public static void main(String[] args) {
@@ -21,7 +23,7 @@ public class TestFX extends Application {
 
             // Créer et configurer la scène
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/css/gestionannonce.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/css/maquette.css").toExternalForm());
 
             // Afficher la fenêtre principale
             primaryStage.setTitle("Gestion des Annonces");
