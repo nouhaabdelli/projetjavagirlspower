@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class mainfx extends Application {
+
     private pretservice pretService = new pretservice();
 
     public static void main(String[] args) {
@@ -20,7 +21,7 @@ public class mainfx extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/finance.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/listeavance.fxml"));
             if (loader.getLocation() == null) {
                 throw new IOException("FXML file '/fxml/finance.fxml' not found in resources");
             }

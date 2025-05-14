@@ -4,37 +4,33 @@
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
-<?import java.lang.*?>
 
-<VBox alignment="CENTER" spacing="30" styleClass="root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.StatsController">
+<VBox alignment="CENTER" prefHeight="586.0" prefWidth="807.0" spacing="30" styleClass="root" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.StatsController">
     <stylesheets>/style/stats.css</stylesheets>
 
     <padding>
-        <Insets bottom="30" left="20" right="20" top="30"/>
+        <Insets bottom="30" left="20" right="20" top="30" />
     </padding>
 
-    <Label fx:id="titleLabel" styleClass="title-label" text="Statistiques des Avances (Total: 5)"/>
+    <Label fx:id="titleLabel" styleClass="title-label" text="Statistiques des Avances (Total: 5)" />
 
-    <BarChart fx:id="montantChart" animated="true" title="Distribution des Montants d'Avance" prefHeight="250">
+    <BarChart fx:id="montantChart" animated="true" prefHeight="250" title="Distribution des Montants d'Avance">
         <xAxis>
-            <CategoryAxis label="Montant (TND)"/>
+            <CategoryAxis label="Montant (TND)" />
         </xAxis>
         <yAxis>
-            <NumberAxis label="Nombre d'Avances" minorTickVisible="false"/>
+            <NumberAxis label="Nombre d'Avances" minorTickVisible="false" />
         </yAxis>
     </BarChart>
 
-    <BarChart fx:id="urgenceChart" animated="true" title="Avances par Niveau d'Urgence" prefHeight="250">
+    <BarChart fx:id="urgenceChart" animated="true" prefHeight="250" title="Avances par Niveau d'Urgence">
         <xAxis>
-            <CategoryAxis label="Niveau d'Urgence"/>
+            <CategoryAxis label="Niveau d'Urgence" />
         </xAxis>
         <yAxis>
-            <NumberAxis label="Nombre d'Avances" minorTickVisible="false"/>
+            <NumberAxis label="Nombre d'Avances" minorTickVisible="false" />
         </yAxis>
     </BarChart>
-
-    <Button fx:id="retourButton" onAction="#handleRetour" text="⬅ Retour" styleClass="retour-button"/>
 </VBox>
