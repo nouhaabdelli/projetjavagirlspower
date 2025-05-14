@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<BorderPane fx:id="mainLayout" stylesheets="@../CSS/maquette.css"  xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.maquette">
+
+    <!-- BARRE DE NAVIGATION EN HAUT -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <!-- LOGO CLIQUABLE -->
+            <ImageView fx:id="logoImage" fitHeight="67.0" fitWidth="200.0" onMouseClicked="#handleAccueil" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../images/work.png" />
+                </image>
+            </ImageView>
+
+            <!-- BOUTONS DE NAVIGATION -->
+            <Button onAction="#handleDemandes" prefHeight="26.0" prefWidth="114.0" styleClass="nav-button" text="Demandes" />
+            <Button onAction="#handleFinance" prefHeight="26.0" prefWidth="129.0" styleClass="nav-button" text="Finance" />
+            <Button onAction="#handleReclamations" prefHeight="26.0" prefWidth="144.0" styleClass="nav-button" text="Réclamations" />
+            <Button onAction="#handleAnnonce" prefHeight="26.0" prefWidth="125.0" styleClass="nav-button" text="Annonce" />
+            <Button onAction="#handleFormations" prefHeight="26.0" prefWidth="138.0" styleClass="nav-button" text="Formations" />
+            <Button onAction="#handleEvenements" prefHeight="26.0" prefWidth="130.0" styleClass="nav-button" text="Évènements" />
+            <Button onAction="#handleProfil" prefHeight="25.0" prefWidth="108.0" styleClass="nav-button" text="Profil" />
+            <Button onAction="#toggleNotificationSidebar" prefHeight="25.0" prefWidth="50.0" styleClass="nav-button" text="🔔" />
+        </HBox>
+    </top>
+
+    <!-- CONTENU CENTRAL À REMPLIR DYNAMIQUEMENT -->
+    <center>
+        <StackPane fx:id="contentPane" prefHeight="780.0" prefWidth="1500.0" />
+    </center>
+
+</BorderPane>
