@@ -217,7 +217,7 @@ public class AjouterReponse {
         if (phone != null && !phone.trim().isEmpty()) {
             String smsBody = "Votre réclamation du " + reclamation.getDateDemande() + " a été traitée. Merci. - RH";
             System.out.println("Tentative d'envoi SMS à : " + phone);  // <--- pour vérifier
-            SmsService.sendSms(phone, smsBody);
+//            SmsService.sendSms(phone, smsBody);
         } else {
             System.out.println("Numéro de téléphone invalide ou vide.");
         }
