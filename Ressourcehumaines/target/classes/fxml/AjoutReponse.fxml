@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="582.0" prefWidth="1064.0" stylesheets="@../styles/AjoutReponse.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterReponse">
+    <children>
+        <VBox layoutX="47.0" layoutY="28.0" prefHeight="526.0" prefWidth="801.0" spacing="20.0" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="83.40000000000009" AnchorPane.topAnchor="28.0">
+
+            <TitledPane fx:id="boxreclamation" expanded="true" text="Détails de la Réclamation">
+            <VBox spacing="8.0" styleClass="reclamation-box">
+                <Label id="bb" fx:id="lblTitreReclamation" text="Titre: ..." />
+                <Label id="bb" fx:id="lblContenuReclamation" prefHeight="210.0" prefWidth="716.0" text="Contenu: ..." wrapText="true" />
+                <Label id="bb" fx:id="lblDateReclamation" text="Date: ..." />
+                <Hyperlink fx:id="linkFichierJoint" onAction="#ouvrirFichierJoint" text="Fichier joint disponible" />
+
+                <Label id="bb" fx:id="lblPrioriteReclamation" text="Priorité: ..." />
+            </VBox>
+            </TitledPane>
+
+            <!-- Formulaire de Réponse -->
+            <VBox fx:id="formulaireAjoutPane" prefHeight="326.0" prefWidth="518.0" spacing="15.0" styleClass="form-box">
+                <TextArea fx:id="txtContenu" prefHeight="181.0" prefWidth="710.0" promptText="Contenu de la réponse" wrapText="true" />
+
+                <HBox spacing="10">
+                    <Label text="Priorite :" />
+                    <ComboBox fx:id="comboImportance">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="Normal" />
+                                <String fx:value="Important" />
+                                <String fx:value="Urgent" />
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                </HBox>
+
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <Label text="Fichier joint :" />
+                    <Button onAction="#parcourirFichier" text="Parcourir" />
+                    <Label fx:id="lblFichier" text="Aucun fichier sélectionné" />
+                </HBox>
+
+                <HBox alignment="CENTER_RIGHT" />
+            </VBox>
+
+        </VBox>
+           <Button fx:id="btnAjouter" layoutX="504.0" layoutY="516.0" onAction="#RepondreReclamation" prefHeight="48.0" prefWidth="194.0" styleClass="submit-button" text="📤 Envoyer la Réponse" />
+        <Button layoutX="708.0" layoutY="516.0" onAction="#annulerModification" prefHeight="48.0" prefWidth="194.0" styleClass="submit-button" text="Annuler" />
+
+    </children>
+</AnchorPane>
