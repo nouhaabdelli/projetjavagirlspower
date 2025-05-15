@@ -2,26 +2,19 @@ package gui;
 
 import entities.Reponses;
 import entities.Reclamations;
-import entities.user;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import entities.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import services.*;
 import utils.MyConnection;
 
-import java.security.cert.PolicyNode;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -146,7 +139,7 @@ public class AjouterReponse {
         String cheminFichier = (fichierJoint != null) ? fichierJoint.getAbsolutePath() : (reponseAModifier != null ? reponseAModifier.getFichierJoint() : null);
 
 
-        ReponseService service = new ReponseService();
+        ReponseServicereclamation service = new ReponseServicereclamation();
 
         try {
             if (reponseAModifier != null) {
@@ -177,7 +170,7 @@ public class AjouterReponse {
                 reclamation.setStatut("traitée");
 
                 UserService userService = new UserService();
-                user user = userService.getUserById(reclamation.getUserId());
+                User user = userService.getUserById(reclamation.getUserId());
                 if (user != null) {
                     String typeNotif = reclamation.getRecevoirNotifications(); // Exemple : "email", "sms", ou "both"
 
@@ -212,7 +205,7 @@ public class AjouterReponse {
     }
 
 
-    private void sendReclamationStatusSMS(user user, Reclamations reclamation) {
+    private void sendReclamationStatusSMS(User user, Reclamations reclamation) {
         String phone = user.getNumTelephone();
         if (phone != null && !phone.trim().isEmpty()) {
             String smsBody = "Votre réclamation du " + reclamation.getDateDemande() + " a été traitée. Merci. - RH";
@@ -225,15 +218,15 @@ public class AjouterReponse {
 
 
 
-    public user getUserById(int userId) {
-        user user = null;
+    public User getUserById(int userId) {
+        User user = null;
         try {
             Connection conn = MyConnection.getInstance().getConnection();
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM user WHERE id = ?");
             stmt.setInt(1, userId);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                user = new user();
+                user = new User();
                 user.setId(rs.getInt("id"));
                 user.setNom(rs.getString("nom"));
                 user.setPrenom(rs.getString("prenom"));
@@ -246,7 +239,7 @@ public class AjouterReponse {
         return user;
     }
 
-    private void sendReclamationStatusEmail(user user, Reclamations reclamation) {
+    private void sendReclamationStatusEmail(User user, Reclamations reclamation) {
         System.out.println("sendReclamationStatusEmail called");
 
         if ("traitée".equalsIgnoreCase(reclamation.getStatut())) {

@@ -5,7 +5,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 
 
 import java.io.IOException;
@@ -13,6 +17,8 @@ import java.io.IOException;
 public class maquette {
     @FXML
     private StackPane contentPane;
+    @FXML
+    private Button handledemande;
 
     @FXML
     public void initialize() {
@@ -24,11 +30,26 @@ public class maquette {
     private void handleAccueil() {
         loadUI("slideefeect.fxml");
     }
-
-    @FXML private void handleDemandes() {
-        System.out.println("Demandes");
+    @FXML
+    private void handledemande() {
+        loadDemandeScene("admin");
     }
+    private void loadDemandeScene(String role) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Demande.fxml"));
+            Parent root = loader.load();
 
+            // Obtenir le contrôleur et lui passer le rôle
+            DemandeController controller = loader.getController();
+            controller.initData(role);
+
+            Stage stage = (Stage) handledemande.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML private void handleFinance() {
         System.out.println("Finance");
     }

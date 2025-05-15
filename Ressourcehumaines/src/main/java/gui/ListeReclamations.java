@@ -1,8 +1,8 @@
 package gui;
 import entities.Reponses;
-import entities.user;
+import entities.User;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ButtonType;
+
 import java.io.IOException;
 import javafx.scene.Parent;
 
@@ -86,7 +86,7 @@ public class ListeReclamations {
 
                 private void afficherReponsePourReclamation(int idReclamation) {
                     try {
-                        ReponseService reponseService = new ReponseService();
+                        ReponseServicereclamation reponseService = new ReponseServicereclamation();
                         Reponses reponse = reponseService.getByReclamationId(idReclamation);
 
                         if (reponse != null) {
@@ -172,7 +172,7 @@ public class ListeReclamations {
         }
         try {
             UserService userService = new UserService();
-            user user = userService.getUserById(selected.getUserId());
+            User user = userService.getUserById(selected.getUserId());
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/detailreclamation.fxml"));
             Parent root = loader.load();

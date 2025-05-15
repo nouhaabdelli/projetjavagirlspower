@@ -1,12 +1,10 @@
 package gui;
 
 import entities.Evenement;
-import entities.user;
-import javafx.animation.FadeTransition;
+import entities.User;
 import javafx.animation.PauseTransition;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,16 +13,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.time.LocalDate;
 
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.cell.TextFieldTreeTableCell;
-import javafx.util.Callback;
 import services.EvenementService;
 import services.mailService;
 
@@ -318,7 +312,7 @@ public class Evenements {
 
                             evenementsParticipe.add(ev.getIdEvenement());
 
-                            user currentUser = new user();
+                            User currentUser = new User();
                             currentUser.setPrenom("Maram");
                             currentUser.setEmail("ghribimaram24@gmail.com");
 
@@ -340,7 +334,7 @@ public class Evenements {
                 });
             }
 
-            private void sendParticipationConfirmationEmail(user user, Evenement event) {
+            private void sendParticipationConfirmationEmail(User user, Evenement event) {
                 mailService emailService = new mailService();
                 String subject = "Confirmation de participation à l'événement";
                 String body = "Bonjour " + user.getPrenom() + ",\n\n"

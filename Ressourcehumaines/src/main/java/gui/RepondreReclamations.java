@@ -1,6 +1,6 @@
 package gui;
 import entities.Reclamations;
-import entities.user;
+import entities.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
