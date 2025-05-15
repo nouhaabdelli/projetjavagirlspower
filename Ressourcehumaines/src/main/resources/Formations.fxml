@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="720" prefWidth="1000" stylesheets="@../../../../../../../OneDrive/Bureau/projetjavagirlspower/Ressourcehumaines/src/main/resources/style/certificat.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FormationController">
+
+    <VBox alignment="TOP_CENTER" prefHeight="680" prefWidth="980" spacing="30" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="20">
+
+        <!-- Titre principal -->
+        <Label styleClass="header-title" text="Gestion des Formations" />
+
+        <!-- Barre d'actions -->
+        <HBox alignment="CENTER_LEFT" spacing="15" styleClass="action-bar">
+            <Button onAction="#updateFormation" styleClass="btn-warning" text="Modifier" />
+            <Button onAction="#deleteFormation" styleClass="btn-danger" text="Supprimer" />
+            <TextField fx:id="searchField" onKeyReleased="#searchFormation" promptText="🔍 Rechercher une formation..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+            <Button onAction="#printFormation" styleClass="btn-info" text="Imprimer" />
+        </HBox>
+
+        <!-- Table des formations -->
+        <TableView fx:id="formationTable" prefHeight="400" prefWidth="980" styleClass="styled-table" onMouseClicked="#getSelected">
+            <columns>
+                <TableColumn fx:id="titreCol" prefWidth="150" text="Titre" />
+                <TableColumn fx:id="descCol" prefWidth="280" text="Description" />
+                <TableColumn fx:id="domaineCol" prefWidth="150" text="Domaine" />
+                <TableColumn fx:id="lieuCol" prefWidth="130" text="Lieu" />
+                <TableColumn fx:id="debutCol" prefWidth="140" text="Date Début" />
+                <TableColumn fx:id="finCol" prefWidth="130" text="Date Fin" />
+            </columns>
+        </TableView>
+
+    </VBox>
+
+</AnchorPane>

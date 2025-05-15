@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane fx:id="rootPane" prefHeight="620.0" prefWidth="860.0"
+            xmlns="http://javafx.com/javafx/19"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="gui.FormationAddController"
+            stylesheets="@../../../../../../../OneDrive/Bureau/projetjavagirlspower/Ressourcehumaines/src/main/resources/style/certificatadd.css">
+
+    <VBox spacing="30.0" alignment="TOP_CENTER"
+          AnchorPane.topAnchor="15.0" AnchorPane.leftAnchor="15.0"
+          AnchorPane.rightAnchor="15.0" AnchorPane.bottomAnchor="15.0"
+          styleClass="container">
+
+        <!-- Titre -->
+        <Label text="Ajout des Formations" styleClass="header-title"/>
+
+        <!-- Formulaire -->
+        <GridPane hgap="25" vgap="20" styleClass="form-grid" prefWidth="780">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+
+            <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" minWidth="130"/>
+                <ColumnConstraints minWidth="220"/>
+                <ColumnConstraints halignment="RIGHT" minWidth="130"/>
+                <ColumnConstraints minWidth="220"/>
+            </columnConstraints>
+
+            <Label text="Titre :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="titreField" promptText="Titre de la formation"
+                       GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+
+            <!-- Ligne 2 -->
+            <Label text="Description :" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextArea fx:id="descriptionField" prefRowCount="3" prefWidth="500"
+                      promptText="Brève description de la formation"
+                      GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+
+            <!-- Ligne 3 -->
+            <Label text="Domaine :" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="domaineField" promptText="Domaine d'activité"
+                       GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Lieu :" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+            <TextField fx:id="lieuField" promptText="Lieu de la formation"
+                       GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+
+            <!-- Ligne 4 -->
+            <Label text="Date Début :" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="dateDebutField"
+                        GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <Label text="Date Fin :" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+            <DatePicker fx:id="dateFinField"
+                        GridPane.rowIndex="3" GridPane.columnIndex="3"/>
+
+            <!-- Ligne 5 (caché) -->
+            <TextField fx:id="idField" visible="false" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+        </GridPane>
+
+        <!-- Bouton Ajouter -->
+        <HBox spacing="15" alignment="CENTER" styleClass="button-row">
+            <Button text="Ajouter" fx:id="addButton"
+                    onAction="#addFormation" styleClass="btn-primary"/>
+        </HBox>
+    </VBox>
+</AnchorPane>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane onMousePressed="#click" prefHeight="130.0" prefWidth="600.0" style="-fx-background-color: transparent;" stylesheets="@../../../../../../../OneDrive/Bureau/projetjavagirlspower/Ressourcehumaines/src/main/resources/style/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CertificatItemController">
+
+   <children>
+      <!-- Conteneur principal avec arrondis et ombres légères -->
+      <VBox fx:id="cardBox"
+            styleClass="clickable-card"
+            onMouseClicked="#handleClick"
+            prefHeight="110.0" prefWidth="461.0" spacing="15"
+            style="-fx-background-color: #ffffff; -fx-background-radius: 16; -fx-border-radius: 16; -fx-border-color: #eeeeee; -fx-border-width: 1; -fx-padding: 10;"
+            AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
+            AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="10.0">
+         <effect>
+            <DropShadow color="#b0b0b0" offsetX="3" offsetY="3" radius="8" />
+         </effect>
+
+         <!-- Ligne d'en-tête avec alignement et style modernes -->
+         <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-padding: 10 15;">
+            <Label fx:id="dateLabel" style="-fx-text-fill: #2980b9; -fx-font-size: 18px; -fx-font-weight: bold;" text="01/01/2024">
+               <font><Font name="Helvetica" size="16.0" /></font>
+            </Label>
+
+            <Label fx:id="titleLabel" style="-fx-text-fill: #2c3e50; -fx-font-size: 18px; -fx-font-weight: bold;" text="Titre du certificat:" />
+         </HBox>
+
+         <!-- Texte descriptif avec un style moderne et plus léger -->
+         <Label fx:id="diff" style="-fx-text-fill: #7f8c8d; -fx-font-size: 14px; -fx-padding: 0 15 5 15;" text="Texte du commentaire..." wrapText="true">
+            <font><Font name="Helvetica Neue" size="14.0" /></font>
+         </Label>
+
+         <Label fx:id="descriptionLabel" style="-fx-text-fill: #7f8c8d; -fx-font-size: 14px; -fx-padding: 0 15 5 15;" text="Texte du commentaire..." wrapText="true">
+            <font><Font name="Helvetica Neue" size="14.0" /></font>
+         </Label>
+      </VBox>
+   </children>
+</AnchorPane>
