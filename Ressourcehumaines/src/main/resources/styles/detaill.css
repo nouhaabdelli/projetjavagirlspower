@@ -1,6 +1,6 @@
 /* Couleur de fond générale */
 .root {
-    -fx-background-color: linear-gradient(to bottom right, #c8d7e1, #365b97);
+    -fx-background-color: linear-gradient(to bottom right, #c8d7e1, #7c9eb8);
     -fx-font-family: 'Segoe UI', sans-serif;
 }
 

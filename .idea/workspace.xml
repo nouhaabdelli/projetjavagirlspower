@@ -5,14 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bfc9399-2d02-4d05-b5d6-3ee5bd5d13f8" name="Changes" comment="Recamations">
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/TraductionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/backoffice.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/backoffice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/mainfx.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/mainfx.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/ListeReclamations.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/ListeReclamations.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/backoffice.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/backoffice.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/frontoffice.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/frontoffice.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/styles/consulterreponse.css" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/styles/consulterreponse.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/main/mainfx.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/main/mainfx.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/styles/detaill.css" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/styles/detaill.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/ListeReclamations.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/ListeReclamations.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/styles/consulterreponse.css" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/styles/consulterreponse.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/styles/detaill.css" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/styles/detaill.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

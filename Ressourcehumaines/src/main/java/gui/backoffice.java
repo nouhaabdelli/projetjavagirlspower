@@ -83,16 +83,13 @@ public class backoffice {
     private CheckBox filterHighImportance1;
     @FXML
     private CheckBox filterHighImportance2;
-        @FXML
-        private VBox sidebar;
+    @FXML
+    private VBox sidebar;
     @FXML
     private DatePicker startDatePicker;
+
     @FXML
-    private DatePicker endDatePicker;
-
-
-        @FXML
-        private ToggleButton themeToggle;
+    private ToggleButton themeToggle;
     @FXML
     private HBox Recher;
     @FXML
@@ -399,6 +396,7 @@ public class backoffice {
     private void loadAjoutReponse() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/RepondreReclamations.fxml"));
+            startDatePicker.setVisible(false);
             btnSearch.setVisible(false);
             filtre.setVisible(false);
             FadeTransition fade = new FadeTransition(Duration.millis(300), dynamicContent);
@@ -423,6 +421,8 @@ public class backoffice {
     }
 
     private void showReponsesTable() {
+        startDatePicker.setVisible(true);
+
         btnSearch.setVisible(true);
         filtre.setVisible(true);
         FadeTransition fade = new FadeTransition(Duration.millis(200), dynamicContent);
@@ -459,7 +459,7 @@ public class backoffice {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/AjouterReclamation.fxml"));
             btnSearch.setVisible(false);
-//            Recher.setVisible(false);
+            startDatePicker.setVisible(false);
             filtre.setVisible(false);
             FadeTransition fade = new FadeTransition(Duration.millis(300), dynamicContent);
             fade.setFromValue(1.0);
@@ -485,6 +485,7 @@ public class backoffice {
     private void MesReclamations() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/ListeReclamations.fxml"));
+            startDatePicker.setVisible(false);
             btnSearch.setVisible(false);
             Recher.setVisible(false);
             filtre.setVisible(false);

@@ -1,17 +1,17 @@
 /* Root styles (Dominant #0A3D62C9 Theme) */
 AnchorPane {
-    -fx-background-color: rgb(255, 255, 255); /* Dominant semi-transparent dark blue */
+    -fx-background-color: #e8f1f8; /* Dominant semi-transparent dark blue */
     -fx-font-family: "Roboto", sans-serif;
 }
 
 /* Alternate Theme (solid #0A3D62) */
 AnchorPane.alt-theme {
-    -fx-background-color: #0A3D62;
+    -fx-background-color: #14315e;
 }
 
 /* Sidebar */
 .sidebar {
-    -fx-background-color: #0A3D62C9;
+    -fx-background-color: #ADD8E6;
     -fx-background-radius: 0 15px 15px 0;
     -fx-padding: 20px;
     -fx-spacing: 15px;
@@ -24,7 +24,7 @@ AnchorPane.alt-theme {
 
 .sidebar-toggle {
     -fx-background-color: transparent;
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: #273260;
     -fx-font-size: 18px;
     -fx-padding: 10px;
     -fx-cursor: hand;
@@ -46,20 +46,21 @@ AnchorPane.alt-theme {
 }
 
 .sidebar-title.alt-theme {
-    -fx-text-fill: #E2E8F0;
+    -fx-text-fill: #0A3D62;
 }
 
 .menu-item {
-    -fx-background-color: transparent;
-    -fx-text-fill: #FFFFFF;
-    -fx-font-size: 16px;
-    -fx-padding: 10px 20px;
+    -fx-background-color: tranparent ;
+    -fx-font-size: 14px;
+    -fx-text-fill: #1E293B;
+    fx-font-family: "Roboto", sans-serif;
+    -fx-font-weight: bold;
+    -fx-padding: 12px;
     -fx-alignment: center-left;
-    -fx-cursor: hand;
 }
 
 .menu-item:hover {
-    -fx-background-color: #6D28D9;
+    -fx-background-color: #0A3D62C9;
     -fx-background-radius: 10px;
     -fx-scale-x: 1.05;
     -fx-transition: all 0.3s ease-in-out;
@@ -113,7 +114,7 @@ AnchorPane.alt-theme {
 }
 
 .theme-toggle:hover {
-    -fx-background-color: #6D28D9;
+    -fx-background-color: #0A3D62C9;
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
     -fx-transition: all 0.3s ease-in-out;
@@ -134,7 +135,7 @@ AnchorPane.alt-theme {
 
 /* Search and filter panel */
 .search-filter-panel {
-    -fx-background-color: #0A3D62C9;
+    -fx-background-color: #E2E8F0;
     -fx-background-radius: 15px;
     -fx-padding: 15px;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0.5, 0, 2);
@@ -184,7 +185,7 @@ AnchorPane.alt-theme {
 }
 
 .action-button:hover {
-    -fx-background-color: #6D28D9;
+    -fx-background-color: #0A3D62C9;
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
     -fx-transition: all 0.3s ease-in-out;
@@ -208,20 +209,26 @@ AnchorPane.alt-theme {
 
 /* Filter components */
 .filter-title {
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #FFFFFF;
-    -fx-padding: 10px 0;
+    -fx-font-size: 14px;
+    -fx-text-fill: #1E293B;
+    -fx-padding: 12px;
+    -fx-alignment: center-left;
+    -fx-border-color: #E2E8F0;
 }
 
 .filter-title.alt-theme {
-    -fx-text-fill: #E2E8F0;
-}
+    -fx-font-size: 14px;
+    -fx-text-fill: #1E293B;
+    -fx-padding: 12px;
+    -fx-alignment: center-left;
+    -fx-border-color: #E2E8F0;}
 
 .filter-checkbox {
-    -fx-text-fill: #FFFFFF;
     -fx-font-size: 14px;
-    -fx-padding: 10px;
+    -fx-text-fill: #1E293B;
+    -fx-padding: 12px;
+    -fx-alignment: center-left;
+    -fx-border-color: #E2E8F0;
 }
 
 .filter-checkbox.alt-theme {
