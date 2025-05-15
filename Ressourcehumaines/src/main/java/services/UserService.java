@@ -1,6 +1,6 @@
 package services;
 
-import entities.user;
+import entities.User;
 import utils.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,14 +9,14 @@ import java.sql.ResultSet;
 public class UserService {
     private final Connection connection = MyConnection.getInstance().getConnection();
 
-    public user getUserById(int id) {
+    public User getUserById(int id) {
         String sql = "SELECT Nom, Prenom, Email, cin ,NumTelephone,Genre,Adresse FROM user WHERE Id = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                return new user(
+                return new User(
                         id,
                         rs.getString("Nom"),
                         rs.getString("Prenom"),
