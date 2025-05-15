@@ -1,9 +1,7 @@
 package gui;
 
 import entities.Certificat;
-import entities.Formation;
-import entities.User;
-import services.CertificatService;
+import services.Certificatservices;
 import services.FormationService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,9 +19,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class CertificatController {
@@ -41,7 +37,7 @@ public class CertificatController {
 
 
     private final ObservableList<Certificat> certificatList = FXCollections.observableArrayList();
-    private final CertificatService certificatService = new CertificatService();
+    private final Certificatservices certificatService = new Certificatservices();
     private final Map<Integer, String> userMap = new HashMap<>();
     private final Map<Integer, String> formationMap = new HashMap<>();
 
@@ -83,6 +79,22 @@ public class CertificatController {
         certificatService.ajouterCertificat(cert);
         loadData();
         clearFields();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Certificats.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Liste des Certificats");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Fermer la fenêtre actuelle (formulaire d'ajout)
+            Stage currentStage = (Stage) validiteField.getScene().getWindow();
+            currentStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public void setFormData(Certificat certificat) {
         codeCertificatField.setText(String.valueOf(certificat.getCodeCertificat()));

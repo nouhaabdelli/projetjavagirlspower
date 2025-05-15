@@ -3,7 +3,7 @@ package gui;
 import entities.Certificat;
 import entities.Formation;
 import entities.User;
-import services.CertificatService;
+import services.Certificatservices;
 import services.FormationService;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -25,7 +25,7 @@ public class EditCertificatController {
 
     private Certificat certificat;
     private final FormationService formationService = new FormationService();
-    private final CertificatService certificatService = new CertificatService();
+    private final Certificatservices certificatService = new Certificatservices();
 
     @FXML
     public void initialize() {
@@ -68,6 +68,8 @@ public class EditCertificatController {
         }
     }
 
+
+
     @FXML
     private void saveChanges() {
         certificat.setTitre(titreField.getText());
@@ -89,10 +91,11 @@ public class EditCertificatController {
         }
 
         try {
-            certificatService.modifierCertificat(certificat);
-            ((Stage) titreField.getScene().getWindow()).close(); // Close popup
+
+        certificatService.modifierCertificat(certificat);
+        ((Stage) titreField.getScene().getWindow()).close();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }// Close popup
     }
 }

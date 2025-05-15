@@ -2,11 +2,9 @@ package gui;
 
 import entities.Certificat;
 import entities.Formation;
-import services.CertificatService;
+import services.Certificatservices;
 import services.FormationService;
-import main.MyListener1;
 import main.MyListener2;
-import utils.DBConnexion;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfContentByte;
 import javafx.event.ActionEvent;
@@ -24,6 +22,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import com.itextpdf.text.pdf.PdfWriter;
 import javafx.stage.Stage;
+import utils.MyConnection;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -68,7 +67,7 @@ public class CertificatFrontController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        connection = DBConnexion.getInstance().getCnx();
+        connection = MyConnection.getInstance().getConnection();
 
         try {
             formations.addAll(loadFormations());
@@ -87,12 +86,12 @@ public class CertificatFrontController implements Initializable {
     private List<Formation> loadFormations() throws SQLException {
         return new FormationService().afficherFormations();
     }
-    CertificatService cs = new CertificatService();
+    Certificatservices cs = new Certificatservices();
     private List<Certificat> loadCertificats(int formationId) throws SQLException {
         System.out.println(formationId);
-        System.out.println(cs.afficherCertificats(formationId));
+        System.out.println(cs.afficherCertificats());
 
-        return  cs.afficherCertificats(formationId);
+        return  cs.afficherCertificats();
     }
     @FXML private Button generatePdfButton;
     @FXML private Label pdfStatusLabel;

@@ -22,6 +22,9 @@ public class Formation {
 
     // Getters and Setters
 
+    public Formation() {
+    }
+
     public Formation(Integer idFormation, String titre, String description, String domaine, String lieu, String dateDebut, String dateFin) {
         this.idFormation = idFormation;
         this.titre = titre;

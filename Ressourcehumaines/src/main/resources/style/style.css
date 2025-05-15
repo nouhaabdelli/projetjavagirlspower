@@ -107,3 +107,19 @@
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
+.clickable-card {
+    -fx-cursor: hand;
+}
+
+.clickable-card:hover {
+    -fx-background-color: #f0f8ff; /* léger bleu au survol */
+    -fx-border-color: #3498db;
+}
+
+.clickable-card:pressed {
+    -fx-background-color: #d6eaf8; /* bleu clair au clic */
+    -fx-border-color: #2980b9;
+    -fx-border-width: 2px;
+}
+
+

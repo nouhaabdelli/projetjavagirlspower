@@ -1,8 +1,8 @@
 package gui;
 
 import entities.Formation;
+import javafx.scene.layout.AnchorPane;
 import services.FormationService;
-import utils.DBConnexion;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.print.PrinterJob;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -22,7 +21,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -49,6 +47,8 @@ public class FormationController implements Initializable {
     private ObservableList<Formation> formationList = FXCollections.observableArrayList();
 
     private Stage primaryStage;
+    @FXML
+    private AnchorPane rootPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -1,7 +1,7 @@
 package services;
 
 import entities.Formation;
-import utils.DBConnexion;
+import utils.MyConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ public class FormationService {
     private Connection connexion;
 
     public FormationService() {
-        connexion = DBConnexion.getInstance().getCnx();
+        connexion = MyConnection.getInstance().getInstance().getConnection();
     }
 
     public void ajouterFormation(Formation f) throws SQLException {

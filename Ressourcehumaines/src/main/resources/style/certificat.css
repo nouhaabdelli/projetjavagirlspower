@@ -96,3 +96,21 @@ VBox {
 .styled-table .corner {
     -fx-background-color: transparent;
 }
+
+/* Curseur en forme de main sur les lignes du tableau */
+.styled-table .table-row-cell:hover {
+    -fx-background-color: #f2f9ff;
+    -fx-cursor: hand;
+}
+
+/* Style de la ligne sélectionnée */
+.styled-table .table-row-cell:filled:selected {
+    -fx-background-color: #d0e3f3; /* Couleur de fond pour la ligne sélectionnée */
+    -fx-text-fill: black; /* Couleur du texte pour les cellules sélectionnées */
+}
+
+.styled-table .table-cell:filled:selected {
+    -fx-background-color: transparent; /* Pour éviter de surcharger la ligne sélectionnée */
+    -fx-text-fill: black;
+}
+

@@ -1,0 +1,68 @@
+/* Conteneur principal */
+.container {
+    -fx-background-color: #f9fbfd;
+    -fx-padding: 20px;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 5);
+}
+
+/* Titre principal */
+.header-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 10 0 20 0;
+}
+
+/* GridPane de formulaire */
+.form-grid {
+    -fx-background-color: white;
+    -fx-padding: 25;
+    -fx-background-radius: 15;
+    -fx-border-color: #dce3f0;
+    -fx-border-radius: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 5, 0, 0, 3);
+}
+
+/* Champs de texte et ComboBox */
+.text-field, .text-area, .combo-box, .date-picker {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #d0dbe8;
+    -fx-border-width: 1;
+    -fx-padding: 5 10 5 10;
+    -fx-font-size: 13px;
+}
+
+/* Effet focus */
+.text-field:focused, .text-area:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: #4A90E2;
+    -fx-effect: dropshadow(three-pass-box, #4A90E222, 6, 0, 0, 2);
+}
+
+/* Ligne des boutons */
+.button-row {
+    -fx-padding: 15;
+}
+
+/* Bouton principal */
+.btn-primary {
+    -fx-background-color: linear-gradient(to right, #4A90E2, #007AFF);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 10 25;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 3, 0, 0, 2);
+}
+
+.btn-primary:hover {
+    -fx-background-color: linear-gradient(to right, #007AFF, #4A90E2);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 4, 0, 0, 2);
+}
+
+.btn-primary:pressed {
+    -fx-background-color: #005ecb;
+}

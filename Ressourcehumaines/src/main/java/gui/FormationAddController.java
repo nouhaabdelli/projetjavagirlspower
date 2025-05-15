@@ -1,6 +1,7 @@
 package gui;
 
 import entities.Formation;
+import javafx.scene.Parent;
 import services.FormationService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,13 +33,15 @@ public class FormationAddController implements Initializable {
     @FXML private DatePicker dateDebutField;
     @FXML private DatePicker dateFinField;
     @FXML private TextField idField;
-    @FXML
-    private AnchorPane rec;
+
     @FXML private TextField searchField;
 
     private ObservableList<Formation> formationList = FXCollections.observableArrayList();
 
     private Stage primaryStage;
+    @FXML
+    private AnchorPane rootPane;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -69,8 +72,16 @@ public class FormationAddController implements Initializable {
         } catch (Exception e) {
             showAlert("Erreur", "Échec de l'ajout de la formation.");
         }
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/Formations.fxml"));
-        rec.getChildren().setAll(pane);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Formations.fxml"));
+            Parent listView = loader.load();
+
+            // Remplacer le contenu de rootPane par la nouvelle interface
+            rootPane.getChildren().setAll(listView);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

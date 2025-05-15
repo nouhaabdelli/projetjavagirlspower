@@ -13,8 +13,12 @@ public class User {
         this.username = username;
     }
 
-    public String getEmail() {
-        return email;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setEmail(String email) {
@@ -29,12 +33,8 @@ public class User {
         return username;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public String getEmail() {
+        return email;
     }
 
     @Override

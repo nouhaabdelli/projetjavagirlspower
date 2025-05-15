@@ -4,13 +4,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 
 public class DashboardConrtoller {
+    @FXML
+    private GridPane grid;
+
+    @FXML
+    private GridPane commentsGrid;
 
     @FXML
     private AnchorPane anch;
+
+
 
     private void loadUI(String fxml) {
         try {

@@ -4,6 +4,7 @@ import entities.Formation;
 import utils.MyConnection;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +19,8 @@ public class Formationservices {
             pstmt.setString(2, formation.getDescription());
             pstmt.setString(3, formation.getDomaine());
             pstmt.setString(4, formation.getLieu());
-            pstmt.setDate(5, formation.getDateDebut());
-            pstmt.setDate(6, formation.getDateFin());
+            pstmt.setDate(5, java.sql.Date.valueOf(LocalDate.parse(formation.getDateDebut())));
+            pstmt.setDate(6, java.sql.Date.valueOf(LocalDate.parse(formation.getDateFin())));
 
             pstmt.executeUpdate();
             System.out.println(" Formation ajoutée !");
@@ -42,8 +43,9 @@ public class Formationservices {
                 f.setDescription(rs.getString("description"));
                 f.setDomaine(rs.getString("domaine"));
                 f.setLieu(rs.getString("lieu"));
-                f.setDateDebut(rs.getDate("date_debut"));
-                f.setDateFin(rs.getDate("date_fin"));
+                f.setDateDebut(rs.getDate("date_debut").toString());
+                f.setDateFin(rs.getDate("date_fin").toString());
+
                 formations.add(f);
             }
         } catch (SQLException e) {
@@ -61,8 +63,8 @@ public class Formationservices {
             pstmt.setString(2, formation.getDescription());
             pstmt.setString(3, formation.getDomaine());
             pstmt.setString(4, formation.getLieu());
-            pstmt.setDate(5, formation.getDateDebut());
-            pstmt.setDate(6, formation.getDateFin());
+            pstmt.setString(5, formation.getDateDebut());
+            pstmt.setString(6, formation.getDateFin());
             pstmt.setInt(7, formation.getIdFormation());
 
             pstmt.executeUpdate();

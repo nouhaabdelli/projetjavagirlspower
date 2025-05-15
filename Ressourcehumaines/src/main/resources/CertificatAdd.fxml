@@ -2,61 +2,76 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane fx:id="rootPane" prefHeight="620" prefWidth="860" stylesheets="@style/certificatadd.css"
+<AnchorPane fx:id="rootPane" prefHeight="620.0" prefWidth="860.0"
             xmlns="http://javafx.com/javafx/19"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="gui.CertificatAddController">
+            fx:controller="gui.CertificatAddController"
+            stylesheets="@style/certificatadd.css">
 
-    <VBox spacing="25" alignment="TOP_CENTER"
-          AnchorPane.topAnchor="15" AnchorPane.leftAnchor="15"
-          AnchorPane.rightAnchor="15" AnchorPane.bottomAnchor="15"
+    <VBox spacing="30.0" alignment="TOP_CENTER"
+          AnchorPane.topAnchor="15.0" AnchorPane.leftAnchor="15.0"
+          AnchorPane.rightAnchor="15.0" AnchorPane.bottomAnchor="15.0"
           styleClass="container">
 
-        <!-- Title -->
+        <!-- Titre -->
         <Label text="Gestion des Certificats" styleClass="header-title"/>
 
-        <!-- Form -->
-        <GridPane hgap="20" vgap="15" styleClass="form-grid" prefWidth="740">
+        <!-- Formulaire -->
+        <GridPane hgap="25" vgap="20" styleClass="form-grid" prefWidth="780">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+
             <columnConstraints>
-                <ColumnConstraints halignment="RIGHT" minWidth="120"/>
-                <ColumnConstraints minWidth="180"/>
-                <ColumnConstraints halignment="RIGHT" minWidth="120"/>
-                <ColumnConstraints minWidth="180"/>
+                <ColumnConstraints halignment="RIGHT" minWidth="130"/>
+                <ColumnConstraints minWidth="220"/>
+                <ColumnConstraints halignment="RIGHT" minWidth="130"/>
+                <ColumnConstraints minWidth="220"/>
             </columnConstraints>
 
-            <!-- Row 1 -->
+            <!-- Ligne 1 -->
             <Label text="Titre :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-            <TextField fx:id="titreField" prefWidth="300" GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+            <TextField fx:id="titreField" promptText="Titre du certificat"
+                       GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
 
-            <!-- Row 2 -->
+            <!-- Ligne 2 -->
             <Label text="Description :" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-            <TextArea fx:id="descriptionField" prefRowCount="2" prefWidth="400" GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+            <TextArea fx:id="descriptionField" prefRowCount="3" prefWidth="500"
+                      promptText="Brève description du certificat"
+                      GridPane.rowIndex="1" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
 
-            <!-- Row 3 -->
+            <!-- Ligne 3 -->
             <Label text="Date Expiration :" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
             <DatePicker fx:id="dateExpirationPicker" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
             <Label text="Niveau :" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
-            <ComboBox fx:id="niveauComboBox" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+            <ComboBox fx:id="niveauComboBox" promptText="Sélectionner un niveau"
+                      GridPane.rowIndex="2" GridPane.columnIndex="3"/>
 
-            <!-- Row 4 -->
+            <!-- Ligne 4 -->
             <Label text="Validité (années) :" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-            <TextField fx:id="validiteField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <TextField fx:id="validiteField" promptText="ex: 2"
+                       GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
-            <!-- Row 5 -->
-            <Label text="Nom et prénom de l'Utilisateur:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-            <ComboBox fx:id="userComboBox" onAction="#onUserSelected" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            <!-- Ligne 5 -->
+            <Label text="Nom et prénom de l'utilisateur :" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="userComboBox" onAction="#onUserSelected"
+                      promptText="Choisir un utilisateur"
+                      GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
             <Label text="Nom d'utilisateur :" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
-            <TextField fx:id="usernameField" editable="false" GridPane.rowIndex="4" GridPane.columnIndex="3"/>
+            <TextField fx:id="usernameField" editable="false" promptText="Auto-rempli"
+                       GridPane.rowIndex="4" GridPane.columnIndex="3"/>
 
-            <!-- Row 6 -->
-            <Label text="Formation:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-            <ComboBox fx:id="formationComboBox" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            <!-- Ligne 6 -->
+            <Label text="Formation :" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <ComboBox fx:id="formationComboBox" promptText="Choisir une formation"
+                      GridPane.rowIndex="5" GridPane.columnIndex="1"/>
         </GridPane>
 
-        <!-- Button -->
+        <!-- Bouton Ajouter -->
         <HBox spacing="15" alignment="CENTER" styleClass="button-row">
             <Button text="Ajouter" onAction="#addCertificat" styleClass="btn-primary"/>
         </HBox>

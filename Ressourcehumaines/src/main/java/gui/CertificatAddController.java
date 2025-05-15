@@ -3,28 +3,23 @@ package gui;
 import entities.Certificat;
 import  entities.Formation;
 import  entities.User;
-import services.CertificatService;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import services.Certificatservices;
 import services.FormationService;
-import utils.DBConnexion;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+import utils.MyConnection;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -36,10 +31,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.*;
+import java.sql.PreparedStatement;
+
 
 public class CertificatAddController {
 
-    @FXML private TextField titreField, validiteField, usernameField, codeCertificatField, searchField;
+    @FXML private TextField titreField, validiteField, usernameField;
     @FXML private TextArea descriptionField;
     @FXML private ComboBox<String> niveauComboBox;
     @FXML private ComboBox<String> userComboBox;
@@ -48,10 +45,12 @@ public class CertificatAddController {
     @FXML private AnchorPane rec;
 
     private final ObservableList<Certificat> certificatList = FXCollections.observableArrayList();
-    private final CertificatService certificatService = new CertificatService();
+    private final Certificatservices certificatService = new Certificatservices();
     private final Map<String, Integer> userMap = new HashMap<>();
     private final Map<String, Integer> formationMap = new HashMap<>();
     private final FormationService formationService = new FormationService();
+    @FXML
+    private AnchorPane rootPane;
 
     @FXML
     public void initialize() throws SQLException {
@@ -107,82 +106,101 @@ public class CertificatAddController {
         loadData();
         clearFields();
         senemail(cert);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Certificats.fxml")); // Mets ici le bon chemin
+            Parent certificatListView = loader.load();
 
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/Certificats.fxml"));
-        rec.getChildren().setAll(pane);
+            // Remplacement de l’interface actuelle par celle de la liste
+            rootPane.getChildren().setAll(certificatListView);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void senemail(Certificat certificat) throws SQLException {
-        Connection cnx = DBConnexion.getInstance().getCnx();
-        String req = "SELECT email, nom FROM user WHERE id = " + certificat.getUserId();
-        Statement st = cnx.createStatement();
-        ResultSet rsd = st.executeQuery(req);
-
-        String recipientEmail = "";
-        String recipientName = "";
-
-        if (rsd.next()) {
-            recipientEmail = rsd.getString("email");
-            recipientName = rsd.getString("nom");
-        } else {
-            System.out.println("No user found with the given ID");
-            return;
-        }
-
-        final String from = "hadilfatnassi14@gmail.com";
-        final String password = "xydy akuh dkeu dbsr";
-        final String username = "hadilfatnassi14@gmail.com";
-
-        Properties props = new Properties();
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
-
-        Session session = Session.getInstance(props, new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
-            }
-        });
-
+    public void senemail(Certificat certificat) {
         try {
-            MimeMessage message = new MimeMessage(session);
+            Connection cnx = MyConnection.getInstance().getConnection();
+            String req = "SELECT email, nom FROM user WHERE id = ?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setInt(1, certificat.getUserId());
+            ResultSet rs = ps.executeQuery();
+
+            String recipientEmail = "";
+            String recipientName = "";
+
+            if (rs.next()) {
+                recipientEmail = rs.getString("email");
+                recipientName = rs.getString("nom");
+            } else {
+                System.out.println("Aucun utilisateur trouvé !");
+                return;
+            }
+
+            // Utilise un mot de passe d’application sécurisé
+            final String from = "hadilfatnassi14@gmail.com";
+            final String password = "hutl tlon eytm kmld"; // mot de passe d'application (PAS ton vrai mot de passe)
+            final String username = from;
+
+            Properties props = new Properties();
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.host", "smtp.gmail.com");
+            props.put("mail.smtp.port", "587");
+
+            Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(username, password);
+                }
+            });
+
+            Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipientEmail));
-            message.setSubject("Votre Certificat a été généré !");
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
+            message.setSubject("Votre certificat a été généré !");
 
             String htmlContent = "<html><body style='font-family:Arial;'>"
                     + "<h2>Bonjour " + recipientName + ",</h2>"
-                    + "<p>Votre certificat a été généré :</p>"
+                    + "<p>Voici les détails de votre certificat :</p>"
                     + "<ul>"
                     + "<li><strong>Titre :</strong> " + certificat.getTitre() + "</li>"
                     + "<li><strong>Description :</strong> " + certificat.getDescription() + "</li>"
                     + "<li><strong>Niveau :</strong> " + certificat.getNiveau() + "</li>"
                     + "<li><strong>Validité :</strong> " + certificat.getValiditeAnnees() + " année(s)</li>"
                     + "<li><strong>Date d'expiration :</strong> " + certificat.getDateExpiration() + "</li>"
-                    + "</ul><br><p>Cordialement,<br>L'équipe des certificats</p>"
+                    + "</ul><br><p>Cordialement,<br>L'équipe de gestion des certificats</p>"
                     + "</body></html>";
 
             message.setContent(htmlContent, "text/html; charset=utf-8");
 
             Transport.send(message);
-            System.out.println("Email envoyé à " + recipientEmail);
+
+            System.out.println("Email envoyé à : " + recipientEmail);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Succès");
             alert.setHeaderText(null);
-            alert.setContentText("Email envoyé !");
+            alert.setContentText("L'email a bien été envoyé à " + recipientEmail);
             alert.show();
 
         } catch (MessagingException e) {
             e.printStackTrace();
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setTitle("Erreur");
-            errorAlert.setHeaderText(null);
-            errorAlert.setContentText("Échec de l'envoi de l'email.");
+            errorAlert.setTitle("Erreur d'envoi");
+            errorAlert.setHeaderText("Erreur de messagerie");
+            errorAlert.setContentText("Échec de l'envoi de l'email. Vérifie tes paramètres SMTP.");
             errorAlert.show();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            Alert sqlAlert = new Alert(Alert.AlertType.ERROR);
+            sqlAlert.setTitle("Erreur SQL");
+            sqlAlert.setHeaderText("Erreur base de données");
+            sqlAlert.setContentText("Impossible de récupérer les informations de l'utilisateur.");
+            sqlAlert.show();
         }
     }
+
 
     private Certificat getCertificatFromForm() {
         String username = userComboBox.getValue();
@@ -215,7 +233,7 @@ public class CertificatAddController {
     }
 
     private void showNotification(String title, String message, NotificationType type) {
-        Image img = new Image(getClass().getResourceAsStream("/okay.png"));
+        Image img = new Image(getClass().getResourceAsStream("/images/okay.png"));
         ImageView icon = new ImageView(img);
         icon.setFitWidth(30);
         icon.setFitHeight(30);
@@ -235,8 +253,8 @@ public class CertificatAddController {
         SUCCESS, ERROR, WARNING
     }
 
-    public void setFormData(Certificat certificat) {
-        codeCertificatField.setText(String.valueOf(certificat.getCodeCertificat()));
+    @FXML
+    public void addCertificat(Certificat certificat) {
         titreField.setText(certificat.getTitre());
         descriptionField.setText(certificat.getDescription());
         niveauComboBox.setValue(certificat.getNiveau());
@@ -249,5 +267,26 @@ public class CertificatAddController {
                         .map(Map.Entry::getKey)
                         .findFirst().orElse(null)
         );
+        try {
+            // Charger la nouvelle interface (certificats.fxml)
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/path/to/certificats.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle fenêtre
+            Stage stage = new Stage();
+            stage.setTitle("Liste des certificats");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Fermer la fenêtre actuelle (celle du formulaire)
+            // Pour cela, il faut récupérer la fenêtre à partir d’un élément de ta scène
+            Stage currentStage = (Stage) titreField.getScene().getWindow();
+            currentStage.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Eventuellement afficher une alerte d’erreur
+        }
     }
+
 }

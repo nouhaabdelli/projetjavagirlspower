@@ -11,7 +11,13 @@
 
    <children>
       <!-- Conteneur principal avec arrondis et ombres légères -->
-      <VBox prefHeight="110.0" prefWidth="461.0" spacing="15" style="-fx-background-color: #ffffff; -fx-background-radius: 16; -fx-border-radius: 16; -fx-border-color: #eeeeee; -fx-border-width: 1; -fx-padding: 10;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="10.0">
+      <VBox fx:id="cardBox"
+            styleClass="clickable-card"
+            onMouseClicked="#handleClick"
+            prefHeight="110.0" prefWidth="461.0" spacing="15"
+            style="-fx-background-color: #ffffff; -fx-background-radius: 16; -fx-border-radius: 16; -fx-border-color: #eeeeee; -fx-border-width: 1; -fx-padding: 10;"
+            AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
+            AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="10.0">
          <effect>
             <DropShadow color="#b0b0b0" offsetX="3" offsetY="3" radius="8" />
          </effect>
