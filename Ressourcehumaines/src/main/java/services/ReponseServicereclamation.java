@@ -6,10 +6,10 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-public class ReponseService {
+public class ReponseServicereclamation {
     private Connection cnx;
 
-    public ReponseService() {
+    public ReponseServicereclamation() {
         cnx = MyConnection.getInstance().getConnection();
     }
 

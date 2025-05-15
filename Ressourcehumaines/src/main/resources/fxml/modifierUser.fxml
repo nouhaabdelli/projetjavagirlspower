@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane fitToWidth="true" prefHeight="750.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ModifierUser">
+    <content>
+        <VBox alignment="TOP_CENTER" spacing="15" styleClass="root" stylesheets="@../../../../../../../../OneDrive/Documents/GitHub/projetjavagirlspower/Ressourcehumaines/src/main/resources/css/ajout.css">
+            <padding>
+                <Insets bottom="20" left="40" right="40" top="20" />
+            </padding>
+            <children>
+                <Text fill="#f3f4f4" styleClass="title-text" text="Modifier un utilisateur">
+                    <font>
+                        <Font name="Algerian" size="32" />
+                    </font>
+                </Text>
+
+                <ImageView fitHeight="116.0" fitWidth="186.0">
+                    <image>
+                        <Image url="@../images/work.png" />
+                    </image>
+                </ImageView>
+
+                <HBox spacing="10">
+                    <VBox>
+                        <Label text="Nom:" />
+                        <TextField fx:id="usnom" />
+                    </VBox>
+                    <VBox>
+                        <Label text="Prénom:" />
+                        <TextField fx:id="usprenom" />
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="10">
+                    <VBox>
+                        <Label text="Email:" />
+                        <TextField fx:id="usemail" />
+                    </VBox>
+                    <VBox>
+                        <Label text="Téléphone:" />
+                        <TextField fx:id="ustelephone" />
+                    </VBox>
+                </HBox>
+
+                <VBox spacing="5">
+                    <Label text="Genre:" />
+                    <HBox spacing="10">
+                        <RadioButton fx:id="usmale" text="Male" />
+                        <RadioButton fx:id="usfemale" text="Female" />
+                    </HBox>
+                </VBox>
+
+                <VBox spacing="5">
+                    <Label text="État civil:" />
+                    <HBox spacing="10">
+                        <RadioButton fx:id="usmarie" text="Marié(e)" />
+                        <RadioButton fx:id="usdivorce" text="Divorcé(e)" />
+                        <RadioButton fx:id="uscelibataire" text="Célibataire" />
+                    </HBox>
+                </VBox>
+
+                <HBox spacing="10">
+                    <VBox>
+                        <Label text="CNAM:" />
+                        <TextField fx:id="uscnam" />
+                    </VBox>
+                    <VBox>
+                        <Label text="Statut:" />
+                        <TextField fx:id="usstatut" />
+                    </VBox>
+                    <VBox>
+                        <Label text="Adresse:" />
+                        <TextField fx:id="usadresse" />
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="10">
+                    <VBox>
+                        <Label text="R.I.B:" />
+                        <TextField fx:id="usrib" />
+                    </VBox>
+                    <VBox>
+                        <Text fx:id="usenfantLabel" text="Nombre d'enfants:" />
+                        <TextField fx:id="usenfant" />
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="10">
+                    <VBox>
+                        <Label text="Date embauche:" />
+                        <DatePicker fx:id="usembauche" />
+                    </VBox>
+                    <VBox>
+                        <Label text="Date de naissance:" />
+                        <DatePicker fx:id="usnaissance" />
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="10">
+                    <VBox>
+                        <Label text="Rôle:" />
+                        <TextField fx:id="usrole" />
+                    </VBox>
+                </HBox>
+
+                <HBox spacing="20">
+                    <Button fx:id="back" onAction="#back" text="Retour" />
+                    <Button fx:id="adduser" onAction="#add" text="Valider" />
+                </HBox>
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>

@@ -1,6 +1,8 @@
 package gui;
-
-import entities.*;
+import entities.User;
+import entities.Reclamations;
+import services.UserService ;
+import services.ReclamationService;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -232,7 +234,9 @@ public class AjouterReclamations {
     @FXML
     void afficherreclamations(ActionEvent event) {
         try {
-            User user = UserService.getUserById(4);  // À adapter selon utilisateur connecté
+            UserService userService = new UserService();
+
+            User user = userService.getUserById(4);  // À adapter selon utilisateur connecté
             Reclamations reclamation = new Reclamations(
                     0,
                     tftitre.getText(),

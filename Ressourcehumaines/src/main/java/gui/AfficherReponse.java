@@ -14,7 +14,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import services.ReponseService;
+import services.ReponseServicereclamation;
 
 import java.awt.*;
 import java.io.File;
@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 
 public class AfficherReponse {
-    private final ReponseService reponsesService = new ReponseService();
+    private final ReponseServicereclamation reponsesService = new ReponseServicereclamation();
     private Reponses reponse;
 
     @FXML

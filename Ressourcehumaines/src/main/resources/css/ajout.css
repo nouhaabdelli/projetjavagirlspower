@@ -1,0 +1,91 @@
+/* Root container (VBox in your FXML) */
+.root {
+    -fx-background-color: linear-gradient(to bottom, #4facfe 0%, #00f2fe 100%);
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-padding: 40px;
+    -fx-background-radius: 20px;
+}
+
+/* Form container (optional, if you want to wrap content in a styled pane) */
+.form-container {
+    -fx-background-color: blue;
+    -fx-padding: 40px;
+    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+/* Title text (matches Text with styleClass="title-text" in FXML) */
+.title-text {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333;
+}
+
+/* Text fields (for TextField elements) */
+.text-field {
+    -fx-pref-width: 250px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 30px;
+    -fx-background-color: #f0f9ff;
+    -fx-border-color: #b2e1ff;
+    -fx-border-radius: 30px;
+    -fx-padding: 0 10 0 10;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: linear-gradient(to right, #6DD5FA, #2980B9);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-padding: 8 20;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to right, #8E2DE2, #4A00E0);
+}
+
+
+/* Radio buttons (to match the style) */
+.radio-button {
+    -fx-text-fill: #333;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* ComboBox styling */
+.combo-box {
+    -fx-pref-width: 250px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 30px;
+    -fx-background-color: #f0f9ff;
+    -fx-border-color: #b2e1ff;
+    -fx-border-radius: 30px;
+}
+
+/* DatePicker styling */
+.date-picker {
+    -fx-pref-width: 250px;
+    -fx-pref-height: 40px;
+    -fx-background-radius: 30px;
+    -fx-background-color: #f0f9ff;
+    -fx-border-color: #b2e1ff;
+    -fx-border-radius: 30px;
+}
+
+/* Labels */
+.label {
+    -fx-text-fill: #2c3e50; /* Couleur sombre et sophistiquée */
+    -fx-font-family: "Roboto", "Segoe UI", sans-serif; /* Police moderne, avec fallback */
+    -fx-font-size: 14px; /* Taille légèrement plus grande pour la clarté */
+    -fx-font-weight: bold; /* Gras pour plus de présence */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 2, 0, 0, 1); /* Ombre subtile pour du style */
+    -fx-padding: 5; /* Espacement pour une meilleure apparence */
+}
+
+/* Optional: Styling for ImageView (if needed) */
+.image-view {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}

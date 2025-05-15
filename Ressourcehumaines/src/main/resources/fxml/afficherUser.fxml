@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="828.0" styleClass="root" stylesheets="@../../../../../../../../OneDrive/Documents/GitHub/projetjavagirlspower/Ressourcehumaines/src/main/resources/css/back.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AfficherUser">
+   <children>
+      <!-- ScrollPane wrapping all content -->
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="AS_NEEDED" prefHeight="761.0" prefWidth="838.0" vbarPolicy="AS_NEEDED" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <AnchorPane prefHeight="761.0" prefWidth="838.0" style="-fx-background-color: #ADD8E6;">
+               <children>
+                  <!-- Sidebar -->
+                  <VBox fx:id="sidebar" layoutY="131.0" prefHeight="669.0" prefWidth="250.0" styleClass="sidebar" translateX="-250.0">
+                     <children>
+                        <Label styleClass="sidebar-title" text="Navigation" />
+                        <Button fx:id="btnAjouter" onAction="#openAjouterUserForm" styleClass="menu-item" text="Ajouter un employe" />
+                        <Button fx:id="Réinitialiser" onAction="#resetTableView" styleClass="menu-item" text="Réinitialiser" />
+                     </children>
+                  </VBox>
+
+                  <!-- Toggle Button -->
+                  <Button fx:id="btnSidebarToggle" layoutX="139.0" layoutY="57.0" onAction="#toggleSidebar" prefHeight="50.0" prefWidth="50.0" styleClass="sidebar-toggle" text="☰" />
+
+                  <!-- Existing Content -->
+                  <Button fx:id="backcrud" layoutX="597.0" layoutY="345.0" mnemonicParsing="false" onAction="#back" prefHeight="54.0" prefWidth="144.0" text="Retour" textFill="#091776" AnchorPane.rightAnchor="2.2000000000000455" AnchorPane.topAnchor="345.0">
+                     <font>
+                        <Font name="Algerian" size="12.0" />
+                     </font>
+                  </Button>
+
+                  <TreeTableView fx:id="treeus" layoutX="172.0" layoutY="100.0" prefHeight="379.0" prefWidth="512.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="172.0" AnchorPane.rightAnchor="154.39999999999998" AnchorPane.topAnchor="100.0">
+                     <columns>
+                        <TreeTableColumn prefWidth="75.0" text="C1" />
+                        <TreeTableColumn prefWidth="75.0" text="C2" />
+                     </columns>
+                  </TreeTableView>
+
+                  <Text fill="WHITE" layoutX="116.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="listes des utilisateurs" underline="true">
+                     <font>
+                        <Font name="Algerian" size="49.0" />
+                     </font>
+                  </Text>
+
+                  <Button fx:id="btnExportPDF" layoutX="583.0" layoutY="422.0" mnemonicParsing="false" onAction="#exportPDF" prefHeight="54.0" prefWidth="148.0" text="Télécharger PDF" AnchorPane.bottomAnchor="325.0" AnchorPane.rightAnchor="-1.0" />
+
+                  <ImageView fitHeight="136.0" fitWidth="167.0" layoutX="-28.0" layoutY="-17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/work.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

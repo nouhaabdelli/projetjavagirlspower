@@ -18,7 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import services.ReponseService;
+import services.ReponseServicereclamation;
 
 import java.io.File;
 import java.io.IOException;
@@ -91,7 +91,7 @@ public class reponse {
     private HBox Recher;
     @FXML
     private HBox filtre;
-        private final ReponseService serviceReponses = new ReponseService();
+        private final ReponseServicereclamation serviceReponses = new ReponseServicereclamation();
         private final ObservableList<Reponses> listeReponses = FXCollections.observableArrayList();
         private boolean isSidebarOpen = false;
 
@@ -149,7 +149,7 @@ public class reponse {
     }
     private void chargerToutesLesReponses() {
         try {
-            ReponseService reponseService = new ReponseService();
+            ReponseServicereclamation reponseService = new ReponseServicereclamation();
             List<Reponses> list = reponseService.readAll();
             tableViewReponses.setItems(FXCollections.observableArrayList(list));
         } catch (SQLException e) {
@@ -428,7 +428,7 @@ public class reponse {
     }
     private void reloadReponsesFromDatabase () {
         try {
-            ReponseService reponseService = new ReponseService();
+            ReponseServicereclamation reponseService = new ReponseServicereclamation();
             List<Reponses> updatedList = reponseService.readAll();
             ObservableList<Reponses> observableList = FXCollections.observableArrayList(updatedList);
             tableViewReponses.setItems(observableList);
