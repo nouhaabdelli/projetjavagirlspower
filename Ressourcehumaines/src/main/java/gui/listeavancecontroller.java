@@ -95,9 +95,18 @@ public class listeavancecontroller {
     private int currentUserId; // Ajout du champ pour stocker l'ID de l'utilisateur
     private boolean isSidebarOpen = false;
     private boolean chatbotVisible = false;
+    private boolean isAdmin = true;
+
+    public void setUserRole(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 
     @FXML
     private void initialize() {
+        if (btnReponse != null && !isAdmin) {
+            btnReponse.setVisible(false);
+            btnReponse.setManaged(false); // Pour ne pas laisser d’espace vide
+        }
 // Initialisation de autoCloseTimer
         autoCloseTimer = new PauseTransition(Duration.seconds(20));
         autoCloseTimer.setOnFinished(event -> {

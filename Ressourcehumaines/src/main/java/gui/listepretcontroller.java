@@ -105,6 +105,10 @@ public class listepretcontroller {
     private ObservableList<pret> pretList;
 
     private boolean isDarkTheme = false;
+    private boolean isAdmin = true;
+    public void setUserRole(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 
     private pretservice pretService = new pretservice();
     private PauseTransition autoCloseTimer;
@@ -115,6 +119,10 @@ public class listepretcontroller {
 
     @FXML
     private void initialize() {
+        if (btnReponse != null && !isAdmin) {
+            btnReponse.setVisible(false);
+            btnReponse.setManaged(false); // Pour ne pas laisser d’espace vide
+        }
         autoCloseTimer = new PauseTransition(Duration.seconds(20));
         autoCloseTimer.setOnFinished(event -> {
             if (isSidebarOpen && !isTransitioning) {
