@@ -5,35 +5,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bfc9399-2d02-4d05-b5d6-3ee5bd5d13f8" name="Changes" comment="Recamations">
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/Certificat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/Formation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/CertificatAddController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/CertificatController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/CertificatFrontController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/CertificatItemController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/DashboardConrtoller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/EditCertificatController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/EditFormationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/FormationAddController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/FormationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/FormationItemController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/MyListener1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/MyListener2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/Certificatservices.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/FormationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/Formationservices.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/IService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/CertificatAdd.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/Certificats.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/Certifs.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/EditFormCertif.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/EditFormationForm.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/FormationAdd.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/FormationItem.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/Formations.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/PostFront.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/images/certif_bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/images/icons8-bell-24.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/images/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/images/okay.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/style/EditFormationForm.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/style/Formation.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/style/FormationAdd.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/style/GestionCertificat.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/style/ajouter.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/style/cardDesign.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/style/certificat.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/style/certificatadd.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/style/gestionannonce.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/style/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/styles/StyleForm.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/Afficherdetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/Afficherdetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReclamations.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReclamations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/Evenements.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/Evenements.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/ListeReclamations.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/ListeReclamations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/RepondreReclamations.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/RepondreReclamations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/mainfx.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/mainfx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/entities/Annonce.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/entities/Annonce.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/entities/Evenement.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/entities/Evenement.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/entities/Notifications.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/entities/Notifications.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/entities/Reclamations.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/entities/Reclamations.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/entities/Reponses.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/entities/Reponses.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/entities/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/entities/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/Afficherdetail.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/Afficherdetail.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AjouterReclamations.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AjouterReclamations.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AjouterReponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AjouterReponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/DetailsAnnonce.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/DetailsAnnonce.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/ListeReclamations.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/ListeReclamations.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/reponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/reponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/main/mainfx.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/main/mainfx.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/SmsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/SmsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/utils/MyConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/utils/MyConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/dashboard.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,36 +100,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.mainfx.executor": "Run",
-    "Maven.Project3A2 [org.openjfx:javafx-maven-plugin:0.0.8:jlink].executor": "Run",
-    "Maven.Project3A2 [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/abdel/OneDrive/Documents/GitHub/projetjavagirlspower/Ressourcehumaines",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preference.NewJMeterHomeConfigurable",
-    "show.migrate.to.gradle.popup": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.mainfx.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Project3A2 [org.openjfx:javafx-maven-plugin:0.0.8:jlink].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Project3A2 [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/abdel/OneDrive/Documents/GitHub/projetjavagirlspower/Ressourcehumaines&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preference.NewJMeterHomeConfigurable&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\abdel\OneDrive\Documents\GitHub\projetjavagirlspower\Ressourcehumaines" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\resources" />
+      <recent name="C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\resources\styles" />
+      <recent name="C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\resources\style" />
+      <recent name="C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\resources\images" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -232,7 +254,7 @@
           <option name="timeStamp" value="4" />
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/RepondreReclamations.java</url>
+          <url>file://$PROJECT_DIR$/../../Documents/GitHub/projetjavagirlspower/Ressourcehumaines/src/main/java/gui/RepondreReclamations.java</url>
           <line>92</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>

@@ -1,0 +1,90 @@
+/* Style général de l'interface */
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-background-color: #f7f9fc; /* Fond doux */
+}
+
+/* Titre principal */
+.header-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4fa3d1; /* Bleu clair */
+    -fx-margin-bottom: 20px;
+}
+
+/* Style des boutons */
+.button-row {
+    -fx-spacing: 20px;
+    -fx-alignment: center;
+}
+
+.button-row .btn-warning,
+.button-row .btn-danger,
+.button-row .btn-info {
+    -fx-background-radius: 25px;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+    -fx-background-color: #ffcc00; /* Jaune pour "Modifier" */
+    -fx-background-color: #ff4d4d; /* Rouge pour "Supprimer" */
+    -fx-background-color: #4fa3d1; /* Bleu pour "Imprimer" */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 5);
+}
+
+.button-row .btn-warning:hover {
+    -fx-background-color: #e6b800; /* Hover Jaune foncé */
+}
+
+.button-row .btn-danger:hover {
+    -fx-background-color: #e60000; /* Hover Rouge foncé */
+}
+
+.button-row .btn-info:hover {
+    -fx-background-color: #3388cc; /* Hover Bleu foncé */
+}
+
+/* Style de la barre de recherche */
+.search-field {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-radius: 25px;
+    -fx-border-color: #d3d8e0; /* Bordure légère */
+    -fx-padding: 10px 15px;
+    -fx-font-size: 14px;
+    -fx-min-width: 200px;
+}
+
+/* Style des lignes de la table */
+.styled-table {
+    -fx-background-color: #ffffff; /* Fond blanc */
+    -fx-border-radius: 10px;
+    -fx-border-color: #d3d8e0;
+    -fx-border-width: 1px;
+    -fx-padding: 15px;
+}
+
+/* Style des colonnes */
+.styled-table .table-column-header {
+    -fx-background-color: #4fa3d1;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.styled-table .table-cell {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+    -fx-padding: 10px;
+}
+
+/* Style au survol des lignes dans la table */
+.styled-table .table-row-cell:hover {
+    -fx-background-color: #f0faff; /* Fond léger lors du survol */
+    -fx-cursor: hand;
+}
+
+/* Espacement des éléments dans la table */
+.styled-table .table-column-cell {
+    -fx-padding: 10px 15px;
+}

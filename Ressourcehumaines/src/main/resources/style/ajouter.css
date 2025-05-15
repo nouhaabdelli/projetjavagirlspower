@@ -1,0 +1,51 @@
+.root {
+    -fx-background-color: #e8f1f8;
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-padding: 20;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+}
+
+.title-label {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-alignment: center;
+    -fx-padding: 10 0 20 0;
+}
+
+.text-field, .text-area, .combo-box, .date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 6;
+    -fx-font-size: 13px;
+}
+
+.text-area {
+    -fx-wrap-text: true;
+}
+
+.button {
+    -fx-background-color: #0a3d62;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-padding: 8 15 8 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0.3, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: #3c6382;
+}
+
+.logo {
+    -fx-padding: 0 0 20 0;
+}

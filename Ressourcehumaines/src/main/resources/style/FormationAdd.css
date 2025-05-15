@@ -1,0 +1,91 @@
+/* Généralités */
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* Titre de la section */
+.header-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1356a0;
+    -fx-margin-bottom: 20px;
+}
+
+/* Style des champs d'entrée */
+.input-field {
+    -fx-background-color: #f7f9fc;
+    -fx-border-color: #c8d9e0;
+    -fx-border-radius: 8;
+    -fx-padding: 8 12;
+    -fx-font-size: 14px;
+    -fx-border-width: 1px;
+}
+
+/* Lorsque le champ est en focus */
+.input-field:focused {
+    -fx-border-color: #4fa3d1;
+    -fx-background-color: #e0f3fc;
+}
+
+/* Bouton Ajouter */
+.btn-ajouter {
+    -fx-background-color: linear-gradient(to right, #6db3f2, #75c2f7);
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-padding: 12 35;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 8, 0, 0, 2);
+    -fx-cursor: hand;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+/* Effet au survol du bouton */
+.btn-ajouter:hover {
+    -fx-background-color: linear-gradient(to right, #4fa3d1, #6db3f2);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+/* Mise en page du formulaire */
+.form-grid {
+    -fx-background-color: transparent;
+}
+
+.form-grid .label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #1356a0;
+    -fx-font-weight: normal;
+}
+
+/* Ajustement de la hauteur et espacement des champs */
+.text-field, .date-picker, .text-area {
+    -fx-pref-height: 40px;
+    -fx-font-size: 14px;
+    -fx-padding: 8 12;
+    -fx-border-radius: 8;
+}
+
+/* Pour que le champ TextArea s'étende correctement */
+.text-area {
+    -fx-pref-height: 80px;
+}
+
+/* Amélioration de l'alignement des éléments */
+.vbox {
+    -fx-spacing: 25;
+    -fx-alignment: center;
+}
+
+.grid-pane {
+    -fx-vgap: 20;
+    -fx-hgap: 20;
+}
+
+/* Style spécifique pour le champ caché (idField) */
+#idField {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
