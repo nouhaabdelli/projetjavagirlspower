@@ -34,19 +34,15 @@ import java.util.List;
 import javafx.scene.control.ToggleGroup;
 
 public class AjouterReclamations {
-
     private final ReclamationService reclamationService = new ReclamationService();
     @FXML
     private TextField tftitre;
     @FXML
     private TextArea boxtext;
-
     @FXML
     private Hyperlink hyperlinkPieceJointe;
     @FXML
     private ComboBox<String> comboTitre;
-
-
     private String cheminPieceJointe ;
     @FXML
     private CheckBox cbEmail;
@@ -56,8 +52,6 @@ public class AjouterReclamations {
 
     @FXML
     private RadioButton rbImportant;
-
-
     @FXML
     private RadioButton rbNormal;
 
@@ -68,33 +62,22 @@ public class AjouterReclamations {
     @FXML
     private ToggleGroup prioriteGroup;
     private Map<String, Integer> titresPersonnalises = new HashMap<>();
-
     private UserService userService = new UserService();
-
     private final PauseTransition pause = new PauseTransition(Duration.seconds(5));
 
-
-    // Méthode pour récupérer les notifications sélectionnées
     private List<String> getNotifications() {
         List<String> notifications = new ArrayList<>();
-
         if (cbEmail.isSelected()) {
             notifications.add("Email");
         }
         if (cbSMS.isSelected()) {
             notifications.add("SMS");
         }
-
         return notifications;
     }
-
-    // Méthode pour récupérer la priorité sélectionnée
     @FXML
     public void initialize() {
-        // Créer un ToggleGroup
         prioriteGroup = new ToggleGroup();
-
-        // Ajouter les RadioButton au ToggleGroup
         rbUrgent.setToggleGroup(prioriteGroup);
         rbImportant.setToggleGroup(prioriteGroup);
         rbNormal.setToggleGroup(prioriteGroup);
@@ -104,18 +87,13 @@ public class AjouterReclamations {
                 "Directeur administratif", "Superviseur", "Chef service", "Chef équipe", "Autre"
         );
 
-            // Cacher le champ "Autre" au début
         tftitre.setVisible(false);
-
-                // Listener pour afficher le champ "Autre" si sélectionné
         comboTitre.setOnAction(event -> {
             String selected = comboTitre.getValue();
             tftitre.setVisible("Autre".equals(selected));
         });
 
     }
-
-
     private String getPriorite() {
         RadioButton selectedRadioButton = (RadioButton) prioriteGroup.getSelectedToggle();
 
@@ -123,30 +101,8 @@ public class AjouterReclamations {
             return selectedRadioButton.getText();
         }
 
-        return "Aucune";  // Si aucune priorité n'est sélectionnée
+        return "Aucune";
     }
-
-    String titre;
-    private final CorrectionService correctionService = new CorrectionService();
-
-    @FXML
-    void corrigerTexteInstant(KeyEvent event) {
-        pause.setOnFinished(e -> {
-            String texteOriginal = boxtext.getText();
-            String resultatJson = correctionService.corrigerTexte(texteOriginal);
-            String texteCorrige = appliquerCorrections(texteOriginal, resultatJson);
-            System.out.println("Texte corrigé : " + texteCorrige); // ← À observer dans la console
-
-            if (!texteCorrige.equals(texteOriginal)) {
-                int caretPosition = boxtext.getCaretPosition();
-                boxtext.setText(texteCorrige);
-                boxtext.positionCaret(Math.min(caretPosition, texteCorrige.length()));
-            }
-        });
-
-        pause.playFromStart(); // redémarre le timer à chaque frappe
-    }
-
 
     @FXML
     void ajouterreclamations(ActionEvent event) {
@@ -155,15 +111,9 @@ public class AjouterReclamations {
         } else {
             titre = comboTitre.getValue();
         }
-
-
-        // 1. Récupérer le texte original
         String texteOriginal = boxtext.getText();
-
-        // 2. Corriger le texte automatiquement
         String resultatJson = correctionService.corrigerTexte(texteOriginal);
         String texte = appliquerCorrections(texteOriginal, resultatJson); // Méthode vue plus haut
-
         LocalDate date = LocalDate.now();
         String statut = "En attente";
         String priorite = getPriorite();
@@ -281,12 +231,9 @@ public class AjouterReclamations {
                 rbUrgent.setSelected(true);
                 break;
         }
-
         List<String> notifs = Arrays.asList(reclamation.getRecevoirNotifications().split(","));
         if (notifs.contains("Email")) cbEmail.setSelected(true);
         if (notifs.contains("SMS")) cbSMS.setSelected(true);
-
-
         if (reclamation.getCheminPieceJointe() != null && !reclamation.getCheminPieceJointe().isEmpty()) {
             cheminPieceJointe = reclamation.getCheminPieceJointe();
             Path path = Paths.get(cheminPieceJointe);
@@ -310,7 +257,6 @@ public class AjouterReclamations {
             hyperlinkPieceJointe.setText("Aucune pièce jointe");
             hyperlinkPieceJointe.setOnAction(null); // Pas d'action si pas de fichier
         }
-
         btnAjouter.setText("Modifier");
         btnAjouter.setOnAction(event -> {
             try {
@@ -326,9 +272,6 @@ public class AjouterReclamations {
                         String.join(",", getNotifications()) ,
                         4
                 ));
-
-
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -340,49 +283,34 @@ public class AjouterReclamations {
             stage.close();
         });
     }
-    // hathaa lel auctualiser liste//
     private ListeReclamations controllerPrincipal;
 
     public void setControllerPrincipal(ListeReclamations controllerPrincipal) {
         this.controllerPrincipal = controllerPrincipal;
     }
+    String titre;
+    private final CorrectionService correctionService = new CorrectionService();
 
-//    @FXML
-//    void supprimerTitre(ActionEvent event) {
-//        String titreASupprimer = comboTitre.getValue();
-//
-//        // Vérifie que ce n’est pas un des titres de base ni "Autre"
-//        if (titreASupprimer != null &&
-//                !titreASupprimer.equals("Autre") &&
-//                !titreASupprimer.equals("Ouvrier") &&
-//                !titreASupprimer.equals("Technicien") &&
-//                !titreASupprimer.equals("Agent de production") &&
-//                !titreASupprimer.equals("Agent de nettoyage") &&
-//                !titreASupprimer.equals("Agent de sécurité") &&
-//                !titreASupprimer.equals("PDG") &&
-//                !titreASupprimer.equals("Directeur général") &&
-//                !titreASupprimer.equals("Directeur RH") &&
-//                !titreASupprimer.equals("Directeur administratif") &&
-//                !titreASupprimer.equals("Superviseur") &&
-//                !titreASupprimer.equals("Chef service") &&
-//                !titreASupprimer.equals("Chef équipe")) {
-//
-//            comboTitre.getItems().remove(titreASupprimer);
-//            titresPersonnalises.remove(titreASupprimer);
-//
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setTitle("Titre supprimé");
-//            alert.setHeaderText(null);
-//            alert.setContentText("Le titre personnalisé a été supprimé.");
-//            alert.showAndWait();
-//        } else {
-//            Alert alert = new Alert(Alert.AlertType.WARNING);
-//            alert.setTitle("Suppression non autorisée");
-//            alert.setHeaderText(null);
-//            alert.setContentText("Impossible de supprimer ce titre.");
-//            alert.showAndWait();
-//        }
-//    }
+    @FXML
+    void corrigerTexteInstant(KeyEvent event) {
+        pause.setOnFinished(e -> {
+            String texteOriginal = boxtext.getText();
+            String resultatJson = correctionService.corrigerTexte(texteOriginal);
+            String texteCorrige = appliquerCorrections(texteOriginal, resultatJson);
+            System.out.println("Texte corrigé : " + texteCorrige); // ← À observer dans la console
+
+            if (!texteCorrige.equals(texteOriginal)) {
+                int caretPosition = boxtext.getCaretPosition();
+                boxtext.setText(texteCorrige);
+                boxtext.positionCaret(Math.min(caretPosition, texteCorrige.length()));
+            }
+        });
+        pause.playFromStart(); // redémarre le timer à chaque frappe
+    }
+
+
+
+
 
     public String appliquerCorrections(String texteOriginal, String resultatJson) {
         try {

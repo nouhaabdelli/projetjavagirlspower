@@ -63,8 +63,7 @@ public class AjouterReponse {
     private TableView<Reponses> tableViewReponses;
     @FXML
     private TextArea txtContenu;
-    @FXML
-    private Button quitter;
+
 
     private Reclamations reclamation;
     private File fichierJoint;
@@ -161,8 +160,8 @@ public class AjouterReponse {
                 reponseAModifier.setFichierJoint(cheminFichier);
                 service.update(reponseAModifier);
                 showAlert(Alert.AlertType.INFORMATION, "Succès", "Réponse modifiée avec succès !");
-                quitter.setVisible(false); // (peut être facultatif ici si déjà visible)
 
+                formulaireAjoutPane.setVisible(false);
 
             } else {
 
@@ -202,7 +201,7 @@ public class AjouterReponse {
             comboImportance.setValue(null);
             fichierJoint = null;
             reponseAModifier = null;
-            btnAjouter.setText("ajouter");
+            btnAjouter.setText("Modifier");
             formulaireAjoutPane.setVisible(false); // ⚠️ Assure-toi que c’est bien le nom de ton Pane
         } catch (SQLException e) {
             e.printStackTrace();
@@ -216,8 +215,8 @@ public class AjouterReponse {
         String phone = user.getNumTelephone();
         if (phone != null && !phone.trim().isEmpty()) {
             String smsBody = "Votre réclamation du " + reclamation.getDateDemande() + " a été traitée. Merci. - RH";
-            System.out.println("Tentative d'envoi SMS à : " + phone);  // <--- pour vérifier
-//            SmsService.sendSms(phone, smsBody);
+            System.out.println("Tentative d'envoi SMS à : " + phone);
+            SmsService.sendSms(phone, smsBody);
         } else {
             System.out.println("Numéro de téléphone invalide ou vide.");
         }

@@ -20,7 +20,7 @@ public class mainfx extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/maquette.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/acceuil.fxml"));
         try {
             Parent root = loader.load();
             Scene scene = new Scene(root);

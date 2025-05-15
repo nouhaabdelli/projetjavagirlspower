@@ -55,7 +55,6 @@
 
         </VBox>
            <Button fx:id="btnAjouter" layoutX="504.0" layoutY="516.0" onAction="#RepondreReclamation" prefHeight="48.0" prefWidth="194.0" styleClass="submit-button" text="📤 Envoyer la Réponse" />
-        <Button layoutX="708.0" layoutY="516.0" onAction="#annulerModification" prefHeight="48.0" prefWidth="194.0" styleClass="submit-button" text="Annuler" />
 
     </children>
 </AnchorPane>

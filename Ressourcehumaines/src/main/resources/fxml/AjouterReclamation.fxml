@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="581.0" prefWidth="1099.0" stylesheets="@../styles/reclamationajout.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterReclamations">
+<AnchorPane prefHeight="581.0" prefWidth="1099.0" stylesheets="@../styles/reclamationajout.css" xmlns="http://javafx.com" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterReclamations">
     <children>
         <TextArea fx:id="boxtext" layoutX="118.0" layoutY="190.0" prefHeight="179.0" prefWidth="559.0" onKeyReleased="#corrigerTexteInstant" />
         <Text id="idesmi" layoutX="18.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />

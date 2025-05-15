@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="rootPane" prefHeight="706.0" prefWidth="1434.0" stylesheets="@../styles/consulterreponse.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.reponse">
+<AnchorPane fx:id="rootPane" prefHeight="706.0" prefWidth="1434.0" stylesheets="@../styles/consulterreponse.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.backoffice">
     <!-- Sliding Sidebar (starts collapsed) -->
     <VBox fx:id="sidebar" layoutX="-5.0" layoutY="-28.0" prefHeight="802.0" prefWidth="137.0" styleClass="sidebar" translateX="-250.0">
         <!-- Navigation Section -->

@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-public class reponse {
+public class backoffice {
 
     @FXML
     private AnchorPane dynamicContent;

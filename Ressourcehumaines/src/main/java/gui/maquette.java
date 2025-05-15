@@ -34,7 +34,7 @@ public class maquette {
     }
 
     @FXML private void handleReclamations() {
-        loadUI("consulterreponse.fxml");
+        loadUI("backoffice.fxml");
     }
 
     @FXML private void handleAnnonce() {
