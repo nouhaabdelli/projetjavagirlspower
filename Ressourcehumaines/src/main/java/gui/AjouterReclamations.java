@@ -2,6 +2,7 @@ package gui;
 
 import entities.*;
 import javafx.animation.PauseTransition;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -64,7 +65,7 @@ public class AjouterReclamations {
     private Map<String, Integer> titresPersonnalises = new HashMap<>();
     private UserService userService = new UserService();
     private final PauseTransition pause = new PauseTransition(Duration.seconds(5));
-
+    String titre;
     private List<String> getNotifications() {
         List<String> notifications = new ArrayList<>();
         if (cbEmail.isSelected()) {
@@ -103,7 +104,7 @@ public class AjouterReclamations {
 
         return "Aucune";
     }
-
+    String texteCensuré ;
     @FXML
     void ajouterreclamations(ActionEvent event) {
         if ("Autre".equals(comboTitre.getValue())) {
@@ -111,16 +112,49 @@ public class AjouterReclamations {
         } else {
             titre = comboTitre.getValue();
         }
+        PurgoMalumService purgoMalumService = new PurgoMalumService();
+
         String texteOriginal = boxtext.getText();
-        String resultatJson = correctionService.corrigerTexte(texteOriginal);
-        String texte = appliquerCorrections(texteOriginal, resultatJson); // Méthode vue plus haut
+        String texteCensuré = "";
+
+        try {
+            texteCensuré = purgoMalumService.checkAndCensorProfanity(texteOriginal);
+            System.out.println("Texte censuré : " + texteCensuré);
+            boxtext.setText(texteCensuré);
+
+            if (!texteOriginal.equals(texteCensuré)) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Contenu inapproprié");
+                alert.setHeaderText(null);
+                alert.setContentText("Veuillez éviter d’utiliser des mots vulgaires ou insultants dans votre texte.");
+                alert.showAndWait();
+                return;
+            }
+
+            boxtext.setText(texteCensuré);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+        if (titre.isEmpty() || boxtext.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Champ(s) vide(s)");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez remplir tous les champs avant de soumettre la réclamation !");
+            alert.showAndWait();
+            return;
+        }
+
         LocalDate date = LocalDate.now();
         String statut = "En attente";
         String priorite = getPriorite();
         String RecevoirNotifications = String.join(",", getNotifications());
         int userId = 4 ;
 
-        if (titre.isEmpty() || texte.isEmpty()) {
+
+
+        if (titre.isEmpty() || boxtext.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Champ(s) vide(s)");
             alert.setHeaderText(null);
@@ -128,6 +162,7 @@ public class AjouterReclamations {
             alert.showAndWait();
             return; // Arrêter l'exécution ici
         }
+
         Reclamations reclamation = new Reclamations(0, titre, texteOriginal, date, statut, cheminPieceJointe , priorite, RecevoirNotifications , userId  );
         try {
             reclamationService.create(reclamation);
@@ -288,59 +323,31 @@ public class AjouterReclamations {
     public void setControllerPrincipal(ListeReclamations controllerPrincipal) {
         this.controllerPrincipal = controllerPrincipal;
     }
-    String titre;
+
     private final CorrectionService correctionService = new CorrectionService();
 
+
+
+//    private final CorrectionService correctionService = new CorrectionService();
+
     @FXML
-    void corrigerTexteInstant(KeyEvent event) {
-        pause.setOnFinished(e -> {
-            String texteOriginal = boxtext.getText();
-            String resultatJson = correctionService.corrigerTexte(texteOriginal);
-            String texteCorrige = appliquerCorrections(texteOriginal, resultatJson);
-            System.out.println("Texte corrigé : " + texteCorrige); // ← À observer dans la console
+    private void corrigerTexte() {
+        String texteOriginal = boxtext.getText();
 
-            if (!texteCorrige.equals(texteOriginal)) {
-                int caretPosition = boxtext.getCaretPosition();
-                boxtext.setText(texteCorrige);
-                boxtext.positionCaret(Math.min(caretPosition, texteCorrige.length()));
+        Task<String> task = new Task<>() {
+            @Override
+            protected String call() {
+                CorrectionServiceLocal correctionService = new CorrectionServiceLocal();
+                return correctionService.corrigerTexte(texteOriginal);
             }
-        });
-        pause.playFromStart(); // redémarre le timer à chaque frappe
+        };
+
+        task.setOnSucceeded(e -> boxtext.setText(task.getValue()));
+        task.setOnFailed(e -> task.getException().printStackTrace());
+
+        new Thread(task).start();
     }
 
-
-
-
-
-    public String appliquerCorrections(String texteOriginal, String resultatJson) {
-        try {
-            JSONObject json = new JSONObject(resultatJson);
-            JSONArray matches = json.getJSONArray("matches");
-
-            // Important : trier à l'envers pour éviter que les remplacements ne décalent les positions
-            List<JSONObject> corrections = new ArrayList<>();
-            for (int i = 0; i < matches.length(); i++) {
-                corrections.add(matches.getJSONObject(i));
-            }
-            corrections.sort((a, b) -> Integer.compare(b.getInt("offset"), a.getInt("offset")));
-
-            StringBuilder texte = new StringBuilder(texteOriginal);
-            for (JSONObject match : corrections) {
-                int offset = match.getInt("offset");
-                int length = match.getInt("length");
-
-                JSONArray replacements = match.getJSONArray("replacements");
-                if (replacements.length() > 0) {
-                    String replacement = replacements.getJSONObject(0).getString("value");
-                    texte.replace(offset, offset + length, replacement);
-                }
-            }
-            return texte.toString();
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return texteOriginal;
-        }
-    }
 
 }
 

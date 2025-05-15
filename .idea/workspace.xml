@@ -5,27 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bfc9399-2d02-4d05-b5d6-3ee5bd5d13f8" name="Changes" comment="Recamations">
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/acceuil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/frontoffice.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/acceuil.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/frontoffice.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/CorrectionServiceLocal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/PurgoMalumService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReclamations.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReclamations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/maquette.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/maquette.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/reponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/backoffice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/mainfx.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/mainfx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/AjoutReponse.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/AjoutReponse.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/CorrectionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/CorrectionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/AjouterReclamation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/AjouterReclamation.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/ListeReclamations.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/ListeReclamations.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/consulterreponse.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/backoffice.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/AjoutReponse.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/AjoutReponse.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/AjouterReclamation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/AjouterReclamation.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/ListeReclamations.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/ListeReclamations.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AjouterReclamations.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AjouterReclamations.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AjouterReponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AjouterReponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/maquette.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/maquette.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/main/mainfx.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/main/mainfx.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/SmsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/SmsService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/CorrectionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/CorrectionService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
@@ -84,33 +74,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.mainfx.executor": "Run",
-    "Maven.Project3A2 [org.openjfx:javafx-maven-plugin:0.0.8:jlink].executor": "Run",
-    "Maven.Project3A2 [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "reclamations",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/abdel/OneDrive/Bureau/projetjavagirlspower/Ressourcehumaines/src/main/resources/fxml",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preference.NewJMeterHomeConfigurable",
-    "show.migrate.to.gradle.popup": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.mainfx.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Project3A2 [org.openjfx:javafx-maven-plugin:0.0.8:jlink].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Project3A2 [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;reclamations&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/abdel/OneDrive/Bureau/projetjavagirlspower/Ressourcehumaines/src/main/resources/fxml&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preference.NewJMeterHomeConfigurable&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\resources\fxml" />
@@ -163,7 +153,8 @@
       <workItem from="1746985211422" duration="51638000" />
       <workItem from="1747145739255" duration="40239000" />
       <workItem from="1747263401297" duration="100000" />
-      <workItem from="1747317574630" duration="2940000" />
+      <workItem from="1747317574630" duration="7790000" />
+      <workItem from="1747325608922" duration="2935000" />
     </task>
     <task id="LOCAL-00001" summary="Recamations">
       <option name="closed" value="true" />
@@ -213,7 +204,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747242316163</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Recamations">
+      <option name="closed" value="true" />
+      <created>1747320668983</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1747320668983</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

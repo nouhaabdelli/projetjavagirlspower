@@ -52,16 +52,25 @@
 
         <dependency>
             <groupId>org.languagetool</groupId>
-            <artifactId>language-en</artifactId>
-            <version>5.9</version> <!-- ou la version la plus récente -->
+            <artifactId>languagetool-core</artifactId>
+            <version>5.9</version>
         </dependency>
         <dependency>
             <groupId>org.languagetool</groupId>
             <artifactId>language-fr</artifactId>
             <version>5.9</version>
         </dependency>
+        <dependency>
+            <groupId>org.languagetool</groupId>
+            <artifactId>language-en</artifactId>
+            <version>5.9</version>
+        </dependency>
 
-
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20230227</version>
+        </dependency>
 
 
     </dependencies>

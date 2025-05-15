@@ -12,9 +12,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="581.0" prefWidth="1099.0" stylesheets="@../styles/reclamationajout.css" xmlns="http://javafx.com" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterReclamations">
+<AnchorPane prefHeight="581.0" prefWidth="1099.0" stylesheets="@../styles/reclamationajout.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterReclamations">
     <children>
-        <TextArea fx:id="boxtext" layoutX="118.0" layoutY="190.0" prefHeight="179.0" prefWidth="559.0" onKeyReleased="#corrigerTexteInstant" />
+        <TextArea fx:id="boxtext" layoutX="118.0" layoutY="190.0" prefHeight="179.0" prefWidth="559.0" />
+        <Button layoutX="539.0" layoutY="315.0" onAction="#corrigerTexte" prefHeight="38.0" prefWidth="111.0" text="Corriger" />
+
         <Text id="idesmi" layoutX="18.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description" />
         <Button fx:id="btnAjouter" layoutX="598.0" layoutY="509.0" mnemonicParsing="false" onAction="#ajouterreclamations" prefHeight="54.0" prefWidth="146.0" text="Ajouter" />
         <Text id="idesmi" layoutX="20.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Objet" wrappingWidth="60.251953125" />

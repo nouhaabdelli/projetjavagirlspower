@@ -1,5 +1,7 @@
+services\PurgoMalumService.class
 gui\backoffice$1.class
 gui\acceuil.class
+gui\CorrectionServiceLocal.class
 gui\frontoffice.class
 gui\backoffice.class
 gui\backoffice$3.class

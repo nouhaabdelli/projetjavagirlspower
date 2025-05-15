@@ -9,6 +9,7 @@ C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\j
 C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\java\gui\AjouterReclamations.java
 C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\java\gui\AjouterReponse.java
 C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\java\gui\backoffice.java
+C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\java\gui\CorrectionServiceLocal.java
 C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\java\gui\frontoffice.java
 C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\java\gui\ListeReclamations.java
 C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\java\gui\maquette.java
@@ -21,6 +22,7 @@ C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\j
 C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\java\services\EmailService.java
 C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\java\services\IService.java
 C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\java\services\Notificationservice.java
+C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\java\services\PurgoMalumService.java
 C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\java\services\ReclamationService.java
 C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\java\services\ReponseService.java
 C:\Users\abdel\OneDrive\Bureau\projetjavagirlspower\Ressourcehumaines\src\main\java\services\SmsService.java
