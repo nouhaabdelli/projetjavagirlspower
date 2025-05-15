@@ -31,7 +31,6 @@
                 <ColumnConstraints minWidth="220"/>
             </columnConstraints>
 
-            <!-- Ligne 1 -->
             <Label text="Titre :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
             <TextField fx:id="titreField" promptText="Titre de la formation"
                        GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
