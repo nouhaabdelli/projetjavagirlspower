@@ -2,10 +2,10 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -13,23 +13,23 @@
 
 <AnchorPane fx:id="rootPane" prefHeight="706.0" prefWidth="1434.0" stylesheets="@../styles/consulterreponse.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.backoffice">
     <!-- Sliding Sidebar (starts collapsed) -->
-    <VBox fx:id="sidebar" layoutX="-5.0" layoutY="-28.0" prefHeight="802.0" prefWidth="137.0" styleClass="sidebar" translateX="-250.0">
+    <VBox fx:id="sidebar" layoutX="-7.0" layoutY="14.0" prefHeight="802.0" prefWidth="234.0" styleClass="sidebar" translateX="-250.0">
         <!-- Navigation Section -->
-        <Label styleClass="sidebar-title" text="Navigation" />
-        <Button fx:id="btnConsulter" styleClass="menu-item" text="listes Réponses" />
-        <Button fx:id="btnRepondre" styleClass="menu-item" text="Répondre Reclamations" />
-        <Button fx:id="AjouterReclamations" styleClass="menu-item" text="Ajouter une Reclamation" />
-        <Button fx:id="MesReclamations" styleClass="menu-item" text="Mes Reclamations" />
+        <Label prefHeight="80.0" prefWidth="198.0" styleClass="sidebar-title" text="Navigation" />
+        <Button fx:id="btnConsulter" prefHeight="86.0" prefWidth="235.0" styleClass="menu-item" text="listes Réponses" />
+        <Button fx:id="btnRepondre" prefHeight="82.0" prefWidth="224.0" styleClass="menu-item" text="Répondre Reclamations" />
+        <Button fx:id="AjouterReclamations" prefHeight="88.0" prefWidth="230.0" styleClass="menu-item" text="Ajouter une Reclamation" />
+        <Button fx:id="MesReclamations" prefHeight="86.0" prefWidth="369.0" styleClass="menu-item" text="Mes Reclamations" />
 
 
     </VBox>
 
     <!-- Content Area -->
-    <AnchorPane fx:id="contentArea" layoutX="167.0" layoutY="114.0" prefHeight="491.0" prefWidth="1284.0" styleClass="content-area">
+    <AnchorPane fx:id="contentArea" layoutX="191.0" layoutY="81.0" prefHeight="491.0" prefWidth="1284.0" styleClass="content-area">
    
            <!-- Dynamic Content Area -->
-        <AnchorPane fx:id="dynamicContent" layoutX="38.0" layoutY="14.0" prefHeight="459.0" prefWidth="1174.0" styleClass="glass-card">
-            <TableView fx:id="tableViewReponses" layoutX="39.0" layoutY="32.0" prefHeight="394.0" prefWidth="1141.0">
+        <AnchorPane fx:id="dynamicContent" layoutX="21.0" layoutY="20.0" prefHeight="459.0" prefWidth="1108.0" styleClass="glass-card">
+            <TableView fx:id="tableViewReponses" layoutX="7.0" layoutY="32.0" prefHeight="394.0" prefWidth="1137.0">
                 <columns>
                     <TableColumn fx:id="colContenu" prefWidth="169.59999084472656" text="Contenu" />
                     <TableColumn fx:id="colDateReponse" prefWidth="126.4000244140625" text="Date Réponse" />
@@ -45,11 +45,11 @@
     </AnchorPane>
      <Label layoutX="207.0" layoutY="34.0" prefHeight="47.0" prefWidth="346.0" styleClass="header-title" text="Gestion des Réponses" />
      <Button fx:id="btnSidebarToggle" layoutX="141.0" layoutY="33.0" prefHeight="50.0" prefWidth="50.0" styleClass="sidebar-toggle" text="☰" />
-    <HBox fx:id="filtre" layoutX="409.0" layoutY="597.0" prefHeight="44.0" prefWidth="943.0" styleClass="search-filter-panel">
+    <HBox fx:id="filtre" layoutX="435.0" layoutY="583.0" prefHeight="44.0" prefWidth="943.0" styleClass="search-filter-panel">
         <Label layoutX="14.0" layoutY="14.0" prefHeight="50.0" prefWidth="74.0" styleClass="filter-title" text="Filtres : " />
-        <CheckBox fx:id="filterHighImportance1" layoutY="107.0" styleClass="filter-checkbox" text="Normal" />
-        <CheckBox fx:id="filterHighImportance" layoutX="87.0" layoutY="107.0" styleClass="filter-checkbox" text="Urgent" />
-        <CheckBox fx:id="filterHighImportance2" layoutY="151.0" prefHeight="20.0" prefWidth="109.0" styleClass="filter-checkbox" text="Important" />
+        <CheckBox fx:id="filterHighImportance1" layoutY="107.0" prefHeight="46.0" prefWidth="121.0" styleClass="filter-checkbox" text="Normal" />
+        <CheckBox fx:id="filterHighImportance" layoutX="87.0" layoutY="107.0" prefHeight="46.0" prefWidth="114.0" styleClass="filter-checkbox" text="Urgent" />
+        <CheckBox fx:id="filterHighImportance2" layoutY="151.0" prefHeight="46.0" prefWidth="161.0" styleClass="filter-checkbox" text="Important" />
         <CheckBox fx:id="filterHasAttachment" layoutX="2.0" layoutY="230.0" styleClass="filter-checkbox" text="Avec Fichier Joint" />
         <Button fx:id="btnApplyFilters" prefHeight="44.0" prefWidth="118.0" styleClass="action-button" text="Appliquer" />
         <Label layoutX="2.0" layoutY="192.0" prefHeight="48.0" prefWidth="24.0" styleClass="filter-title" />
@@ -57,10 +57,11 @@
                           <Button fx:id="btnClearFilters" prefHeight="44.0" prefWidth="118.0" styleClass="action-button" text="Effacer" />
     </HBox>
       <ToggleButton fx:id="themeToggle" layoutX="569.0" layoutY="34.0" prefHeight="47.0" prefWidth="51.0" styleClass="theme-toggle" text="🌙" />
-   <HBox fx:id="Recher" layoutX="681.0" layoutY="31.0" prefHeight="54.0" prefWidth="747.0">
-      <children>
-            <TextField fx:id="searchField" prefHeight="10.0" prefWidth="502.0" promptText="Rechercher une réponse..." styleClass="search-field" />
-         <Label prefHeight="47.0" prefWidth="81.0" styleClass="header-title" />
+   <HBox fx:id="Recher" layoutX="679.0" layoutY="26.0" prefHeight="54.0" prefWidth="525.0">
+
+       <children>
+           <DatePicker fx:id="startDatePicker" onAction="#applySearchByDate" prefHeight="46.0" prefWidth="247.0" />
+           <Label prefHeight="47.0" prefWidth="45.0" styleClass="header-title" />
             <Button fx:id="btnSearch" prefHeight="44.0" prefWidth="164.0" styleClass="action-button" text="🔍 Rechercher" />
       </children>
    </HBox>

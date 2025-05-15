@@ -23,6 +23,7 @@ import services.ReponseService;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class backoffice {
@@ -38,6 +39,8 @@ public class backoffice {
 
     @FXML
     private Button MesReclamations;
+    @FXML
+    private DatePicker datePickerSearch;
 
 
         @FXML
@@ -82,9 +85,12 @@ public class backoffice {
     private CheckBox filterHighImportance2;
         @FXML
         private VBox sidebar;
+    @FXML
+    private DatePicker startDatePicker;
+    @FXML
+    private DatePicker endDatePicker;
 
-        @FXML
-        private TextField searchField;
+
         @FXML
         private ToggleButton themeToggle;
     @FXML
@@ -94,8 +100,6 @@ public class backoffice {
         private final ReponseService serviceReponses = new ReponseService();
         private final ObservableList<Reponses> listeReponses = FXCollections.observableArrayList();
         private boolean isSidebarOpen = false;
-
-
     private Parent tableViewParent;
 
     private PauseTransition autoCloseTimer;
@@ -278,7 +282,7 @@ public class backoffice {
         }
         btnApplyFilters.setOnAction(event -> applyFilters());
         btnClearFilters.setOnAction(event -> clearFilters());
-        btnSearch.setOnAction(event -> applySearch());
+        btnSearch.setOnAction(event -> applySearchByDate());
         themeToggle.setOnAction(event -> toggleTheme());
         btnConsulter.setOnAction(e -> showReponsesTable());
         btnRepondre.setOnAction(e -> loadAjoutReponse());
@@ -353,23 +357,33 @@ public class backoffice {
         toggleSidebar();
     }
 
-    private void applySearch() {
-        String query = searchField.getText().toLowerCase();
-        if (dynamicContent.getChildren().contains(tableViewReponses)) {
-            ObservableList<Reponses> filteredReponses = FXCollections.observableArrayList();
-            for (Reponses reponse : listeReponses) {
-                String dateReponse = reponse.getDateReponse() != null ? reponse.getDateReponse().toString().toLowerCase() : "";
-                String dateModification = reponse.getDateModification() != null ? reponse.getDateModification().toString().toLowerCase() : "";
 
-                if (reponse.getContenu().toLowerCase().contains(query) ||
-                        dateReponse.contains(query) ||
-                        dateModification.contains(query)) {
-                    filteredReponses.add(reponse);
-                }
-            }
-            tableViewReponses.setItems(filteredReponses);
+    @FXML
+    private void applySearchByDate() {
+        LocalDate start = startDatePicker.getValue();
+
+        if (start == null) {
+            // Remet toute la liste complète dans le tableau
+            tableViewReponses.setItems(FXCollections.observableArrayList(listeReponses));
+            return;
         }
+
+        // Sinon, filtre sur la date
+        ObservableList<Reponses> filteredReponses = FXCollections.observableArrayList();
+
+        for (Reponses reponse : listeReponses) {
+            LocalDate dateReponse = reponse.getDateReponse();
+            LocalDate dateModification = reponse.getDateModification();
+
+            if ((dateReponse != null && dateReponse.equals(start)) ||
+                    (dateModification != null && dateModification.equals(start))) {
+                filteredReponses.add(reponse);
+            }
+        }
+
+        tableViewReponses.setItems(filteredReponses);
     }
+
 
     private void toggleTheme() {
         if (themeToggle.isSelected()) {
@@ -385,9 +399,7 @@ public class backoffice {
     private void loadAjoutReponse() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/RepondreReclamations.fxml"));
-            searchField.setVisible(false);
             btnSearch.setVisible(false);
-//            btnSearch.setVisible(false);
             filtre.setVisible(false);
             FadeTransition fade = new FadeTransition(Duration.millis(300), dynamicContent);
             fade.setFromValue(1.0);
@@ -411,7 +423,8 @@ public class backoffice {
     }
 
     private void showReponsesTable() {
-
+        btnSearch.setVisible(true);
+        filtre.setVisible(true);
         FadeTransition fade = new FadeTransition(Duration.millis(200), dynamicContent);
         fade.setFromValue(1.0);
         fade.setToValue(0.0);
@@ -445,7 +458,6 @@ public class backoffice {
     private void loadAjoutReclamation() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/AjouterReclamation.fxml"));
-            searchField.setVisible(false);
             btnSearch.setVisible(false);
 //            Recher.setVisible(false);
             filtre.setVisible(false);
@@ -473,7 +485,6 @@ public class backoffice {
     private void MesReclamations() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/ListeReclamations.fxml"));
-            searchField.setVisible(false);
             btnSearch.setVisible(false);
             Recher.setVisible(false);
             filtre.setVisible(false);
