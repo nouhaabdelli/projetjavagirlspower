@@ -3,7 +3,7 @@ package gui;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import entities.*;
-import entities.user;
+import entities.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextArea;
@@ -41,8 +41,8 @@ public class Afficherdetail {
     @FXML
     private  UserService userService = new UserService();
     private Reclamations reclamation;
-    private user user;
-      public void setReclamation(Reclamations reclamation, user user) {
+    private User user;
+      public void setReclamation(Reclamations reclamation, User user) {
           this.reclamation = reclamation;
           this.user = user;
           // Affichage des informations de l'utilisateur
