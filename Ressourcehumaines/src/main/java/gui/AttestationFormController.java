@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
+
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 import java.io.File;
@@ -230,6 +231,7 @@ public class AttestationFormController {
     @FXML
     private void retourPagePrecedente(ActionEvent event) {
         try {
+            // Change "Dashboard.fxml" par le nom exact de ta page précédente
             Parent root = FXMLLoader.load(getClass().getResource("/Demande.fxml"));
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -245,33 +247,35 @@ public class AttestationFormController {
             doc.addPage(page);
 
             try (PDPageContentStream content = new PDPageContentStream(doc, page)) {
+                // Titre "ATTESTATION"
                 content.beginText();
                 content.setFont(PDType1Font.HELVETICA_BOLD, 16);
-                content.newLineAtOffset(100, 700);
+                content.newLineAtOffset(220, 700); // Centré environ
                 content.showText("ATTESTATION");
                 content.endText();
 
+                // Corps du texte
                 content.beginText();
                 content.setFont(PDType1Font.HELVETICA, 12);
-                content.newLineAtOffset(100, 650);
+                content.newLineAtOffset(80, 650); // Marge à gauche
                 for (String line : texte.split("\\n")) {
                     content.showText(line);
-                    content.newLineAtOffset(0, -18);
+                    content.newLineAtOffset(0, -18); // Saut de ligne
                 }
                 content.endText();
 
-                // Ajout de la mention de signature avec la date
+                // Signature
                 content.beginText();
                 content.setFont(PDType1Font.HELVETICA_OBLIQUE, 12);
-                content.newLineAtOffset(100, 120);
+                content.newLineAtOffset(80, 120);
                 String dateSignature = java.time.LocalDate.now().toString();
                 content.showText("Signé par le Directeur le " + dateSignature);
                 content.endText();
             }
+
             doc.save(outputFile);
         }
     }
-
     private void clearForm() {
         comboTypeAttestation.setValue(null);
         textObjet.clear();

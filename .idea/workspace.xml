@@ -5,95 +5,91 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bfc9399-2d02-4d05-b5d6-3ee5bd5d13f8" name="Changes" comment="Recamations">
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/Attestation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/Conge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/Demande.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/ReponseDemande.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/Utilisateur.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AffichageFront.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AfficherUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AttestationFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/BackFront.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/CongéFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/CrudUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/DashboardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/DemandeAdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/DemandeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/LoginUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/MesDemandesController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/ModifierAttestationFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/ModifierCongeFormController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/ModifierUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/StatisticsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/Statistique.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/UserStatisticsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/DemandeDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/ReponseServicedemande.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/UserCrud.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/UtilisateurService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/utils/AttestationStatistics.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/utils/EnvConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/utils/GeminiAPIClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/utils/HolidayAPI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/utils/PDFSignatureUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/utils/StatistiqueModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/utils/UserSession.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/AttestationForm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/CongéForm.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/Demande.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/DemandesAdmin.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/MesDemandes.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/ModifierAttestationform.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/ModifierCongéform.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/Statistics.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/css/ajout.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/css/back.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/css/sign.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/css/view.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/AffichageFront.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/BackFront.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/CrudUser.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/afficherUser.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/ajouterUser.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/loginUser.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/modifierUser.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/statistique.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/images/Présentation_Projet_Entreprise_Minimaliste_Moderne_Sobre_Blanc_Noir-removebg-preview.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/images/work-removebg-preview.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/images/work.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/recaptcha.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/style/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AfficherReponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AfficherReponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/Afficherdetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/Afficherdetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReclamations.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReclamations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AjouterReponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/Evenements.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/Evenements.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/ListeReclamations.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/ListeReclamations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/RepondreReclamations.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/RepondreReclamations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/reponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/reponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/TestJDBC.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/ReponseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/ReponseServicereclamation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/dashboard.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AttestationFormController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/AttestationFormController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/CertificatAddController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/CertificatAddController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/CertificatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/CertificatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/CertificatFrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/CertificatFrontController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/EditCertificatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/gui/EditCertificatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/mainfx.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/main/mainfx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/Certificatservices.java" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/java/services/Certificatservices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/afficherUser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/src/main/resources/fxml/afficherUser.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/entities/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/entities/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AfficherReponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AfficherReponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/Afficherdetail.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/Afficherdetail.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/afficherUser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/afficherUser.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/listeavance.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/listeavance.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/listepret.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/fxml/listepret.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AttestationFormController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/AttestationFormController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/CongéFormController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/CrudUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/DashboardController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/DemandeAdminController$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/DemandeAdminController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/DemandeAdminController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/DemandeController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/Detailavancecontroller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/Evenements$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/Evenements$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/Evenements$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/Evenements$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/FinanceController$ChatGPTClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/FinanceController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/HttpURLConnectionExample.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/LoginUser$JavaBridge.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/LoginUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/MapPopupController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/MesDemandesController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/MesDemandesController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/ModifierAttestationFormController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/ModifierCongeFormController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/ModifierUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/StatisticsController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/Statistique$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/Statistique.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/StatsController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/UserStatisticsController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/acceuilAnn.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/ajouteravancecontroller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/annoncefo$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/annoncefo.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/avancecontroller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/evenementfo$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/evenementfo$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/evenementfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/javaBridge.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/listeavancecontroller$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/listeavancecontroller$2.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/listeavancecontroller$3.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/listeavancecontroller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/listepretcontroller$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/listepretcontroller$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/listepretcontroller$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/listepretcontroller.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/listepretcontroller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/mapApp.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/modifieravancecontroller.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/modifierpret.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/reponsespretrhcontroller$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/reponsespretrhcontroller.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/reponsesrhcontroller$1.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/gui/reponsesrhcontroller.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/main/MainApp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/main/mainfx.class" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/main/mainfx.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/DemandeDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/ReponseAdmin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/UserCrud.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/UtilisateurService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/avanceservice.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/mailService$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/services/mailService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/style/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/classes/style/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/utils/AttestationStatistics.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/utils/EnvConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/utils/GeminiAPIClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/utils/HolidayAPI$Holiday.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/utils/HolidayAPI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/utils/PDFSignatureUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/utils/StatistiqueModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/classes/utils/UserSession.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/Ressourcehumaines/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
@@ -125,13 +121,6 @@
     &quot;assignee&quot;: &quot;nouhaabdelli&quot;
   }
 }</component>
-  <component name="GithubProjectSettings">
-    <option name="branchProtectionPatterns">
-      <list>
-        <option value="main" />
-      </list>
-    </option>
-  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/nouhaabdelli/projetjavagirlspower.git&quot;,
@@ -168,7 +157,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preference.NewJMeterHomeConfigurable",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "show.migrate.to.gradle.popup": "false",
     "vue.rearranger.settings.migration": "true"
   }
@@ -282,13 +271,22 @@
       <option name="project" value="LOCAL" />
       <updated>1747242316163</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Recamations">
+      <option name="closed" value="true" />
+      <created>1747337784267</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1747337784267</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="Recamations" />
     <option name="LAST_COMMIT_MESSAGE" value="Recamations" />
   </component>

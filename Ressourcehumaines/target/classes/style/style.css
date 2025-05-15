@@ -1,6 +1,23 @@
 .root {
     -fx-background-color: #e8f0f8;
     -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-animation: fadeIn 0.8s ease-in;
+}
+
+/* Animation fade-in */
+@keyframes fadeIn {
+    from { -fx-opacity: 0; }
+    to { -fx-opacity: 1; }
+}
+
+/* ======= PARTIE GAUCHE : STYLE ORIGINAL ======= */
+.sidebar {
+    -fx-background-color: linear-gradient(to bottom, #cfe7ff, #eaf4ff);
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 10, 0.3, 0, 3);
 }
 
 /* Label for the title */
@@ -10,6 +27,17 @@
     -fx-padding: 12px;
     -fx-background-radius: 10px;
     -fx-font-family: sans-serif;
+/* Boutons de la sidebar : style simple, même taille */
+.sidebar-btn, .sidebar-return {
+    -fx-background-color: linear-gradient(to right, #5fa8f5, #80c0ff);
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-background-radius: 12;
+    -fx-cursor: hand;
+    -fx-padding: 10 18;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 0, 1);
+    -fx-pref-width: 200;
 }
 
 /* TableView style */
@@ -18,12 +46,23 @@
     -fx-border-color: #cccccc;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 4);
     -fx-font-family: 'Segoe UI', sans-serif;
+.sidebar-btn:hover, .sidebar-return:hover {
+    -fx-background-color: linear-gradient(to right, #3c94ec, #5fb8ff);
 }
 
 /* TableView column headers */
 .table-view .column-header {
     -fx-background-color: #9bd2f3;
     -fx-text-fill: black;
+/* ======= PARTIE DROITE : STYLE MODERNE ======= */
+.main-panel {
+    -fx-background-color: #f9fcff;
+    -fx-padding: 30;
+}
+
+/* Titres principaux */
+.label-title {
+    -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-alignment: CENTER;
     -fx-font-size: 15px;
@@ -33,11 +72,15 @@
 .table-view .table-cell {
     -fx-padding: 10px;
     -fx-font-size: 13px;
+    -fx-text-fill: #125dbe;
 }
 
 /* Button for adding items */
 #btnAjouter {
     -fx-background-color: #1a4a66;
+/* Bouton principal PDF */
+.generate-btn {
+    -fx-background-color: linear-gradient(to right, #5fa8f5, #80c0ff);
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-cursor: hand;
@@ -52,6 +95,8 @@
     -fx-font-weight: bold;
     -fx-padding: 5px 10px;
     -fx-background-radius: 10px;
+    -fx-padding: 10 24;
+    -fx-background-radius: 12;
     -fx-cursor: hand;
 }
 
@@ -77,12 +122,18 @@
 .image-view {
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0.2, 2, 2);
     -fx-border-radius: 10px;
+.generate-btn:hover {
+    -fx-background-color: linear-gradient(to right, #3c94ec, #5fb8ff);
 }
 
 /* Aligning buttons in TableCell */
 .table-view .column-header .button,
 .table-view .table-cell .button {
     -fx-padding: 5px;
+/* Label d'état du PDF */
+.status-label {
+    -fx-text-fill: #1d74e8;
+    -fx-font-style: italic;
 }
 
 /* Sidebar */
@@ -99,6 +150,8 @@
 }
 
 .sidebar-toggle {
+/* TitledPane moderne sans bordure */
+.titled-pane {
     -fx-background-color: transparent;
     -fx-text-fill: #FFFFFF;
     -fx-font-size: 18px;
@@ -116,6 +169,8 @@
 
 .sidebar-title {
     -fx-font-size: 20px;
+    -fx-border-color: transparent;
+    -fx-text-fill: #1356a0;
     -fx-font-weight: bold;
     -fx-text-fill: #FFFFFF;
     -fx-padding: 10px 0;
@@ -123,14 +178,41 @@
 
 .sidebar-title.alt-theme {
     -fx-text-fill: #E2E8F0;
+.titled-pane > .title {
+    -fx-text-fill: #1356a0;
+    -fx-font-size: 15px;
+    -fx-background-color: linear-gradient(to right, #cce6ff, #e6f3ff);
+    -fx-background-radius: 12;
+    -fx-padding: 8 12;
+}
+
+.titled-pane > .content {
+    -fx-background-color: #f2faff;
+    -fx-background-radius: 0 0 12 12;
+    -fx-padding: 10;
 }
 
 .menu-item {
+/* ScrollBar customisée */
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #6ab1ff;
+    -fx-background-radius: 10;
+}
+.scroll-bar:vertical {
+    -fx-pref-width: 8px;
     -fx-background-color: transparent;
     -fx-text-fill: #FFFFFF;
     -fx-font-size: 16px;
     -fx-padding: 10px 20px;
     -fx-alignment: center-left;
+}
+
+/* Scroll transparent */
+.transparent {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.clickable-card {
     -fx-cursor: hand;
 }
 
@@ -139,8 +221,15 @@
     -fx-background-radius: 10px;
     -fx-scale-x: 1.05;
     -fx-transition: all 0.3s ease-in-out;
+.clickable-card:hover {
+    -fx-background-color: #f0f8ff; /* léger bleu au survol */
+    -fx-border-color: #3498db;
 }
 
 .menu-item.alt-theme {
     -fx-text-fill: #E2E8F0;
+.clickable-card:pressed {
+    -fx-background-color: #d6eaf8; /* bleu clair au clic */
+    -fx-border-color: #2980b9;
+    -fx-border-width: 2px;
 }

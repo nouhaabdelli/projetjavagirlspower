@@ -1,4 +1,4 @@
-package gui;
+/*package gui;
 
 import entities.Certificat;
 import entities.Formation;
@@ -357,3 +357,4 @@ public class CertificatFrontController implements Initializable {
     }
 
 }
+*/

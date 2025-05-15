@@ -18,7 +18,7 @@ public class mainfx extends Application {
     public void start(Stage primaryStage) {
         try {
             // Charger l'interface principale "annonces.fxml"
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/loginUser.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/maquette.fxml"));
             Parent root = loader.load();
 
             // Créer et configurer la scène

@@ -1,4 +1,4 @@
-package gui;
+/*package gui;
 
 import entities.Certificat;
 import  entities.Formation;
@@ -75,7 +75,7 @@ public class CertificatAddController {
         userComboBox.getItems().clear();
         List<User> users = certificatService.getAllUsers();
         for (User user : users) {
-            userMap.put(user.getUsername(), user.getId());
+            userMap.put(user.getNom(), user.getId());
             userComboBox.getItems().add(user.getUsername());
         }
     }
@@ -289,4 +289,4 @@ public class CertificatAddController {
         }
     }
 
-}
+}*/

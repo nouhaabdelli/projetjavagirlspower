@@ -11,6 +11,11 @@
 
 <AnchorPane fx:id="rootPane" prefHeight="750.0" prefWidth="1434.0" stylesheets="@../style/listeavance.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.listeavancecontroller">
     <children>
+        <ImageView layoutX="10.0" layoutY="10.0" fitHeight="100.0" fitWidth="200.0" preserveRatio="true">
+            <image>
+                <Image url="@../images/NN.jpg" />
+            </image>
+        </ImageView>
 
         <!-- Sidebar -->
         <VBox fx:id="sidebar" layoutX="-5.0" layoutY="-28.0" prefHeight="802.0" prefWidth="137.0" styleClass="sidebar" translateX="-250.0">
