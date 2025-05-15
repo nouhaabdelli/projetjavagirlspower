@@ -1,3 +1,4 @@
+gui\Frontlistepret.class
 entities\user.class
 main\MainApp.class
 gui\listeavancecontroller$2.class
@@ -5,14 +6,17 @@ gui\ajouterpretcontroller.class
 gui\listeavancecontroller.class
 gui\avancecontroller.class
 gui\listepretcontroller$2.class
+gui\Frontlistepret$2.class
 gui\listeavancecontroller$3.class
 services\avanceservice.class
 gui\listepretcontroller.class
 gui\listepretcontroller$3.class
+gui\Frontlistepret$1.class
 gui\FinanceController$ChatGPTClient.class
 gui\reponsespretrhcontroller.class
 gui\Detailpret.class
 gui\reponsesrhcontroller.class
+gui\ListePretParentController.class
 entities\pret.class
 main\mainfx.class
 entities\avance.class
@@ -25,6 +29,7 @@ services\IService.class
 gui\StatsController.class
 gui\reponsesrhcontroller$1.class
 gui\pretcontroller.class
+gui\Frontlistepret$3.class
 gui\listeavancecontroller$1.class
 gui\Detailavancecontroller.class
 utils\MyConnection.class

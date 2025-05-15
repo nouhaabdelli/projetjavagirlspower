@@ -10,7 +10,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/finance.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/Frontlistepret.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         if (getClass().getResource("/style/finance.css") != null) {

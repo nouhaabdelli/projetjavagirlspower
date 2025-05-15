@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 public class modifierpret {
+
     @FXML
     private TextField montantField;
 
@@ -27,8 +28,10 @@ public class modifierpret {
     @FXML
     private TextField etatField;
 
-    private pret pretEnCours; // utilisé si modification
-    private listepretcontroller controllerPrincipal; // référence au contrôleur principal
+    private pret pretEnCours; // prêt en cours de modification
+
+    // Utiliser l'interface ListePretParentController au lieu d'un type concret
+    private ListePretParentController controllerPrincipal;
 
     @FXML
     public void modifierPret(ActionEvent event) {
@@ -52,6 +55,7 @@ public class modifierpret {
                 controllerPrincipal.rafraichirTable();
             }
 
+            // Fermer la fenêtre après modification
             ((Stage) montantField.getScene().getWindow()).close();
 
         } catch (SQLException | NumberFormatException e) {
@@ -70,7 +74,7 @@ public class modifierpret {
         etatField.setText(p.getEtat());
     }
 
-    public void setControllerPrincipal(listepretcontroller controller) {
+    public void setControllerPrincipal(ListePretParentController controller) {
         this.controllerPrincipal = controller;
     }
 }
