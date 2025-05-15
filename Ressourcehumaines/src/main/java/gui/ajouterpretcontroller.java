@@ -51,18 +51,61 @@ public class ajouterpretcontroller {
     @FXML
     private void ajouterPret() {
         try {
+            // Vérifier si un champ est vide
+            if (montantField.getText().isEmpty() || dureeField.getText().isEmpty()
+                    || datePretPicker.getValue() == null || niveauUrgenceField.getText().isEmpty()
+                    || etatField.getText().isEmpty()) {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Champs requis");
+                alert.setHeaderText("Tous les champs doivent être remplis.");
+                alert.setContentText("Veuillez compléter tous les champs avant de soumettre.");
+                alert.showAndWait();
+                return;
+            }
+
             BigDecimal montant = new BigDecimal(montantField.getText());
             int duree = Integer.parseInt(dureeField.getText());
             LocalDate datePret = datePretPicker.getValue();
-            String urgence = niveauUrgenceField.getText();
+            String urgence = niveauUrgenceField.getText().trim().toLowerCase(); // Pour comparaison
             String etat = etatField.getText();
 
-            // Create pret without id_user initially
+            // Contrôle montant ≤ 50000
+            if (montant.compareTo(BigDecimal.valueOf(50000)) > 0) {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Montant invalide");
+                alert.setHeaderText("Montant trop élevé");
+                alert.setContentText("Le montant ne doit pas dépasser 50 000 !");
+                alert.showAndWait();
+                return;
+            }
+
+            // Contrôle durée ≤ 60
+            if (duree > 60) {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Durée invalide");
+                alert.setHeaderText("Durée trop longue");
+                alert.setContentText("La durée ne doit pas dépasser 60 mois !");
+                alert.showAndWait();
+                return;
+            }
+
+            // Contrôle du niveau d'urgence
+            if (!(urgence.equals("faible") || urgence.equals("moyenne") || urgence.equals("élevée"))) {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Niveau d'urgence invalide");
+                alert.setHeaderText("Valeur non autorisée");
+                alert.setContentText("Le niveau d'urgence doit être 'faible', 'moyenne' ou 'élevée'.");
+                alert.showAndWait();
+                return;
+            }
+
+            // Créer le prêt
             pret pret = new pret(0, montant, duree, datePret, urgence, etat);
-            pret.setId_user(currentUserId); // Set id_user from session/context
+            pret.setId_user(currentUserId); // Associer à l'utilisateur courant
 
             pretservice pretservice = new pretservice();
             pretservice.create(pret);
+
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Succès");
             alert.setHeaderText(null);

@@ -34,7 +34,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-public class listepretcontroller {
+public class listepretcontroller implements ListePretParentController {
 
 
 
@@ -99,12 +99,16 @@ public class listepretcontroller {
     @FXML
     private TextField searchField;
 
-    @FXML
-    private ToggleButton themeToggle;
+//    @FXML
+//    private ToggleButton themeToggle;
 
     private ObservableList<pret> pretList;
 
     private boolean isDarkTheme = false;
+    private boolean isAdmin = true;
+    public void setUserRole(boolean isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 
     private pretservice pretService = new pretservice();
     private PauseTransition autoCloseTimer;
@@ -115,6 +119,10 @@ public class listepretcontroller {
 
     @FXML
     private void initialize() {
+        if (btnReponse != null && !isAdmin) {
+            btnReponse.setVisible(false);
+            btnReponse.setManaged(false); // Pour ne pas laisser d’espace vide
+        }
         autoCloseTimer = new PauseTransition(Duration.seconds(20));
         autoCloseTimer.setOnFinished(event -> {
             if (isSidebarOpen && !isTransitioning) {
@@ -288,17 +296,17 @@ public class listepretcontroller {
         }
     }
 
-    @FXML
-    private void toggleTheme() {
-        isDarkTheme = !isDarkTheme;
-        if (isDarkTheme) {
-            contentArea.getStyleClass().add("dark-theme");
-            themeToggle.setText("☀️");
-        } else {
-            contentArea.getStyleClass().remove("dark-theme");
-            themeToggle.setText("🌙");
-        }
-    }
+//    @FXML
+//    private void toggleTheme() {
+//        isDarkTheme = !isDarkTheme;
+//        if (isDarkTheme) {
+//            contentArea.getStyleClass().add("dark-theme");
+//            themeToggle.setText("☀️");
+//        } else {
+//            contentArea.getStyleClass().remove("dark-theme");
+//            themeToggle.setText("🌙");
+//        }
+//    }
 
     private void showError(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -321,7 +329,7 @@ public class listepretcontroller {
             System.err.println("btnSidebarToggle is null");
         }
 
-        themeToggle.setOnAction(event -> toggleTheme());
+//        themeToggle.setOnAction(event -> toggleTheme());
         btnConsulter.setOnAction(e -> showReponsesTable());
         btnAjouter.setOnAction(e -> loadAjoutReponse());
         btnReponse.setOnAction(e -> loadReponse());

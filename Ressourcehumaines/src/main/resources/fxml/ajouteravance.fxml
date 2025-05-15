@@ -12,8 +12,8 @@
     <children>
         <VBox alignment="TOP_CENTER" layoutX="200.0" layoutY="50.0" spacing="20.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="50.0">
             <Label text="Ajouter une Avance " styleClass="form-title-glow"/>
-            <TextField fx:id="montantField" promptText="Montant (ex: 1000.00)" styleClass="input-field"/>
-            <TextField fx:id="dureeField" promptText="Durée (mois)" styleClass="input-field"/>
+            <TextField fx:id="montantField" promptText="Montant (ex: 800.00)" styleClass="input-field"/>
+            <TextField fx:id="dureeField" promptText="Durée (max 12 mois)" styleClass="input-field"/>
             <DatePicker fx:id="dateAvancePicker" promptText="Date de l'Avance" styleClass="input-field"/>
             <TextField fx:id="niveauUrgenceField" promptText="Niveau d'urgence (faible, moyen, élevé)" styleClass="input-field"/>
             <TextField fx:id="etatField" promptText="État (mariage, frais médicaux , autres )" styleClass="input-field"/>

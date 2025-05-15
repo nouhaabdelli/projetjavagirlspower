@@ -34,7 +34,7 @@ public class ajouteravancecontroller {
     @FXML
     private TextField etatField;
 
-    private int currentUserId; // Plus de valeur par défaut
+    private int currentUserId=1; // Plus de valeur par défaut
 
     @FXML
     private void handleRetour() {
@@ -81,12 +81,37 @@ public class ajouteravancecontroller {
                 return;
             }
 
+            // Parse les valeurs
+            BigDecimal montant = new BigDecimal(montantField.getText());
+            int duree = Integer.parseInt(dureeField.getText());
+
+            // Vérifier les contraintes de saisie
+            if (montant.compareTo(BigDecimal.valueOf(800)) > 0) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Le montant ne doit pas dépasser 800 !");
+                alert.showAndWait();
+                return;
+            }
+
+            if (duree > 12) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "La durée ne doit pas dépasser 12 mois !");
+                alert.showAndWait();
+                return;
+            }
+
+            // Contrôle du niveau d'urgence
+            String urgence = niveauUrgenceField.getText().trim().toLowerCase();
+            if (!(urgence.equals("faible") || urgence.equals("moyenne") || urgence.equals("élevée"))) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Le niveau d'urgence doit être 'faible', 'moyenne' ou 'élevée'.");
+                alert.showAndWait();
+                return;
+            }
+
             // Créer une nouvelle avance
             avance nouvelleAvance = new avance();
-            nouvelleAvance.setMontant(new BigDecimal(montantField.getText()));
-            nouvelleAvance.setDuree(Integer.parseInt(dureeField.getText()));
+            nouvelleAvance.setMontant(montant);
+            nouvelleAvance.setDuree(duree);
             nouvelleAvance.setDateAvance(dateAvancePicker.getValue());
-            nouvelleAvance.setNiveauUrgence(niveauUrgenceField.getText());
+            nouvelleAvance.setNiveauUrgence(urgence);
             nouvelleAvance.setEtat(etatField.getText());
             nouvelleAvance.setId_user(currentUserId);
 
@@ -114,10 +139,13 @@ public class ajouteravancecontroller {
             alert.showAndWait();
             e.printStackTrace();
         }
+
     }
+
 
     public void setCurrentUserId(int userId) {
         this.currentUserId = userId;
     }
+
 
 }

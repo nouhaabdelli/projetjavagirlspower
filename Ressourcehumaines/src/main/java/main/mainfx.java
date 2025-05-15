@@ -23,7 +23,7 @@ public class mainfx extends Application {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/listeavance.fxml"));
             if (loader.getLocation() == null) {
-                throw new IOException("FXML file '/fxml/finance.fxml' not found in resources");
+                throw new IOException("FXML file '/fxml/listepret.fxml' not found in resources");
             }
             Parent root = loader.load();
             Scene scene = new Scene(root);

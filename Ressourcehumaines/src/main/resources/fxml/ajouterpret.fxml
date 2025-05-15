@@ -12,10 +12,10 @@
         <VBox alignment="TOP_CENTER" layoutX="200.0" layoutY="50.0" spacing="15.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="50.0">
             <Label styleClass="form-title" text="Ajouter un Prêt" />
 
-            <TextField fx:id="montantField" promptText="Montant (ex: 1000.00)" />
-            <TextField fx:id="dureeField" promptText="Durée (mois)" />
+            <TextField fx:id="montantField" promptText="Montant (ex: 50000.00)" />
+            <TextField fx:id="dureeField" promptText="Durée (max 50 mois)" />
             <DatePicker fx:id="datePretPicker" promptText="Date du prêt" />
-            <TextField fx:id="niveauUrgenceField" promptText="Niveau d'urgence (faible, moyen, élevé)" />
+            <TextField fx:id="niveauUrgenceField" promptText="Niveau d'urgence (faible, moyenne, élevée)" />
             <TextField fx:id="etatField" promptText="État (mariage, frais médicaux, autres)" />
 
             <Button onAction="#ajouterPret" styleClass="form-button" text="Ajouter" />
