@@ -10,7 +10,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../../../../../../../OneDrive/Documents/GitHub/projetjavagirlspower/Ressourcehumaines/src/main/resources/style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DemandeAdminController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@style/maramr.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DemandeAdminController">
 
     <children>
         <!-- En-tête -->

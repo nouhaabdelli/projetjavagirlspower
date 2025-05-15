@@ -6,11 +6,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReponseServicedemande {
+public class ReponseAdmin {
 
     private List<ReponseDemande> reponses;
 
-    public ReponseServicedemande() {
+    public ReponseAdmin() {
         this.reponses = new ArrayList<>();
     }
 

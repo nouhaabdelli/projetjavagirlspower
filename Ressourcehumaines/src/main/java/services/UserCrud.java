@@ -15,6 +15,30 @@ public class UserCrud {
             e.printStackTrace();
         }
     }
+    public String getRole(int userId) {
+        String role = "admin"; // valeur par défaut
+        String url = "jdbc:mysql://localhost:3306/workbridge";
+        String username = "root";
+        String password = "";
+
+        String query = "SELECT role FROM user WHERE id = ?";
+
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                role = rs.getString("role");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return role;
+    }
 
     // Ajouter un utilisateur
     public void ajouterUser(User user) {
@@ -123,5 +147,3 @@ public class UserCrud {
         return users;
     }
 }
-
-

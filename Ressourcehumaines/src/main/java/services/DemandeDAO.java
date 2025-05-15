@@ -9,11 +9,12 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 public class DemandeDAO {
     private Connection connection;
 
     public DemandeDAO() {
-        this.connection = MyConnection.getInstance().getConnection(); // ✅ Correct
+        this.connection = MyConnection.getInstance().getConnection();
     }
 
     // Ajouter une demande générale
@@ -23,7 +24,7 @@ public class DemandeDAO {
             stmt.setDate(1, Date.valueOf(demande.getDateSoumission()));
             stmt.setString(2, demande.getType());
             stmt.setString(3, demande.getDescription());
-            stmt.setInt(4, demande.getUtilisateurId());
+            stmt.setInt(4, demande.getId());
             stmt.executeUpdate();
         }
     }
@@ -74,7 +75,7 @@ public class DemandeDAO {
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setDate(1, Date.valueOf(conge.getDateSoumission()));
             stmt.setString(2, conge.getDescription());
-            stmt.setInt(3, conge.getUtilisateurId());
+            stmt.setInt(3, conge.getIddemande());
             stmt.setDate(4, Date.valueOf(conge.getDateDebut()));
             stmt.setDate(5, Date.valueOf(conge.getDateFin()));
             stmt.setString(6, conge.getMotif());
@@ -89,27 +90,27 @@ public class DemandeDAO {
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setDate(1, Date.valueOf(attestation.getDateSoumission()));
             stmt.setString(2, attestation.getDescription());
-            stmt.setInt(3, attestation.getUtilisateurId());
+            stmt.setInt(3, attestation.getIddemande());
             stmt.setString(4, attestation.getTypeAttestation());
             stmt.executeUpdate();
         }
     }
 
     // Valider une demande
-    public void validerDemande(int demandeId) throws SQLException {
-        String sql = "UPDATE demande SET statut = 'validée', date_de_validation = ? WHERE id = ?";
+    public void validerDemande(int iddemande) throws SQLException {
+        String sql = "UPDATE demande SET statut = 'validée', date_de_validation = ? WHERE iddemande = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setDate(1, Date.valueOf(LocalDate.now())); // Met la date actuelle comme date de validation
-            stmt.setInt(2, demandeId);
+            stmt.setInt(2, iddemande);
             stmt.executeUpdate();
         }
     }
 
     // Récupérer une demande par ID
-    public Demande getDemandeById(int id) throws SQLException {
-        String sql = "SELECT * FROM demande WHERE id = ?";
+    public Demande getDemandeById(int iddemande) throws SQLException {
+        String sql = "SELECT * FROM demande WHERE iddemande = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, id);
+            stmt.setInt(1, iddemande);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     String type = rs.getString("type");
@@ -117,12 +118,12 @@ public class DemandeDAO {
                     switch (type) {
                         case "conge":
                             Conge conge = new Conge(
-                                    rs.getInt("id"),
+                                    rs.getInt("iddemande"),
                                     rs.getDate("date_soumission").toLocalDate(),
                                     rs.getString("statut"),
                                     type,
                                     rs.getString("description"),
-                                    rs.getInt("utilisateur_id"),
+                                    rs.getInt("Id"),
                                     rs.getDate("date_debut").toLocalDate(),
                                     rs.getDate("date_fin").toLocalDate(),
                                     rs.getString("motif"),
@@ -132,12 +133,12 @@ public class DemandeDAO {
 
                         case "attestation":
                             Attestation attestation = new Attestation(
-                                    rs.getInt("id"),
+                                    rs.getInt("iddemande"),
                                     rs.getDate("date_soumission").toLocalDate(),
                                     rs.getString("statut"),
                                     type,
                                     rs.getString("description"),
-                                    rs.getInt("utilisateur_id"),
+                                    rs.getInt("Id"),
                                     rs.getDate("date_de_validation") != null ? rs.getDate("date_de_validation").toLocalDate() : null,
                                     rs.getString("motif"),
                                     rs.getString("type_attestation")
@@ -146,12 +147,12 @@ public class DemandeDAO {
 
                         default:
                             Demande demande = new Demande(
-                                    rs.getInt("id"),
+                                    rs.getInt("iddemande"),
                                     rs.getDate("date_soumission").toLocalDate(),
                                     rs.getString("statut"),
                                     type,
                                     rs.getString("description"),
-                                    rs.getInt("utilisateur_id")
+                                    rs.getInt("Id")
                             );
                             demande.setDateValidation(rs.getDate("date_de_validation") != null ? rs.getDate("date_de_validation").toLocalDate() : null);
                             return demande;
@@ -163,11 +164,11 @@ public class DemandeDAO {
     }
 
     // Récupérer les demandes par utilisateur ID
-    public List<Demande> getDemandeByUtilisateurId(int utilisateurId) throws SQLException {
+    public List<Demande> getDemandeByUtilisateurId(int Id) throws SQLException {
         List<Demande> demandes = new ArrayList<>();
-        String sql = "SELECT * FROM demande WHERE utilisateur_id = ?";
+        String sql = "SELECT * FROM demande WHERE Id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setInt(1, utilisateurId);
+            stmt.setInt(1, Id);
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     String type = rs.getString("type");
@@ -175,12 +176,12 @@ public class DemandeDAO {
                     switch (type) {
                         case "conge":
                             Conge conge = new Conge(
-                                    rs.getInt("id"),
+                                    rs.getInt("iddemande"),
                                     rs.getDate("date_soumission").toLocalDate(),
                                     rs.getString("statut"),
                                     rs.getString("type"),
                                     rs.getString("description"),
-                                    rs.getInt("utilisateur_id"),
+                                    rs.getInt("Id"),
                                     rs.getDate("date_debut").toLocalDate(),
                                     rs.getDate("date_fin").toLocalDate(),
                                     rs.getString("motif"),
@@ -191,12 +192,12 @@ public class DemandeDAO {
 
                         case "attestation":
                             Attestation attestation = new Attestation(
-                                    rs.getInt("id"),
+                                    rs.getInt("iddemande"),
                                     rs.getDate("date_soumission").toLocalDate(),
                                     rs.getString("statut"),
                                     type,
                                     rs.getString("description"),
-                                    rs.getInt("utilisateur_id"),
+                                    rs.getInt("Id"),
                                     rs.getDate("date_de_validation") != null ? rs.getDate("date_de_validation").toLocalDate() : null,
                                     rs.getString("motif"),
                                     rs.getString("type_attestation")
@@ -207,12 +208,12 @@ public class DemandeDAO {
 
                         default:
                             Demande demande = new Demande(
-                                    rs.getInt("id"),
+                                    rs.getInt("iddemande"),
                                     rs.getDate("date_soumission").toLocalDate(),
                                     rs.getString("statut"),
                                     type,
                                     rs.getString("description"),
-                                    rs.getInt("utilisateur_id")
+                                    rs.getInt("Id")
                             );
                             demande.setDateValidation(rs.getDate("date_de_validation") != null ? rs.getDate("date_de_validation").toLocalDate() : null);
                             demandes.add(demande);
@@ -226,11 +227,11 @@ public class DemandeDAO {
     // Mettre à jour le statut d'une demande
     // Mettre à jour le statut d'une demande
     public void updateDemandeStatut(Demande demande) {
-        String query = "UPDATE demande SET statut = ?, date_validation = ? WHERE id = ?";
+        String query = "UPDATE demande SET statut = ?, date_validation = ? WHERE iddemande = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {  // Use the existing 'connection'
             statement.setString(1, demande.getStatut());
             statement.setDate(2, java.sql.Date.valueOf(demande.getDateValidation()));  // Assurez-vous que getDateValidation() renvoie un LocalDate
-            statement.setInt(3, demande.getId());
+            statement.setInt(3, demande.getIddemande());
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -246,7 +247,7 @@ public class DemandeDAO {
              ResultSet resultSet = statement.executeQuery(query)) {
             while (resultSet.next()) {
                 Demande demande = new Demande(
-                        resultSet.getInt("id"),
+                        resultSet.getInt("iddemande"),
                         resultSet.getString("statut"),
                         resultSet.getString("type"),
                         resultSet.getString("description"),

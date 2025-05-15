@@ -74,11 +74,11 @@ gui\javaBridge.class
 gui\modifierpret.class
 gui\UserStatisticsController.class
 utils\EnvConfig.class
-services\ReponseServicedemande.class
 services\UserCrud.class
 entities\Conge.class
 gui\Annonces$1.class
 gui\LoginUser$JavaBridge.class
+services\ReponseAdmin.class
 gui\listeavancecontroller$1.class
 gui\modifieravancecontroller.class
 gui\DemandeController.class

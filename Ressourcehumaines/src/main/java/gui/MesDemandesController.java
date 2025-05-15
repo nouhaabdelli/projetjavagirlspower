@@ -80,8 +80,8 @@ public class MesDemandesController {
     private TextField searchField;
     @FXML
     private ComboBox<String> searchTypeComboBox;
-    private int demandeId = 1;
-    private int utilisateurId;
+    private int iddemande = 1;
+    private int Id;
     private boolean isAdmin;
     private volatile boolean isProcessing = false;
     // Évite les requêtes simultanées
@@ -95,7 +95,7 @@ public class MesDemandesController {
     }
 
     public void initialize() {
-        this.setUtilisateurId(1);  // ID utilisateur par défaut
+        this.setId(1);  // ID utilisateur par défaut
         this.setAdmin(true);       // Par défaut en mode admin
         this.setupTableColumns();
         this.setupSearch();
@@ -116,8 +116,6 @@ public class MesDemandesController {
         // Configuration de la colonne Actions
         colActions.setCellFactory(param -> new TableCell<Demande, Void>() {
             private final Button btnPredict = new Button("Prédire");
-            private final Button btnValidate = new Button("Valider" );
-            private final Button btnReject = new Button("Refuser");
             private final Button btnView = new Button("Voir");
             private final Button btnEdit = new Button("Modifier");
             private final Button btnDelete = new Button("Supprimer");
@@ -125,8 +123,7 @@ public class MesDemandesController {
             {
                 // Configuration des boutons avec une largeur fixe
                 btnPredict.setPrefWidth(90);
-                btnValidate.setPrefWidth(90);
-                btnReject.setPrefWidth(90);
+
                 btnView.setPrefWidth(90);
                 btnEdit.setPrefWidth(90);
                 btnDelete.setPrefWidth(90);
@@ -203,8 +200,7 @@ public class MesDemandesController {
                     }).start();
                 });
 
-                btnValidate.setOnAction(e -> handleValidateDemande(e));
-                btnReject.setOnAction(e -> handleRejectDemande(e));
+
                 btnView.setOnAction(e -> handleViewDemande(e));
                 btnEdit.setOnAction(e -> handleEditDemande(e));
                 btnDelete.setOnAction(e -> handleDeleteDemande(e));
@@ -223,15 +219,7 @@ public class MesDemandesController {
                     // Ajouter les boutons de base
                     hbox.getChildren().addAll(btnPredict, btnView, btnEdit, btnDelete);
 
-                    // Si c'est un admin, ajouter les boutons de validation et refus
-                    if (isAdmin) {
-                        hbox.getChildren().addAll(btnValidate, btnReject);
 
-                        // Désactiver les boutons si la demande est déjà traitée
-                        boolean isProcessed = demande.getStatut().equals("Validée") || demande.getStatut().equals("Refusée");
-                        btnValidate.setDisable(isProcessed);
-                        btnReject.setDisable(isProcessed);
-                    }
 
                     setGraphic(hbox);
                 }
@@ -315,13 +303,13 @@ public class MesDemandesController {
 
     private void loadDemandesFromDB() {
         observableDemandes.clear();
-        String query = isAdmin ? "SELECT * FROM demande" : "SELECT * FROM demande WHERE utilisateur_id = ?";
+        String query = isAdmin ? "SELECT * FROM demande" : "SELECT * FROM demande WHERE Id = ?";
 
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/workbridge", "root", "");
              PreparedStatement stmt = conn.prepareStatement(query)) {
 
             if (!isAdmin) {
-                stmt.setInt(1, utilisateurId);
+                stmt.setInt(1, Id);
             }
 
             try (ResultSet rs = stmt.executeQuery()) {
@@ -332,7 +320,7 @@ public class MesDemandesController {
                             rs.getString("statut"),
                             rs.getString("type"),
                             rs.getString("description"),
-                            rs.getInt("utilisateur_id")
+                            rs.getInt("Id")
                     );
                     Date dateVal = rs.getDate("date_validation");
                     if (dateVal != null) {
@@ -362,13 +350,13 @@ public class MesDemandesController {
     }
 
     private void updateStatutInDB(Demande demande) {
-        String query = "UPDATE demande SET statut = ? WHERE id = ?";
+        String query = "UPDATE demande SET statut = ? WHERE iddemande = ?";
         try (
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/workbridge", "root", "");
                 PreparedStatement stmt = conn.prepareStatement(query)
         ) {
             stmt.setString(1, demande.getStatut());
-            stmt.setInt(2, demande.getId());
+            stmt.setInt(2, demande.getIddemande());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -418,12 +406,12 @@ public class MesDemandesController {
                     } else {
                         // Si ce n'est pas déjà un Conge, on crée un nouveau Conge avec les données de base
                         Conge conge = new Conge(
-                                demande.getId(),
+                                demande.getIddemande(),
                                 demande.getDateSoumission(),
                                 demande.getStatut(),
                                 demande.getType(),
                                 demande.getDescription(),
-                                demande.getUtilisateurId(),
+                                demande.getId(),
                                 demande.getDateValidation(),
                                 null, // dateDebut sera à définir dans le formulaire
                                 null, // dateFin sera à définir dans le formulaire
@@ -448,7 +436,7 @@ public class MesDemandesController {
                                 demande.getStatut(),
                                 "attestation", // type général toujours "attestation"
                                 demande.getDescription(),
-                                demande.getUtilisateurId(),
+                                demande.getId(),
                                 null, // dateDebut
                                 null, // dateFin
                                 demande.getDescription(), // motif
@@ -491,7 +479,7 @@ public class MesDemandesController {
                 Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/workbridge", "root", "");
                 PreparedStatement stmt = conn.prepareStatement(query)
         ) {
-            stmt.setInt(1, demande.getId());
+            stmt.setInt(1, demande.getIddemande());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -533,8 +521,8 @@ public class MesDemandesController {
         alert.showAndWait();
     }
 
-    public void setUtilisateurId(int utilisateurId) {
-        this.utilisateurId = utilisateurId;
+    public void setId(int Id) {
+        this.Id = Id;
     }
 
     public void setAdmin(boolean isAdmin) {
@@ -595,13 +583,14 @@ public class MesDemandesController {
             // Afficher les détails de la demande
             String details = String.format(
                     "Détails de la demande:\n" +
-                            "ID: %d\n" +
                             "Type: %s\n" +
                             "Description: %s\n" +
                             "Date de soumission: %s\n" +
                             "Statut: %s\n" +
                             "Date de validation: %s",
-                    selectedDemande.getId(),
+
+
+
                     selectedDemande.getType(),
                     selectedDemande.getDescription(),
                     selectedDemande.getDateSoumission(),

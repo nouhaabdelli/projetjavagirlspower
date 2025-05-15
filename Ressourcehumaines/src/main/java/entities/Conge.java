@@ -13,24 +13,24 @@ public class Conge extends Demande {
     private String motif;
     private String typeConge;
 
-    public Conge(LocalDate dateSoumission, String statut, String type, String description, int utilisateurId, LocalDate dateValidation, LocalDate dateDebut, LocalDate dateFin, String motif, String typeConge) {
-        super(dateSoumission, statut, type, description, utilisateurId, dateValidation);
+    public Conge(LocalDate dateSoumission, String statut, String type, String description, int Id, LocalDate dateValidation, LocalDate dateDebut, LocalDate dateFin, String motif, String typeConge) {
+        super(dateSoumission, statut, type, description, Id, dateValidation);
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.motif = motif;
         this.typeConge = typeConge;
     }
 
-    public Conge(int id, LocalDate dateSoumission, String statut, String type, String description, int utilisateurId, LocalDate dateValidation, LocalDate dateDebut, LocalDate dateFin, String motif, String typeConge) {
-        super(id, dateSoumission, statut, type, description, utilisateurId, dateValidation);
+    public Conge(int iddemande, LocalDate dateSoumission, String statut, String type, String description, int Id, LocalDate dateValidation, LocalDate dateDebut, LocalDate dateFin, String motif, String typeConge) {
+        super(iddemande, dateSoumission, statut, type, description, Id, dateValidation);
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.motif = motif;
         this.typeConge = typeConge;
     }
 
-    public Conge(int id, LocalDate dateSoumission, String statut, String type, String description, int utilisateurId, LocalDate dateDebut, LocalDate dateFin, String motif, String typeConge) {
-        super(id, dateSoumission, statut, type, description, utilisateurId);
+    public Conge(int iddemande, LocalDate dateSoumission, String statut, String type, String description, int Id, LocalDate dateDebut, LocalDate dateFin, String motif, String typeConge) {
+        super(iddemande, dateSoumission, statut, type, description, Id);
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.motif = motif;

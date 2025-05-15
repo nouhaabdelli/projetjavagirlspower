@@ -3,12 +3,12 @@ package utils;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +47,7 @@ public class HolidayAPI {
         @Override
         public String toString() {
             return String.format("%s : %s (%s)",
-                    date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                    date.toString(),
                     localName, name);
         }
     }
@@ -64,8 +64,18 @@ public class HolidayAPI {
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful()) throw new IOException("Erreur API Holiday : " + response);
 
+            ResponseBody responseBody = response.body();
+            if (responseBody == null) {
+                throw new IOException("Le corps de la réponse est nul");
+            }
+
+            String jsonString = responseBody.string();
+
+            // Optionnel: debug - afficher la réponse brute
+            System.out.println("Réponse API : " + jsonString);
+
+            JSONArray jsonArray = new JSONArray(jsonString);
             List<Holiday> holidays = new ArrayList<>();
-            JSONArray jsonArray = new JSONArray(response.body().string());
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject holiday = jsonArray.getJSONObject(i);
@@ -91,7 +101,8 @@ public class HolidayAPI {
             throw new IllegalArgumentException("La date de début doit être avant la date de fin");
         }
 
-        List<Holiday> holidays = getHolidays(startDate.getYear());
+        // On crée une nouvelle liste mutable pour cumuler les jours fériés
+        List<Holiday> holidays = new ArrayList<>(getHolidays(startDate.getYear()));
         if (startDate.getYear() != endDate.getYear()) {
             holidays.addAll(getHolidays(endDate.getYear()));
         }
@@ -100,10 +111,15 @@ public class HolidayAPI {
         LocalDate currentDate = startDate;
 
         while (!currentDate.isAfter(endDate)) {
-            final LocalDate current = currentDate; // variable finale pour la lambda
+            final LocalDate current = currentDate;
 
-            if (current.getDayOfWeek().getValue() <= 5 && // Lundi à Vendredi
-                    holidays.stream().noneMatch(h -> h.getDate().equals(current))) {
+            boolean isWeekend = current.getDayOfWeek().getValue() > 5; // 6=Samedi, 7=Dimanche
+            boolean isHoliday = holidays.stream().anyMatch(h -> h.getDate().equals(current));
+
+            // Debug: afficher la date et son statut
+            System.out.printf("Date : %s | Weekend : %b | Férié : %b%n", current, isWeekend, isHoliday);
+
+            if (!isWeekend && !isHoliday) {
                 workingDays++;
             }
 
@@ -111,5 +127,25 @@ public class HolidayAPI {
         }
 
         return workingDays;
+    }
+
+    // Pour tester rapidement
+    public static void main(String[] args) {
+        try {
+            int year = 2025;
+            List<Holiday> holidays = getHolidays(year);
+            System.out.println("Jours fériés en " + year + " : " + holidays.size());
+            for (Holiday h : holidays) {
+                System.out.println(h);
+            }
+
+            // Test du calcul jours ouvrés
+            LocalDate start = LocalDate.of(2025, 5, 1);
+            LocalDate end = LocalDate.of(2025, 5, 15);
+            int workingDays = getWorkingDays(start, end);
+            System.out.println("Jours ouvrés entre " + start + " et " + end + " : " + workingDays);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

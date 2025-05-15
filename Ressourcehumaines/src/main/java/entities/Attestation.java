@@ -8,14 +8,14 @@ public class Attestation extends Demande {
     private String objet;
     private String fichier;
 
-    public Attestation(int id, LocalDate dateSoumission, String statut, String type, String description, int utilisateurId, LocalDate dateValidation, String motif, String typeAttestation) {
-        super(id, dateSoumission, statut, type, description, utilisateurId, dateValidation);
+    public Attestation(int iddemande, LocalDate dateSoumission, String statut, String type, String description, int Id, LocalDate dateValidation, String motif, String typeAttestation) {
+        super(iddemande, dateSoumission, statut, type, description, Id, dateValidation);
         this.motif = motif;
         this.typeAttestation = typeAttestation;
     }
 
-    public Attestation(LocalDate dateSoumission, String statut, String type, String description, int utilisateurId, LocalDate dateDebut, LocalDate dateFin, String motif, String typeConge, LocalDate dateValidation) {
-        super(dateSoumission, statut, type, description, utilisateurId, dateValidation);
+    public Attestation(LocalDate dateSoumission, String statut, String type, String description, int Id, LocalDate dateDebut, LocalDate dateFin, String motif, String typeConge, LocalDate dateValidation) {
+        super(dateSoumission, statut, type, description, Id, dateValidation);
         this.typeAttestation = type;
         this.motif = motif;
     }

@@ -6,7 +6,7 @@
 <?import javafx.geometry.Insets?>
 
 <BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
-            fx:controller="gui.StatisticsController" stylesheets="@../../../../../../../OneDrive/Documents/GitHub/projetjavagirlspower/Ressourcehumaines/src/main/resources/style/style.css">
+            fx:controller="gui.StatisticsController" stylesheets="@style/maramr.css">
     
     <top>
         <VBox spacing="10">

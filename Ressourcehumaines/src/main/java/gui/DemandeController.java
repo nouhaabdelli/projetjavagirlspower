@@ -1,5 +1,5 @@
 package gui;
-
+import entities.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.event.ActionEvent;
 import javafx.animation.TranslateTransition;
 import javafx.util.Duration;
+import services.UserCrud;
 
 import java.io.IOException;
 import java.sql.*;
@@ -22,15 +23,27 @@ public class DemandeController {
     @FXML private Button btnAttestation;
     @FXML private Button btnMesDemandes;
     @FXML private Button btnStatistiques;
+    @FXML private Button btnToutesLesDemandes;
     @FXML private VBox sidebar;
     @FXML private VBox contentArea;
 
+    private UserCrud userService = new UserCrud(); // instance de ton service utilisateur
     private boolean isSidebarVisible = true;
 
     @FXML
     public void initialize() {
-        ouvrirStatistiques(); // Appelle la version sans paramètre
+        int utilisateurId = getUtilisateurId(); // récupère l'utilisateur connecté
+        String role = userService.getRole(utilisateurId);
+
+        if (!"admin".equals(role)) {
+            btnToutesLesDemandes.setVisible(true); // Cache le bouton si ce n’est pas un admin
+        }
+
+        ouvrirStatistiques();
     }
+
+
+
 
     private void ouvrirStatistiques() {
         ouvrirStatistiques(null); // Appelle la version FXML avec null
@@ -160,7 +173,31 @@ public class DemandeController {
         // Remplace cela par la logique pour obtenir l'ID réel de l'utilisateur
         return 1;  // Valeur par défaut, remplace par la valeur dynamique de l'utilisateur connecté
     }
+    public String getRoleByIdDemande(int idDemande) {
+        String url = "jdbc:mysql://localhost:3306/workbridge";
+        String username = "root";
+        String password = "";
+        String role = "employe"; // valeur par défaut
 
+        String query = "SELECT u.role FROM User u JOIN Demande d ON u.id = d.id WHERE d.iddemande = ?";
+
+        try (Connection conn = DriverManager.getConnection(url, username, password);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setInt(1, idDemande);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                role = rs.getString("role");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            showError("Erreur", "Impossible de récupérer le rôle de l'utilisateur pour cette demande.");
+        }
+
+        return role;
+    }
     @FXML
     void ouvrirStatistiques(ActionEvent event) {
         try {

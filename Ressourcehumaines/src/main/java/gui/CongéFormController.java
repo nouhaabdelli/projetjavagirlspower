@@ -40,10 +40,31 @@ public class CongéFormController {
 
     // Initialiser la ComboBox avec les types de congé
     @FXML
+    private Label labelJoursOuvres;
+
+    @FXML
     public void initialize() {
         comboType.getItems().addAll("Congé annuel", "Congé maladie", "Congé sans solde");
-    }
 
+        dateDebut.valueProperty().addListener((obs, oldV, newV) -> calculerJoursOuvres());
+        dateFin.valueProperty().addListener((obs, oldV, newV) -> calculerJoursOuvres());
+    }
+    private void calculerJoursOuvres() {
+        LocalDate debut = dateDebut.getValue();
+        LocalDate fin = dateFin.getValue();
+
+        if (debut != null && fin != null && !debut.isAfter(fin)) {
+            try {
+                int jours = utils.HolidayAPI.getWorkingDays(debut, fin);
+                labelJoursOuvres.setText(jours + " jours");
+            } catch (IOException e) {
+                e.printStackTrace();
+                labelJoursOuvres.setText("Erreur calcul");
+            }
+        } else {
+            labelJoursOuvres.setText("0 jours");
+        }
+    }
     // Ajouter une pièce jointe
     @FXML
     void ajoutpiece(ActionEvent event) {

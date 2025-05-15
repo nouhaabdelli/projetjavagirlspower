@@ -4,36 +4,37 @@ package entities;
 import java.time.LocalDate;
 
 public class Demande {
-    private int id;
+
     private LocalDate dateSoumission;
     private String statut = "en attente";
     private String type;
     private String description;
-    private int utilisateurId;
+    private int iddemande;
+    private int Id;
     private LocalDate dateValidation;
     private String tempsPrediction;
 
-    public Demande(int id, LocalDate dateSoumission, String statut, String type, String description, int utilisateurId) {
-        this.id = id;
+    public Demande(int iddemande, LocalDate dateSoumission, String statut, String type, String description, int Id) {
+        this.iddemande = iddemande;
         this.dateSoumission = dateSoumission;
         this.statut = statut;
         this.type = type;
         this.description = description;
-        this.utilisateurId = utilisateurId;
+        this.Id  =Id;
         this.dateValidation = null;
     }
 
-    public Demande(int id, LocalDate dateSoumission, String statut, String type, String description, int utilisateurId, LocalDate dateValidation) {
-        this.id = id;
+    public Demande(int iddemande, LocalDate dateSoumission, String statut, String type, String description, int Id, LocalDate dateValidation) {
+        this.iddemande = iddemande;
         this.dateSoumission = dateSoumission;
         this.statut = statut;
         this.type = type;
         this.description = description;
-        this.utilisateurId = utilisateurId;
+        this.Id = Id;
         this.dateValidation = dateValidation;
     }
-    public Demande(int id, String statut, String type, String description,LocalDate dateSoumission , LocalDate dateValidation) {
-        this.id = id;
+    public Demande(int iddemande, String statut, String type, String description,LocalDate dateSoumission , LocalDate dateValidation) {
+        this.iddemande = iddemande;
         this.dateSoumission = dateSoumission;
         this.statut = statut;
         this.type = type;
@@ -46,16 +47,16 @@ public class Demande {
         this.statut = statut;
         this.type = type;
         this.description = description;
-        this.utilisateurId = utilisateurId;
+        this.Id = Id;
         this.dateValidation = dateValidation;
     }
 
-    public int getId() {
-        return this.id;
+    public int getIddemande() {
+        return this.iddemande;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIddemande(int id) {
+        this.iddemande = id;
     }
 
     public LocalDate getDateSoumission() {
@@ -98,12 +99,12 @@ public class Demande {
         this.description = description;
     }
 
-    public int getUtilisateurId() {
-        return this.utilisateurId;
+    public int getId() {
+        return this.Id;
     }
 
-    public void setUtilisateurId(int utilisateurId) {
-        this.utilisateurId = utilisateurId;
+    public void setId(int Id) {
+        this.Id = Id;
     }
 
     public LocalDate getDateValidation() {

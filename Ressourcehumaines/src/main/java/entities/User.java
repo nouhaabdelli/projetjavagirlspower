@@ -25,7 +25,16 @@ public class User {
     // 🔹 Constructeur vide
     public User() {
     }
-
+    public User(int id, String nom, String prenom, String email, int cin , String NumTelephone, String Genre, String Adresse  ) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.cin = cin;
+        this.numTelephone = NumTelephone;
+        this.genre = Genre;
+        this.adresse = Adresse;
+    }
     // 🔹 Constructeur complet
     public User(int id, String nom, String prenom, java.time.LocalDate dateNaissance, String motDePasse,
                 String email, String numTelephone, String role, String rib, int nombreEnfant, String cnam,
