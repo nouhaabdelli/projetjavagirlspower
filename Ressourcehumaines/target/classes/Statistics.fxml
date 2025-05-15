@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="gui.StatisticsController" stylesheets="@style/maramr.css">
+    
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <Label text="Statistiques des Attestations" style="-fx-font-size: 24px;"/>
+            <Button text="Rafraîchir" onAction="#handleRefresh"/>
+        </VBox>
+    </top>
+
+    <center>
+        <TabPane fx:id="tabPane">
+            <tabs>
+                <Tab text="Graphiques" closable="false">
+                    <VBox spacing="20">
+                        <padding>
+                            <Insets top="20" right="20" bottom="20" left="20"/>
+                        </padding>
+                        
+                        <LineChart fx:id="monthlyChart" title="Attestations par mois">
+                            <xAxis>
+                                <CategoryAxis label="Mois"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis label="Nombre d'attestations"/>
+                            </yAxis>
+                        </LineChart>
+
+                        <HBox spacing="20">
+                            <PieChart fx:id="typeChart" title="Distribution par type"/>
+                            
+                            <BarChart fx:id="processingTimeChart" title="Temps moyen de traitement">
+                                <xAxis>
+                                    <CategoryAxis label="Type d'attestation"/>
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis label="Heures"/>
+                                </yAxis>
+                            </BarChart>
+                        </HBox>
+                    </VBox>
+                </Tab>
+
+                <Tab text="Statistiques détaillées" closable="false">
+                    <TextArea fx:id="textStats" editable="false" wrapText="true" VBox.vgrow="ALWAYS"/>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane> 

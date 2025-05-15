@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6d5e48b3-8a73-4776-b3a5-758a89f834a3" name="Changes" comment="REPONSE ADDED" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+        <option value="CSS File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;MARAM-create&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/nouhaabdelli/projetjavagirlspower.git&quot;,
+    &quot;accountId&quot;: &quot;50cfbcd0-1cb9-475d-a198-5877ddd0593a&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="proportion" value="0.49844238" />
+    <option name="selectedTabId" value="CurrentFile" />
+    <option name="showPreview" value="true" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2wv3xbw39uuG94WcSHUSgN69ckt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Project3A2 [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;demande&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lenovo/IdeaProjects/projetjavagirlspower_1/projetjavagirlspower/demande&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lenovo\IdeaProjects\projetjavagirlspower\demande\Ressourcehumaines\src\main\resources" />
+      <recent name="C:\Users\lenovo\IdeaProjects\projetjavagirlspower\demande\Ressourcehumaines\src\main\resources\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lenovo\IdeaProjects\projetjavagirlspower\demande\Ressourcehumaines\.env" />
+      <recent name="C:\Users\lenovo\IdeaProjects\projetjavagirlspower\demande\Ressourcehumaines\src\main\resources\style" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="utils" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/demande/Project3A2/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.117" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.117" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6d5e48b3-8a73-4776-b3a5-758a89f834a3" name="Changes" comment="" />
+      <created>1746908468049</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1746908468049</updated>
+      <workItem from="1746908469647" duration="8151000" />
+      <workItem from="1746965411681" duration="279000" />
+      <workItem from="1746967817861" duration="20172000" />
+      <workItem from="1747003908494" duration="14451000" />
+      <workItem from="1747057177176" duration="7387000" />
+      <workItem from="1747068557925" duration="916000" />
+      <workItem from="1747071462229" duration="221000" />
+      <workItem from="1747132925408" duration="1446000" />
+      <workItem from="1747137058228" duration="387000" />
+      <workItem from="1747142429827" duration="6792000" />
+      <workItem from="1747151068955" duration="167000" />
+      <workItem from="1747151261867" duration="86000" />
+      <workItem from="1747175049950" duration="7105000" />
+      <workItem from="1747212107091" duration="7472000" />
+      <workItem from="1747219801389" duration="40964000" />
+      <workItem from="1747322951187" duration="610000" />
+    </task>
+    <task id="LOCAL-00001" summary="first">
+      <option name="closed" value="true" />
+      <created>1746910516551</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1746910516551</updated>
+    </task>
+    <task id="LOCAL-00002" summary="pdf done">
+      <option name="closed" value="true" />
+      <created>1746914377260</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1746914377260</updated>
+    </task>
+    <task id="LOCAL-00003" summary="valider et interface mes demande">
+      <option name="closed" value="true" />
+      <created>1746988746993</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1746988746993</updated>
+    </task>
+    <task id="LOCAL-00004" summary="valider et interface mes demande">
+      <option name="closed" value="true" />
+      <created>1746988771677</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1746988771677</updated>
+    </task>
+    <task id="LOCAL-00005" summary="valider et interface mes demande">
+      <option name="closed" value="true" />
+      <created>1746990374944</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1746990374944</updated>
+    </task>
+    <task id="LOCAL-00006" summary="everything sauf openai api et mes demande problem d interface">
+      <option name="closed" value="true" />
+      <created>1747016409312</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1747016409312</updated>
+    </task>
+    <task id="LOCAL-00007" summary="everything sauf openai api et mes demande problem d interface">
+      <option name="closed" value="true" />
+      <created>1747016453116</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1747016453116</updated>
+    </task>
+    <task id="LOCAL-00008" summary="everything sauf openai api et mes demande problem d interface">
+      <option name="closed" value="true" />
+      <created>1747016553572</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1747016553572</updated>
+    </task>
+    <task id="LOCAL-00009" summary="everything sauf openai api et mes demande problem d interface">
+      <option name="closed" value="true" />
+      <created>1747016813663</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1747016813663</updated>
+    </task>
+    <task id="LOCAL-00010" summary="everything sauf openai api et mes demande problem d interface">
+      <option name="closed" value="true" />
+      <created>1747016862157</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1747016862157</updated>
+    </task>
+    <task id="LOCAL-00011" summary="everything sauf openai api et mes demande problem d interface">
+      <option name="closed" value="true" />
+      <created>1747057469325</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1747057469326</updated>
+    </task>
+    <task id="LOCAL-00012" summary="side bar added">
+      <option name="closed" value="true" />
+      <created>1747175188862</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1747175188862</updated>
+    </task>
+    <task id="LOCAL-00013" summary="REPONSE ADDED">
+      <option name="closed" value="true" />
+      <created>1747246736852</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1747246736852</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first" />
+    <MESSAGE value="pdf done" />
+    <MESSAGE value="api openai pomxml" />
+    <MESSAGE value="valider et interface mes demande" />
+    <MESSAGE value="everything sauf openai api et mes demande problem d interface" />
+    <MESSAGE value="side bar added" />
+    <MESSAGE value="REPONSE ADDED" />
+    <option name="LAST_COMMIT_MESSAGE" value="REPONSE ADDED" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Ressourcehumaines/src/main/java/utils/MyConnection.java</url>
+          <line>14</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

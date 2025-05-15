@@ -1,12 +1,17 @@
 package gui;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -113,6 +118,20 @@ public class LoginUser {
             alert.showAndWait();
             return;
         }
+        Button source = (Button) event.getSource();
+        String fxmlFile = "/FXML/maquette.fxml";
+
+
+
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            System.out.println("Erreur de chargement : " + e.getMessage());
+        }
+
 
         // Connexion réussie
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -208,6 +227,20 @@ public class LoginUser {
                 }
             }
         });
+        Button source = (Button) event.getSource();
+        String fxmlFile = "/FXML/maquette.fxml";
+
+
+
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+            Stage stages = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stages.setScene(new Scene(root));
+            stages.show();
+        } catch (IOException e) {
+            System.out.println("Erreur de chargement : " + e.getMessage());
+        }
+
 
     }
 
