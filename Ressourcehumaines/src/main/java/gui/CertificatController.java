@@ -1,4 +1,4 @@
-/*package gui;
+package gui;
 
 import entities.Certificat;
 import services.Certificatservices;
@@ -185,4 +185,3 @@ public class CertificatController {
 
     }
 }
-*/
