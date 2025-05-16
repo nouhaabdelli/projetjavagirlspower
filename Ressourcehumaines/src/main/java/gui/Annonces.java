@@ -2,6 +2,7 @@ package gui;
 
 import entities.Annonce;
 import javafx.animation.PauseTransition;
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -41,6 +43,7 @@ public class Annonces {
     @FXML
     private TableColumn<Annonce, String> contenu;
 
+
     @FXML
     private TableColumn<Annonce, String> datepub;
 
@@ -57,6 +60,23 @@ public class Annonces {
     private TableColumn<Annonce, Void> colSupprimer;
 
     @FXML
+    private Button btnSidebarToggle;
+
+    @FXML
+    private Button Réinitialiser;
+
+    @FXML
+    private Button ouvrirCalend;
+
+
+    @FXML
+    private VBox sidebar;
+
+    private boolean isSidebarOpen = true;
+    private boolean isTransitioning = false;
+    private PauseTransition autoCloseTimer;
+
+    @FXML
     private DatePicker dateRecherchePicker;
 
     private final AnnonceService annonceService = new AnnonceService();
@@ -66,6 +86,8 @@ public class Annonces {
     public void initialize() {
         titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         contenu.setCellValueFactory(new PropertyValueFactory<>("contenu"));
+        contenu.setMaxWidth(300);
+
         datepub.setCellValueFactory(new PropertyValueFactory<>("datePublication"));
         pj.setCellValueFactory(new PropertyValueFactory<>("pieceJointe"));
 
@@ -75,7 +97,9 @@ public class Annonces {
 
         chargerAnnonces();
 
-        // Par défaut, c'est le mode Backoffice (vous pouvez appeler la méthode toggleFrontofficeMode ici si nécessaire)
+        setupEventHandlers();
+
+
 
     }
 
@@ -250,6 +274,8 @@ public class Annonces {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 
     public void showNotification(Stage stage, String message, String color) {
@@ -273,12 +299,42 @@ public class Annonces {
         delay.play();
     }
 
+    private void toggleSidebar() {
+        if (sidebar == null) return;
+
+        TranslateTransition transition = new TranslateTransition(Duration.millis(300), sidebar);
+        if (isSidebarOpen) {
+            transition.setToX(-250);
+            isSidebarOpen = false;
+        } else {
+            transition.setToX(0);
+            isSidebarOpen = true;
+        }
+        transition.play();
+    }
+
+    private void setupEventHandlers() {
+        if (btnSidebarToggle != null) {
+            btnSidebarToggle.setOnAction(event -> toggleSidebar());
+        } else {
+            System.err.println("btnSidebarToggle is null");
+        }
+
+        // === Nouveau comportement de la sidebar ===
+        if (btnAjouter != null)
+            btnAjouter.setOnAction(a -> btnajout(a));
+        if (Réinitialiser != null)
+            Réinitialiser.setOnAction(a -> resetTableView(a));
+        if (ouvrirCalend != null)
+            ouvrirCalend.setOnAction(a -> ouvrirCalendrier(a) );
+    }
+
     @FXML
     private void ouvrirCalendrier(ActionEvent event) {
         try {
             Stage stageActuel = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stageActuel.close();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Calendrier.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/calendrierAnnonce.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();

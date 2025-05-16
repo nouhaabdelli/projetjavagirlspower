@@ -18,12 +18,11 @@ public class TestFX extends Application {
     public void start(Stage primaryStage) {
         try {
             // Charger l'interface principale "annonces.fxml"
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/evenements.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/annonces.fxml"));
             Parent root = loader.load();
 
             // Créer et configurer la scène
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/css/maquette.css").toExternalForm());
 
             // Afficher la fenêtre principale
             primaryStage.setTitle("Gestion des Annonces");

@@ -6,26 +6,24 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.layout.VBox?>
 <SplitPane prefHeight="699.0" prefWidth="915.0" stylesheets="@css/gestionannonce.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Evenements">
     <items>
         <AnchorPane prefHeight="698.0" prefWidth="667.0">
             <children>
 
                 <!-- Titre -->
-                <Label fx:id="GrandTitre" alignment="CENTER" layoutX="104.0" layoutY="30.0" prefHeight="27.0" prefWidth="392.0" text="Gestion Des Événements" underline="true">
+                <Label fx:id="GrandTitre" alignment="CENTER" layoutX="253.0" layoutY="29.0" prefHeight="27.0" prefWidth="392.0" text="Gestion Des Événements" underline="true">
                     <font>
-                        <Font name="Arial Bold Italic" size="12.0" />
+                        <Font name="Forte" size="12.0" />
                     </font>
                 </Label>
 
                 <!-- TableView -->
-                <TableView fx:id="tableview" layoutX="33.0" layoutY="134.0" prefHeight="470.0" prefWidth="832.0">
+                <TableView fx:id="tableview" layoutX="33.0" layoutY="134.0" prefHeight="470.0" prefWidth="1041.0">
                     <columns>
                         <TableColumn fx:id="nomEvenement" text="Nom" />
                         <TableColumn fx:id="description" text="Description" />
@@ -44,16 +42,8 @@
                     </columns>
                 </TableView>
 
-                <!-- Logo -->
-                <ImageView fitHeight="141.0" fitWidth="253.0" layoutX="-23.0" layoutY="-7.0" preserveRatio="true">
-                    <image>
-                        <Image url="@css/logo.png" />
-                    </image>
-                </ImageView>
-
                 <VBox fx:id="sidebar" layoutY="131.0" prefHeight="669.0" prefWidth="250.0" styleClass="sidebar" translateX="-250.0">
                     <!-- Navigation Section -->
-                    <Label styleClass="sidebar-title" text="Navigation" />
                     <Button fx:id="btnAjouter" styleClass="menu-item" text="Ajouter un Evenement" />
                     <Button fx:id="Réinitialiser" styleClass="menu-item" text="Réinitialiser" />
                     <Button fx:id="ouvrirCalend" styleClass="menu-item" text="Calendrier" />
@@ -61,13 +51,13 @@
 
 
                 </VBox>
-                <Button fx:id="btnSidebarToggle" prefHeight="50.0" prefWidth="50.0" styleClass="sidebar-toggle" text="☰" />
+                <Button fx:id="btnSidebarToggle" layoutY="34.0" prefHeight="50.0" prefWidth="151.0" styleClass="sidebar-toggle" text="☰ Menu" />
 
                 <!-- DatePicker -->
-                <DatePicker fx:id="dateRecherchePicker" layoutX="588.0" layoutY="89.0" prefHeight="27.0" prefWidth="188.0" />
+                <DatePicker fx:id="dateRecherchePicker" layoutX="718.0" layoutY="56.0" prefHeight="27.0" prefWidth="188.0" />
 
                 <!-- Bouton Rechercher -->
-                <Button layoutX="785.0" layoutY="89.0" onAction="#rechercherParDate" text="Rechercher" />
+                <Button layoutX="913.0" layoutY="47.0" onAction="#rechercherParDate" prefHeight="45.0" prefWidth="105.0" text="Rechercher" />
 
                 <!-- Bouton Ajouter
                 <Button fx:id="btnAjouter" layoutX="26.0" layoutY="625.0" onAction="#btnAjouterEvenement" text="Ajouter un Événement" /> -->

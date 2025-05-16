@@ -17,6 +17,7 @@ import services.AnnonceService;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 
 public class ModifierAnnonce {
@@ -42,7 +43,7 @@ public class ModifierAnnonce {
 
         titre.setText(selectedAnnonce.getTitre());
         contenu.setText(selectedAnnonce.getContenu());
-        cal.setValue(selectedAnnonce.getDatePublication().toLocalDate());
+        cal.setValue(LocalDate.now());
         picejoin.setText(selectedAnnonce.getPieceJointe());
     }
 

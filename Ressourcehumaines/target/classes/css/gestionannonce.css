@@ -21,7 +21,7 @@
 }
 
 .table-view .column-header {
-    -fx-background-color: #9bd2f3;
+    -fx-background-color: #badef3;
     -fx-text-fill: black;
     -fx-font-weight: bold;
     -fx-alignment: CENTER;
@@ -33,14 +33,14 @@
     -fx-font-size: 13px;
 }
 
-/* Bouton Ajouter */
+/* Bouton Ajouter
 #btnAjouter {
     -fx-background-color: #1a4a66;
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-cursor: hand;
     -fx-padding: 8px 16px;
-}
+} */
 
 /* Boutons dans le tableau */
 .button {
@@ -76,61 +76,55 @@
     -fx-border-radius: 10;
 }
 
+/* --- Sidebar --- */
 .sidebar {
-    -fx-background-color: #0A3D62C9;
-    -fx-background-radius: 0 15px 15px 0;
-    -fx-padding: 20px;
-    -fx-spacing: 15px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.5, 0, 5);
+    -fx-background-color: #badef3;
+    -fx-padding: 20px 10px;
+    -fx-spacing: 10px;
 }
 
-.sidebar.alt-theme {
-    -fx-background-color: #0A3D62;
-}
-
-.sidebar-toggle {
-    -fx-background-color: transparent;
-    -fx-text-fill: #FFFFFF;
-    -fx-font-size: 18px;
-    -fx-padding: 10px;
-    -fx-cursor: hand;
-}
-
-.sidebar-toggle:hover {
-    -fx-background-color: #6D28D9;
-    -fx-background-radius: 10px;
-    -fx-scale-x: 1.1;
-    -fx-scale-y: 1.1;
-    -fx-transition: all 0.3s ease-in-out;
-}
-
+/* --- Titre de la sidebar --- */
 .sidebar-title {
-    -fx-font-size: 20px;
+    -fx-font-size: 16px;
+    -fx-text-fill: #0a2a4a; /* bleu foncé */
     -fx-font-weight: bold;
-    -fx-text-fill: #FFFFFF;
-    -fx-padding: 10px 0;
 }
 
-.sidebar-title.alt-theme {
-    -fx-text-fill: #E2E8F0;
-}
-
+/* --- Boutons dans la sidebar --- */
 .menu-item {
     -fx-background-color: transparent;
-    -fx-text-fill: #FFFFFF;
-    -fx-font-size: 16px;
-    -fx-padding: 10px 20px;
-    -fx-alignment: center-left;
+    -fx-text-fill: #0a2a4a; /* bleu foncé */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 8px 10px;
+    -fx-transition: all 0.2s ease-in-out;
+}
+
+/* Hover des boutons sidebar */
+.menu-item:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
     -fx-cursor: hand;
 }
 
-.menu-item:hover {
-    -fx-background-color: #6D28D9;
-    -fx-background-radius: 10px;
-    -fx-scale-x: 1.05;
-    -fx-transition: all 0.3s ease-in-out;
+/* Bouton Sidebar Toggle (☰) */
+.sidebar-toggle {
+    -fx-background-color: transparent;
+    -fx-text-fill: #0a2a4a; /* bleu foncé */
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-border-color: transparent;
+    -fx-cursor: hand;
+    -fx-transition: all 0.2s ease-in-out;
 }
 
-.menu-item.alt-theme {
-    -fx-text-fill: #E2E8F0;
+/* Clic sur le bouton toggle */
+.sidebar-toggle:pressed {
+    -fx-background-color: #badef3;
+}
+.sidebar-toggle:hover {
+    -fx-background-color: #badef3;
 }

@@ -28,14 +28,8 @@ public class AnnonceService implements IService<Annonce> {
         }
 
 
-        if (annonce.getDatePublication().isBefore(LocalDateTime.now())) {
-            throw new IllegalArgumentException("La date de publication doit être la date actuelle ou une date future.");
-        }
 
 
-        if (annonce.getPieceJointe() != null && annonce.getPieceJointe().trim().isEmpty()) {
-            throw new IllegalArgumentException("Le nom du fichier de la pièce jointe ne peut pas être vide.");
-        }
 
 
         String query = "INSERT INTO annonce(titre, contenu, date_publication, piece_jointe) VALUES(?, ?, ?, ?)";

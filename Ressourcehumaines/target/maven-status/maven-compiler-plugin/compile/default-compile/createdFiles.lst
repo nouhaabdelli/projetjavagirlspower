@@ -23,6 +23,7 @@ entities\User.class
 gui\Evenements.class
 gui\evenementfo.class
 gui\Annonces$1.class
+gui\calendrierAnnonce.class
 gui\ModifierAnnonce.class
 gui\annoncefo$1.class
 gui\Annonces.class
