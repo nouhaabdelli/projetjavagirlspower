@@ -16,7 +16,7 @@
 
       <Button layoutX="274.0" layoutY="339.0" mnemonicParsing="false" onAction="#detferm" text="Fermer" />
       <Button layoutX="-181.0" layoutY="-128.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="324.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleOuvrirPdf" prefHeight="34.0" prefWidth="111.0" text="Ouvrir PDF">
+      <Button layoutX="454.0" layoutY="259.0" mnemonicParsing="false" onAction="#handleOuvrirPdf" prefHeight="34.0" prefWidth="111.0" text="Ouvrir PDF">
          <font>
             <Font size="10.0" />
          </font>

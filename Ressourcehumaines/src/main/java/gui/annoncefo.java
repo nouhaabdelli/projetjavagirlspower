@@ -2,6 +2,7 @@ package gui;
 
 import entities.Annonce;
 import javafx.animation.PauseTransition;
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -25,6 +27,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class annoncefo {
+
     @FXML
     private Button btnAjouter;
 
@@ -40,6 +43,7 @@ public class annoncefo {
     @FXML
     private TableColumn<Annonce, String> contenu;
 
+
     @FXML
     private TableColumn<Annonce, String> datepub;
 
@@ -50,7 +54,25 @@ public class annoncefo {
     private TableColumn<Annonce, Void> colAfficher;
 
 
+    @FXML
+    private Button btnSidebarToggle;
 
+    @FXML
+    private Button Réinitialiser;
+
+    @FXML
+    private Button ouvrirCalend;
+
+
+    @FXML
+    private VBox sidebar;
+
+    @FXML
+    private TextField titrech ;
+
+    private boolean isSidebarOpen = true;
+    private boolean isTransitioning = false;
+    private PauseTransition autoCloseTimer;
 
     @FXML
     private DatePicker dateRecherchePicker;
@@ -62,15 +84,20 @@ public class annoncefo {
     public void initialize() {
         titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
         contenu.setCellValueFactory(new PropertyValueFactory<>("contenu"));
+        contenu.setMaxWidth(300);
+
         datepub.setCellValueFactory(new PropertyValueFactory<>("datePublication"));
         pj.setCellValueFactory(new PropertyValueFactory<>("pieceJointe"));
 
         ajouterBoutonAfficher();
 
-
         chargerAnnonces();
 
-        // Par défaut, c'est le mode Backoffice (vous pouvez appeler la méthode toggleFrontofficeMode ici si nécessaire)
+        setupEventHandlers();
+
+        titrech.textProperty().addListener((obs, oldText, newText) -> {
+            rechercherParTitre();
+        });
 
     }
 
@@ -94,6 +121,25 @@ public class annoncefo {
         }
     }
 
+    @FXML
+    void rechercherParTitre() {
+        String texte = titrech.getText().trim().toLowerCase();
+        if (!texte.isEmpty()) {
+            try {
+                List<Annonce> annonces = annonceService.readAll();
+                List<Annonce> resultats = annonces.stream()
+                        .filter(a -> a.getTitre() != null && a.getTitre().toLowerCase().contains(texte))
+                        .collect(Collectors.toList());
+                tableview.setItems(FXCollections.observableList(resultats));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            chargerAnnonces(); // Recharge tous les événements si le champ est vide
+        }
+    }
+
+
     private void chargerAnnoncesFiltreesParDate(Date date) {
         try {
             List<Annonce> annonces = annonceService.readAll();
@@ -109,7 +155,7 @@ public class annoncefo {
 
     @FXML
     void resetTableView(ActionEvent event) {
-        dateRecherchePicker.setValue(null); // Efface la date sélectionnée
+        dateRecherchePicker.setValue(null);// Efface la date sélectionnée
         chargerAnnonces(); // Recharge toutes les annonces
     }
 
@@ -148,7 +194,38 @@ public class annoncefo {
 
 
 
+    @FXML
+    void btnajout(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterAnnonce.fxml"));
+            Parent root = loader.load();
 
+            AjouterAnnonce controller = loader.getController(); // Récupérer le contrôleur de la fenêtre d'ajout
+
+            Stage stage = new Stage();
+            stage.setTitle("Ajouter une annonce");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+            // Lorsque la fenêtre d'ajout est fermée, charger les annonces et afficher la notification si nécessaire
+            stage.setOnHidden(e -> {
+                chargerAnnonces();
+
+                // Vérifie si l'annonce a été ajoutée avec succès
+                if (controller.isAnnonceAjoutee()) {
+                    // Utilise le Stage principal pour afficher la notification en vert (succès)
+                    showNotification((Stage) ((Node) event.getSource()).getScene().getWindow(), "Annonce ajoutée avec succès !", "#4CAF50");
+                } else {
+                    // En cas d'échec, afficher une notification en rouge (erreur)
+                    showNotification((Stage) ((Node) event.getSource()).getScene().getWindow(), "Erreur lors de l'ajout de l'annonce.", "#F44336");
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
     public void showNotification(Stage stage, String message, String color) {
         Popup popup = new Popup();
@@ -171,12 +248,42 @@ public class annoncefo {
         delay.play();
     }
 
+    private void toggleSidebar() {
+        if (sidebar == null) return;
+
+        TranslateTransition transition = new TranslateTransition(Duration.millis(300), sidebar);
+        if (isSidebarOpen) {
+            transition.setToX(-250);
+            isSidebarOpen = false;
+        } else {
+            transition.setToX(0);
+            isSidebarOpen = true;
+        }
+        transition.play();
+    }
+
+    private void setupEventHandlers() {
+        if (btnSidebarToggle != null) {
+            btnSidebarToggle.setOnAction(event -> toggleSidebar());
+        } else {
+            System.err.println("btnSidebarToggle is null");
+        }
+
+        // === Nouveau comportement de la sidebar ===
+        if (btnAjouter != null)
+            btnAjouter.setOnAction(a -> btnajout(a));
+        if (Réinitialiser != null)
+            Réinitialiser.setOnAction(a -> resetTableView(a));
+        if (ouvrirCalend != null)
+            ouvrirCalend.setOnAction(a -> ouvrirCalendrier(a) );
+    }
+
     @FXML
     private void ouvrirCalendrier(ActionEvent event) {
         try {
             Stage stageActuel = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stageActuel.close();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Calendrier.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/calendrierAnnonce.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();
@@ -188,6 +295,6 @@ public class annoncefo {
             e.printStackTrace();
         }
     }
+
+
 }
-
-

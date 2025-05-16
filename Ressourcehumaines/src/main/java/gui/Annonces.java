@@ -72,6 +72,9 @@ public class Annonces {
     @FXML
     private VBox sidebar;
 
+    @FXML
+    private TextField titrech ;
+
     private boolean isSidebarOpen = true;
     private boolean isTransitioning = false;
     private PauseTransition autoCloseTimer;
@@ -99,7 +102,9 @@ public class Annonces {
 
         setupEventHandlers();
 
-
+        titrech.textProperty().addListener((obs, oldText, newText) -> {
+            rechercherParTitre();
+        });
 
     }
 
@@ -122,6 +127,25 @@ public class Annonces {
             chargerAnnonces(); // Si aucune date n'est sélectionnée, on recharge tout
         }
     }
+
+    @FXML
+    void rechercherParTitre() {
+        String texte = titrech.getText().trim().toLowerCase();
+        if (!texte.isEmpty()) {
+            try {
+                List<Annonce> annonces = annonceService.readAll();
+                List<Annonce> resultats = annonces.stream()
+                        .filter(a -> a.getTitre() != null && a.getTitre().toLowerCase().contains(texte))
+                        .collect(Collectors.toList());
+                tableview.setItems(FXCollections.observableList(resultats));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            chargerAnnonces(); // Recharge tous les événements si le champ est vide
+        }
+    }
+
 
     private void chargerAnnoncesFiltreesParDate(Date date) {
         try {

@@ -96,9 +96,9 @@ public class EvenementService {
         }
 
 
-        if (evenement.getDateDebut().isBefore(LocalDateTime.now())) {
+       /* if (evenement.getDateDebut().isBefore(LocalDateTime.now())) {
             throw new IllegalArgumentException("La date de début ne doit pas être avant la date d'aujourd'hui.");
-        }
+        }*/
 
 
         if (evenement.getParticipantsMax() <= 0) {

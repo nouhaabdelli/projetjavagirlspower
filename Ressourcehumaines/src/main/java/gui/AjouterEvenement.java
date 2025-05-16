@@ -92,15 +92,15 @@ public class AjouterEvenement {
         }
 
         try {
-            // Appeler la méthode qui interroge l'API Gemini pour générer la description
+
             String descript = HttpURLConnectionExample.generateDescription(nomEvent);
 
-            // Mettre la description générée dans le champ de texte de description
+
             description.setText(descript);
 
         } catch (Exception e) {
             e.printStackTrace();
-            // Afficher un message d'erreur en cas d'échec
+
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText(null);
@@ -117,7 +117,7 @@ public class AjouterEvenement {
 
             MapPopupController mapController = loader.getController();
 
-            // Définir une callback pour récupérer le lieu sélectionné
+
             mapController.setOnLieuSelected(nomLieu -> {
                 lieu.setText(nomLieu);
             });
@@ -193,7 +193,7 @@ public class AjouterEvenement {
                 }
 
 
-                if (dateFin.isBefore(dateDebut)) {
+                if (dateDebut.isAfter(dateFin)) {
                     showAlert(Alert.AlertType.WARNING, "Date fin invalide", "La date de fin doit être après la date de début.");
                     return;
                 }
@@ -201,13 +201,8 @@ public class AjouterEvenement {
                     showAlert(Alert.AlertType.WARNING, "Date fin invalide", "Pour un événement terminé, la date de fin ne peut pas être dans le futur.");
                     return;
                 }
-            } else {
-
-                if (!dateFin.isAfter(dateDebut)) {
-                    showAlert(Alert.AlertType.WARNING, "Dates invalides", "La date de fin doit être postérieure à la date de début.");
-                    return;
-                }
             }
+
 
 
             LocalDateTime dateDebutTime = LocalDateTime.of(dateDebut, LocalTime.of(8, 0));
@@ -218,8 +213,6 @@ public class AjouterEvenement {
             evenementAjoute = true; // Marque que l'ajout a réussi
             showAlert(Alert.AlertType.INFORMATION, "Succès", "L'événement a été ajouté avec succès.");
             clearFields();
-
-// Ferme la fenêtre après ajout
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.close();
 

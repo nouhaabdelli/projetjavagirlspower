@@ -1,7 +1,10 @@
 package gui;
 
 import entities.Evenement;
+import entities.User;
+import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,6 +15,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -21,12 +26,15 @@ import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.util.Callback;
 import services.EvenementService;
+import services.mailService;
 
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class evenementfo {
@@ -64,13 +72,36 @@ public class evenementfo {
     private Button btnAjouter;
 
     @FXML
+    private Button Réinitialiser;
+
+    @FXML
+    private Button ouvrirCalend;
+
+    @FXML
+    private Button btnSidebarToggle;
+
+    @FXML
+    private VBox sidebar;
+
+    @FXML
+    private TextField nomrechevent; // champ de recherche par titre
+
+
+    @FXML
     private DatePicker dateRecherchePicker;
+
+    private boolean isSidebarOpen = true;
+    private boolean isTransitioning = false;
+    private PauseTransition autoCloseTimer;
+
+
+    private final Set<Integer> evenementsParticipe = new HashSet<>();
 
     private final EvenementService evenementService = new EvenementService();
 
     @FXML
     public void initialize() {
-        nomEvenement.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        nomEvenement.setCellValueFactory(new PropertyValueFactory<>("nomEvenement"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
         dateDebut.setCellValueFactory(new PropertyValueFactory<>("dateDebut"));
         dateFin.setCellValueFactory(new PropertyValueFactory<>("dateFin"));
@@ -85,6 +116,16 @@ public class evenementfo {
 
 
         chargerEvenements();
+
+        if (btnSidebarToggle != null) {
+            btnSidebarToggle.setOnAction(event -> toggleSidebar());
+        }
+
+        setupEventHandlers();
+
+        nomrechevent.textProperty().addListener((obs, oldText, newText) -> {
+            rechercherParTitre();
+        });
     }
 
     private void chargerEvenements() {
@@ -108,6 +149,55 @@ public class evenementfo {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    void rechercherParTitre() {
+        String texte = nomrechevent.getText().trim().toLowerCase();
+        if (!texte.isEmpty()) {
+            try {
+                List<Evenement> evenements = evenementService.readAll();
+                List<Evenement> resultats = evenements.stream()
+                        .filter(a -> a.getNomEvenement() != null && a.getNomEvenement().toLowerCase().contains(texte))
+                        .collect(Collectors.toList());
+                tableview.setItems(FXCollections.observableList(resultats));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            chargerEvenements(); // Recharge tous les événements si le champ est vide
+        }
+    }
+
+    private void toggleSidebar() {
+        if (sidebar == null) return;
+
+        TranslateTransition transition = new TranslateTransition(Duration.millis(300), sidebar);
+        if (isSidebarOpen) {
+            transition.setToX(-250);
+            isSidebarOpen = false;
+        } else {
+            transition.setToX(0);
+            isSidebarOpen = true;
+        }
+        transition.play();
+    }
+
+    private void setupEventHandlers() {
+        if (btnSidebarToggle != null) {
+            btnSidebarToggle.setOnAction(event -> toggleSidebar());
+        } else {
+            System.err.println("btnSidebarToggle is null");
+        }
+
+        // === Nouveau comportement de la sidebar ===
+        if (btnAjouter != null)
+            btnAjouter.setOnAction(e -> btnAjouterEvenement(e));
+        if (Réinitialiser != null)
+            Réinitialiser.setOnAction(e -> resetTableView(e));
+        if (ouvrirCalend != null)
+            ouvrirCalend.setOnAction(e -> ouvrirCalendrier(e) );
+    }
+
 
     @FXML
     void rechercherParDate(ActionEvent event) {
@@ -161,22 +251,41 @@ public class evenementfo {
                 btn.setOnAction(event -> {
                     Evenement ev = getTableView().getItems().get(getIndex());
 
-                    // Vérifie si des places sont encore disponibles
+                    if (evenementsParticipe.contains(ev.getIdEvenement())) {
+                        // Déjà participé
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Déjà inscrit");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Vous avez déjà participé à cet événement.");
+                        alert.showAndWait();
+                        return;
+                    }
+
                     if (ev.getParticipantsMax() > 0) {
-                        // Diminue de 1
                         ev.setParticipantsMax(ev.getParticipantsMax() - 1);
 
                         try {
-                            // Met à jour dans la base de données
-                            evenementService.update(ev); // Assure-toi que cette méthode existe dans EvenementService
-                            chargerEvenements(); // Recharge les données
+                            evenementService.update(ev);
+                            chargerEvenements();
+
+                            // Marquer l’événement comme "rejoint"
+                            evenementsParticipe.add(ev.getIdEvenement());
+
+                            evenementsParticipe.add(ev.getIdEvenement());
+
+                            User currentUser = new User();
+                            currentUser.setPrenom("Maram");
+                            currentUser.setEmail("ghribimaram24@gmail.com");
+
+
+                            // 🔔 ENVOI DU MAIL APRÈS VALIDATION
+                            sendParticipationConfirmationEmail(currentUser, ev);
                             showNotification((Stage) ((Node) event.getSource()).getScene().getWindow(),
                                     "Participation confirmée !", "#4CAF50");
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
                     } else {
-                        // Affiche une alerte : plus de places
                         Alert alert = new Alert(Alert.AlertType.WARNING);
                         alert.setTitle("Participation impossible");
                         alert.setHeaderText(null);
@@ -186,33 +295,44 @@ public class evenementfo {
                 });
             }
 
+            private void sendParticipationConfirmationEmail(User user, Evenement event) {
+                mailService emailService = new mailService();
+                String subject = "Confirmation de participation à l'événement";
+                String body = "Bonjour " + user.getPrenom() + ",\n\n"
+                        + "Vous avez confirmé votre participation à l'événement : '" + event.getNomEvenement() + "'.\n"
+                        + "Date : " + event.getDateDebut() + "\n"
+                        + "Lieu : " + event.getLieu() + "\n\n"
+                        + "Merci et à bientôt !\n"
+                        + "L'équipe d'organisation.";
+
+                emailService.sendEmail(user.getEmail(), subject, body);
+            }
+
+
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
                 if (!empty) {
                     Evenement ev = getTableView().getItems().get(getIndex());
 
-                    // Récupère les dates
                     LocalDate dateDebut = ev.getDateDebut().toLocalDate();
                     LocalDate dateFin = ev.getDateFin().toLocalDate();
                     LocalDate aujourdHui = LocalDate.now();
 
-                    // Conditions pour désactiver le bouton
                     boolean evenementDejaCommence = dateDebut.isBefore(aujourdHui) && dateFin.isAfter(aujourdHui);
                     boolean evenementTermine = dateFin.isBefore(aujourdHui) || dateFin.isEqual(aujourdHui);
                     boolean plusDePlaces = ev.getParticipantsMax() <= 0;
+                    boolean dejaParticipe = evenementsParticipe.contains(ev.getIdEvenement());
 
-                    // Désactiver si l’événement a déjà commencé, est terminé, ou plus de places
-                    btn.setDisable(evenementDejaCommence || evenementTermine || plusDePlaces);
-
+                    btn.setDisable(evenementDejaCommence || evenementTermine || plusDePlaces || dejaParticipe);
                     setGraphic(btn);
                 } else {
                     setGraphic(null);
                 }
             }
-
         });
     }
+
 
 
     @FXML

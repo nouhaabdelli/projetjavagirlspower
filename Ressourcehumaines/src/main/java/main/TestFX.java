@@ -18,7 +18,7 @@ public class TestFX extends Application {
     public void start(Stage primaryStage) {
         try {
             // Charger l'interface principale "annonces.fxml"
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/annonces.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/evenements.fxml"));
             Parent root = loader.load();
 
             // Créer et configurer la scène

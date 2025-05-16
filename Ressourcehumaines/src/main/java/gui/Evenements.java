@@ -87,6 +87,10 @@ public class Evenements {
     private VBox sidebar;
 
     @FXML
+    private TextField nomrechevent; // champ de recherche par titre
+
+
+    @FXML
     private DatePicker dateRecherchePicker;
 
     private boolean isSidebarOpen = true;
@@ -123,6 +127,10 @@ public class Evenements {
         }
 
         setupEventHandlers();
+
+        nomrechevent.textProperty().addListener((obs, oldText, newText) -> {
+            rechercherParTitre();
+        });
     }
 
     private void chargerEvenements() {
@@ -146,6 +154,25 @@ public class Evenements {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    void rechercherParTitre() {
+        String texte = nomrechevent.getText().trim().toLowerCase();
+        if (!texte.isEmpty()) {
+            try {
+                List<Evenement> evenements = evenementService.readAll();
+                List<Evenement> resultats = evenements.stream()
+                        .filter(a -> a.getNomEvenement() != null && a.getNomEvenement().toLowerCase().contains(texte))
+                        .collect(Collectors.toList());
+                tableview.setItems(FXCollections.observableList(resultats));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else {
+            chargerEvenements(); // Recharge tous les événements si le champ est vide
+        }
+    }
+
     private void toggleSidebar() {
         if (sidebar == null) return;
 

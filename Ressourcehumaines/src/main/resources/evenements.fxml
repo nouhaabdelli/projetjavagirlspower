@@ -6,6 +6,7 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -54,10 +55,11 @@
                 <Button fx:id="btnSidebarToggle" layoutY="34.0" prefHeight="50.0" prefWidth="151.0" styleClass="sidebar-toggle" text="☰ Menu" />
 
                 <!-- DatePicker -->
-                <DatePicker fx:id="dateRecherchePicker" layoutX="718.0" layoutY="56.0" prefHeight="27.0" prefWidth="188.0" />
+                <DatePicker fx:id="dateRecherchePicker" layoutX="718.0" layoutY="56.0" prefHeight="27.0" prefWidth="188.0" promptText="Saisir une date de debut" />
 
                 <!-- Bouton Rechercher -->
-                <Button layoutX="913.0" layoutY="47.0" onAction="#rechercherParDate" prefHeight="45.0" prefWidth="105.0" text="Rechercher" />
+                <Button layoutX="918.0" layoutY="66.0" onAction="#rechercherParDate" prefHeight="45.0" prefWidth="105.0" text="Rechercher" />
+            <TextField fx:id="nomrechevent" layoutX="718.0" layoutY="93.0" prefHeight="27.0" prefWidth="188.0" promptText="Saisir un nom d'un evenement" />
 
                 <!-- Bouton Ajouter
                 <Button fx:id="btnAjouter" layoutX="26.0" layoutY="625.0" onAction="#btnAjouterEvenement" text="Ajouter un Événement" /> -->
