@@ -1,0 +1,94 @@
+/* En-tête des jours de la semaine (Lun, Mar, Mer...) */
+.root {
+    -fx-background-color: #e8f0f8;
+}
+
+#CalAnn {
+    -fx-font-size: 25px;
+    -fx-text-fill: #1a4a66;
+    -fx-padding: 12px;
+    -fx-background-radius: 10px;
+    -fx-font-family: sans-serif;
+}
+
+
+.grid-header {
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-padding: 5px;
+    -fx-background-color: #badef3;
+    -fx-border-width: 0 0 1px 0;
+    -fx-text-alignment: center;
+    -fx-font-size: 13px;
+}
+
+/* Numéro du jour (1, 2, 3...) dans la cellule */
+.label-date {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 0 0 4px 0;
+}
+
+/* Cellule du calendrier */
+.vbox-cell {
+    -fx-border-color: lightgray;
+    -fx-border-width: 1px;
+    -fx-padding: 5px;
+    -fx-spacing: 4px;
+    -fx-background-color: #FAFAFA;
+    -fx-min-height: 60px;
+}
+
+/* Annonces à l’intérieur de chaque jour */
+.label-evenement {
+    -fx-font-size: 11px;
+    -fx-text-fill: #2a2a2a;
+    -fx-padding: 3px 5px;
+    -fx-background-color: #d1e6f1;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+}
+
+/* Curseur main au survol */
+.label-evenement:hover {
+    -fx-cursor: hand;
+    -fx-background-color: #c2dbec; /* couleur légèrement modifiée pour montrer l'interaction */
+}
+
+/* Effet quand on clique */
+.label-evenement:pressed {
+    -fx-translate-y: 1px;
+    -fx-background-color: #a4cde1;
+}
+
+/* Annonces à l’intérieur de chaque jour */
+.label-annonce {
+    -fx-font-size: 11px;
+    -fx-text-fill: #1a1a1a;
+    -fx-padding: 3px 5px;
+    -fx-background-color: #d1e6f1; /* couleur douce jaune clair */
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+}
+
+/* Curseur main au survol */
+.label-annonce:hover {
+    -fx-cursor: hand;
+    -fx-background-color: #c2dbec; /* couleur plus vive pour interaction */
+}
+
+/* Effet quand on clique */
+.label-annonce:pressed {
+    -fx-translate-y: 1px;
+    -fx-background-color: #a4cde1;
+}
+
+
+Button {
+    -fx-background-color: #1a4a66;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+    -fx-padding: 8px 16px;
+}
